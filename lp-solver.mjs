@@ -82,12 +82,18 @@ async function solveIntegerLP(variants, maxSlots, selectedBuildings, priorityBui
                 variables[varName][`provides_${building}`] = 1;
             });
 
-            // Prestige goods constraints
+            // Prestige goods constraints (canal companies are exempt from uniqueness)
             if (variant.prestigeGoods) {
                 variant.prestigeGoods.forEach(pg => {
-                    variables[varName][`prestige_${pg}`] = 1;
+                    // Canal companies don't participate in prestige goods uniqueness constraints
+                    const isCanalCompany = variant.special === 'canal';
                     
-                    // Also add to OR constraint for required prestige goods
+                    if (!isCanalCompany) {
+                        // Regular companies: add to prestige goods uniqueness constraint
+                        variables[varName][`prestige_${pg}`] = 1;
+                    }
+                    
+                    // All companies (including canal) can contribute to required prestige goods
                     const baseType = prestigeGoodsMapping[pg];
                     if (baseType && requiredPrestigeGoods.includes(baseType)) {
                         const constraintName = `required_prestige_${baseType}`;
@@ -156,19 +162,22 @@ async function solveIntegerLP(variants, maxSlots, selectedBuildings, priorityBui
         // Constraints
         constraints.slots = { max: maxSlots };
 
-        // At most one variant per base company
+        // At most one variant per base company 
+        // This applies to ALL companies (including canal) to prevent infinite selection
         baseCompanies.forEach(baseCompany => {
             constraints[`company_${baseCompany}`] = { max: 1 };
         });
 
-        // At most one company per prestige good
+        // At most one company per prestige good (excluding canal companies)
+        // Canal companies are exempt from prestige goods uniqueness constraints
         const allPrestigeGoods = new Set();
         variants.forEach(variant => {
-            if (variant.prestigeGoods) {
+            if (variant.prestigeGoods && variant.special !== 'canal') {
                 variant.prestigeGoods.forEach(pg => allPrestigeGoods.add(pg));
             }
         });
         allPrestigeGoods.forEach(pg => {
+            // Create constraint that only applies to non-canal companies
             constraints[`prestige_${pg}`] = { max: 1 };
         });
 

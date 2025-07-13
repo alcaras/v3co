@@ -612,8 +612,8 @@
                             <div class="region-header">
                                 <div class="region-title">${type} Buildings</div>
                                 <div class="region-actions">
-                                    <button class="select-all-btn" onclick="selectAllBuildings('${type}', event)">Select All</button>
-                                    <button class="clear-all-btn" onclick="clearAllBuildings('${type}', event)" style="margin-left: 10px;">Clear All</button>
+                                    <button class="select-all-btn" onclick="selectAllBuildingsByType('${type}', event)">Select All</button>
+                                    <button class="clear-all-btn" onclick="clearAllBuildingsByType('${type}', event)" style="margin-left: 10px;">Clear All</button>
                                 </div>
                             </div>
                             <div class="region-content">
@@ -730,7 +730,7 @@
             updateRegionStats();
         }
         
-        function selectAllBuildings(type, event) {
+        function selectAllBuildingsByType(type, event) {
             if (event) event.stopPropagation();
             
             const buildingsByType = {
@@ -759,7 +759,7 @@
             updateRegionStats();
         }
         
-        function clearAllBuildings(type, event) {
+        function clearAllBuildingsByType(type, event) {
             if (event) event.stopPropagation();
             
             const buildingsByType = {
@@ -1223,194 +1223,7 @@
         
         // checkPrestigeGoodRequirements now imported from prestige-goods.mjs (different signature)
 
-        // OLD DP FUNCTION REMOVED - USING LP NOW
-        function generateTopCombinations_OLD(companies, maxSlots, topN = 10, canalCompanies = []) {
-            const startTime = performance.now();
-            console.log('Starting knapsack optimization...');
-            
-            // Use ALL companies - let DP find the optimal solution
-            const filteredCompanies = companies;
-            
-            console.log(`Processing all ${filteredCompanies.length} companies with DP optimization`);
-            console.log(`DP table size: ${filteredCompanies.length} × ${maxSlots} = ${filteredCompanies.length * maxSlots} entries`);
-            
-            // Classic 0/1 Knapsack with DP
-            const n = filteredCompanies.length;
-            
-            // DP table: dp[i][w] = {score, companies} for using first i companies with w slots
-            const dp = Array(n + 1).fill(null).map(() => 
-                Array(maxSlots + 1).fill(null).map(() => ({ score: 0, companies: [] }))
-            );
-            
-            // Fill the DP table
-            for (let i = 1; i <= n; i++) {
-                const company = filteredCompanies[i - 1];
-                
-                for (let w = 0; w <= maxSlots; w++) {
-                    // Option 1: Don't take this company
-                    dp[i][w] = { ...dp[i-1][w] };
-                    
-                    // Option 2: Take this company (if we have space)
-                    if (w >= 1) {
-                        const prevCombination = dp[i-1][w-1];
-                        const newCombination = [...prevCombination.companies, company];
-                        const allCompaniesWithCanal = [...newCombination, ...canalCompanies];
-                        
-                        // Only consider this combination if it satisfies prestige goods requirements
-                        // OR if we haven't specified any prestige goods requirements
-                        if (requiredPrestigeGoods.length === 0 || checkPrestigeGoodRequirements(allCompaniesWithCanal, requiredPrestigeGoods)) {
-                            const newScore = calculateScore(allCompaniesWithCanal, selectedBuildings, priorityBuildings);
-                            
-                            if (newScore > dp[i][w].score) {
-                                dp[i][w] = {
-                                    score: newScore,
-                                    companies: newCombination
-                                };
-                            }
-                        }
-                    }
-                }
-            }
-            
-            // Generate multiple good combinations, prioritizing maxSlots solutions
-            const results = [];
-            
-            // Primary strategy: Find the best solution for maxSlots
-            if (dp[n][maxSlots].companies.length > 0 && dp[n][maxSlots].score > 0) {
-                results.push({
-                    companies: dp[n][maxSlots].companies,
-                    totalScore: dp[n][maxSlots].score,
-                    slotsUsed: maxSlots
-                });
-            }
-            
-            // Secondary strategy: Generate alternative maxSlots combinations by exploring suboptimal paths
-            const maxSlotScore = dp[n][maxSlots].score;
-            const minAcceptableScore = maxSlotScore * 0.95; // Within 5% of optimal
-            
-            // Look for alternative good combinations by checking different final company choices
-            for (let lastCompanyIdx = 0; lastCompanyIdx < n; lastCompanyIdx++) {
-                const lastCompany = filteredCompanies[lastCompanyIdx];
-                
-                // Check if this company is in the optimal solution (skip to avoid duplicates)
-                if (dp[n][maxSlots].companies.includes(lastCompany)) continue;
-                
-                // Try building a combination that ends with this company
-                const prevState = dp[lastCompanyIdx][maxSlots - 1];
-                if (prevState.companies.length === maxSlots - 1) {
-                    const altCombination = [...prevState.companies, lastCompany];
-                    const altScore = calculateScore([...altCombination, ...canalCompanies], selectedBuildings, priorityBuildings);
-                    
-                    if (altScore >= minAcceptableScore && altScore > 0) {
-                        results.push({
-                            companies: altCombination,
-                            totalScore: altScore,
-                            slotsUsed: maxSlots
-                        });
-                    }
-                }
-            }
-            
-            // Fallback: Include lower slot solutions only if we don't have enough maxSlots solutions
-            if (results.length < topN) {
-                for (let w = maxSlots - 1; w >= 1; w--) {
-                    if (dp[n][w].companies.length > 0 && dp[n][w].score > 0) {
-                        results.push({
-                            companies: dp[n][w].companies,
-                            totalScore: dp[n][w].score,
-                            slotsUsed: w
-                        });
-                    }
-                }
-            }
-            
-            // Sort by score descending, then by slots used descending (prefer using more slots)
-            results.sort((a, b) => {
-                const scoreDiff = b.totalScore - a.totalScore;
-                if (Math.abs(scoreDiff) < 0.01) {
-                    // If scores are very close, prefer using more slots
-                    return b.slotsUsed - a.slotsUsed;
-                }
-                return scoreDiff;
-            });
-            
-            // Remove duplicates
-            const seen = new Set();
-            const uniqueResults = results.filter(result => {
-                const key = result.companies.map(c => c.name).sort().join(',');
-                if (seen.has(key)) return false;
-                seen.add(key);
-                return true;
-            });
-            
-            // No need to filter since we enforced requirements during DP
-            const validResults = uniqueResults;
-            
-            console.log(`Knapsack optimization complete. Found ${uniqueResults.length} unique solutions (all satisfy prestige goods requirements).`);
-            
-            // Debug prestige goods filtering
-            if (requiredPrestigeGoods.length > 0) {
-                console.log('Required prestige goods:', requiredPrestigeGoods);
-                
-                // Show which companies in the selection can provide required goods
-                console.log('Companies that can provide required prestige goods:');
-                requiredPrestigeGoods.forEach(requiredType => {
-                    const providingCompanies = filteredCompanies.filter(company => {
-                        return company.prestigeGoods.some(prestigeGood => {
-                            const baseType = prestigeGoodsMapping[prestigeGood];
-                            return baseType === requiredType;
-                        });
-                    });
-                    console.log(`  ${requiredType}: ${providingCompanies.length} companies -`, providingCompanies.map(c => c.name));
-                    
-                    // Show score and details for each providing company
-                    providingCompanies.forEach(company => {
-                        const score = calculateScore([company], selectedBuildings, priorityBuildings);
-                        console.log(`    ${company.name}: Score=${score.toFixed(2)}, Buildings=[${company.buildings.join(', ')}], PrestigeGoods=[${company.prestigeGoods.join(', ')}]`);
-                    });
-                });
-                
-                console.log('Checking first few solutions for prestige goods:');
-                uniqueResults.slice(0, 3).forEach((result, i) => {
-                    const allCompanies = [...result.companies, ...canalCompanies];
-                    const providedGoods = new Set();
-                    const prestigeGoodDetails = [];
-                    allCompanies.forEach(company => {
-                        company.prestigeGoods.forEach(prestigeGood => {
-                            const baseType = prestigeGoodsMapping[prestigeGood];
-                            if (baseType) {
-                                providedGoods.add(baseType);
-                                prestigeGoodDetails.push(`${prestigeGood} (${baseType})`);
-                            }
-                        });
-                    });
-                    console.log(`  Solution ${i+1} provides:`, Array.from(providedGoods));
-                    console.log(`  Solution ${i+1} prestige goods:`, prestigeGoodDetails);
-                    console.log(`  Satisfies requirements:`, checkPrestigeGoodRequirements(allCompanies, requiredPrestigeGoods));
-                });
-            }
-            
-            // Debug: Check if maxSlots solution exists and analyze gaps
-            console.log('DP results analysis:');
-            console.log(`  Best 7-slot solution: ${dp[n][maxSlots].score > 0 ? dp[n][maxSlots].score.toFixed(2) : 'NONE FOUND'}`);
-            console.log(`  Best 6-slot solution: ${dp[n][maxSlots-1].score > 0 ? dp[n][maxSlots-1].score.toFixed(2) : 'NONE FOUND'}`);
-            console.log(`  Best 5-slot solution: ${dp[n][maxSlots-2].score > 0 ? dp[n][maxSlots-2].score.toFixed(2) : 'NONE FOUND'}`);
-            
-            // Debug: Log slot utilization for top results
-            console.log('Top 3 solutions slot utilization:');
-            validResults.slice(0, 3).forEach((result, i) => {
-                console.log(`  Option ${i+1}: ${result.slotsUsed}/${maxSlots} slots, Score: ${result.totalScore.toFixed(2)}`);
-                if (result.slotsUsed < maxSlots) {
-                    console.log(`    ⚠️  Option ${i+1} not using all slots!`);
-                }
-            });
-            
-            // Debug: Performance check
-            const endTime = performance.now();
-            console.log(`DP processed ${filteredCompanies.length} companies successfully in ${(endTime - startTime).toFixed(0)}ms`);
-            
-            return validResults.slice(0, topN);
-        }
+        // Legacy solver functions removed - using LP solver now
 
         function displayMultipleResults(combinations, slots) {
             const resultsSection = document.getElementById('resultsSection');
@@ -2118,236 +1931,15 @@
             return bestSolution.solution;
         }
 
-        // Exhaustive enumeration to find truly optimal solution
-        function solveExhaustiveLP(baseCompanyGroups, maxSlots) {
-            const baseCompanies = Array.from(baseCompanyGroups.keys());
-            let bestSolution = [];
-            let bestScore = -Infinity;
-            
-            console.log(`Evaluating all combinations of ${baseCompanies.length} companies, ${maxSlots} slots`);
-            
-            // Generate all combinations of baseCompanies taken maxSlots at a time
-            const companyCombinations = generateCombinations(baseCompanies, maxSlots);
-            console.log(`Generated ${companyCombinations.length} company combinations to evaluate`);
-            
-            for (const companyCombination of companyCombinations) {
-                // For each combination of base companies, find best variant for each
-                const variantCombinations = generateVariantCombinations(companyCombination, baseCompanyGroups);
-                
-                for (const variantCombination of variantCombinations) {
-                    if (isValidSolution(variantCombination, requiredPrestigeGoods)) {
-                        const score = calculateCombinationScore(variantCombination, selectedBuildings, priorityBuildings);
-                        if (score > bestScore) {
-                            bestScore = score;
-                            bestSolution = variantCombination;
-                        }
-                    }
-                }
-            }
-            
-            console.log(`Exhaustive search evaluated all possibilities, best score: ${bestScore.toFixed(2)}`);
-            return bestSolution;
-        }
 
-        // Generate all combinations of n elements taken k at a time
-        function generateCombinations(arr, k) {
-            if (k > arr.length) return [];
-            if (k === 0) return [[]];
-            if (k === 1) return arr.map(el => [el]);
-            
-            const result = [];
-            for (let i = 0; i <= arr.length - k; i++) {
-                const head = arr[i];
-                const tailCombinations = generateCombinations(arr.slice(i + 1), k - 1);
-                for (const tail of tailCombinations) {
-                    result.push([head, ...tail]);
-                }
-            }
-            return result;
-        }
 
-        // Generate all variant combinations for a given set of base companies
-        function generateVariantCombinations(baseCompanies, baseCompanyGroups) {
-            if (baseCompanies.length === 0) return [[]];
-            
-            const firstCompany = baseCompanies[0];
-            const restCompanies = baseCompanies.slice(1);
-            const firstVariants = baseCompanyGroups.get(firstCompany);
-            const restCombinations = generateVariantCombinations(restCompanies, baseCompanyGroups);
-            
-            const result = [];
-            for (const variant of firstVariants) {
-                for (const restCombination of restCombinations) {
-                    result.push([variant, ...restCombination]);
-                }
-            }
-            return result;
-        }
 
-        function solveGreedyWithConstraints(baseCompanyGroups, maxSlots) {
-            const baseCompanies = Array.from(baseCompanyGroups.keys());
-            const shuffledCompanies = baseCompanies.sort(() => Math.random() - 0.5);
-            
-            const solution = [];
-            const usedPrestigeGoods = new Set();
-            
-            for (const baseCompany of shuffledCompanies) {
-                if (solution.length >= maxSlots) break;
-                
-                const variants = baseCompanyGroups.get(baseCompany);
-                
-                // Find best variant that doesn't conflict with prestige goods
-                let bestVariant = null;
-                let bestVariantScore = -Infinity;
-                
-                for (const variant of variants) {
-                    // Check prestige good conflicts
-                    let hasConflict = false;
-                    if (variant.prestigeGoods) {
-                        for (const pg of variant.prestigeGoods) {
-                            if (usedPrestigeGoods.has(pg)) {
-                                hasConflict = true;
-                                break;
-                            }
-                        }
-                    }
-                    
-                    if (!hasConflict) {
-                        const score = calculateIndividualScore(variant, selectedBuildings, priorityBuildings);
-                        if (score > bestVariantScore) {
-                            bestVariantScore = score;
-                            bestVariant = variant;
-                        }
-                    }
-                }
-                
-                if (bestVariant) {
-                    solution.push(bestVariant);
-                    
-                    // Mark prestige goods as used
-                    if (bestVariant.prestigeGoods) {
-                        bestVariant.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
-                    }
-                }
-            }
-            
-            return solution;
-        }
 
-        function solvePriorityFocused(baseCompanyGroups, maxSlots) {
-            const baseCompanies = Array.from(baseCompanyGroups.keys());
-            
-            // Sort companies by priority building coverage first
-            const companiesByPriority = baseCompanies.map(baseCompany => {
-                const variants = baseCompanyGroups.get(baseCompany);
-                let bestPriorityScore = -Infinity;
-                let bestVariant = variants[0];
-                
-                for (const variant of variants) {
-                    const priorityScore = variant.buildings.filter(b => priorityBuildings.includes(b)).length * 20;
-                    if (priorityScore > bestPriorityScore) {
-                        bestPriorityScore = priorityScore;
-                        bestVariant = variant;
-                    }
-                }
-                
-                return { baseCompany, bestVariant, priorityScore: bestPriorityScore };
-            }).sort((a, b) => b.priorityScore - a.priorityScore);
-            
-            const solution = [];
-            const usedPrestigeGoods = new Set();
-            
-            for (const { baseCompany, bestVariant } of companiesByPriority) {
-                if (solution.length >= maxSlots) break;
-                
-                // Check prestige good conflicts
-                let hasConflict = false;
-                if (bestVariant.prestigeGoods) {
-                    for (const pg of bestVariant.prestigeGoods) {
-                        if (usedPrestigeGoods.has(pg)) {
-                            hasConflict = true;
-                            break;
-                        }
-                    }
-                }
-                
-                if (!hasConflict) {
-                    solution.push(bestVariant);
-                    if (bestVariant.prestigeGoods) {
-                        bestVariant.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
-                    }
-                }
-            }
-            
-            return solution;
-        }
 
-        function solveCoverageFocused(baseCompanyGroups, maxSlots) {
-            const baseCompanies = Array.from(baseCompanyGroups.keys());
-            const shuffledCompanies = baseCompanies.sort(() => Math.random() - 0.5);
-            
-            const solution = [];
-            const usedPrestigeGoods = new Set();
-            const coveredBuildings = new Set();
-            
-            for (const baseCompany of shuffledCompanies) {
-                if (solution.length >= maxSlots) break;
-                
-                const variants = baseCompanyGroups.get(baseCompany);
-                
-                // Find variant that provides most new coverage
-                let bestVariant = null;
-                let bestNewCoverage = -1;
-                
-                for (const variant of variants) {
-                    // Check prestige good conflicts
-                    let hasConflict = false;
-                    if (variant.prestigeGoods) {
-                        for (const pg of variant.prestigeGoods) {
-                            if (usedPrestigeGoods.has(pg)) {
-                                hasConflict = true;
-                                break;
-                            }
-                        }
-                    }
-                    
-                    if (!hasConflict) {
-                        // Count new buildings this variant would add
-                        const newBuildings = variant.buildings.filter(b => !coveredBuildings.has(b));
-                        const newSelectedBuildings = newBuildings.filter(b => selectedBuildings.includes(b));
-                        const newPriorityBuildings = newBuildings.filter(b => priorityBuildings.includes(b));
-                        
-                        const newCoverage = newSelectedBuildings.length + newPriorityBuildings.length * 2;
-                        
-                        if (newCoverage > bestNewCoverage) {
-                            bestNewCoverage = newCoverage;
-                            bestVariant = variant;
-                        }
-                    }
-                }
-                
-                if (bestVariant && bestNewCoverage > 0) {
-                    solution.push(bestVariant);
-                    
-                    // Mark prestige goods and buildings as used
-                    if (bestVariant.prestigeGoods) {
-                        bestVariant.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
-                    }
-                    bestVariant.buildings.forEach(b => coveredBuildings.add(b));
-                }
-            }
-            
-            return solution;
-        }
-
-        // isValidSolution now imported from scoring.mjs
-
-        // calculateCombinationScore now imported from scoring.mjs
-
-        // calculateIndividualScore now imported from lp-solver.js
-
-        // Company variant expansion (charters as separate companies)
-        // expandCompaniesWithCharters now imported from company-data.mjs
+        // Functions imported from modules:
+        // - isValidSolution, calculateCombinationScore from scoring.mjs
+        // - calculateIndividualScore from lp-solver.mjs  
+        // - expandCompaniesWithCharters from company-data.mjs
 
         // Main optimization function using simplified Linear Programming
         async function optimizeCompaniesLP() {
@@ -2425,6 +2017,29 @@
             });
         }
     }
+
+    // Make functions available globally for HTML onclick handlers
+    window.optimizeCompaniesLP = optimizeCompaniesLP;
+    window.scrollToResults = scrollToResults;
+    window.clearSelection = clearSelection;
+    window.exportSelections = exportSelections;
+    window.importSelections = importSelections;
+    window.selectAllBuildings = selectAllBuildings;
+    window.clearAllBuildings = clearAllBuildings;
+    window.selectAllCompanies = selectAllCompanies;
+    window.clearAllCompanies = clearAllCompanies;
+    window.selectAllBuildingsByType = selectAllBuildingsByType;
+    window.clearAllBuildingsByType = clearAllBuildingsByType;
+    window.toggleBuilding = toggleBuilding;
+    window.togglePriorityBuilding = togglePriorityBuilding;
+    window.clearAllPrestigeGoods = clearAllPrestigeGoods;
+    window.togglePrestigeGood = togglePrestigeGood;
+    window.selectAllInRegion = selectAllInRegion;
+    window.clearAllInRegion = clearAllInRegion;
+    window.toggleCompanyByElement = toggleCompanyByElement;
+    window.toggleCompanyRequired = toggleCompanyRequired;
+    window.toggleRegion = toggleRegion;
+    window.handleFileImport = handleFileImport;
     </script>
 </body>
 </html>
