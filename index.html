@@ -370,11 +370,6 @@
         </div>
         
         <div class="section">
-            <h2>Search Companies</h2>
-            <input type="text" id="searchBox" class="search-box" placeholder="Search by company name, building, or country..." onkeyup="searchCompanies()">
-        </div>
-        
-        <div class="section">
             <h2>Building Selection</h2>
             <p>Select the buildings you want to optimize for. The system will attempt to maximize coverage of these buildings by selecting the optimal combination of companies.</p>
             <div style="margin-bottom: 15px; padding: 10px; background: #e3f2fd; border-radius: 8px; font-size: 14px; color: #1565c0;">
@@ -399,6 +394,7 @@
                 <strong>Required Companies:</strong> Right-click companies to mark as required - they must be included in the optimization. Required companies marked with ★<br>
                 <strong>Company Selection:</strong> Select companies to consider them for inclusion - if you don't select a company, it won't be considered in optimization.
             </div>
+            <input type="text" id="searchBox" class="search-box" placeholder="Search by company name, building, or country..." onkeyup="searchCompanies()" style="margin-bottom: 15px;">
             <div id="companyRegions">
                 <!-- Companies will be populated by JavaScript -->
             </div>
