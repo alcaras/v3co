@@ -1,6 +1,6 @@
 import { index } from "./tableau.js";
 import { simplex } from "./simplex.js";
-import Heap from "heap";
+import { MinHeap as Heap } from "../../../heap.js";
 const buffer = (matrixLength, posVarLength) => ({
     matrix: new Float64Array(matrixLength),
     positionOfVariable: new Int32Array(posVarLength),
