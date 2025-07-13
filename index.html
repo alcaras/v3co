@@ -909,12 +909,19 @@
         
         // Global building selection functions
         function selectAllBuildings() {
-            const buildingElements = document.querySelectorAll('.building-item');
+            const buildingElements = document.querySelectorAll('#buildingSelection .building-item');
             buildingElements.forEach(element => {
-                const buildingName = element.dataset.building;
-                if (buildingName && !selectedBuildings.includes(buildingName)) {
-                    selectedBuildings.push(buildingName);
-                    element.classList.add('selected');
+                // Extract building name from the onclick attribute
+                const onclickAttr = element.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/toggleBuilding\('([^']+)'\)/);
+                    if (match) {
+                        const buildingName = match[1];
+                        if (!selectedBuildings.includes(buildingName)) {
+                            selectedBuildings.push(buildingName);
+                            element.classList.add('selected');
+                        }
+                    }
                 }
             });
             updateBuildingSelectionCount();
@@ -926,11 +933,15 @@
         function clearAllBuildings() {
             selectedBuildings.length = 0;
             priorityBuildings.length = 0;
-            document.querySelectorAll('.building-item.selected').forEach(element => {
+            document.querySelectorAll('#buildingSelection .building-item.selected').forEach(element => {
                 element.classList.remove('selected');
             });
-            document.querySelectorAll('.building-item.priority').forEach(element => {
+            document.querySelectorAll('#buildingSelection .building-item.priority').forEach(element => {
                 element.classList.remove('priority');
+            });
+            // Also hide priority indicators
+            document.querySelectorAll('#buildingSelection .priority-indicator').forEach(indicator => {
+                indicator.style.display = 'none';
             });
             updateBuildingSelectionCount();
             displayCompanies();
@@ -939,7 +950,7 @@
         }
         
         function updateBuildingSelectionCount() {
-            const totalBuildings = document.querySelectorAll('.building-item').length;
+            const totalBuildings = document.querySelectorAll('#buildingSelection .building-item').length;
             const selectedCount = selectedBuildings.length;
             const countElement = document.getElementById('buildingSelectionCount');
             if (countElement) {
