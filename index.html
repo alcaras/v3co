@@ -2146,8 +2146,8 @@
             console.log('Using YALPS Linear Programming solver...');
             
             try {
-                // Use ES6 module import
-                const { solve } = await import('./YALPS.js');
+                // Use ES6 module import with .mjs extension for proper MIME type
+                const { solve } = await import('./YALPS.mjs');
                 
                 // Group variants by base company
                 const baseCompanyGroups = new Map();
