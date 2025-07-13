@@ -621,6 +621,47 @@
             updateRegionStats();
         }
         
+        function showOptimizationStatus(message, type = 'info') {
+            // Create or update status message
+            let statusDiv = document.getElementById('optimizationStatus');
+            if (!statusDiv) {
+                statusDiv = document.createElement('div');
+                statusDiv.id = 'optimizationStatus';
+                statusDiv.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    z-index: 1000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    transition: all 0.3s ease;
+                `;
+                document.body.appendChild(statusDiv);
+            }
+            
+            // Set colors based on type
+            const colors = {
+                info: 'background: #e3f2fd; color: #1565c0; border-left: 4px solid #2196f3;',
+                success: 'background: #e8f5e8; color: #2e7d32; border-left: 4px solid #4caf50;',
+                error: 'background: #ffebee; color: #c62828; border-left: 4px solid #f44336;'
+            };
+            
+            statusDiv.style.cssText += colors[type];
+            statusDiv.textContent = message;
+            
+            // Auto-hide success/error messages after 5 seconds
+            if (type !== 'info') {
+                setTimeout(() => {
+                    if (statusDiv) {
+                        statusDiv.style.opacity = '0';
+                        setTimeout(() => statusDiv.remove(), 300);
+                    }
+                }, 5000);
+            }
+        }
+        
         function setDefaultCompanySelection() {
             // Only select basic companies by default
             const defaultCompanies = [...companies.basic];
@@ -2941,19 +2982,32 @@
 
         // Main optimization function using simplified Linear Programming
         async function optimizeCompaniesLP() {
-            const slots = parseInt(document.getElementById('companySlots').value);
+            // Get all optimize buttons
+            const optimizeButtons = document.querySelectorAll('button[onclick*="optimizeCompaniesLP"]');
             
-            if (selectedBuildings.length === 0) {
-                alert('Please select at least one building type to optimize for.');
-                return;
-            }
+            // Show loading state
+            optimizeButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.6';
+                btn.innerHTML = '⏳ Optimizing...';
+            });
             
-            if (selectedCompanies.length === 0) {
-                alert('Please select at least one company to consider for optimization.');
-                return;
-            }
+            // Show status message
+            showOptimizationStatus('🔄 Starting optimization...', 'info');
             
-            console.log('Starting Linear Programming optimization...');
+            try {
+                const slots = parseInt(document.getElementById('companySlots').value);
+                
+                if (selectedBuildings.length === 0) {
+                    throw new Error('Please select at least one building type to optimize for.');
+                }
+                
+                if (selectedCompanies.length === 0) {
+                    throw new Error('Please select at least one company to consider for optimization.');
+                }
+                
+                showOptimizationStatus('🔄 Running Linear Programming solver...', 'info');
+                console.log('Starting Linear Programming optimization...');
             
             // Expand companies with charter variants
             const expandedCompanies = expandCompaniesWithCharters(selectedCompanies);
@@ -2984,7 +3038,24 @@
             }];
             
             displayMultipleResults(results, slots);
+            
+            // Show success and scroll to results
+            showOptimizationStatus('✅ Optimization completed successfully!', 'success');
+            setTimeout(() => scrollToResults(), 500);
+            
+        } catch (error) {
+            console.error('Optimization error:', error);
+            showOptimizationStatus(`❌ Optimization failed: ${error.message}`, 'error');
+        } finally {
+            // Restore optimize buttons
+            const optimizeButtons = document.querySelectorAll('button[onclick*="optimizeCompaniesLP"]');
+            optimizeButtons.forEach(btn => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btn.innerHTML = '🎯 Optimize Companies';
+            });
         }
+    }
     </script>
 </body>
 </html>
