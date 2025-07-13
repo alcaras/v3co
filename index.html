@@ -143,6 +143,25 @@
             transform: none;
         }
         
+        .clear-all-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .clear-all-btn:hover {
+            background: #c82333;
+        }
+        
+        .clear-all-btn:active {
+            transform: none;
+        }
+        
         .building-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -359,7 +378,7 @@
                     <label for="companySlots">Company Slots Available:</label>
                     <input type="number" id="companySlots" min="1" max="7" value="7">
                 </div>
-                <button onclick="clearSelection()">Clear All Configuration</button>
+                <button onclick="clearSelection()" class="clear-all-btn">Clear All Configuration</button>
                 <button onclick="exportSelections()" style="background: #17a2b8;">💾 Export Configuration</button>
                 <button onclick="importSelections()" style="background: #fd7e14;">📁 Import Configuration</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleFileImport(event)">
@@ -704,7 +723,7 @@
                                 <div class="region-title">${type} Buildings</div>
                                 <div class="region-actions">
                                     <button class="select-all-btn" onclick="selectAllBuildings('${type}', event)">Select All</button>
-                                    <button class="select-all-btn" onclick="clearAllBuildings('${type}', event)" style="margin-left: 10px;">Clear All</button>
+                                    <button class="clear-all-btn" onclick="clearAllBuildings('${type}', event)" style="margin-left: 10px;">Clear All</button>
                                 </div>
                             </div>
                             <div class="region-content">
@@ -734,7 +753,7 @@
                         <div class="region-title">Prestige Good Base Types</div>
                         <div class="region-actions">
                             <button class="select-all-btn" onclick="selectAllPrestigeGoods(event)">Select All</button>
-                            <button class="select-all-btn" onclick="clearAllPrestigeGoods(event)" style="margin-left: 10px;">Clear All</button>
+                            <button class="clear-all-btn" onclick="clearAllPrestigeGoods(event)" style="margin-left: 10px;">Clear All</button>
                         </div>
                     </div>
                     <div class="region-content">
@@ -788,7 +807,7 @@
                         <div class="region-title">${regionName}</div>
                         <div class="region-actions">
                             <button class="select-all-btn" onclick="selectAllInRegion('${safeRegionName}', event)">Select All</button>
-                            <button class="select-all-btn" onclick="clearAllInRegion('${safeRegionName}', event)" style="margin-left: 10px;">Clear All</button>
+                            <button class="clear-all-btn" onclick="clearAllInRegion('${safeRegionName}', event)" style="margin-left: 10px;">Clear All</button>
                             <div class="region-stats">
                                 ${selectedInRegion}/${regionCompanies.length} selected
                             </div>
