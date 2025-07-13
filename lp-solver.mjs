@@ -199,6 +199,11 @@ async function solveIntegerLP(variants, maxSlots, selectedBuildings, priorityBui
                         constraints[`prestige_${mappedGood}`] = { max: 1 };
                     }
                 });
+            } else {
+                // Required prestige good doesn't exist - create impossible constraint
+                console.log(`ERROR: Required prestige good '${pg}' has no mapped goods - LP will be infeasible`);
+                const constraintName = `impossible_prestige_${pg}`;
+                constraints[constraintName] = { min: 1 }; // Require at least 1 but no variables contribute to this
             }
         });
 
