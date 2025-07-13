@@ -452,6 +452,9 @@
         // Import prestige goods module
         import { prestigeGoodsMapping, prestigeGoodBaseTypes, getPrestigeGoodBaseType, checkPrestigeGoodRequirements } from './prestige-goods.mjs';
         
+        // Import scoring and validation module
+        import { calculateScore, calculateCombinationScore, isValidAddition, isValidSolution } from './scoring.mjs';
+        
         // Company data will be loaded from the extracted JSON file
         let companies = {
             basic: [],
@@ -1277,99 +1280,9 @@
             }
         }
 
-        function calculateScore(companies) {
-            // Count building coverage from company buildings
-            const selectedBuildingTypes = new Set();
-            let totalSelectedBuildings = 0;
-            const nonSelectedBuildingTypes = new Set();
-            
-            companies.forEach(company => {
-                company.buildings.forEach(building => {
-                    if (selectedBuildings.includes(building)) {
-                        selectedBuildingTypes.add(building);
-                        totalSelectedBuildings++;
-                    } else {
-                        // Track non-selected buildings for 0.01 point bonus
-                        nonSelectedBuildingTypes.add(building);
-                    }
-                });
-            });
-            
-            // Charter selection: Simple approach - take first useful charter if it provides new coverage
-            const takenCharters = [];
-            const charterCounts = new Map();
-            
-            companies.forEach(company => {
-                if (company.industryCharters && company.industryCharters.length > 0) {
-                    // Only take charter if it's for a selected building AND not already covered by buildings
-                    const charter = company.industryCharters[0]; // Take first charter
-                    if (selectedBuildings.includes(charter) && !selectedBuildingTypes.has(charter)) {
-                        takenCharters.push(charter);
-                        charterCounts.set(charter, (charterCounts.get(charter) || 0) + 1);
-                    }
-                }
-            });
-            
-            // Calculate charter contribution and penalties
-            const industryCharters = new Set();
-            let redundantCharterPenalty = 0;
-            
-            charterCounts.forEach((count, charter) => {
-                if (selectedBuildingTypes.has(charter)) {
-                    // Charter is redundant with buildings - penalty
-                    redundantCharterPenalty += count * 2.0;
-                } else if (count > 1) {
-                    // Multiple companies providing same charter - penalty for extras
-                    industryCharters.add(charter);
-                    redundantCharterPenalty += (count - 1) * 3.0;
-                } else {
-                    // Unique useful charter
-                    industryCharters.add(charter);
-                }
-            });
-            
-            const selectedOverlaps = totalSelectedBuildings - selectedBuildingTypes.size;
-            const prestigeGoods = companies.reduce((count, company) => 
-                count + company.prestigeGoods.length, 0);
-            
-            // Calculate priority building bonus
-            let priorityScore = 0;
-            selectedBuildingTypes.forEach(building => {
-                if (priorityBuildings.includes(building)) {
-                    priorityScore += 2;
-                }
-            });
-            
-            // Add priority bonus for taken charters
-            industryCharters.forEach(charter => {
-                if (priorityBuildings.includes(charter)) {
-                    priorityScore += 2;
-                }
-            });
-            
-            // Score: buildings + charters + priority bonus + prestige + non-selected buildings - overlaps - charter penalties
-            return selectedBuildingTypes.size + industryCharters.size + priorityScore + (prestigeGoods * 0.1) + (nonSelectedBuildingTypes.size * 0.01) - (selectedOverlaps * 0.2) - redundantCharterPenalty;
-        }
+        // calculateScore now imported from scoring.mjs
         
-        function checkPrestigeGoodRequirements(companies) {
-            if (requiredPrestigeGoods.length === 0) {
-                return true; // No requirements, always satisfied
-            }
-            
-            // Collect all prestige goods from the companies
-            const providedPrestigeGoods = new Set();
-            companies.forEach(company => {
-                company.prestigeGoods.forEach(prestigeGood => {
-                    const baseType = prestigeGoodsMapping[prestigeGood];
-                    if (baseType) {
-                        providedPrestigeGoods.add(baseType);
-                    }
-                });
-            });
-            
-            // Check if all required prestige goods are provided
-            return requiredPrestigeGoods.every(required => providedPrestigeGoods.has(required));
-        }
+        // checkPrestigeGoodRequirements now imported from prestige-goods.mjs (different signature)
 
         // OLD DP FUNCTION REMOVED - USING LP NOW
         function generateTopCombinations_OLD(companies, maxSlots, topN = 10, canalCompanies = []) {
@@ -1406,8 +1319,8 @@
                         
                         // Only consider this combination if it satisfies prestige goods requirements
                         // OR if we haven't specified any prestige goods requirements
-                        if (requiredPrestigeGoods.length === 0 || checkPrestigeGoodRequirements(allCompaniesWithCanal)) {
-                            const newScore = calculateScore(allCompaniesWithCanal);
+                        if (requiredPrestigeGoods.length === 0 || checkPrestigeGoodRequirements(allCompaniesWithCanal, requiredPrestigeGoods)) {
+                            const newScore = calculateScore(allCompaniesWithCanal, selectedBuildings, priorityBuildings);
                             
                             if (newScore > dp[i][w].score) {
                                 dp[i][w] = {
@@ -1447,7 +1360,7 @@
                 const prevState = dp[lastCompanyIdx][maxSlots - 1];
                 if (prevState.companies.length === maxSlots - 1) {
                     const altCombination = [...prevState.companies, lastCompany];
-                    const altScore = calculateScore([...altCombination, ...canalCompanies]);
+                    const altScore = calculateScore([...altCombination, ...canalCompanies], selectedBuildings, priorityBuildings);
                     
                     if (altScore >= minAcceptableScore && altScore > 0) {
                         results.push({
@@ -1513,7 +1426,7 @@
                     
                     // Show score and details for each providing company
                     providingCompanies.forEach(company => {
-                        const score = calculateScore([company]);
+                        const score = calculateScore([company], selectedBuildings, priorityBuildings);
                         console.log(`    ${company.name}: Score=${score.toFixed(2)}, Buildings=[${company.buildings.join(', ')}], PrestigeGoods=[${company.prestigeGoods.join(', ')}]`);
                     });
                 });
@@ -1534,7 +1447,7 @@
                     });
                     console.log(`  Solution ${i+1} provides:`, Array.from(providedGoods));
                     console.log(`  Solution ${i+1} prestige goods:`, prestigeGoodDetails);
-                    console.log(`  Satisfies requirements:`, checkPrestigeGoodRequirements(allCompanies));
+                    console.log(`  Satisfies requirements:`, checkPrestigeGoodRequirements(allCompanies, requiredPrestigeGoods));
                 });
             }
             
@@ -1999,26 +1912,7 @@
             return finalSelection;
         }
         
-        function isValidAddition(variant, currentSelection) {
-            // Check prestige good conflicts
-            const usedPrestigeGoods = new Set();
-            currentSelection.forEach(v => {
-                if (v.prestigeGoods) {
-                    v.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
-                }
-            });
-            
-            if (variant.prestigeGoods) {
-                for (const pg of variant.prestigeGoods) {
-                    if (usedPrestigeGoods.has(pg)) {
-                        return false;
-                    }
-                }
-            }
-            
-            // Check company conflicts (only one variant per base company)
-            return !currentSelection.some(v => v.baseCompanyName === variant.baseCompanyName);
-        }
+        // isValidAddition now imported from scoring.mjs
 
         // Save/Export/Import Functions
         function exportSelections() {
@@ -2181,7 +2075,7 @@
             const n = companies.length;
             
             // Calculate scores for each company
-            const companyScores = companies.map(company => calculateScore([company]));
+            const companyScores = companies.map(company => calculateScore([company], selectedBuildings, priorityBuildings));
             
             // DP table: dp[i][w] = maximum score using first i companies with w slots
             const dp = Array(n + 1).fill().map(() => Array(maxSlots + 1).fill(0));
@@ -2257,8 +2151,8 @@
                             const newSolution = [...dp[i-1][w-1].solution, variant];
                             
                             // Check if this solution is valid (no prestige good conflicts)
-                            if (isValidSolution(newSolution)) {
-                                const newScore = calculateCombinationScore(newSolution);
+                            if (isValidSolution(newSolution, requiredPrestigeGoods)) {
+                                const newScore = calculateCombinationScore(newSolution, selectedBuildings, priorityBuildings);
                                 
                                 if (newScore > dp[i][w].score) {
                                     dp[i][w] = {
@@ -2302,8 +2196,8 @@
                 const variantCombinations = generateVariantCombinations(companyCombination, baseCompanyGroups);
                 
                 for (const variantCombination of variantCombinations) {
-                    if (isValidSolution(variantCombination)) {
-                        const score = calculateCombinationScore(variantCombination);
+                    if (isValidSolution(variantCombination, requiredPrestigeGoods)) {
+                        const score = calculateCombinationScore(variantCombination, selectedBuildings, priorityBuildings);
                         if (score > bestScore) {
                             bestScore = score;
                             bestSolution = variantCombination;
@@ -2507,103 +2401,9 @@
             return solution;
         }
 
-        function isValidSolution(solution) {
-            // Check prestige good conflicts
-            const usedPrestigeGoods = new Set();
-            for (const company of solution) {
-                if (company.prestigeGoods) {
-                    for (const pg of company.prestigeGoods) {
-                        if (usedPrestigeGoods.has(pg)) {
-                            return false; // Duplicate prestige good
-                        }
-                        usedPrestigeGoods.add(pg);
-                    }
-                }
-            }
-            
-            // Check required prestige goods are satisfied
-            if (requiredPrestigeGoods.length > 0) {
-                const providedBaseTypes = new Set();
-                for (const company of solution) {
-                    if (company.prestigeGoods) {
-                        for (const pg of company.prestigeGoods) {
-                            const baseType = prestigeGoodsMapping[pg];
-                            if (baseType) {
-                                providedBaseTypes.add(baseType);
-                            }
-                        }
-                    }
-                }
-                
-                for (const requiredType of requiredPrestigeGoods) {
-                    if (!providedBaseTypes.has(requiredType)) {
-                        return false; // Missing required prestige good
-                    }
-                }
-            }
-            
-            return true;
-        }
+        // isValidSolution now imported from scoring.mjs
 
-        function calculateCombinationScore(companies) {
-            const coveredBuildings = new Set();
-            const usedPrestigeGoods = new Set();
-            const usedCharters = new Map();
-            let totalScore = 0;
-            
-            // First pass: collect all buildings from base companies  
-            for (const company of companies) {
-                const baseBuildings = company.buildings.filter(b => b !== company.selectedCharter);
-                baseBuildings.forEach(b => coveredBuildings.add(b));
-                
-                // Add prestige goods
-                if (company.prestigeGoods) {
-                    company.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
-                }
-            }
-            
-            // Score for unique building coverage
-            const selectedCovered = [...coveredBuildings].filter(b => selectedBuildings.includes(b));
-            const priorityCovered = [...coveredBuildings].filter(b => priorityBuildings.includes(b));
-            const nonSelectedCovered = [...coveredBuildings].filter(b => !selectedBuildings.includes(b));
-            
-            totalScore += selectedCovered.length * 10;
-            totalScore += priorityCovered.length * 20;
-            totalScore += nonSelectedCovered.length * 0.1;
-            totalScore += usedPrestigeGoods.size * 1;
-            
-            // Evaluate charters - heavily penalize overlaps
-            for (const company of companies) {
-                if (company.selectedCharter) {
-                    const charter = company.selectedCharter;
-                    const currentUses = usedCharters.get(charter) || 0;
-                    
-                    totalScore -= 0.01; // Base charter cost
-                    totalScore -= currentUses * 50; // Strong overlap penalty
-                    
-                    // Charter value only if provides new coverage
-                    if (!coveredBuildings.has(charter)) {
-                        if (selectedBuildings.includes(charter)) {
-                            totalScore += 10;
-                        }
-                        if (priorityBuildings.includes(charter)) {
-                            totalScore += 20;
-                        }
-                        if (!selectedBuildings.includes(charter)) {
-                            totalScore += 0.1;
-                        }
-                        coveredBuildings.add(charter);
-                    } else {
-                        // Charter provides no new coverage - heavily penalize
-                        totalScore -= 25;
-                    }
-                    
-                    usedCharters.set(charter, currentUses + 1);
-                }
-            }
-            
-            return totalScore;
-        }
+        // calculateCombinationScore now imported from scoring.mjs
 
         // calculateIndividualScore now imported from lp-solver.js
 
@@ -2704,7 +2504,7 @@
             
             const results = [{
                 companies: allSelectedCompanies,
-                score: calculateScore(allSelectedCompanies),
+                score: calculateScore(allSelectedCompanies, selectedBuildings, priorityBuildings),
                 details: 'Integer Linear Programming optimization'
             }];
             
