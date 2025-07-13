@@ -612,10 +612,28 @@
             
             displayCompanies();
             
+            // Set default selected companies - only basic companies
+            setDefaultCompanySelection();
+            
             updateStats();
             updateRegionStats();
         }
         
+        function setDefaultCompanySelection() {
+            // Only select basic companies by default
+            const defaultCompanies = [...companies.basic];
+            
+            // Set as selected
+            selectedCompanies = defaultCompanies;
+            
+            // Update UI to show selection
+            defaultCompanies.forEach(company => {
+                const companyCards = document.querySelectorAll(`[data-company-name="${company.name}"]`);
+                companyCards.forEach(card => {
+                    card.classList.add('selected');
+                });
+            });
+        }
         
         function displayBuildings() {
             const buildingContainer = document.getElementById('buildingSelection');
