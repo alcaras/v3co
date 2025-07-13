@@ -350,19 +350,22 @@
         
         <div class="section">
             <h2>Optimization Settings</h2>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button onclick="optimizeCompaniesLP().catch(console.error)" style="padding: 15px 30px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #28a745, #20c997); margin-right: 15px;">🎯 Optimize Companies</button>
+                <button onclick="scrollToResults()" style="padding: 15px 30px; font-size: 16px; background: linear-gradient(45deg, #667eea, #764ba2);">📊 View Results</button>
+            </div>
             <div class="controls">
                 <div class="control-group">
                     <label for="companySlots">Company Slots Available:</label>
                     <input type="number" id="companySlots" min="1" max="7" value="7">
                 </div>
-                <button onclick="clearSelection()">Clear All</button>
-                <button onclick="exportSelections()" style="background: #17a2b8;">💾 Export</button>
-                <button onclick="importSelections()" style="background: #fd7e14;">📁 Import</button>
+                <button onclick="clearSelection()">Clear All Configuration</button>
+                <button onclick="exportSelections()" style="background: #17a2b8;">💾 Export Configuration</button>
+                <button onclick="importSelections()" style="background: #fd7e14;">📁 Import Configuration</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleFileImport(event)">
             </div>
             <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #6c757d;">
                 <strong>Optimization Method:</strong> Scores based on selected buildings coverage + prestige goods + industry charters. Penalizes overlaps between companies.<br>
-                <strong>Priority Buildings:</strong> Right-click buildings to mark as priority (3x weight). Priority buildings marked with blue ★
             </div>
         </div>
         
@@ -374,6 +377,9 @@
         <div class="section">
             <h2>Building Selection</h2>
             <p>Select the buildings you want to optimize for. The system will then show which flavored companies cover these buildings.</p>
+            <div style="margin-bottom: 15px; padding: 10px; background: #e3f2fd; border-radius: 8px; font-size: 14px; color: #1565c0;">
+                <strong>Priority Buildings:</strong> Right-click buildings to mark as priority (3x weight). Priority buildings marked with blue ★
+            </div>
             <div id="buildingSelection">
                 <!-- Buildings will be populated by JavaScript -->
             </div>
@@ -396,7 +402,6 @@
         
         <div class="section" style="text-align: center; padding: 20px;">
             <button onclick="optimizeCompaniesLP().catch(console.error)" style="padding: 15px 30px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #28a745, #20c997);">🎯 Optimize Companies</button>
-            <button onclick="runTests()" style="padding: 10px 20px; font-size: 14px; margin-left: 10px; background: #6c757d;">🔧 Debug Tests</button>
         </div>
         
         <div class="section results hidden" id="resultsSection">
@@ -519,7 +524,7 @@
                 allCompanies = [...companies.basic, ...companies.flavored, ...companies.canal, ...companies.mandate];
                 
                 // Display companies (basic first, then mandate, then flavored, then canal)
-                visibleCompanies = [...companies.basic, ...companies.mandate, ...companies.flavored, ...companies.canal];
+                visibleCompanies = [...companies.basic];
                 
                 console.log('All companies array length:', allCompanies.length);
                 console.log('Visible companies array length:', visibleCompanies.length);
@@ -1011,6 +1016,13 @@
             displayCompanies();
             updateStats();
             updateRegionStats();
+        }
+        
+        function scrollToResults() {
+            const resultsSection = document.getElementById('resultsSection');
+            if (resultsSection) {
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            }
         }
         
         function togglePriorityBuilding(buildingName, event) {
