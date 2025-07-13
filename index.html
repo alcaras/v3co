@@ -1004,7 +1004,14 @@
         function scrollToResults() {
             const resultsSection = document.getElementById('resultsSection');
             if (resultsSection) {
+                // Show results section if hidden
+                resultsSection.classList.remove('hidden');
+                // Scroll to results section
                 resultsSection.scrollIntoView({ behavior: 'smooth' });
+                // Also scroll to very bottom after a short delay to ensure we see the latest results
+                setTimeout(() => {
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }, 300);
             }
         }
         
@@ -2974,4 +2981,3 @@
     </script>
 </body>
 </html>
-/* Force GitHub Pages update */
