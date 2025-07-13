@@ -2,6 +2,8 @@
 
 A sophisticated web-based optimization tool for selecting companies in Victoria 3, using **Linear Programming** to find optimal company combinations based on building coverage, prestige goods, and industry charters.
 
+## 🌐 **[Try it now at alcaras.github.io/v3co](https://alcaras.github.io/v3co/)**
+
 ## 🎯 Features
 
 - **Linear Programming Optimization**: Uses YALPS (Yet Another Linear Programming Solver) for mathematically optimal company selection
