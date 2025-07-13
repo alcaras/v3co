@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victoria 3 Company Optimizer</title>
-    <script src="yalps-bundled.js"></script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -2147,12 +2146,8 @@
             console.log('Using YALPS Linear Programming solver...');
             
             try {
-                // Use bundled YALPS
-                const { solve } = window.YALPS || {};
-                
-                if (!solve) {
-                    throw new Error('YALPS bundled solver not loaded');
-                }
+                // Use ES6 module import
+                const { solve } = await import('./YALPS.js');
                 
                 // Group variants by base company
                 const baseCompanyGroups = new Map();
