@@ -447,7 +447,10 @@
 
     <script type="module">
         // Import LP solver module
-        import { solveIntegerLP, calculateIndividualScore } from './lp-solver.js';
+        import { solveIntegerLP, calculateIndividualScore } from './lp-solver.mjs';
+        
+        // Import prestige goods module
+        import { prestigeGoodsMapping, prestigeGoodBaseTypes, getPrestigeGoodBaseType, checkPrestigeGoodRequirements } from './prestige-goods.mjs';
         
         // Company data will be loaded from the extracted JSON file
         let companies = {
@@ -465,72 +468,7 @@
         let allBuildings = [];
         let requiredPrestigeGoods = ['Tools']; // Required prestige good base types - Tools is mandatory
         
-        // Prestige goods mapping to base types (corrected from Victoria 3 wiki)
-        const prestigeGoodsMapping = {
-            // Generic prestige goods
-            'Quick-fire Artillery': 'Artillery',
-            'Designer Clothes': 'Clothes',
-            'Reserve Coffee': 'Coffee',
-            'High-grade Explosives': 'Explosives',
-            'Enriched Fertilizer': 'Fertilizer',
-            'Select Fish': 'Fish',
-            'Stylish Furniture': 'Furniture',
-            'Fine Grain': 'Grain',
-            'Gourmet Groceries': 'Groceries',
-            'Prime Meat': 'Meat',
-            'Swift Merchant Marine': 'Merchant Marine',
-            'Pure Opium': 'Opium',
-            'Craft Paper': 'Paper',
-            'High-powered Small Arms': 'Small Arms',
-            'Refined Steel': 'Steel',
-            'Precision Tools': 'Tools',
-            
-            // Flavored prestige goods
-            'Krupp Guns': 'Artillery',
-            'Schneider Guns': 'Artillery',
-            'Ford Automobiles': 'Automobiles',
-            'Turin Automobiles': 'Automobiles',
-            'German Aniline': 'Dye',
-            'Schichau Engines': 'Engines',
-            'Mit Afifi': 'Fabric',
-            'Sea Island Cotton': 'Fabric',
-            'Gros Michel Banana': 'Fruit',
-            'Bentwood Furniture': 'Furniture',
-            'Bohemian Crystal': 'Glass',
-            'Rosewood': 'Hardwood',
-            'Teak': 'Hardwood',
-            'Oregrounds Iron': 'Iron',
-            'Russia Iron': 'Iron',
-            'Armstrong Ships': 'Ironclads',
-            'Smirnoff Vodka': 'Liquor',
-            'Haute Couture': 'Luxury Clothes',
-            'English Upholstery': 'Luxury Furniture',
-            'River Plate Beef': 'Meat',
-            'Baku Oil': 'Oil',
-            'Bengal Opium': 'Opium',
-            'Washi Paper': 'Paper',
-            'Canton Porcelain': 'Porcelain',
-            'Meissen Porcelain': 'Porcelain',
-            'Satsuma Ware': 'Porcelain',
-            'Chapel Radios': 'Radios',
-            'Radiola Radios': 'Radios',
-            'Colt Revolvers': 'Small Arms',
-            'Saint-Etienne Rifles': 'Small Arms',
-            'Como Silk': 'Silk',
-            'Suzhou Silk': 'Silk',
-            'Tomioka Silk': 'Silk',
-            'Clyde-Built Liners': 'Steamers',
-            'Sheffield Steel': 'Steel',
-            'Sicilian Sulfur': 'Sulfur',
-            'Assam Tea': 'Tea',
-            'China Tea': 'Tea',
-            'Ericsson Apparatus': 'Telephones',
-            'Turkish Tobacco': 'Tobacco',
-            'Champagne': 'Wine'
-        };
-        
-        // Get all unique base types
-        const prestigeGoodBaseTypes = [...new Set(Object.values(prestigeGoodsMapping))].sort();
+        // Prestige goods mapping and base types now imported from prestige-goods.js
 
         // Load company data from the extracted JSON
         async function loadCompanyData() {

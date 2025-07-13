@@ -89,18 +89,10 @@ function checkPrestigeGoodRequirements(companies, requiredPrestigeGoods) {
     return requiredPrestigeGoods.every(required => providedPrestigeGoods.has(required));
 }
 
-// Export for both Node.js (tests) and browser (index.html)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        prestigeGoodsMapping,
-        prestigeGoodBaseTypes,
-        getPrestigeGoodBaseType,
-        checkPrestigeGoodRequirements
-    };
-} else {
-    // Browser globals
-    window.prestigeGoodsMapping = prestigeGoodsMapping;
-    window.prestigeGoodBaseTypes = prestigeGoodBaseTypes;
-    window.getPrestigeGoodBaseType = getPrestigeGoodBaseType;
-    window.checkPrestigeGoodRequirements = checkPrestigeGoodRequirements;
-}
+// Export for ES modules
+export {
+    prestigeGoodsMapping,
+    prestigeGoodBaseTypes,
+    getPrestigeGoodBaseType,
+    checkPrestigeGoodRequirements
+};

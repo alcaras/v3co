@@ -2,7 +2,7 @@
 // Extracted from index.html for better modularity and testing
 
 // Load prestige goods mapping
-import { prestigeGoodsMapping } from './prestige-goods.js';
+import { prestigeGoodsMapping } from './prestige-goods.mjs';
 
 /**
  * Calculate individual score for a company variant
@@ -399,14 +399,5 @@ async function solveIntegerLP(variants, maxSlots, selectedBuildings, priorityBui
     }
 }
 
-// Export for both Node.js (tests) and browser (index.html)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        solveIntegerLP,
-        calculateIndividualScore
-    };
-} else {
-    // Browser globals
-    window.solveIntegerLP = solveIntegerLP;
-    window.calculateIndividualScore = calculateIndividualScore;
-}
+// Export for ES modules
+export { solveIntegerLP, calculateIndividualScore };
