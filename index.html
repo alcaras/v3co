@@ -389,7 +389,14 @@
         </div>
         
         <div class="section">
-            <h2>Building Selection</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 style="margin: 0;">Building Selection</h2>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button onclick="selectAllBuildings()" class="select-all-btn">Select All</button>
+                    <button onclick="clearAllBuildings()" class="clear-all-btn">Clear All</button>
+                    <span id="buildingSelectionCount" style="color: #666; font-size: 14px;">0/0 selected</span>
+                </div>
+            </div>
             <p>Select the buildings you want to optimize for. The system will attempt to maximize coverage of these buildings by selecting the optimal combination of companies.</p>
             <div style="margin-bottom: 15px; padding: 10px; background: #e3f2fd; border-radius: 8px; font-size: 14px; color: #1565c0;">
                 <strong>Priority Buildings:</strong> Right-click buildings to mark as priority (3x weight). Priority buildings marked with blue ★
@@ -900,6 +907,46 @@
             updateRegionStats();
         }
         
+        // Global building selection functions
+        function selectAllBuildings() {
+            const buildingElements = document.querySelectorAll('.building-item');
+            buildingElements.forEach(element => {
+                const buildingName = element.dataset.building;
+                if (buildingName && !selectedBuildings.includes(buildingName)) {
+                    selectedBuildings.push(buildingName);
+                    element.classList.add('selected');
+                }
+            });
+            updateBuildingSelectionCount();
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function clearAllBuildings() {
+            selectedBuildings.length = 0;
+            priorityBuildings.length = 0;
+            document.querySelectorAll('.building-item.selected').forEach(element => {
+                element.classList.remove('selected');
+            });
+            document.querySelectorAll('.building-item.priority').forEach(element => {
+                element.classList.remove('priority');
+            });
+            updateBuildingSelectionCount();
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function updateBuildingSelectionCount() {
+            const totalBuildings = document.querySelectorAll('.building-item').length;
+            const selectedCount = selectedBuildings.length;
+            const countElement = document.getElementById('buildingSelectionCount');
+            if (countElement) {
+                countElement.textContent = `${selectedCount}/${totalBuildings} selected`;
+            }
+        }
+        
         function togglePrestigeGood(baseType) {
             const index = requiredPrestigeGoods.indexOf(baseType);
             const prestigeElement = document.getElementById(`prestige-${baseType.replace(/\s+/g, '_')}`);
@@ -1172,6 +1219,9 @@
             // Show counts for displayed companies vs all companies used in optimization
             document.getElementById('availableCompanies').textContent = `${visibleCompanies.length} (${allCompanies.length} w/ basic)`;
             document.getElementById('selectedCount').textContent = selectedCompanies.length;
+            
+            // Update building selection count in Building Selection header
+            updateBuildingSelectionCount();
             
             // Update company selection count in Available Companies header
             updateCompanySelectionCount();
