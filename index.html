@@ -455,6 +455,9 @@
         // Import scoring and validation module
         import { calculateScore, calculateCombinationScore, isValidAddition, isValidSolution } from './scoring.mjs';
         
+        // Import company data management module
+        import { loadCompanyData, expandCompaniesWithCharters, getDefaultBuildings, getDefaultPrestigeGoods, getBuildingCategories } from './company-data.mjs';
+        
         // Company data will be loaded from the extracted JSON file
         let companies = {
             basic: [],
@@ -469,90 +472,34 @@
         let allCompanies = []; // All companies for optimization
         let visibleCompanies = []; // Companies to show to user
         let allBuildings = [];
-        let requiredPrestigeGoods = ['Tools']; // Required prestige good base types - Tools is mandatory
+        let requiredPrestigeGoods = getDefaultPrestigeGoods(); // Required prestige good base types - Tools is mandatory
         
         // Prestige goods mapping and base types now imported from prestige-goods.js
 
         // Load company data from the extracted JSON
-        async function loadCompanyData() {
+        async function loadCompanyDataWrapper() {
             try {
-                console.log('Starting to load company data...');
-                const response = await fetch('companies_extracted.json');
-                console.log('Fetch response:', response.status, response.ok);
-                const data = await response.json();
-                console.log('JSON data loaded:', data);
+                const result = await loadCompanyData();
                 
-                companies.basic = data.basicCompanies || [];
-                companies.flavored = data.flavoredCompanies || [];
-                companies.canal = data.flavoredCompanies.filter(c => c.special === 'canal') || [];
-                
-                console.log('Companies loaded - Basic:', companies.basic.length, 'Flavored:', companies.flavored.length, 'Canal:', companies.canal.length);
-                
-                // Remove canal companies from flavored list
-                companies.flavored = companies.flavored.filter(c => c.special !== 'canal');
-                
-                // Find United Construction Conglomerate for display
-                companies.mandate = companies.basic.filter(c => c.name === 'United Construction Conglomerate');
-                
-                // Remove United Construction Conglomerate from basic companies to avoid duplication
-                companies.basic = companies.basic.filter(c => c.name !== 'United Construction Conglomerate');
-                
-                // All companies for optimization (basic + flavored + canal)
-                allCompanies = [...companies.basic, ...companies.flavored, ...companies.canal, ...companies.mandate];
-                
-                // Display companies (basic first, then mandate, then flavored, then canal)
-                visibleCompanies = [...companies.basic, ...companies.mandate, ...companies.flavored, ...companies.canal];
-                
-                console.log('All companies array length:', allCompanies.length);
-                console.log('Visible companies array length:', visibleCompanies.length);
-                console.log('Basic companies:', companies.basic.length);
-                console.log('Flavored companies after canal removal:', companies.flavored.length);
-                console.log('Canal companies:', companies.canal.length);
-                console.log('Mandate companies:', companies.mandate.length);
-                
-                // Extract all unique buildings from displayed companies
-                const buildingSet = new Set();
-                visibleCompanies.forEach(company => {
-                    company.buildings.forEach(building => buildingSet.add(building));
-                });
-                allBuildings = Array.from(buildingSet).sort();
+                // Update global variables
+                companies = result.companies;
+                allCompanies = result.allCompanies;
+                visibleCompanies = result.visibleCompanies;
+                allBuildings = result.allBuildings;
                 
                 initializeInterface();
             } catch (error) {
                 console.error('Error loading company data:', error);
-                // Fallback to sample data if JSON loading fails
-                loadSampleData();
+                // Handle error case - the module already handles fallback
+                initializeInterface();
             }
         }
 
-        // Sample data for testing/fallback
-        function loadSampleData() {
-            // Fallback sample data
-            companies.basic = [];
-            companies.flavored = [];
-            companies.canal = [];
-            companies.mandate = [];
-            
-            allCompanies = [];
-            visibleCompanies = [];
-            
-            // Extract all unique buildings from flavored and canal companies
-            const buildingSet = new Set();
-            allCompanies.forEach(company => {
-                company.buildings.forEach(building => buildingSet.add(building));
-            });
-            allBuildings = Array.from(buildingSet).sort();
-            
-            initializeInterface();
-        }
+        // loadSampleData now imported from company-data.mjs
 
         function initializeInterface() {
             // Set default selected buildings
-            selectedBuildings = [
-                'Coal Mine', 'Iron Mine', 'Logging Camp', 'Oil Rig', 'Rubber Plantation',
-                'Automotive Industries', 'Explosives Factory', 'Glassworks', 'Motor Industries', 'Paper Mill', 'Steel Mills', 'Tooling Workshops',
-                'Port', 'Railway', 'Trade Center', 'Power Plant'
-            ];
+            selectedBuildings = getDefaultBuildings();
             
             displayBuildings();
             displayPrestigeGoods();
@@ -653,16 +600,8 @@
         function displayBuildings() {
             const buildingContainer = document.getElementById('buildingSelection');
             
-            // Group buildings by type (using actual building names from JSON data)
-            const buildingsByType = {
-                'Agriculture': ['Maize Farm', 'Millet Farm', 'Rice Farm', 'Rye Farm', 'Wheat Farm', 'Vineyard'],
-                'Extraction': ['Coal Mine', 'Fishing Wharf', 'Gold Mine', 'Iron Mine', 'Lead Mine', 'Logging Camp', 'Oil Rig', 'Rubber Plantation', 'Sulfur Mine', 'Whaling Station'],
-                'Plantations': ['Banana Plantation', 'Coffee Plantation', 'Cotton Plantation', 'Dye Plantation', 'Opium Plantation', 'Silk Plantation', 'Sugar Plantation', 'Tea Plantation', 'Tobacco Plantation'],
-                'Ranches': ['Livestock Ranch'],
-                'Manufacturing Industries': ['Arms Industries', 'Artillery Foundries', 'Automotive Industries', 'Electrics Industries', 'Explosives Factory', 'Fertilizer Plant', 'Food Industry', 'Furniture Manufacturies', 'Glassworks', 'Military Shipyards', 'Motor Industries', 'Munition Plant', 'Paper Mill', 'Shipyards', 'Steel Mills', 'Synthetics Plant', 'Textile Mill', 'Tooling Workshops'],
-                'Infrastructure': ['Port', 'Railway', 'Trade Center'],
-                'Power Plants': ['Power Plant']
-            };
+            // Group buildings by type (using extracted building categories)
+            const buildingsByType = getBuildingCategories();
             
             let html = '';
             Object.entries(buildingsByType).forEach(([type, buildings]) => {
@@ -2067,7 +2006,7 @@
         
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            loadCompanyData();
+            loadCompanyDataWrapper();
         });
         
         // Keep the old knapsack function for reference (not used anymore)
@@ -2408,48 +2347,7 @@
         // calculateIndividualScore now imported from lp-solver.js
 
         // Company variant expansion (charters as separate companies)
-        function expandCompaniesWithCharters(companies) {
-            const expandedCompanies = [];
-            
-            companies.forEach(company => {
-                // Always add the base company (no charter)
-                const baseCompany = {
-                    ...company,
-                    buildings: [...company.buildings],
-                    variantType: 'base',
-                    selectedCharter: null,
-                    baseCompanyName: company.name
-                };
-                expandedCompanies.push(baseCompany);
-                
-                // Add variant for each charter
-                if (company.industryCharters && company.industryCharters.length > 0) {
-                    company.industryCharters.forEach(charter => {
-                        const charterVariant = {
-                            ...company,
-                            name: `${company.name} + ${charter}`,
-                            buildings: [...company.buildings, charter],
-                            variantType: 'charter',
-                            selectedCharter: charter,
-                            baseCompanyName: company.name
-                        };
-                        expandedCompanies.push(charterVariant);
-                    });
-                }
-            });
-            
-            console.log(`Expanded ${companies.length} companies into ${expandedCompanies.length} variants`);
-            
-            // Debug: Check Panama Canal Company specifically
-            const panamaVariants = expandedCompanies.filter(v => v.baseCompanyName === 'Panama Canal Company');
-            console.log(`\n=== PANAMA CANAL VARIANTS ===`);
-            panamaVariants.forEach(variant => {
-                const score = calculateIndividualScore(variant);
-                console.log(`${variant.name}: Score ${score.toFixed(3)}, Buildings: [${variant.buildings.join(', ')}]`);
-            });
-            
-            return expandedCompanies;
-        }
+        // expandCompaniesWithCharters now imported from company-data.mjs
 
         // Main optimization function using simplified Linear Programming
         async function optimizeCompaniesLP() {
@@ -2481,7 +2379,7 @@
                 console.log('Starting Linear Programming optimization...');
             
             // Expand companies with charter variants
-            const expandedCompanies = expandCompaniesWithCharters(selectedCompanies);
+            const expandedCompanies = expandCompaniesWithCharters(selectedCompanies, selectedBuildings);
             
             // Include all companies in optimization (canal companies don't use slots but can still take charters)
             const allCompanies = expandedCompanies;
