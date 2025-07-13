@@ -2327,6 +2327,13 @@
                     if (variant.prestigeGoods) {
                         variant.prestigeGoods.forEach(pg => {
                             variables[varName][`prestige_${pg}`] = 1;
+                            
+                            // Also add to OR constraint for required prestige goods
+                            const baseType = prestigeGoodsMapping[pg];
+                            if (baseType && requiredPrestigeGoods.includes(baseType)) {
+                                const constraintName = `required_prestige_${baseType}`;
+                                variables[varName][constraintName] = 1;
+                            }
                         });
                     }
                 });
@@ -2406,20 +2413,22 @@
                     constraints[`prestige_${pg}`] = { max: 1 };
                 });
 
-                // Required prestige goods
+                // Required prestige goods - create OR constraints for multiple goods mapping to same base type
                 requiredPrestigeGoods.forEach(pg => {
                     const mappedGoods = Object.keys(prestigeGoodsMapping).filter(good => 
                         prestigeGoodsMapping[good] === pg
                     );
                     console.log(`Required prestige good '${pg}' maps to:`, mappedGoods);
                     if (mappedGoods.length > 0) {
+                        // Create a single constraint that requires at least 1 of any mapped good
+                        const constraintName = `required_prestige_${pg}`;
+                        constraints[constraintName] = { min: 1 };
+                        console.log(`Setting OR constraint for ${constraintName}`);
+                        
+                        // Still set individual constraints for max bounds
                         mappedGoods.forEach(mappedGood => {
-                            console.log(`Setting constraint for prestige_${mappedGood}`);
-                            if (constraints[`prestige_${mappedGood}`]) {
-                                // Update existing constraint to include min requirement
-                                constraints[`prestige_${mappedGood}`].min = 1;
-                            } else {
-                                constraints[`prestige_${mappedGood}`] = { min: 1, max: 1 };
+                            if (!constraints[`prestige_${mappedGood}`]) {
+                                constraints[`prestige_${mappedGood}`] = { max: 1 };
                             }
                         });
                     }
