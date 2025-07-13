@@ -899,6 +899,20 @@
                         buildingElement.classList.remove('selected');
                     }
                 }
+                
+                // Also remove from priority buildings if it's there
+                if (priorityBuildings.includes(building)) {
+                    const priorityIndex = priorityBuildings.indexOf(building);
+                    priorityBuildings.splice(priorityIndex, 1);
+                    const buildingElement = document.getElementById(`building-${building.replace(/\s+/g, '_')}`);
+                    if (buildingElement) {
+                        buildingElement.classList.remove('priority');
+                        const priorityIndicator = document.getElementById(`priority-${building.replace(/\s+/g, '_')}`);
+                        if (priorityIndicator) {
+                            priorityIndicator.style.display = 'none';
+                        }
+                    }
+                }
             });
             
             displayCompanies();
@@ -1173,13 +1187,28 @@
             const companyCards = regionContent.querySelectorAll('.company-item');
             
             companyCards.forEach(card => {
-                const companyName = card.querySelector('.company-name').textContent.replace(' 🚢', '').trim();
+                const companyNameElement = card.querySelector('.company-name');
+                const companyNameFull = companyNameElement.textContent.replace(' 🚢', '').trim();
+                const companyName = companyNameFull.replace(' ★', '').trim();
                 const company = allCompanies.find(c => c.name === companyName);
                 
-                if (company && selectedCompanies.some(sc => sc.name === company.name)) {
-                    const index = selectedCompanies.findIndex(sc => sc.name === company.name);
-                    selectedCompanies.splice(index, 1);
-                    card.classList.remove('selected');
+                if (company) {
+                    // Remove from selected companies
+                    if (selectedCompanies.some(sc => sc.name === company.name)) {
+                        const index = selectedCompanies.findIndex(sc => sc.name === company.name);
+                        selectedCompanies.splice(index, 1);
+                        card.classList.remove('selected');
+                    }
+                    
+                    // Remove from required companies and update display
+                    if (requiredCompanies.includes(company.name)) {
+                        const reqIndex = requiredCompanies.indexOf(company.name);
+                        requiredCompanies.splice(reqIndex, 1);
+                        // Remove the ★ from the display
+                        if (companyNameElement.textContent.includes('★')) {
+                            companyNameElement.textContent = companyNameElement.textContent.replace(' ★', '');
+                        }
+                    }
                 }
             });
             
@@ -1276,6 +1305,7 @@
             });
             updateCompanySelectionCount();
             updateStats();
+            updateRegionStats();
         }
 
         function clearAllCompanies() {
@@ -1294,6 +1324,7 @@
             });
             updateCompanySelectionCount();
             updateStats();
+            updateRegionStats();
         }
 
         function updateCompanySelectionCount() {
