@@ -4,7 +4,7 @@ import socketserver
 import os
 import sys
 
-PORT = 8081
+PORT = 8080
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
         print(f"Server running at http://localhost:{PORT}/")
-        print(f"Access your HTML file at: http://localhost:{PORT}/victoria3_company_optimizer_v2.html")
+        print(f"Access your HTML file at: http://localhost:{PORT}/index.html")
         print("Press Ctrl+C to stop the server")
         try:
             httpd.serve_forever()
