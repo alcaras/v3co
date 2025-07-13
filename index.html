@@ -612,54 +612,10 @@
             
             displayCompanies();
             
-            // Set default selected companies
-            setDefaultCompanySelection();
-            
             updateStats();
             updateRegionStats();
         }
         
-        function setDefaultCompanySelection() {
-            const defaultCompanies = [];
-            
-            // 1. All basic companies (use the pre-defined companies.basic array)
-            defaultCompanies.push(...companies.basic);
-            
-            // 2. United Construction Conglomerate (commented out - not selected by default)
-            // const unitedConstruction = allCompanies.find(c => c.name === 'United Construction Conglomerate');
-            // if (unitedConstruction) {
-            //     defaultCompanies.push(unitedConstruction);
-            // }
-            
-            // 3. American companies excluding Brazil, Canada, Mexico, US
-            // Also exclude Centro Vitivinícola Nacional (requires being Argentina)
-            const excludedCountries = ['Brazil', 'Canada', 'Mexico', 'United States'];
-            const excludedCompanies = ['Centro Vitivinícola Nacional'];
-            const americanCompanies = allCompanies.filter(c => 
-                c.region === 'Americas' && 
-                c.country && 
-                !excludedCountries.includes(c.country) &&
-                !excludedCompanies.includes(c.name)
-            );
-            defaultCompanies.push(...americanCompanies);
-            
-            // 4. De Beers
-            const deBeers = allCompanies.find(c => c.name === 'De Beers Consolidated Mines Ltd.');
-            if (deBeers) {
-                defaultCompanies.push(deBeers);
-            }
-            
-            // Set as selected
-            selectedCompanies = defaultCompanies;
-            
-            // Update UI to show selection
-            defaultCompanies.forEach(company => {
-                const companyCards = document.querySelectorAll(`[data-company-name="${company.name}"]`);
-                companyCards.forEach(card => {
-                    card.classList.add('selected');
-                });
-            });
-        }
         
         function displayBuildings() {
             const buildingContainer = document.getElementById('buildingSelection');
