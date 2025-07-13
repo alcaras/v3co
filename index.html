@@ -524,7 +524,7 @@
                 allCompanies = [...companies.basic, ...companies.flavored, ...companies.canal, ...companies.mandate];
                 
                 // Display companies (basic first, then mandate, then flavored, then canal)
-                visibleCompanies = [...companies.basic];
+                visibleCompanies = [...companies.basic, ...companies.mandate, ...companies.flavored, ...companies.canal];
                 
                 console.log('All companies array length:', allCompanies.length);
                 console.log('Visible companies array length:', visibleCompanies.length);
