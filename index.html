@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victoria 3 Company Optimizer</title>
-    <script src="https://cdn.jsdelivr.net/npm/yalps@latest/lib/main/index.js"></script>
+    <script src="yalps-bundled.js"></script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -2147,11 +2147,11 @@
             console.log('Using YALPS Linear Programming solver...');
             
             try {
-                // Use the official YALPS from CDN
-                const { solve } = window.yalps || window.YALPS || {};
+                // Use bundled YALPS
+                const { solve } = window.YALPS || {};
                 
                 if (!solve) {
-                    throw new Error('YALPS not loaded from CDN');
+                    throw new Error('YALPS bundled solver not loaded');
                 }
                 
                 // Group variants by base company
