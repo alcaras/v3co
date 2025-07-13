@@ -897,7 +897,7 @@
             return `
                 <div class="company-item ${isSelected ? 'selected' : ''}" data-company-name="${company.name}" onclick="toggleCompanyByElement(this, event)" oncontextmenu="toggleCompanyRequired(this, event)">
                     <div class="company-name">${company.name}${isCanal ? ' 🚢' : ''}${requiredCompanies.includes(company.name) ? ' ★' : ''}</div>
-                    <div class="company-buildings">Buildings: ${company.buildings.map(building => priorityBuildings.includes(building) ? building + ' ★' : building).join(', ')}</div>
+                    <div class="company-buildings">Buildings: ${company.buildings.join(', ')}</div>
                     ${company.industryCharters && company.industryCharters.length > 0 ? `<div class="company-charters" style="font-size: 13px; color: #6f42c1; margin-bottom: 6px;">Industry Charters: ${company.industryCharters.join(', ')}</div>` : ''}
                     <div class="company-bonus">${company.prosperityBonus}</div>
                     ${company.prestigeGoods.length > 0 ? `<div class="company-prestige">Prestige: ${company.prestigeGoods.join(', ')}</div>` : ''}
@@ -2478,11 +2478,13 @@
                     alert(errorMessage);
                     throw new Error('LP infeasible - constraints cannot be satisfied');
                 } else {
-                    throw new Error(`YALPS failed: ${solution.status}`);
+                    console.error('YALPS solution:', solution);
+                    throw new Error(`YALPS failed: ${solution.status} - ${solution.error || 'Unknown error'}`);
                 }
 
             } catch (error) {
                 console.error('YALPS error:', error);
+                console.error('Error details:', error.message);
                 throw error;
             }
         }
