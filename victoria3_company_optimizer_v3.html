@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoria 3 Company Optimizer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+        
+        input[type="number"] {
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            width: 80px;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .region-section {
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .region-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .region-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .select-all-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .select-all-btn:hover {
+            background: #218838;
+        }
+        
+        .select-all-btn:active {
+            transform: none;
+        }
+        
+        .building-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .building-item {
+            padding: 10px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .building-item:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+        
+        .building-item.selected {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            font-weight: 600;
+        }
+        
+        .region-header:hover {
+            background: #e9ecef;
+        }
+        
+        .region-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .region-stats {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .region-content {
+            padding: 20px;
+            display: block;
+        }
+        
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .company-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .company-item:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+        
+        .company-item.selected {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            transform: translateY(-2px);
+        }
+        
+        
+        .company-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .company-buildings {
+            font-size: 13px;
+            color: #6c757d;
+            margin-bottom: 6px;
+        }
+        
+        .company-bonus {
+            font-size: 13px;
+            color: #28a745;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        
+        .company-prestige {
+            font-size: 12px;
+            color: #e83e8c;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        
+        .company-requirements {
+            font-size: 11px;
+            color: #dc3545;
+            font-style: italic;
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #28a745;
+        }
+        
+        .result-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .canal-company {
+            border-left: 4px solid #007bff !important;
+            background: #f0f8ff !important;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .stats-summary {
+            display: flex;
+            justify-content: space-around;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .collapse-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .collapse-icon.expanded {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Victoria 3 Company Optimizer</h1>
+        
+        <div class="stats-summary">
+            <div class="stat-item">
+                <div class="stat-number" id="selectedBuildings">0</div>
+                <div class="stat-label">Selected Buildings</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="availableCompanies">0</div>
+                <div class="stat-label">Total Companies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="selectedCount">0</div>
+                <div class="stat-label">Selected Companies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="prestigeGoods">0</div>
+                <div class="stat-label">Prestige Goods</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Optimization Settings</h2>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="companySlots">Company Slots Available:</label>
+                    <input type="number" id="companySlots" min="1" max="7" value="7">
+                </div>
+                <button onclick="clearSelection()">Clear All</button>
+                <button onclick="exportSelections()" style="background: #17a2b8;">💾 Export</button>
+                <button onclick="importSelections()" style="background: #fd7e14;">📁 Import</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleFileImport(event)">
+            </div>
+            <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #6c757d;">
+                <strong>Optimization Method:</strong> Scores based on selected buildings coverage + prestige goods + industry charters. Penalizes overlaps between companies.<br>
+                <strong>Priority Buildings:</strong> Right-click buildings to mark as priority (3x weight). Priority buildings marked with blue ★
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Search Companies</h2>
+            <input type="text" id="searchBox" class="search-box" placeholder="Search by company name, building, or country..." onkeyup="searchCompanies()">
+        </div>
+        
+        <div class="section">
+            <h2>Building Selection</h2>
+            <p>Select the buildings you want to optimize for. The system will then show which flavored companies cover these buildings.</p>
+            <div id="buildingSelection">
+                <!-- Buildings will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Required Prestige Goods</h2>
+            <p>Select prestige good base types that must be included in the optimal company selection. Companies will be filtered to ensure these goods are provided.</p>
+            <div id="prestigeGoodsSelection">
+                <!-- Prestige good base types will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Available Companies</h2>
+            <div id="companyRegions">
+                <!-- Companies will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="section" style="text-align: center; padding: 20px;">
+            <button onclick="optimizeCompaniesLP().catch(console.error)" style="padding: 15px 30px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #28a745, #20c997);">🎯 Optimize Companies</button>
+            <button onclick="runTests()" style="padding: 10px 20px; font-size: 14px; margin-left: 10px; background: #6c757d;">🔧 Debug Tests</button>
+        </div>
+        
+        <div class="section results hidden" id="resultsSection">
+            <h2>Optimization Results</h2>
+            <div id="optimizationResults">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Company data will be loaded from the extracted JSON file
+        let companies = {
+            basic: [],
+            flavored: [],
+            canal: []
+        };
+        
+        let selectedBuildings = [];
+        let priorityBuildings = []; // Buildings marked as priority (higher weight)
+        let selectedCompanies = [];
+        let requiredCompanies = []; // Companies marked as required (must be included)
+        let allCompanies = []; // All companies for optimization
+        let visibleCompanies = []; // Companies to show to user
+        let allBuildings = [];
+        let requiredPrestigeGoods = ['Tools']; // Required prestige good base types - Tools is mandatory
+        
+        // Prestige goods mapping to base types (corrected from Victoria 3 wiki)
+        const prestigeGoodsMapping = {
+            // Generic prestige goods
+            'Quick-fire Artillery': 'Artillery',
+            'Designer Clothes': 'Clothes',
+            'Reserve Coffee': 'Coffee',
+            'High-grade Explosives': 'Explosives',
+            'Enriched Fertilizer': 'Fertilizer',
+            'Select Fish': 'Fish',
+            'Stylish Furniture': 'Furniture',
+            'Fine Grain': 'Grain',
+            'Gourmet Groceries': 'Groceries',
+            'Prime Meat': 'Meat',
+            'Swift Merchant Marine': 'Merchant Marine',
+            'Pure Opium': 'Opium',
+            'Craft Paper': 'Paper',
+            'High-powered Small Arms': 'Small Arms',
+            'Refined Steel': 'Steel',
+            'Precision Tools': 'Tools',
+            
+            // Flavored prestige goods
+            'Krupp Guns': 'Artillery',
+            'Schneider Guns': 'Artillery',
+            'Ford Automobiles': 'Automobiles',
+            'Turin Automobiles': 'Automobiles',
+            'German Aniline': 'Dye',
+            'Schichau Engines': 'Engines',
+            'Mit Afifi': 'Fabric',
+            'Sea Island Cotton': 'Fabric',
+            'Gros Michel Banana': 'Fruit',
+            'Bentwood Furniture': 'Furniture',
+            'Bohemian Crystal': 'Glass',
+            'Rosewood': 'Hardwood',
+            'Teak': 'Hardwood',
+            'Oregrounds Iron': 'Iron',
+            'Russia Iron': 'Iron',
+            'Armstrong Ships': 'Ironclads',
+            'Smirnoff Vodka': 'Liquor',
+            'Haute Couture': 'Luxury Clothes',
+            'English Upholstery': 'Luxury Furniture',
+            'River Plate Beef': 'Meat',
+            'Baku Oil': 'Oil',
+            'Bengal Opium': 'Opium',
+            'Washi Paper': 'Paper',
+            'Canton Porcelain': 'Porcelain',
+            'Meissen Porcelain': 'Porcelain',
+            'Satsuma Ware': 'Porcelain',
+            'Chapel Radios': 'Radios',
+            'Radiola Radios': 'Radios',
+            'Colt Revolvers': 'Small Arms',
+            'Saint-Etienne Rifles': 'Small Arms',
+            'Como Silk': 'Silk',
+            'Suzhou Silk': 'Silk',
+            'Tomioka Silk': 'Silk',
+            'Clyde-Built Liners': 'Steamers',
+            'Sheffield Steel': 'Steel',
+            'Sicilian Sulfur': 'Sulfur',
+            'Assam Tea': 'Tea',
+            'China Tea': 'Tea',
+            'Ericsson Apparatus': 'Telephones',
+            'Turkish Tobacco': 'Tobacco',
+            'Champagne': 'Wine'
+        };
+        
+        // Get all unique base types
+        const prestigeGoodBaseTypes = [...new Set(Object.values(prestigeGoodsMapping))].sort();
+
+        // Load company data from the extracted JSON
+        async function loadCompanyData() {
+            try {
+                console.log('Starting to load company data...');
+                const response = await fetch('companies_extracted.json');
+                console.log('Fetch response:', response.status, response.ok);
+                const data = await response.json();
+                console.log('JSON data loaded:', data);
+                
+                companies.basic = data.basicCompanies || [];
+                companies.flavored = data.flavoredCompanies || [];
+                companies.canal = data.flavoredCompanies.filter(c => c.special === 'canal') || [];
+                
+                console.log('Companies loaded - Basic:', companies.basic.length, 'Flavored:', companies.flavored.length, 'Canal:', companies.canal.length);
+                
+                // Remove canal companies from flavored list
+                companies.flavored = companies.flavored.filter(c => c.special !== 'canal');
+                
+                // Find United Construction Conglomerate for display
+                companies.mandate = companies.basic.filter(c => c.name === 'United Construction Conglomerate');
+                
+                // Remove United Construction Conglomerate from basic companies to avoid duplication
+                companies.basic = companies.basic.filter(c => c.name !== 'United Construction Conglomerate');
+                
+                // All companies for optimization (basic + flavored + canal)
+                allCompanies = [...companies.basic, ...companies.flavored, ...companies.canal, ...companies.mandate];
+                
+                // Display companies (basic first, then mandate, then flavored, then canal)
+                visibleCompanies = [...companies.basic, ...companies.mandate, ...companies.flavored, ...companies.canal];
+                
+                console.log('All companies array length:', allCompanies.length);
+                console.log('Visible companies array length:', visibleCompanies.length);
+                
+                // Extract all unique buildings from displayed companies
+                const buildingSet = new Set();
+                visibleCompanies.forEach(company => {
+                    company.buildings.forEach(building => buildingSet.add(building));
+                });
+                allBuildings = Array.from(buildingSet).sort();
+                
+                initializeInterface();
+            } catch (error) {
+                console.error('Error loading company data:', error);
+                // Fallback to sample data if JSON loading fails
+                loadSampleData();
+            }
+        }
+
+        // Sample data for testing/fallback
+        function loadSampleData() {
+            // Fallback sample data
+            companies.basic = [];
+            companies.flavored = [];
+            companies.canal = [];
+            companies.mandate = [];
+            
+            allCompanies = [];
+            visibleCompanies = [];
+            
+            // Extract all unique buildings from flavored and canal companies
+            const buildingSet = new Set();
+            allCompanies.forEach(company => {
+                company.buildings.forEach(building => buildingSet.add(building));
+            });
+            allBuildings = Array.from(buildingSet).sort();
+            
+            initializeInterface();
+        }
+
+        function initializeInterface() {
+            // Set default selected buildings
+            selectedBuildings = [
+                'Coal Mine', 'Iron Mine', 'Logging Camp', 'Oil Rig', 'Rubber Plantation',
+                'Automotive Industries', 'Explosives Factory', 'Glassworks', 'Motor Industries', 'Paper Mill', 'Steel Mills', 'Tooling Workshops',
+                'Port', 'Railway', 'Trade Center', 'Power Plant'
+            ];
+            
+            displayBuildings();
+            displayPrestigeGoods();
+            
+            // Mark Tools as selected by default in the UI
+            const toolsElement = document.getElementById('prestige-Tools');
+            if (toolsElement) {
+                toolsElement.classList.add('selected');
+            }
+            
+            // Set default priority buildings
+            priorityBuildings = [
+                'Coal Mine', 'Iron Mine', 'Steel Mills', 'Paper Mill', 'Tooling Workshops', 'Logging Camp', 'Motor Industries', 'Glassworks', 'Rubber Plantation', 'Oil Rig', 'Explosives Factory'
+            ];
+            
+            // Mark default buildings as selected in the UI and show priority indicators
+            selectedBuildings.forEach(building => {
+                const buildingElement = document.getElementById(`building-${building.replace(/\s+/g, '_')}`);
+                if (buildingElement) {
+                    buildingElement.classList.add('selected');
+                }
+                
+                // Show priority indicator if this is a priority building
+                if (priorityBuildings.includes(building)) {
+                    const priorityElement = document.getElementById(`priority-${building.replace(/\s+/g, '_')}`);
+                    if (priorityElement) {
+                        priorityElement.style.display = 'block';
+                    }
+                }
+            });
+            
+            displayCompanies();
+            
+            // Set default selected companies
+            setDefaultCompanySelection();
+            
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function setDefaultCompanySelection() {
+            const defaultCompanies = [];
+            
+            // 1. All basic companies (use the pre-defined companies.basic array)
+            defaultCompanies.push(...companies.basic);
+            
+            // 2. United Construction Conglomerate (commented out - not selected by default)
+            // const unitedConstruction = allCompanies.find(c => c.name === 'United Construction Conglomerate');
+            // if (unitedConstruction) {
+            //     defaultCompanies.push(unitedConstruction);
+            // }
+            
+            // 3. American companies excluding Brazil, Canada, Mexico, US
+            // Also exclude Centro Vitivinícola Nacional (requires being Argentina)
+            const excludedCountries = ['Brazil', 'Canada', 'Mexico', 'United States'];
+            const excludedCompanies = ['Centro Vitivinícola Nacional'];
+            const americanCompanies = allCompanies.filter(c => 
+                c.region === 'Americas' && 
+                c.country && 
+                !excludedCountries.includes(c.country) &&
+                !excludedCompanies.includes(c.name)
+            );
+            defaultCompanies.push(...americanCompanies);
+            
+            // 4. De Beers
+            const deBeers = allCompanies.find(c => c.name === 'De Beers Consolidated Mines Ltd.');
+            if (deBeers) {
+                defaultCompanies.push(deBeers);
+            }
+            
+            // Set as selected
+            selectedCompanies = defaultCompanies;
+            
+            // Update UI to show selection
+            defaultCompanies.forEach(company => {
+                const companyCards = document.querySelectorAll(`[data-company-name="${company.name}"]`);
+                companyCards.forEach(card => {
+                    card.classList.add('selected');
+                });
+            });
+        }
+        
+        function displayBuildings() {
+            const buildingContainer = document.getElementById('buildingSelection');
+            
+            // Group buildings by type (using actual building names from JSON data)
+            const buildingsByType = {
+                'Agriculture': ['Maize Farm', 'Millet Farm', 'Rice Farm', 'Rye Farm', 'Wheat Farm', 'Vineyard'],
+                'Extraction': ['Coal Mine', 'Fishing Wharf', 'Gold Mine', 'Iron Mine', 'Lead Mine', 'Logging Camp', 'Oil Rig', 'Rubber Plantation', 'Sulfur Mine', 'Whaling Station'],
+                'Plantations': ['Banana Plantation', 'Coffee Plantation', 'Cotton Plantation', 'Dye Plantation', 'Opium Plantation', 'Silk Plantation', 'Sugar Plantation', 'Tea Plantation', 'Tobacco Plantation'],
+                'Ranches': ['Livestock Ranch'],
+                'Manufacturing Industries': ['Arms Industries', 'Artillery Foundries', 'Automotive Industries', 'Electrics Industries', 'Explosives Factory', 'Fertilizer Plant', 'Food Industry', 'Furniture Manufacturies', 'Glassworks', 'Military Shipyards', 'Motor Industries', 'Munition Plant', 'Paper Mill', 'Shipyards', 'Steel Mills', 'Synthetics Plant', 'Textile Mill', 'Tooling Workshops'],
+                'Infrastructure': ['Port', 'Railway', 'Trade Center'],
+                'Power Plants': ['Power Plant']
+            };
+            
+            let html = '';
+            Object.entries(buildingsByType).forEach(([type, buildings]) => {
+                const availableBuildings = buildings.filter(building => allBuildings.includes(building));
+                if (availableBuildings.length > 0) {
+                    html += `
+                        <div class="region-section">
+                            <div class="region-header">
+                                <div class="region-title">${type} Buildings</div>
+                                <div class="region-actions">
+                                    <button class="select-all-btn" onclick="selectAllBuildings('${type}', event)">Select All</button>
+                                    <button class="select-all-btn" onclick="clearAllBuildings('${type}', event)" style="margin-left: 10px;">Clear All</button>
+                                </div>
+                            </div>
+                            <div class="region-content">
+                                <div class="building-grid">
+                                    ${availableBuildings.map(building => `
+                                        <div class="building-item" onclick="toggleBuilding('${building}')" id="building-${building.replace(/\s+/g, '_')}" oncontextmenu="togglePriorityBuilding('${building}', event)" style="position: relative;">
+                                            ${building}
+                                            <div class="priority-indicator" id="priority-${building.replace(/\s+/g, '_')}" style="display: none; position: absolute; top: 2px; right: 2px; background: #007bff; color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; text-align: center; line-height: 16px;">★</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            buildingContainer.innerHTML = html;
+        }
+
+        function displayPrestigeGoods() {
+            const prestigeContainer = document.getElementById('prestigeGoodsSelection');
+            
+            let html = `
+                <div class="region-section">
+                    <div class="region-header">
+                        <div class="region-title">Prestige Good Base Types</div>
+                        <div class="region-actions">
+                            <button class="select-all-btn" onclick="selectAllPrestigeGoods(event)">Select All</button>
+                            <button class="select-all-btn" onclick="clearAllPrestigeGoods(event)" style="margin-left: 10px;">Clear All</button>
+                        </div>
+                    </div>
+                    <div class="region-content">
+                        <div class="building-grid">
+                            ${prestigeGoodBaseTypes.map(baseType => `
+                                <div class="building-item" onclick="togglePrestigeGood('${baseType}')" id="prestige-${baseType.replace(/\s+/g, '_')}" style="position: relative;">
+                                    ${baseType}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            prestigeContainer.innerHTML = html;
+        }
+
+        function displayCompanies() {
+            const regionsContainer = document.getElementById('companyRegions');
+            regionsContainer.innerHTML = '';
+            
+            // Show only flavored, canal, and mandate companies for display
+            let relevantCompanies = visibleCompanies;
+            
+            // Group companies by region, putting basic companies at the top for visibility
+            const regions = {
+                'Basic Companies': relevantCompanies.filter(c => companies.basic.some(bc => bc.name === c.name)),
+                'Mandate Companies': relevantCompanies.filter(c => c.name === 'United Construction Conglomerate'),
+                'Americas': relevantCompanies.filter(c => c.region === 'Americas'),
+                'Europe': relevantCompanies.filter(c => c.region === 'Europe'),
+                'Asia': relevantCompanies.filter(c => c.region === 'Asia'),
+                'Middle East': relevantCompanies.filter(c => c.region === 'Middle East'),
+                'Africa': relevantCompanies.filter(c => c.region === 'Africa')
+            };
+            
+            // Create region sections
+            Object.entries(regions).forEach(([regionName, regionCompanies]) => {
+                if (regionCompanies.length === 0) return;
+                
+                const regionDiv = document.createElement('div');
+                regionDiv.className = 'region-section';
+                
+                const selectedInRegion = regionCompanies.filter(c => 
+                    selectedCompanies.some(sc => sc.name === c.name)
+                ).length;
+                
+                const safeRegionName = regionName.replace(/[^a-zA-Z0-9]/g, '_');
+                
+                regionDiv.innerHTML = `
+                    <div class="region-header">
+                        <div class="region-title">${regionName}</div>
+                        <div class="region-actions">
+                            <button class="select-all-btn" onclick="selectAllInRegion('${safeRegionName}', event)">Select All</button>
+                            <button class="select-all-btn" onclick="clearAllInRegion('${safeRegionName}', event)" style="margin-left: 10px;">Clear All</button>
+                            <div class="region-stats">
+                                ${selectedInRegion}/${regionCompanies.length} selected
+                            </div>
+                        </div>
+                    </div>
+                    <div class="region-content" id="content-${safeRegionName}">
+                        <div class="company-grid">
+                            ${regionCompanies.map(company => createCompanyCard(company)).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                regionsContainer.appendChild(regionDiv);
+            });
+        }
+        
+        function toggleBuilding(buildingName) {
+            const index = selectedBuildings.indexOf(buildingName);
+            const buildingElement = document.getElementById(`building-${buildingName.replace(/\s+/g, '_')}`);
+            
+            if (index > -1) {
+                selectedBuildings.splice(index, 1);
+                buildingElement.classList.remove('selected');
+            } else {
+                selectedBuildings.push(buildingName);
+                buildingElement.classList.add('selected');
+            }
+            
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function selectAllBuildings(type, event) {
+            if (event) event.stopPropagation();
+            
+            const buildingsByType = {
+                'Agriculture': ['Maize Farm', 'Millet Farm', 'Rice Farm', 'Rye Farm', 'Wheat Farm', 'Vineyard'],
+                'Extraction': ['Coal Mine', 'Fishing Wharf', 'Gold Mine', 'Iron Mine', 'Lead Mine', 'Logging Camp', 'Oil Rig', 'Rubber Plantation', 'Sulfur Mine', 'Whaling Station'],
+                'Plantations': ['Banana Plantation', 'Coffee Plantation', 'Cotton Plantation', 'Dye Plantation', 'Opium Plantation', 'Silk Plantation', 'Sugar Plantation', 'Tea Plantation', 'Tobacco Plantation'],
+                'Ranches': ['Livestock Ranch'],
+                'Manufacturing Industries': ['Arms Industries', 'Artillery Foundries', 'Automotive Industries', 'Electrics Industries', 'Explosives Factory', 'Fertilizer Plant', 'Food Industry', 'Furniture Manufacturies', 'Glassworks', 'Military Shipyards', 'Motor Industries', 'Munition Plant', 'Paper Mill', 'Shipyards', 'Steel Mills', 'Synthetics Plant', 'Textile Mill', 'Tooling Workshops'],
+                'Infrastructure': ['Port', 'Railway', 'Trade Center'],
+                'Power Plants': ['Power Plant']
+            };
+            
+            const buildings = buildingsByType[type] || [];
+            buildings.forEach(building => {
+                if (allBuildings.includes(building) && !selectedBuildings.includes(building)) {
+                    selectedBuildings.push(building);
+                    const buildingElement = document.getElementById(`building-${building.replace(/\s+/g, '_')}`);
+                    if (buildingElement) {
+                        buildingElement.classList.add('selected');
+                    }
+                }
+            });
+            
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function clearAllBuildings(type, event) {
+            if (event) event.stopPropagation();
+            
+            const buildingsByType = {
+                'Agriculture': ['Maize Farm', 'Millet Farm', 'Rice Farm', 'Rye Farm', 'Wheat Farm', 'Vineyard'],
+                'Extraction': ['Coal Mine', 'Fishing Wharf', 'Gold Mine', 'Iron Mine', 'Lead Mine', 'Logging Camp', 'Oil Rig', 'Rubber Plantation', 'Sulfur Mine', 'Whaling Station'],
+                'Plantations': ['Banana Plantation', 'Coffee Plantation', 'Cotton Plantation', 'Dye Plantation', 'Opium Plantation', 'Silk Plantation', 'Sugar Plantation', 'Tea Plantation', 'Tobacco Plantation'],
+                'Ranches': ['Livestock Ranch'],
+                'Manufacturing Industries': ['Arms Industries', 'Artillery Foundries', 'Automotive Industries', 'Electrics Industries', 'Explosives Factory', 'Fertilizer Plant', 'Food Industry', 'Furniture Manufacturies', 'Glassworks', 'Military Shipyards', 'Motor Industries', 'Munition Plant', 'Paper Mill', 'Shipyards', 'Steel Mills', 'Synthetics Plant', 'Textile Mill', 'Tooling Workshops'],
+                'Infrastructure': ['Port', 'Railway', 'Trade Center'],
+                'Power Plants': ['Power Plant']
+            };
+            
+            const buildings = buildingsByType[type] || [];
+            buildings.forEach(building => {
+                if (allBuildings.includes(building) && selectedBuildings.includes(building)) {
+                    const index = selectedBuildings.indexOf(building);
+                    selectedBuildings.splice(index, 1);
+                    const buildingElement = document.getElementById(`building-${building.replace(/\s+/g, '_')}`);
+                    if (buildingElement) {
+                        buildingElement.classList.remove('selected');
+                    }
+                }
+            });
+            
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function togglePrestigeGood(baseType) {
+            const index = requiredPrestigeGoods.indexOf(baseType);
+            const prestigeElement = document.getElementById(`prestige-${baseType.replace(/\s+/g, '_')}`);
+            
+            if (index > -1) {
+                requiredPrestigeGoods.splice(index, 1);
+                prestigeElement.classList.remove('selected');
+            } else {
+                requiredPrestigeGoods.push(baseType);
+                prestigeElement.classList.add('selected');
+            }
+            
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function selectAllPrestigeGoods(event) {
+            if (event) event.stopPropagation();
+            
+            prestigeGoodBaseTypes.forEach(baseType => {
+                if (!requiredPrestigeGoods.includes(baseType)) {
+                    requiredPrestigeGoods.push(baseType);
+                    const prestigeElement = document.getElementById(`prestige-${baseType.replace(/\s+/g, '_')}`);
+                    if (prestigeElement) {
+                        prestigeElement.classList.add('selected');
+                    }
+                }
+            });
+            
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function clearAllPrestigeGoods(event) {
+            if (event) event.stopPropagation();
+            
+            requiredPrestigeGoods.forEach(baseType => {
+                const prestigeElement = document.getElementById(`prestige-${baseType.replace(/\s+/g, '_')}`);
+                if (prestigeElement) {
+                    prestigeElement.classList.remove('selected');
+                }
+            });
+            
+            requiredPrestigeGoods.length = 0;
+            
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+
+        function createCompanyCard(company) {
+            const isSelected = selectedCompanies.some(c => c.name === company.name);
+            const isCanal = company.special === 'canal';
+            
+            return `
+                <div class="company-item ${isSelected ? 'selected' : ''}" data-company-name="${company.name}" onclick="toggleCompanyByElement(this, event)" oncontextmenu="toggleCompanyRequired(this, event)">
+                    <div class="company-name">${company.name}${isCanal ? ' 🚢' : ''}${requiredCompanies.includes(company.name) ? ' ★' : ''}</div>
+                    <div class="company-buildings">Buildings: ${company.buildings.map(building => priorityBuildings.includes(building) ? building + ' ★' : building).join(', ')}</div>
+                    ${company.industryCharters && company.industryCharters.length > 0 ? `<div class="company-charters" style="font-size: 13px; color: #6f42c1; margin-bottom: 6px;">Industry Charters: ${company.industryCharters.join(', ')}</div>` : ''}
+                    <div class="company-bonus">${company.prosperityBonus}</div>
+                    ${company.prestigeGoods.length > 0 ? `<div class="company-prestige">Prestige: ${company.prestigeGoods.join(', ')}</div>` : ''}
+                    <div class="company-requirements">${company.requirements}</div>
+                    ${company.country ? `<div style="font-size: 12px; color: #6c757d; margin-top: 5px;">${company.country}</div>` : ''}
+                    ${isCanal ? `<div style="font-size: 12px; color: #007bff; margin-top: 5px; font-weight: bold;">Canal Company - No slot cost</div>` : ''}
+                </div>
+            `;
+        }
+
+        function toggleRegion(regionName) {
+            const content = document.getElementById(`content-${regionName}`);
+            const icon = document.getElementById(`icon-${regionName}`);
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.classList.remove('expanded');
+            } else {
+                content.classList.add('expanded');
+                icon.classList.add('expanded');
+            }
+        }
+
+        function toggleCompanyByElement(element, event) {
+            if (event) event.stopPropagation();
+            
+            const companyName = element.getAttribute('data-company-name');
+            toggleCompany(companyName, event);
+        }
+
+        function toggleCompanyRequired(element, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            const companyName = element.getAttribute('data-company-name');
+            
+            if (requiredCompanies.includes(companyName)) {
+                // Remove from required
+                requiredCompanies = requiredCompanies.filter(name => name !== companyName);
+                console.log(`Removed ${companyName} from required companies`);
+            } else {
+                // Add to required
+                requiredCompanies.push(companyName);
+                console.log(`Added ${companyName} to required companies`);
+                
+                // Also automatically select if not already selected
+                const company = allCompanies.find(c => c.name === companyName);
+                if (company && !selectedCompanies.some(c => c.name === companyName)) {
+                    selectedCompanies.push(company);
+                    console.log(`Auto-selected ${companyName} since it was marked as required`);
+                }
+            }
+            
+            // Refresh display
+            displayCompanies();
+        }
+        
+        function toggleCompany(companyName, event) {
+            if (event) event.stopPropagation();
+            
+            const company = allCompanies.find(c => c.name === companyName);
+            if (!company) {
+                console.error('Company not found:', companyName);
+                return;
+            }
+            
+            const index = selectedCompanies.findIndex(c => c.name === companyName);
+            
+            if (index > -1) {
+                selectedCompanies.splice(index, 1);
+            } else {
+                selectedCompanies.push(company);
+            }
+            
+            // Update only the specific company card instead of redrawing everything
+            const companyCard = event ? event.target.closest('.company-item') : null;
+            if (companyCard) {
+                if (index > -1) {
+                    companyCard.classList.remove('selected');
+                } else {
+                    companyCard.classList.add('selected');
+                }
+            }
+            
+            updateStats();
+            updateRegionStats();
+        }
+
+        function clearSelection() {
+            selectedCompanies = [];
+            selectedBuildings = [];
+            priorityBuildings = [];
+            requiredPrestigeGoods = [];
+            requiredCompanies = [];
+            displayBuildings();
+            displayPrestigeGoods();
+            displayCompanies();
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function togglePriorityBuilding(buildingName, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const index = priorityBuildings.indexOf(buildingName);
+            const priorityElement = document.getElementById(`priority-${buildingName.replace(/\s+/g, '_')}`);
+            
+            if (index > -1) {
+                priorityBuildings.splice(index, 1);
+                priorityElement.style.display = 'none';
+            } else {
+                // Can only mark as priority if it's already selected
+                if (selectedBuildings.includes(buildingName)) {
+                    priorityBuildings.push(buildingName);
+                    priorityElement.style.display = 'block';
+                } else {
+                    alert('Please select the building first before marking it as priority.');
+                }
+            }
+            
+            updateStats();
+        }
+        
+        function selectAllInRegion(regionName, event) {
+            if (event) event.stopPropagation();
+            
+            // Find all companies in this region
+            const regionContent = document.getElementById(`content-${regionName}`);
+            if (!regionContent) return;
+            
+            const companyCards = regionContent.querySelectorAll('.company-item');
+            
+            companyCards.forEach(card => {
+                const companyName = card.querySelector('.company-name').textContent.replace(' 🚢', '').trim();
+                const company = allCompanies.find(c => c.name === companyName);
+                
+                if (company && !selectedCompanies.some(sc => sc.name === company.name)) {
+                    selectedCompanies.push(company);
+                    card.classList.add('selected');
+                }
+            });
+            
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function clearAllInRegion(regionName, event) {
+            if (event) event.stopPropagation();
+            
+            // Find all companies in this region
+            const regionContent = document.getElementById(`content-${regionName}`);
+            if (!regionContent) return;
+            
+            const companyCards = regionContent.querySelectorAll('.company-item');
+            
+            companyCards.forEach(card => {
+                const companyName = card.querySelector('.company-name').textContent.replace(' 🚢', '').trim();
+                const company = allCompanies.find(c => c.name === companyName);
+                
+                if (company && selectedCompanies.some(sc => sc.name === company.name)) {
+                    const index = selectedCompanies.findIndex(sc => sc.name === company.name);
+                    selectedCompanies.splice(index, 1);
+                    card.classList.remove('selected');
+                }
+            });
+            
+            updateStats();
+            updateRegionStats();
+        }
+        
+        function updateRegionStats() {
+            // Update all region stats
+            document.querySelectorAll('.region-section').forEach(section => {
+                const regionHeader = section.querySelector('.region-header');
+                const regionTitle = regionHeader.querySelector('.region-title').textContent;
+                const regionContent = section.querySelector('.region-content');
+                const companyCards = regionContent.querySelectorAll('.company-item');
+                
+                const selectedInRegion = Array.from(companyCards).filter(card => 
+                    card.classList.contains('selected')
+                ).length;
+                
+                const statsDiv = regionHeader.querySelector('.region-stats');
+                if (statsDiv) {
+                    statsDiv.textContent = `${selectedInRegion}/${companyCards.length} selected`;
+                }
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('selectedBuildings').textContent = selectedBuildings.length;
+            
+            // Show counts for displayed companies vs all companies used in optimization
+            document.getElementById('availableCompanies').textContent = `${visibleCompanies.length} (${allCompanies.length} w/ basic)`;
+            document.getElementById('selectedCount').textContent = selectedCompanies.length;
+            
+            // Calculate prestige goods
+            const prestigeGoods = selectedCompanies.reduce((count, company) => 
+                count + company.prestigeGoods.length, 0);
+            document.getElementById('prestigeGoods').textContent = prestigeGoods;
+        }
+
+        function searchCompanies() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            
+            if (searchTerm === '') {
+                displayCompanies();
+                return;
+            }
+            
+            const filtered = allCompanies.filter(company => 
+                company.name.toLowerCase().includes(searchTerm) ||
+                company.buildings.some(building => building.toLowerCase().includes(searchTerm)) ||
+                company.prosperityBonus.toLowerCase().includes(searchTerm) ||
+                (company.country && company.country.toLowerCase().includes(searchTerm))
+            );
+            
+            // Display filtered results in a single section
+            const regionsContainer = document.getElementById('companyRegions');
+            regionsContainer.innerHTML = `
+                <div class="region-section">
+                    <div class="region-header" onclick="toggleRegion('search')">
+                        <div class="region-title">Search Results</div>
+                        <div class="region-stats">
+                            ${filtered.length} companies found
+                            <span class="collapse-icon expanded" id="icon-search">▼</span>
+                        </div>
+                    </div>
+                    <div class="region-content expanded" id="content-search">
+                        <div class="company-grid">
+                            ${filtered.map(company => createCompanyCard(company)).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        function calculateScore(companies) {
+            // Count building coverage from company buildings
+            const selectedBuildingTypes = new Set();
+            let totalSelectedBuildings = 0;
+            const nonSelectedBuildingTypes = new Set();
+            
+            companies.forEach(company => {
+                company.buildings.forEach(building => {
+                    if (selectedBuildings.includes(building)) {
+                        selectedBuildingTypes.add(building);
+                        totalSelectedBuildings++;
+                    } else {
+                        // Track non-selected buildings for 0.01 point bonus
+                        nonSelectedBuildingTypes.add(building);
+                    }
+                });
+            });
+            
+            // Charter selection: Simple approach - take first useful charter if it provides new coverage
+            const takenCharters = [];
+            const charterCounts = new Map();
+            
+            companies.forEach(company => {
+                if (company.industryCharters && company.industryCharters.length > 0) {
+                    // Only take charter if it's for a selected building AND not already covered by buildings
+                    const charter = company.industryCharters[0]; // Take first charter
+                    if (selectedBuildings.includes(charter) && !selectedBuildingTypes.has(charter)) {
+                        takenCharters.push(charter);
+                        charterCounts.set(charter, (charterCounts.get(charter) || 0) + 1);
+                    }
+                }
+            });
+            
+            // Calculate charter contribution and penalties
+            const industryCharters = new Set();
+            let redundantCharterPenalty = 0;
+            
+            charterCounts.forEach((count, charter) => {
+                if (selectedBuildingTypes.has(charter)) {
+                    // Charter is redundant with buildings - penalty
+                    redundantCharterPenalty += count * 2.0;
+                } else if (count > 1) {
+                    // Multiple companies providing same charter - penalty for extras
+                    industryCharters.add(charter);
+                    redundantCharterPenalty += (count - 1) * 3.0;
+                } else {
+                    // Unique useful charter
+                    industryCharters.add(charter);
+                }
+            });
+            
+            const selectedOverlaps = totalSelectedBuildings - selectedBuildingTypes.size;
+            const prestigeGoods = companies.reduce((count, company) => 
+                count + company.prestigeGoods.length, 0);
+            
+            // Calculate priority building bonus
+            let priorityScore = 0;
+            selectedBuildingTypes.forEach(building => {
+                if (priorityBuildings.includes(building)) {
+                    priorityScore += 2;
+                }
+            });
+            
+            // Add priority bonus for taken charters
+            industryCharters.forEach(charter => {
+                if (priorityBuildings.includes(charter)) {
+                    priorityScore += 2;
+                }
+            });
+            
+            // Score: buildings + charters + priority bonus + prestige + non-selected buildings - overlaps - charter penalties
+            return selectedBuildingTypes.size + industryCharters.size + priorityScore + (prestigeGoods * 0.1) + (nonSelectedBuildingTypes.size * 0.01) - (selectedOverlaps * 0.2) - redundantCharterPenalty;
+        }
+        
+        function checkPrestigeGoodRequirements(companies) {
+            if (requiredPrestigeGoods.length === 0) {
+                return true; // No requirements, always satisfied
+            }
+            
+            // Collect all prestige goods from the companies
+            const providedPrestigeGoods = new Set();
+            companies.forEach(company => {
+                company.prestigeGoods.forEach(prestigeGood => {
+                    const baseType = prestigeGoodsMapping[prestigeGood];
+                    if (baseType) {
+                        providedPrestigeGoods.add(baseType);
+                    }
+                });
+            });
+            
+            // Check if all required prestige goods are provided
+            return requiredPrestigeGoods.every(required => providedPrestigeGoods.has(required));
+        }
+
+        // OLD DP FUNCTION REMOVED - USING LP NOW
+        function generateTopCombinations_OLD(companies, maxSlots, topN = 10, canalCompanies = []) {
+            const startTime = performance.now();
+            console.log('Starting knapsack optimization...');
+            
+            // Use ALL companies - let DP find the optimal solution
+            const filteredCompanies = companies;
+            
+            console.log(`Processing all ${filteredCompanies.length} companies with DP optimization`);
+            console.log(`DP table size: ${filteredCompanies.length} × ${maxSlots} = ${filteredCompanies.length * maxSlots} entries`);
+            
+            // Classic 0/1 Knapsack with DP
+            const n = filteredCompanies.length;
+            
+            // DP table: dp[i][w] = {score, companies} for using first i companies with w slots
+            const dp = Array(n + 1).fill(null).map(() => 
+                Array(maxSlots + 1).fill(null).map(() => ({ score: 0, companies: [] }))
+            );
+            
+            // Fill the DP table
+            for (let i = 1; i <= n; i++) {
+                const company = filteredCompanies[i - 1];
+                
+                for (let w = 0; w <= maxSlots; w++) {
+                    // Option 1: Don't take this company
+                    dp[i][w] = { ...dp[i-1][w] };
+                    
+                    // Option 2: Take this company (if we have space)
+                    if (w >= 1) {
+                        const prevCombination = dp[i-1][w-1];
+                        const newCombination = [...prevCombination.companies, company];
+                        const allCompaniesWithCanal = [...newCombination, ...canalCompanies];
+                        
+                        // Only consider this combination if it satisfies prestige goods requirements
+                        // OR if we haven't specified any prestige goods requirements
+                        if (requiredPrestigeGoods.length === 0 || checkPrestigeGoodRequirements(allCompaniesWithCanal)) {
+                            const newScore = calculateScore(allCompaniesWithCanal);
+                            
+                            if (newScore > dp[i][w].score) {
+                                dp[i][w] = {
+                                    score: newScore,
+                                    companies: newCombination
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Generate multiple good combinations, prioritizing maxSlots solutions
+            const results = [];
+            
+            // Primary strategy: Find the best solution for maxSlots
+            if (dp[n][maxSlots].companies.length > 0 && dp[n][maxSlots].score > 0) {
+                results.push({
+                    companies: dp[n][maxSlots].companies,
+                    totalScore: dp[n][maxSlots].score,
+                    slotsUsed: maxSlots
+                });
+            }
+            
+            // Secondary strategy: Generate alternative maxSlots combinations by exploring suboptimal paths
+            const maxSlotScore = dp[n][maxSlots].score;
+            const minAcceptableScore = maxSlotScore * 0.95; // Within 5% of optimal
+            
+            // Look for alternative good combinations by checking different final company choices
+            for (let lastCompanyIdx = 0; lastCompanyIdx < n; lastCompanyIdx++) {
+                const lastCompany = filteredCompanies[lastCompanyIdx];
+                
+                // Check if this company is in the optimal solution (skip to avoid duplicates)
+                if (dp[n][maxSlots].companies.includes(lastCompany)) continue;
+                
+                // Try building a combination that ends with this company
+                const prevState = dp[lastCompanyIdx][maxSlots - 1];
+                if (prevState.companies.length === maxSlots - 1) {
+                    const altCombination = [...prevState.companies, lastCompany];
+                    const altScore = calculateScore([...altCombination, ...canalCompanies]);
+                    
+                    if (altScore >= minAcceptableScore && altScore > 0) {
+                        results.push({
+                            companies: altCombination,
+                            totalScore: altScore,
+                            slotsUsed: maxSlots
+                        });
+                    }
+                }
+            }
+            
+            // Fallback: Include lower slot solutions only if we don't have enough maxSlots solutions
+            if (results.length < topN) {
+                for (let w = maxSlots - 1; w >= 1; w--) {
+                    if (dp[n][w].companies.length > 0 && dp[n][w].score > 0) {
+                        results.push({
+                            companies: dp[n][w].companies,
+                            totalScore: dp[n][w].score,
+                            slotsUsed: w
+                        });
+                    }
+                }
+            }
+            
+            // Sort by score descending, then by slots used descending (prefer using more slots)
+            results.sort((a, b) => {
+                const scoreDiff = b.totalScore - a.totalScore;
+                if (Math.abs(scoreDiff) < 0.01) {
+                    // If scores are very close, prefer using more slots
+                    return b.slotsUsed - a.slotsUsed;
+                }
+                return scoreDiff;
+            });
+            
+            // Remove duplicates
+            const seen = new Set();
+            const uniqueResults = results.filter(result => {
+                const key = result.companies.map(c => c.name).sort().join(',');
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+            
+            // No need to filter since we enforced requirements during DP
+            const validResults = uniqueResults;
+            
+            console.log(`Knapsack optimization complete. Found ${uniqueResults.length} unique solutions (all satisfy prestige goods requirements).`);
+            
+            // Debug prestige goods filtering
+            if (requiredPrestigeGoods.length > 0) {
+                console.log('Required prestige goods:', requiredPrestigeGoods);
+                
+                // Show which companies in the selection can provide required goods
+                console.log('Companies that can provide required prestige goods:');
+                requiredPrestigeGoods.forEach(requiredType => {
+                    const providingCompanies = filteredCompanies.filter(company => {
+                        return company.prestigeGoods.some(prestigeGood => {
+                            const baseType = prestigeGoodsMapping[prestigeGood];
+                            return baseType === requiredType;
+                        });
+                    });
+                    console.log(`  ${requiredType}: ${providingCompanies.length} companies -`, providingCompanies.map(c => c.name));
+                    
+                    // Show score and details for each providing company
+                    providingCompanies.forEach(company => {
+                        const score = calculateScore([company]);
+                        console.log(`    ${company.name}: Score=${score.toFixed(2)}, Buildings=[${company.buildings.join(', ')}], PrestigeGoods=[${company.prestigeGoods.join(', ')}]`);
+                    });
+                });
+                
+                console.log('Checking first few solutions for prestige goods:');
+                uniqueResults.slice(0, 3).forEach((result, i) => {
+                    const allCompanies = [...result.companies, ...canalCompanies];
+                    const providedGoods = new Set();
+                    const prestigeGoodDetails = [];
+                    allCompanies.forEach(company => {
+                        company.prestigeGoods.forEach(prestigeGood => {
+                            const baseType = prestigeGoodsMapping[prestigeGood];
+                            if (baseType) {
+                                providedGoods.add(baseType);
+                                prestigeGoodDetails.push(`${prestigeGood} (${baseType})`);
+                            }
+                        });
+                    });
+                    console.log(`  Solution ${i+1} provides:`, Array.from(providedGoods));
+                    console.log(`  Solution ${i+1} prestige goods:`, prestigeGoodDetails);
+                    console.log(`  Satisfies requirements:`, checkPrestigeGoodRequirements(allCompanies));
+                });
+            }
+            
+            // Debug: Check if maxSlots solution exists and analyze gaps
+            console.log('DP results analysis:');
+            console.log(`  Best 7-slot solution: ${dp[n][maxSlots].score > 0 ? dp[n][maxSlots].score.toFixed(2) : 'NONE FOUND'}`);
+            console.log(`  Best 6-slot solution: ${dp[n][maxSlots-1].score > 0 ? dp[n][maxSlots-1].score.toFixed(2) : 'NONE FOUND'}`);
+            console.log(`  Best 5-slot solution: ${dp[n][maxSlots-2].score > 0 ? dp[n][maxSlots-2].score.toFixed(2) : 'NONE FOUND'}`);
+            
+            // Debug: Log slot utilization for top results
+            console.log('Top 3 solutions slot utilization:');
+            validResults.slice(0, 3).forEach((result, i) => {
+                console.log(`  Option ${i+1}: ${result.slotsUsed}/${maxSlots} slots, Score: ${result.totalScore.toFixed(2)}`);
+                if (result.slotsUsed < maxSlots) {
+                    console.log(`    ⚠️  Option ${i+1} not using all slots!`);
+                }
+            });
+            
+            // Debug: Performance check
+            const endTime = performance.now();
+            console.log(`DP processed ${filteredCompanies.length} companies successfully in ${(endTime - startTime).toFixed(0)}ms`);
+            
+            return validResults.slice(0, topN);
+        }
+
+        function displayMultipleResults(combinations, slots) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsDiv = document.getElementById('optimizationResults');
+            
+            if (combinations.length === 0) {
+                resultsDiv.innerHTML = '<p>No valid combinations found.</p>';
+                resultsSection.classList.remove('hidden');
+                return;
+            }
+            
+            if (selectedBuildings.length === 0) {
+                resultsDiv.innerHTML = '<p>Please select some buildings to optimize for.</p>';
+                resultsSection.classList.remove('hidden');
+                return;
+            }
+            
+            if (selectedCompanies.length === 0) {
+                resultsDiv.innerHTML = '<p>Please select some companies to optimize.</p>';
+                resultsSection.classList.remove('hidden');
+                return;
+            }
+            
+            let html = '<h3>Top Company Combinations</h3>';
+            
+            // Add requirements summary
+            html += `
+                <div style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #007bff;">
+                    <h4 style="margin: 0 0 10px 0; color: #2c3e50;">Selection Summary</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
+                        <div>
+                            <strong>Selected Buildings (${selectedBuildings.length}):</strong>
+                            <div style="margin-top: 5px; display: flex; flex-wrap: wrap; gap: 3px;">
+                                ${selectedBuildings.map(building => {
+                                    const isPriority = priorityBuildings.includes(building);
+                                    return `<span style="background: ${isPriority ? '#e3f2fd' : '#e8f5e8'}; padding: 2px 6px; border-radius: 4px; font-size: 11px; ${isPriority ? 'border: 1px solid #007bff; font-weight: bold;' : ''}">${building}${isPriority ? ' ★' : ''}</span>`;
+                                }).join('')}
+                            </div>
+                            ${priorityBuildings.length > 0 ? `
+                                <div style="margin-top: 8px;">
+                                    <strong>Priority Buildings (${priorityBuildings.length}):</strong>
+                                    <div style="margin-top: 3px; display: flex; flex-wrap: wrap; gap: 3px;">
+                                        ${priorityBuildings.map(building => 
+                                            `<span style="background: #007bff; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold;">${building} ★</span>`
+                                        ).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div>
+                            <strong>Selected Companies (${selectedCompanies.length}):</strong>
+                            <div style="margin-top: 5px; max-height: 120px; overflow-y: auto;">
+                                ${selectedCompanies.map((company, index) => {
+                                    const lookupName = company.baseCompanyName || company.name;
+                                    const isBasic = companies.basic && companies.basic.some(c => c.name === lookupName);
+                                    const isFlavored = companies.flavored && companies.flavored.some(c => c.name === lookupName);
+                                    const isCanal = company.special === 'canal';
+                                    const isMandate = lookupName === 'United Construction Conglomerate';
+                                    
+                                    let color = '#28a745';
+                                    let typeLabel = 'Unknown';
+                                    if (isCanal) { color = '#007bff'; typeLabel = 'Canal'; }
+                                    else if (isMandate) { color = '#6f42c1'; typeLabel = 'Mandate'; }
+                                    else if (isFlavored) { color = '#fd7e14'; typeLabel = 'Flavored'; }
+                                    else if (isBasic) { color = '#6c757d'; typeLabel = 'Basic'; }
+                                    
+                                    // Debug: log company details for first few companies
+                                    if (index < 5) {
+                                        console.log(`Company ${index}: ${company.name} - ${typeLabel} (isBasic:${isBasic}, isFlavored:${isFlavored}, isCanal:${isCanal}, isMandate:${isMandate})`);
+                                    }
+                                    
+                                    return `<span style="background: ${color}; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin: 1px; display: inline-block;" title="${typeLabel}">${company.name}${requiredCompanies.includes(company.baseCompanyName || company.name) ? ' ★' : ''}</span>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            combinations.forEach((combo, index) => {
+                const regularCompanies = combo.companies.filter(c => c.special !== 'canal');
+                const canalCompanies = combo.companies.filter(c => c.special === 'canal');
+                
+                // Calculate coverage (all buildings first, charters added later after industryCharters is defined)
+                const buildingTypes = new Set();
+                let totalBuildings = 0;
+                combo.companies.forEach(company => {
+                    // Add buildings
+                    company.buildings.forEach(building => {
+                        buildingTypes.add(building);
+                        totalBuildings++;
+                    });
+                });
+                
+                let overlaps = totalBuildings - buildingTypes.size; // Will be updated after adding charters
+                
+                // Calculate selected buildings coverage for display (including charters)
+                const selectedBuildingTypes = new Set();
+                let totalSelectedBuildings = 0;
+                combo.companies.forEach(company => {
+                    // Only check buildings, NOT charters (charters are calculated separately)
+                    company.buildings.forEach(building => {
+                        if (selectedBuildings.includes(building)) {
+                            selectedBuildingTypes.add(building);
+                            totalSelectedBuildings++;
+                        }
+                    });
+                });
+                
+                const selectedOverlaps = totalSelectedBuildings - selectedBuildingTypes.size;
+                
+                const prestigeGoods = combo.companies.reduce((count, company) => 
+                    count + company.prestigeGoods.length, 0);
+                
+                // Charter selection: use LP results directly
+                const takenCharters = [];
+                const charterCounts = new Map();
+                combo.companies.forEach(company => {
+                    if (company.selectedCharter) {
+                        takenCharters.push(company.selectedCharter);
+                        charterCounts.set(company.selectedCharter, (charterCounts.get(company.selectedCharter) || 0) + 1);
+                        console.log(`DISPLAY: ${company.name} takes charter: ${company.selectedCharter}`);
+                    }
+                });
+                
+                console.log(`DISPLAY: Total taken charters: ${takenCharters.length}`, takenCharters);
+                
+                // Use takenCharters for display
+                const industryCharters = takenCharters;
+                
+                // Now add the taken charters to buildingTypes (after industryCharters is defined)
+                industryCharters.forEach(charter => {
+                    buildingTypes.add(charter);
+                    totalBuildings++;
+                    // Also add to selectedBuildingTypes since charters are for selected buildings
+                    selectedBuildingTypes.add(charter);
+                });
+                
+                // Update overlaps calculation now that charters are included
+                overlaps = totalBuildings - buildingTypes.size;
+                
+                html += `
+                    <div style="margin-bottom: 20px; padding: 15px; background: ${index === 0 ? '#f0f8ff' : '#f8f9fa'}; border-radius: 8px; border: ${index === 0 ? '2px solid #007bff' : '1px solid #dee2e6'};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; color: ${index === 0 ? '#007bff' : '#2c3e50'};">Option ${index + 1} ${index === 0 ? '(Best)' : ''}</h4>
+                            <div style="font-size: 18px; font-weight: bold; color: ${index === 0 ? '#007bff' : '#2c3e50'};">Score: ${combo.score.toFixed(2)}</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 10px; font-size: 13px;">
+                            <div><strong>Selected Buildings:</strong> ${selectedBuildingTypes.size}/${selectedBuildings.length}</div>
+                            <div style="color: #007bff;"><strong>Priority Coverage:</strong> ${(() => {
+                                const coveredPriorityBuildings = new Set();
+                                // Add priority buildings covered by company buildings
+                                Array.from(selectedBuildingTypes).filter(b => priorityBuildings.includes(b)).forEach(b => coveredPriorityBuildings.add(b));
+                                // Add priority buildings covered by charters
+                                industryCharters.filter(c => priorityBuildings.includes(c)).forEach(c => coveredPriorityBuildings.add(c));
+                                return coveredPriorityBuildings.size;
+                            })()}/${priorityBuildings.length}</div>
+                            <div><strong>All Buildings:</strong> ${buildingTypes.size}</div>
+                            <div><strong>Prestige:</strong> ${prestigeGoods}</div>
+                            <div><strong>Charters:</strong> ${industryCharters.length}</div>
+                            <div><strong>Slots:</strong> ${regularCompanies.length}/${slots}</div>
+                            <div style="color: ${selectedOverlaps > 0 ? '#dc3545' : '#28a745'};"><strong>Overlaps:</strong> ${selectedOverlaps}</div>
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 8px;">
+                                ${combo.companies.map(company => {
+                                    const lookupName = company.baseCompanyName || company.name;
+                                    const isBasic = companies.basic.some(c => c.name === lookupName);
+                                    const isFlavored = companies.flavored.some(c => c.name === lookupName);
+                                    const isCanal = company.special === 'canal';
+                                    const isMandate = lookupName === 'United Construction Conglomerate';
+                                    
+                                    let borderColor = '#28a745'; // Default green
+                                    let bgColor = '#f8f9fa';
+                                    let companyType = '';
+                                    
+                                    if (isCanal) {
+                                        borderColor = '#007bff';
+                                        bgColor = '#f0f8ff';
+                                        companyType = 'Canal';
+                                    } else if (isMandate) {
+                                        borderColor = '#6f42c1';
+                                        bgColor = '#f8f0ff';
+                                        companyType = 'Mandate';
+                                    } else if (isFlavored) {
+                                        borderColor = '#fd7e14';
+                                        bgColor = '#fff3e0';
+                                        companyType = 'Flavored';
+                                    } else if (isBasic) {
+                                        borderColor = '#6c757d';
+                                        bgColor = '#f8f9fa';
+                                        companyType = 'Basic';
+                                    }
+                                    
+                                    return `
+                                        <div style="padding: 6px; background: ${bgColor}; border-radius: 4px; border-left: 3px solid ${borderColor}; font-size: 11px;">
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                                                <strong style="font-size: 12px;">${company.name}${isCanal ? ' 🚢' : ''}${requiredCompanies.includes(company.baseCompanyName || company.name) ? ' ★' : ''}</strong>
+                                                <span style="background: ${borderColor}; color: white; padding: 1px 4px; border-radius: 3px; font-size: 9px;">${companyType}</span>
+                                            </div>
+                                            
+                                            <div style="display: flex; flex-wrap: wrap; gap: 2px; margin-bottom: 2px;">
+                                                ${company.buildings.map(building => {
+                                                    const isSelected = selectedBuildings.includes(building);
+                                                    const isPriority = priorityBuildings.includes(building);
+                                                    const bgColor = isPriority ? '#e3f2fd' : (isSelected ? '#e8f5e8' : '#f5f5f5');
+                                                    const textColor = isPriority ? '#1976d2' : '';
+                                                    return `<span style="background: ${bgColor}; color: ${textColor}; padding: 1px 3px; border-radius: 3px; font-size: 9px; ${!isSelected ? 'opacity: 0.6;' : ''} ${isPriority ? 'font-weight: bold;' : ''}">${building}</span>`;
+                                                }).join('')}
+                                            </div>
+                                            
+                                            ${company.prosperityBonus ? `<div style="color: #28a745; font-weight: 500; margin-bottom: 2px;">⚡ ${company.prosperityBonus}</div>` : ''}
+                                            
+                                            ${company.prestigeGoods && company.prestigeGoods.length > 0 ? `<div style="color: #e83e8c; margin-bottom: 2px;">👑 ${company.prestigeGoods.map(pg => {
+                                                const baseType = prestigeGoodsMapping[pg] || 'Unknown';
+                                                const isRequiredPriority = requiredPrestigeGoods.includes(baseType);
+                                                // Check if this prestige good is provided by a priority building
+                                                const isPriorityBuilding = company.buildings && company.buildings.some(building => priorityBuildings.includes(building));
+                                                return `${pg} (${baseType})${isRequiredPriority || isPriorityBuilding ? ' ★' : ''}`;
+                                            }).join(', ')}</div>` : ''}
+                                            
+                                            ${(() => {
+                                                // Show charter only if this company's charter is in the taken charters list
+                                                if (company.selectedCharter) {
+                                                    const charter = company.selectedCharter;
+                                                    const isPriority = priorityBuildings.includes(charter);
+                                                    return `<div style="color: #6f42c1; margin-bottom: 2px; font-weight: bold;">📜 ${charter}${isPriority ? ' ★' : ''}</div>`;
+                                                }
+                                                return '';
+                                            })()}
+                                            
+                                            ${company.requirements && (isFlavored || isCanal) ? `<div style="color: #dc3545; font-size: 10px; font-style: italic;">⚠️ ${company.requirements}</div>` : ''}
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-bottom: 10px;">
+                            <div>
+                                <strong>Building Coverage:</strong>
+                                <div style="margin-top: 3px;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 2px; margin-bottom: 3px;">
+                                        <span style="font-size: 10px; font-weight: bold; color: #007bff;">Priority (${(() => {
+                                            const coveredPriorityBuildings = new Set();
+                                            Array.from(selectedBuildingTypes).filter(b => priorityBuildings.includes(b)).forEach(b => coveredPriorityBuildings.add(b));
+                                            Array.from(industryCharters).filter(c => priorityBuildings.includes(c)).forEach(c => coveredPriorityBuildings.add(c));
+                                            return coveredPriorityBuildings.size;
+                                        })()}/${priorityBuildings.length}):</span>
+                                        ${priorityBuildings.map(building => {
+                                            // Check if priority building is covered by company buildings or industry charters
+                                            const buildingCount = combo.companies.filter(c => c.buildings.includes(building)).length;
+                                            const takenCharterCount = industryCharters.filter(charter => charter === building).length;
+                                            const count = buildingCount + takenCharterCount;
+                                            const covered = count > 0;
+                                            return `<span style="background: ${!covered ? '#ffebee' : count > 1 ? '#fff3cd' : '#e3f2fd'}; padding: 1px 4px; border-radius: 3px; font-size: 9px; ${count > 1 ? 'border: 1px solid #ffc107;' : ''} ${!covered ? 'border: 1px solid #dc3545;' : 'border: 1px solid #007bff;'} font-weight: bold;">★${building}${count > 1 ? ` (${count})` : ''}${!covered ? ' ✗' : ''}</span>`;
+                                        }).join('')}
+                                    </div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 2px; margin-bottom: 3px;">
+                                        <span style="font-size: 10px; font-weight: bold; color: #28a745;">Other Selected (${selectedBuildingTypes.size - Array.from(selectedBuildingTypes).filter(b => priorityBuildings.includes(b)).length}/${selectedBuildings.length - priorityBuildings.filter(b => selectedBuildings.includes(b)).length}):</span>
+                                        ${selectedBuildings.filter(b => !priorityBuildings.includes(b)).map(building => {
+                                            // Check if building is covered by company buildings or industry charters (only first charter counts)
+                                            const buildingCount = combo.companies.filter(c => c.buildings.includes(building)).length;
+                                            const takenCharterCount = industryCharters.filter(charter => charter === building).length;
+                                            const count = buildingCount + takenCharterCount;
+                                            const covered = buildingTypes.has(building);
+                                            return `<span style="background: ${!covered ? '#ffebee' : count > 1 ? '#fff3cd' : '#d4edda'}; padding: 1px 4px; border-radius: 3px; font-size: 9px; ${count > 1 ? 'border: 1px solid #ffc107;' : ''} ${!covered ? 'border: 1px solid #dc3545;' : ''}">${building}${count > 1 ? ` (${count})` : ''}${!covered ? ' ✗' : ''}</span>`;
+                                        }).join('')}
+                                    </div>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 2px;">
+                                        <span style="font-size: 10px; font-weight: bold; color: #6c757d;">Other Buildings (${buildingTypes.size - selectedBuildingTypes.size}):</span>
+                                        ${Array.from(buildingTypes).filter(b => !selectedBuildings.includes(b)).sort().map(building => {
+                                            // Check if building is covered by company buildings or industry charters (only first charter counts)
+                                            const buildingCount = combo.companies.filter(c => c.buildings.includes(building)).length;
+                                            const takenCharterCount = industryCharters.filter(charter => charter === building).length;
+                                            const count = buildingCount + takenCharterCount;
+                                            return `<span style="background: #f8f9fa; padding: 1px 4px; border-radius: 3px; font-size: 9px; opacity: 0.7;">${building}${count > 1 ? ` (${count})` : ''}</span>`;
+                                        }).join(' ')}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            ${industryCharters.length > 0 ? `
+                                <div>
+                                    <strong>Industry Charters (${industryCharters.length}):</strong>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px;">
+                                        ${Array.from(charterCounts.entries()).sort().map(([charter, count]) => 
+                                            `<span style="background: ${count > 1 ? '#ffcccb' : '#e7d4f7'}; padding: 2px 6px; border-radius: 8px; font-size: 10px;">${charter}${count > 1 ? ` (×${count})` : ''}</span>`
+                                        ).join('')}
+                                    </div>
+                                </div>
+                            ` : '<div></div>'}
+                        </div>
+                        
+                        ${(() => {
+                            // Calculate prestige goods coverage
+                            const providedPrestigeGoods = new Set();
+                            const prestigeGoodsByType = new Map();
+                            
+                            combo.companies.forEach(company => {
+                                company.prestigeGoods.forEach(prestigeGood => {
+                                    const baseType = prestigeGoodsMapping[prestigeGood];
+                                    if (baseType) {
+                                        providedPrestigeGoods.add(baseType);
+                                        if (!prestigeGoodsByType.has(baseType)) {
+                                            prestigeGoodsByType.set(baseType, []);
+                                        }
+                                        prestigeGoodsByType.get(baseType).push(prestigeGood);
+                                    }
+                                });
+                            });
+                            
+                            if (requiredPrestigeGoods.length > 0 || providedPrestigeGoods.size > 0) {
+                                return `
+                                    <div style="margin-top: 10px; padding: 8px; background: #f8f9fa; border-radius: 4px;">
+                                        <strong>Prestige Goods Coverage:</strong>
+                                        ${requiredPrestigeGoods.length > 0 ? `
+                                            <div style="margin-top: 5px;">
+                                                <span style="font-size: 10px; font-weight: bold; color: #007bff;">Required (${requiredPrestigeGoods.filter(req => providedPrestigeGoods.has(req)).length}/${requiredPrestigeGoods.length}):</span>
+                                                <div style="display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px;">
+                                                    ${requiredPrestigeGoods.map(baseType => {
+                                                        const isProvided = providedPrestigeGoods.has(baseType);
+                                                        const goods = prestigeGoodsByType.get(baseType) || [];
+                                                        return `<span style="background: ${isProvided ? '#e3f2fd' : '#ffebee'}; padding: 2px 4px; border-radius: 3px; font-size: 9px; border: 1px solid ${isProvided ? '#007bff' : '#dc3545'}; font-weight: bold;">${baseType}${isProvided ? ` (${goods.join(', ')})` : ' ✗'}</span>`;
+                                                    }).join('')}
+                                                </div>
+                                            </div>
+                                        ` : ''}
+                                        ${providedPrestigeGoods.size > 0 ? `
+                                            <div style="margin-top: 5px;">
+                                                <span style="font-size: 10px; font-weight: bold; color: #6c757d;">All Provided (${providedPrestigeGoods.size}):</span>
+                                                <div style="display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px;">
+                                                    ${Array.from(prestigeGoodsByType.entries()).sort().map(([baseType, goods]) => 
+                                                        `<span style="background: #f0f0f0; padding: 2px 4px; border-radius: 3px; font-size: 9px;">${baseType}: ${goods.join(', ')}</span>`
+                                                    ).join('')}
+                                                </div>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                `;
+                            }
+                            return '';
+                        })()}
+                    </div>
+                `;
+            });
+            
+            resultsDiv.innerHTML = html;
+            resultsSection.classList.remove('hidden');
+        }
+
+        // Remove redundant companies and replace with better alternatives
+        function removeRedundancy(selectedVariants, allVariants, maxSlots) {
+            console.log('\n=== REDUNDANCY REMOVAL ===');
+            
+            // Calculate building coverage for current selection
+            const currentCoverage = new Set();
+            selectedVariants.forEach(variant => {
+                variant.buildings.forEach(building => {
+                    if (selectedBuildings.includes(building)) {
+                        currentCoverage.add(building);
+                    }
+                });
+            });
+            
+            console.log(`Current building coverage: ${Array.from(currentCoverage).join(', ')}`);
+            
+            // Find redundant companies (those providing only buildings already covered)
+            const redundantVariants = [];
+            const keepVariants = [];
+            
+            // Sort by score descending to keep highest-scoring companies
+            const sortedSelection = [...selectedVariants].sort((a, b) => 
+                calculateIndividualScore(b) - calculateIndividualScore(a)
+            );
+            
+            const keptCoverage = new Set();
+            
+            sortedSelection.forEach(variant => {
+                const newCoverage = variant.buildings.filter(b => 
+                    selectedBuildings.includes(b) && !keptCoverage.has(b)
+                );
+                
+                if (newCoverage.length > 0 || requiredCompanies.includes(variant.baseCompanyName)) {
+                    // This company provides new coverage or is required
+                    keepVariants.push(variant);
+                    variant.buildings.forEach(building => {
+                        if (selectedBuildings.includes(building)) {
+                            keptCoverage.add(building);
+                        }
+                    });
+                    console.log(`KEEP: ${variant.baseCompanyName} (new coverage: [${newCoverage.join(', ')}])`);
+                } else {
+                    // This company is redundant
+                    redundantVariants.push(variant);
+                    console.log(`REDUNDANT: ${variant.baseCompanyName} (provides: [${variant.buildings.filter(b => selectedBuildings.includes(b)).join(', ')}])`);
+                }
+            });
+            
+            // Find better alternatives for the redundant slots
+            const availableSlots = maxSlots - keepVariants.length;
+            const unusedVariants = allVariants.filter(v => 
+                !keepVariants.some(kv => kv.baseCompanyName === v.baseCompanyName) &&
+                isValidAddition(v, keepVariants)
+            );
+            
+            // Sort unused variants by score descending
+            const sortedUnused = unusedVariants.sort((a, b) => 
+                calculateIndividualScore(b) - calculateIndividualScore(a)
+            );
+            
+            console.log(`\nAvailable slots: ${availableSlots}`);
+            console.log(`Top unused alternatives:`);
+            sortedUnused.slice(0, 5).forEach((variant, i) => {
+                const newBuildings = variant.buildings.filter(b => 
+                    selectedBuildings.includes(b) && !keptCoverage.has(b)
+                );
+                console.log(`${i+1}. ${variant.baseCompanyName} - Score: ${calculateIndividualScore(variant).toFixed(3)} (new: [${newBuildings.join(', ')}])`);
+            });
+            
+            // Add best alternatives
+            const finalSelection = [...keepVariants];
+            for (let i = 0; i < Math.min(availableSlots, sortedUnused.length); i++) {
+                const candidate = sortedUnused[i];
+                if (isValidAddition(candidate, finalSelection)) {
+                    finalSelection.push(candidate);
+                    console.log(`ADDED: ${candidate.baseCompanyName}`);
+                    // Update coverage for next iteration
+                    candidate.buildings.forEach(building => {
+                        if (selectedBuildings.includes(building)) {
+                            keptCoverage.add(building);
+                        }
+                    });
+                }
+            }
+            
+            return finalSelection;
+        }
+        
+        function isValidAddition(variant, currentSelection) {
+            // Check prestige good conflicts
+            const usedPrestigeGoods = new Set();
+            currentSelection.forEach(v => {
+                if (v.prestigeGoods) {
+                    v.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
+                }
+            });
+            
+            if (variant.prestigeGoods) {
+                for (const pg of variant.prestigeGoods) {
+                    if (usedPrestigeGoods.has(pg)) {
+                        return false;
+                    }
+                }
+            }
+            
+            // Check company conflicts (only one variant per base company)
+            return !currentSelection.some(v => v.baseCompanyName === variant.baseCompanyName);
+        }
+
+        // Save/Export/Import Functions
+        function exportSelections() {
+            const selections = {
+                version: '1.0',
+                timestamp: new Date().toISOString(),
+                settings: {
+                    companySlots: parseInt(document.getElementById('companySlots').value)
+                },
+                selectedBuildings: selectedBuildings,
+                priorityBuildings: priorityBuildings,
+                requiredPrestigeGoods: requiredPrestigeGoods,
+                selectedCompanies: selectedCompanies.map(c => ({
+                    name: c.name,
+                    region: c.region,
+                    country: c.country
+                })),
+                requiredCompanies: requiredCompanies
+            };
+            
+            const dataStr = JSON.stringify(selections, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `victoria3_selections_${new Date().toISOString().split('T')[0]}.json`;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log('Exported selections:', selections);
+            alert('Selections exported successfully!');
+        }
+        
+        function importSelections() {
+            document.getElementById('importFile').click();
+        }
+        
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const selections = JSON.parse(e.target.result);
+                    applyImportedSelections(selections);
+                } catch (error) {
+                    console.error('Import error:', error);
+                    alert('Error importing file: Invalid JSON format');
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        function applyImportedSelections(selections) {
+            try {
+                console.log('Importing selections:', selections);
+                
+                // Validate selection structure
+                if (!selections.selectedBuildings || !selections.priorityBuildings) {
+                    throw new Error('Invalid selection file format');
+                }
+                
+                // Clear current selections
+                clearSelection();
+                
+                // Apply settings
+                if (selections.settings && selections.settings.companySlots) {
+                    document.getElementById('companySlots').value = selections.settings.companySlots;
+                }
+                
+                // Apply building selections
+                selectedBuildings = [...selections.selectedBuildings];
+                priorityBuildings = [...selections.priorityBuildings];
+                
+                // Apply prestige good requirements
+                if (selections.requiredPrestigeGoods) {
+                    requiredPrestigeGoods = [...selections.requiredPrestigeGoods];
+                }
+                
+                // Apply required companies
+                if (selections.requiredCompanies) {
+                    requiredCompanies = [...selections.requiredCompanies];
+                }
+                
+                // Apply company selections
+                if (selections.selectedCompanies) {
+                    selectedCompanies = [];
+                    selections.selectedCompanies.forEach(importedCompany => {
+                        const company = allCompanies.find(c => 
+                            c.name === importedCompany.name && 
+                            c.region === importedCompany.region
+                        );
+                        if (company) {
+                            selectedCompanies.push(company);
+                        } else {
+                            console.warn(`Company not found: ${importedCompany.name} (${importedCompany.region})`);
+                        }
+                    });
+                }
+                
+                // Update UI to reflect imported selections
+                updateUIFromSelections();
+                
+                // Update stats and display
+                updateStats();
+                updateRegionStats();
+                displayCompanies();
+                
+                console.log('Import successful');
+                alert(`Selections imported successfully!\n\nBuildings: ${selectedBuildings.length}\nPriority: ${priorityBuildings.length}\nCompanies: ${selectedCompanies.length}\nRequired: ${requiredCompanies.length}`);
+                
+            } catch (error) {
+                console.error('Error applying imported selections:', error);
+                alert(`Error importing selections: ${error.message}`);
+            }
+        }
+        
+        function updateUIFromSelections() {
+            // Update building selection UI
+            selectedBuildings.forEach(building => {
+                const buildingElement = document.getElementById(`building-${building.replace(/\s+/g, '_')}`);
+                if (buildingElement) {
+                    buildingElement.classList.add('selected');
+                }
+                
+                // Show priority indicator if this is a priority building
+                if (priorityBuildings.includes(building)) {
+                    const priorityElement = document.getElementById(`priority-${building.replace(/\s+/g, '_')}`);
+                    if (priorityElement) {
+                        priorityElement.style.display = 'block';
+                    }
+                }
+            });
+            
+            // Update prestige goods UI
+            requiredPrestigeGoods.forEach(baseType => {
+                const prestigeElement = document.getElementById(`prestige-${baseType.replace(/\s+/g, '_')}`);
+                if (prestigeElement) {
+                    prestigeElement.classList.add('selected');
+                }
+            });
+        }
+
+        // Test functions for debugging
+        function runTests() {
+            console.log('=== OPTIMIZATION DEBUG TESTS ===');
+            alert('Debug tests completed. Check browser console (F12) for detailed output.');
+        }
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCompanyData();
+        });
+        
+        // Keep the old knapsack function for reference (not used anymore)
+        function knapsackOptimize(companies, maxSlots) {
+            const n = companies.length;
+            
+            // Calculate scores for each company
+            const companyScores = companies.map(company => calculateScore([company]));
+            
+            // DP table: dp[i][w] = maximum score using first i companies with w slots
+            const dp = Array(n + 1).fill().map(() => Array(maxSlots + 1).fill(0));
+            const selected = Array(n + 1).fill().map(() => Array(maxSlots + 1).fill(false));
+            
+            // Fill DP table
+            for (let i = 1; i <= n; i++) {
+                for (let w = 0; w <= maxSlots; w++) {
+                    const companyScore = companyScores[i - 1];
+                    
+                    if (1 <= w) { // Each company costs 1 slot
+                        const withItem = dp[i - 1][w - 1] + companyScore;
+                        const withoutItem = dp[i - 1][w];
+                        
+                        if (withItem > withoutItem) {
+                            dp[i][w] = withItem;
+                            selected[i][w] = true;
+                        } else {
+                            dp[i][w] = withoutItem;
+                        }
+                    } else {
+                        dp[i][w] = dp[i - 1][w];
+                    }
+                }
+            }
+            
+            // Backtrack to find selected companies
+            const result = [];
+            let w = maxSlots;
+            for (let i = n; i > 0; i--) {
+                if (selected[i][w]) {
+                    result.push(companies[i - 1]);
+                    w -= 1;
+                }
+            }
+            
+            return {
+                companies: result,
+                totalScore: dp[n][maxSlots],
+                remainingSlots: maxSlots - result.length
+            };
+        }
+
+        // YALPS Linear Programming Solver
+        async function solveIntegerLP(variants, maxSlots) {
+            console.log('Using YALPS Linear Programming solver...');
+            
+            try {
+                const { solve } = await import('./YALPS-0.5.6/lib/module/YALPS.js');
+                
+                // Group variants by base company
+                const baseCompanyGroups = new Map();
+                variants.forEach(variant => {
+                    const baseCompany = variant.baseCompanyName;
+                    if (!baseCompanyGroups.has(baseCompany)) {
+                        baseCompanyGroups.set(baseCompany, []);
+                    }
+                    baseCompanyGroups.get(baseCompany).push(variant);
+                });
+
+                const baseCompanies = Array.from(baseCompanyGroups.keys());
+                console.log(`Setting up LP for ${variants.length} variants from ${baseCompanies.length} base companies`);
+
+                // Create LP model with building coverage indicators
+                const variables = {};
+                const constraints = {};
+
+                // Company decision variables: x_i for each variant i (binary)
+                variants.forEach((variant, i) => {
+                    const varName = `x${i}`;
+                    variables[varName] = {
+                        score: 0, // Will get points from building coverage variables only
+                        slots: variant.special === 'canal' ? 0 : 1, // Canal companies don't use slots
+                        [`company_${variant.baseCompanyName}`]: 1, // Company constraint
+                    };
+
+                    // Connect company to buildings it provides
+                    variant.buildings.forEach(building => {
+                        variables[varName][`provides_${building}`] = 1;
+                    });
+
+                    // Prestige goods constraints
+                    if (variant.prestigeGoods) {
+                        variant.prestigeGoods.forEach(pg => {
+                            variables[varName][`prestige_${pg}`] = 1;
+                        });
+                    }
+                });
+
+                // Building coverage indicator variables: b_building (binary)
+                // These get the actual points and represent "at least one company covers this building"
+                const allBuildings = new Set();
+                variants.forEach(variant => {
+                    variant.buildings.forEach(building => allBuildings.add(building));
+                });
+
+                allBuildings.forEach(building => {
+                    const buildingVar = `covered_${building}`;
+                    let buildingScore = 0;
+                    
+                    // Score for having this building covered (regardless of how many companies provide it)
+                    if (selectedBuildings.includes(building)) {
+                        buildingScore = priorityBuildings.includes(building) ? 2 : 1;
+                    } else {
+                        buildingScore = 0.01; // Small bonus for coverage of non-selected buildings
+                    }
+                    
+                    variables[buildingVar] = {
+                        score: buildingScore, // Points for covering this building (once)
+                    };
+                    
+                    // Also add an upper bound constraint to ensure binary behavior
+                    const boundConstraintName = `bound_${building}`;
+                    variables[buildingVar][boundConstraintName] = 1; // covered_building <= 1
+                    constraints[boundConstraintName] = { max: 1 };
+
+                    // Add constraint: covered_building <= sum of providers
+                    const constraintName = `coverage_constraint_${building}`;
+                    
+                    // Start with the building variable coefficient
+                    variables[buildingVar][constraintName] = 1; // covered_building coefficient
+                    
+                    // Add provider company coefficients
+                    variants.forEach((variant, i) => {
+                        if (variant.buildings.includes(building)) {
+                            const companyVar = `x${i}`;
+                            if (!variables[companyVar][constraintName]) {
+                                variables[companyVar][constraintName] = 0;
+                            }
+                            variables[companyVar][constraintName] -= 1; // -1 * x_company
+                        }
+                    });
+                    
+                    // Add the constraint: covered_building - sum(providers) <= 0
+                    constraints[constraintName] = { max: 0 };
+                });
+
+                // Add prestige good bonuses to company variables (these are additive)
+                variants.forEach((variant, i) => {
+                    if (variant.prestigeGoods && variant.prestigeGoods.length > 0) {
+                        const varName = `x${i}`;
+                        variables[varName].score = variant.prestigeGoods.length * 0.1; // Prestige goods are additive
+                    }
+                });
+
+                // Constraints
+                constraints.slots = { max: maxSlots };
+
+                // At most one variant per base company
+                baseCompanies.forEach(baseCompany => {
+                    constraints[`company_${baseCompany}`] = { max: 1 };
+                });
+
+                // At most one company per prestige good
+                const allPrestigeGoods = new Set();
+                variants.forEach(variant => {
+                    if (variant.prestigeGoods) {
+                        variant.prestigeGoods.forEach(pg => allPrestigeGoods.add(pg));
+                    }
+                });
+                allPrestigeGoods.forEach(pg => {
+                    constraints[`prestige_${pg}`] = { max: 1 };
+                });
+
+                // Required prestige goods
+                requiredPrestigeGoods.forEach(pg => {
+                    const mappedGoods = Object.keys(prestigeGoodsMapping).filter(good => 
+                        prestigeGoodsMapping[good] === pg
+                    );
+                    console.log(`Required prestige good '${pg}' maps to:`, mappedGoods);
+                    if (mappedGoods.length > 0) {
+                        mappedGoods.forEach(mappedGood => {
+                            console.log(`Setting constraint for prestige_${mappedGood}`);
+                            if (constraints[`prestige_${mappedGood}`]) {
+                                // Update existing constraint to include min requirement
+                                constraints[`prestige_${mappedGood}`].min = 1;
+                            } else {
+                                constraints[`prestige_${mappedGood}`] = { min: 1, max: 1 };
+                            }
+                        });
+                    }
+                });
+
+                // Priority buildings are now just scoring bonuses, not hard requirements
+                
+                // Required companies - must be included in solution
+                requiredCompanies.forEach(requiredCompanyName => {
+                    variants.forEach((variant, i) => {
+                        if (variant.baseCompanyName === requiredCompanyName) {
+                            const varName = `x${i}`;
+                            if (!variables[varName][`required_${requiredCompanyName}`]) {
+                                variables[varName][`required_${requiredCompanyName}`] = 1;
+                            }
+                        }
+                    });
+                    
+                    // Require at least one variant of this company to be selected
+                    constraints[`required_${requiredCompanyName}`] = { min: 1 };
+                    console.log(`Added required company constraint for: ${requiredCompanyName}`);
+                });
+
+                // Charter constraints - at most one company can take each charter type
+                const allCharters = new Set();
+                variants.forEach(variant => {
+                    if (variant.selectedCharter) {
+                        allCharters.add(variant.selectedCharter);
+                    }
+                });
+                
+                allCharters.forEach(charter => {
+                    variants.forEach((variant, i) => {
+                        if (variant.selectedCharter === charter) {
+                            const varName = `x${i}`;
+                            if (!variables[varName][`charter_${charter}`]) {
+                                variables[varName][`charter_${charter}`] = 1;
+                            }
+                        }
+                    });
+                    
+                    // At most one company can take this charter
+                    constraints[`charter_${charter}`] = { max: 1 };
+                });
+
+                // Building coverage tracking for redundancy penalties in scoring
+                // Instead of hard constraints, we'll let the scoring function handle redundancy
+                selectedBuildings.forEach(building => {
+                    variants.forEach((variant, i) => {
+                        const varName = `x${i}`;
+                        
+                        // Track all variants that provide this building for potential scoring adjustments
+                        if (variant.buildings.includes(building)) {
+                            if (!variables[varName][`provides_${building}`]) {
+                                variables[varName][`provides_${building}`] = 1;
+                            }
+                        }
+                    });
+                });
+
+                const lpModel = {
+                    direction: 'maximize',
+                    objective: 'score',
+                    variables,
+                    constraints,
+                    integers: Object.keys(variables) // All variables are binary/integer
+                };
+
+                console.log('LP Model:', Object.keys(variables).length, 'variables,', Object.keys(constraints).length, 'constraints');
+                
+                // Debug: Show sample variables and their scores
+                console.log('\n=== SAMPLE LP VARIABLES ===');
+                const varEntries = Object.entries(variables);
+                varEntries.slice(0, 5).forEach(([varName, varData]) => {
+                    console.log(`${varName}: score=${varData.score}, constraints=${Object.keys(varData).filter(k => k !== 'score').length}`);
+                });
+                
+                // Debug: Show building coverage variables
+                const buildingVars = varEntries.filter(([name]) => name.startsWith('covered_'));
+                console.log(`\nBuilding coverage variables: ${buildingVars.length}`);
+                buildingVars.slice(0, 5).forEach(([varName, varData]) => {
+                    const constraintKeys = Object.keys(varData).filter(k => k !== 'score');
+                    console.log(`${varName}: score=${varData.score}, constraints=${constraintKeys.length}`);
+                });
+                
+                // Debug: Show constraint structure
+                console.log(`\nConstraint structure:`);
+                const constraintEntries = Object.entries(constraints);
+                constraintEntries.slice(0, 5).forEach(([constraintName, constraintData]) => {
+                    console.log(`${constraintName}: ${JSON.stringify(constraintData)}`);
+                });
+                
+                // Debug: Show alternatives that could replace Peruvian Amazon Company
+                console.log('\n=== ALTERNATIVES TO PERUVIAN AMAZON (Score 5.999) ===');
+                const alternatives = variants.filter(v => 
+                    v.baseCompanyName !== 'Peruvian Amazon Company' &&
+                    calculateIndividualScore(v) > 5.999
+                ).map(v => ({
+                    name: v.name,
+                    baseCompanyName: v.baseCompanyName,
+                    score: calculateIndividualScore(v),
+                    buildings: v.buildings,
+                    selectedCharter: v.selectedCharter,
+                    selectedBuildingCount: v.buildings.filter(b => selectedBuildings.includes(b)).length
+                })).sort((a, b) => b.score - a.score).slice(0, 5);
+                
+                alternatives.forEach((variant, i) => {
+                    console.log(`${i+1}. ${variant.baseCompanyName}${variant.selectedCharter ? ` + ${variant.selectedCharter}` : ''} - Score: ${variant.score.toFixed(3)}`);
+                    console.log(`   Selected Buildings: ${variant.selectedBuildingCount} - [${variant.buildings.filter(b => selectedBuildings.includes(b)).join(', ')}]`);
+                });
+
+                // Debug: Show top scoring variants
+                console.log('\n=== TOP 10 SCORING VARIANTS ===');
+                const sortedVariants = variants.map((variant, i) => ({
+                    name: variant.name,
+                    baseCompanyName: variant.baseCompanyName,
+                    score: calculateIndividualScore(variant),
+                    buildings: variant.buildings,
+                    selectedCharter: variant.selectedCharter,
+                    prestigeGoods: variant.prestigeGoods,
+                    isRequired: requiredCompanies.includes(variant.baseCompanyName),
+                    selectedBuildingCount: variant.buildings.filter(b => selectedBuildings.includes(b)).length,
+                    priorityBuildingCount: variant.buildings.filter(b => priorityBuildings.includes(b)).length
+                })).sort((a, b) => b.score - a.score).slice(0, 10);
+                
+                sortedVariants.forEach((variant, i) => {
+                    const flags = [];
+                    if (variant.isRequired) flags.push('REQUIRED');
+                    if (variant.selectedCharter) flags.push('CHARTER');
+                    if (variant.priorityBuildingCount > 0) flags.push(`${variant.priorityBuildingCount}★PRIO`);
+                    if (variant.prestigeGoods && variant.prestigeGoods.length > 0) flags.push('PRESTIGE');
+                    
+                    console.log(`${i+1}. [${flags.join(',')}] ${variant.baseCompanyName}${variant.selectedCharter ? ` + ${variant.selectedCharter}` : ''} - Score: ${variant.score.toFixed(3)}`);
+                    console.log(`   Selected: ${variant.selectedBuildingCount}/${variant.buildings.length} | Priority: ${variant.priorityBuildingCount} | Prestige: ${variant.prestigeGoods ? variant.prestigeGoods.length : 0}`);
+                    console.log(`   Buildings: [${variant.buildings.map(b => priorityBuildings.includes(b) ? b+'★' : b).join(', ')}]`);
+                    if (variant.prestigeGoods && variant.prestigeGoods.length > 0) {
+                        console.log(`   Prestige: [${variant.prestigeGoods.join(', ')}]`);
+                    }
+                    
+                    // Break down the score calculation for top companies
+                    if (i < 5) {
+                        const selectedCovered = variant.buildings.filter(b => selectedBuildings.includes(b));
+                        const priorityCovered = variant.buildings.filter(b => priorityBuildings.includes(b));
+                        const nonSelectedCovered = variant.buildings.filter(b => !selectedBuildings.includes(b));
+                        const prestigeScore = (variant.prestigeGoods?.length || 0) * 0.1;
+                        const charterPenalty = variant.selectedCharter ? 0.001 : 0;
+                        
+                        console.log(`   Score breakdown: Selected(${selectedCovered.length}×1=${selectedCovered.length}) + Priority(${priorityCovered.length}×2=${priorityCovered.length*2}) + NonSelected(${nonSelectedCovered.length}×0.01=${(nonSelectedCovered.length*0.01).toFixed(3)}) + Prestige(${prestigeScore.toFixed(3)}) - Charter(${charterPenalty.toFixed(3)}) = ${variant.score.toFixed(3)}`);
+                    }
+                    
+                    console.log('');
+                });
+
+                // Solve with YALPS
+                console.log('Calling YALPS solve...');
+                const solution = solve(lpModel);
+                console.log('YALPS solution status:', solution.status);
+                console.log('YALPS solution result:', solution.result);
+                console.log('YALPS solution variables length:', solution.variables?.length);
+                
+                // Debug: Show all solution variables
+                if (solution.variables) {
+                    console.log('All solution variables:');
+                    solution.variables.forEach(([varName, value]) => {
+                        if (value > 0.1) { // Show variables with significant values
+                            console.log(`  ${varName}: ${value}`);
+                        }
+                    });
+                }
+                
+                // Debug: Check if Panama variants are even being considered
+                console.log('\n=== PANAMA VARIANTS IN LP ===');
+                variants.forEach((variant, i) => {
+                    if (variant.baseCompanyName === 'Panama Canal Company') {
+                        const varName = `x${i}`;
+                        const score = variables[varName].score;
+                        console.log(`${varName}: ${variant.name} - LP Score: ${score.toFixed(3)}, Individual Score: ${calculateIndividualScore(variant).toFixed(3)}`);
+                    }
+                });
+
+                if (solution.status === 'optimal') {
+                    const selectedVariants = [];
+                    solution.variables.forEach(([varName, value]) => {
+                        if (value > 0.5 && varName.startsWith('x')) { // Only company variables (x0, x1, etc.)
+                            const index = parseInt(varName.substring(1));
+                            if (variants[index]) { // Make sure variant exists
+                                selectedVariants.push(variants[index]);
+                            }
+                        }
+                    });
+
+                    console.log(`YALPS found optimal solution: ${selectedVariants.length} companies, score: ${solution.result}`);
+                    
+                    // Debug: Show selected companies and their individual scores
+                    console.log('LP-optimized selection:');
+                    selectedVariants.forEach((variant, i) => {
+                        const score = calculateIndividualScore(variant);
+                        console.log(`${i+1}. ${variant.baseCompanyName} ${variant.selectedCharter ? '+ ' + variant.selectedCharter : ''} - Score: ${score.toFixed(3)}`);
+                        console.log(`   Buildings: [${variant.buildings.map(b => priorityBuildings.includes(b) ? b+'★' : b).join(', ')}]`);
+                        console.log(`   Prestige: [${variant.prestigeGoods ? variant.prestigeGoods.join(', ') : 'none'}]`);
+                    });
+                    
+                    return selectedVariants;
+                } else if (solution.status === 'infeasible') {
+                    console.error('LP is infeasible - constraints cannot be satisfied');
+                    
+                    // Provide helpful diagnostic information
+                    const diagnostics = [];
+                    diagnostics.push(`Required companies (${requiredCompanies.length}): ${requiredCompanies.join(', ')}`);
+                    diagnostics.push(`Available slots: ${maxSlots}`);
+                    diagnostics.push(`Required prestige goods: ${requiredPrestigeGoods.join(', ')}`);
+                    
+                    // Check if too many companies are required
+                    if (requiredCompanies.length > maxSlots) {
+                        diagnostics.push(`❌ Problem: ${requiredCompanies.length} required companies exceed ${maxSlots} available slots`);
+                    }
+                    
+                    // Check for prestige good conflicts
+                    const requiredCompanyPrestigeGoods = new Map();
+                    requiredCompanies.forEach(companyName => {
+                        const company = variants.find(v => v.baseCompanyName === companyName && !v.selectedCharter);
+                        if (company && company.prestigeGoods) {
+                            company.prestigeGoods.forEach(pg => {
+                                if (!requiredCompanyPrestigeGoods.has(pg)) {
+                                    requiredCompanyPrestigeGoods.set(pg, []);
+                                }
+                                requiredCompanyPrestigeGoods.get(pg).push(companyName);
+                            });
+                        }
+                    });
+                    
+                    requiredCompanyPrestigeGoods.forEach((companies, prestigeGood) => {
+                        if (companies.length > 1) {
+                            diagnostics.push(`❌ Prestige good conflict: ${prestigeGood} provided by multiple required companies: ${companies.join(', ')}`);
+                        }
+                    });
+                    
+                    const errorMessage = `Optimization is impossible with current constraints:\n\n${diagnostics.join('\n')}\n\nSuggestions:\n• Remove some required companies\n• Increase company slots\n• Check for prestige good conflicts`;
+                    
+                    alert(errorMessage);
+                    throw new Error('LP infeasible - constraints cannot be satisfied');
+                } else {
+                    throw new Error(`YALPS failed: ${solution.status}`);
+                }
+
+            } catch (error) {
+                console.error('YALPS error:', error);
+                throw error;
+            }
+        }
+
+        // Classic 0/1 Knapsack with DP for company selection with variants
+        function solveKnapsackDP(baseCompanyGroups, maxSlots) {
+            const baseCompanies = Array.from(baseCompanyGroups.keys());
+            const n = baseCompanies.length;
+            
+            // DP table: dp[i][w] = { score, solution } for first i companies with w slots
+            const dp = Array(n + 1).fill().map(() => 
+                Array(maxSlots + 1).fill().map(() => ({ score: -Infinity, solution: [] }))
+            );
+            
+            // Base case: 0 companies, any slots = empty solution with score 0
+            for (let w = 0; w <= maxSlots; w++) {
+                dp[0][w] = { score: 0, solution: [] };
+            }
+            
+            // Fill DP table
+            for (let i = 1; i <= n; i++) {
+                const baseCompany = baseCompanies[i - 1];
+                const variants = baseCompanyGroups.get(baseCompany);
+                
+                for (let w = 0; w <= maxSlots; w++) {
+                    // Option 1: Don't take any variant of this company
+                    dp[i][w] = { ...dp[i-1][w] };
+                    
+                    // Option 2: Take one variant of this company (if we have a slot)
+                    if (w >= 1) {
+                        for (const variant of variants) {
+                            const newSolution = [...dp[i-1][w-1].solution, variant];
+                            
+                            // Check if this solution is valid (no prestige good conflicts)
+                            if (isValidSolution(newSolution)) {
+                                const newScore = calculateCombinationScore(newSolution);
+                                
+                                if (newScore > dp[i][w].score) {
+                                    dp[i][w] = {
+                                        score: newScore,
+                                        solution: newSolution
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Find the best solution across all slot counts (prefer using all slots)
+            let bestSolution = { score: -Infinity, solution: [] };
+            for (let w = maxSlots; w >= 0; w--) {
+                if (dp[n][w].score > bestSolution.score) {
+                    bestSolution = dp[n][w];
+                    break; // Take the first (highest slot count) best score
+                }
+            }
+            
+            console.log(`DP evaluated ${n} companies with ${maxSlots} slots, best score: ${bestSolution.score.toFixed(2)}`);
+            return bestSolution.solution;
+        }
+
+        // Exhaustive enumeration to find truly optimal solution
+        function solveExhaustiveLP(baseCompanyGroups, maxSlots) {
+            const baseCompanies = Array.from(baseCompanyGroups.keys());
+            let bestSolution = [];
+            let bestScore = -Infinity;
+            
+            console.log(`Evaluating all combinations of ${baseCompanies.length} companies, ${maxSlots} slots`);
+            
+            // Generate all combinations of baseCompanies taken maxSlots at a time
+            const companyCombinations = generateCombinations(baseCompanies, maxSlots);
+            console.log(`Generated ${companyCombinations.length} company combinations to evaluate`);
+            
+            for (const companyCombination of companyCombinations) {
+                // For each combination of base companies, find best variant for each
+                const variantCombinations = generateVariantCombinations(companyCombination, baseCompanyGroups);
+                
+                for (const variantCombination of variantCombinations) {
+                    if (isValidSolution(variantCombination)) {
+                        const score = calculateCombinationScore(variantCombination);
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestSolution = variantCombination;
+                        }
+                    }
+                }
+            }
+            
+            console.log(`Exhaustive search evaluated all possibilities, best score: ${bestScore.toFixed(2)}`);
+            return bestSolution;
+        }
+
+        // Generate all combinations of n elements taken k at a time
+        function generateCombinations(arr, k) {
+            if (k > arr.length) return [];
+            if (k === 0) return [[]];
+            if (k === 1) return arr.map(el => [el]);
+            
+            const result = [];
+            for (let i = 0; i <= arr.length - k; i++) {
+                const head = arr[i];
+                const tailCombinations = generateCombinations(arr.slice(i + 1), k - 1);
+                for (const tail of tailCombinations) {
+                    result.push([head, ...tail]);
+                }
+            }
+            return result;
+        }
+
+        // Generate all variant combinations for a given set of base companies
+        function generateVariantCombinations(baseCompanies, baseCompanyGroups) {
+            if (baseCompanies.length === 0) return [[]];
+            
+            const firstCompany = baseCompanies[0];
+            const restCompanies = baseCompanies.slice(1);
+            const firstVariants = baseCompanyGroups.get(firstCompany);
+            const restCombinations = generateVariantCombinations(restCompanies, baseCompanyGroups);
+            
+            const result = [];
+            for (const variant of firstVariants) {
+                for (const restCombination of restCombinations) {
+                    result.push([variant, ...restCombination]);
+                }
+            }
+            return result;
+        }
+
+        function solveGreedyWithConstraints(baseCompanyGroups, maxSlots) {
+            const baseCompanies = Array.from(baseCompanyGroups.keys());
+            const shuffledCompanies = baseCompanies.sort(() => Math.random() - 0.5);
+            
+            const solution = [];
+            const usedPrestigeGoods = new Set();
+            
+            for (const baseCompany of shuffledCompanies) {
+                if (solution.length >= maxSlots) break;
+                
+                const variants = baseCompanyGroups.get(baseCompany);
+                
+                // Find best variant that doesn't conflict with prestige goods
+                let bestVariant = null;
+                let bestVariantScore = -Infinity;
+                
+                for (const variant of variants) {
+                    // Check prestige good conflicts
+                    let hasConflict = false;
+                    if (variant.prestigeGoods) {
+                        for (const pg of variant.prestigeGoods) {
+                            if (usedPrestigeGoods.has(pg)) {
+                                hasConflict = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (!hasConflict) {
+                        const score = calculateIndividualScore(variant);
+                        if (score > bestVariantScore) {
+                            bestVariantScore = score;
+                            bestVariant = variant;
+                        }
+                    }
+                }
+                
+                if (bestVariant) {
+                    solution.push(bestVariant);
+                    
+                    // Mark prestige goods as used
+                    if (bestVariant.prestigeGoods) {
+                        bestVariant.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
+                    }
+                }
+            }
+            
+            return solution;
+        }
+
+        function solvePriorityFocused(baseCompanyGroups, maxSlots) {
+            const baseCompanies = Array.from(baseCompanyGroups.keys());
+            
+            // Sort companies by priority building coverage first
+            const companiesByPriority = baseCompanies.map(baseCompany => {
+                const variants = baseCompanyGroups.get(baseCompany);
+                let bestPriorityScore = -Infinity;
+                let bestVariant = variants[0];
+                
+                for (const variant of variants) {
+                    const priorityScore = variant.buildings.filter(b => priorityBuildings.includes(b)).length * 20;
+                    if (priorityScore > bestPriorityScore) {
+                        bestPriorityScore = priorityScore;
+                        bestVariant = variant;
+                    }
+                }
+                
+                return { baseCompany, bestVariant, priorityScore: bestPriorityScore };
+            }).sort((a, b) => b.priorityScore - a.priorityScore);
+            
+            const solution = [];
+            const usedPrestigeGoods = new Set();
+            
+            for (const { baseCompany, bestVariant } of companiesByPriority) {
+                if (solution.length >= maxSlots) break;
+                
+                // Check prestige good conflicts
+                let hasConflict = false;
+                if (bestVariant.prestigeGoods) {
+                    for (const pg of bestVariant.prestigeGoods) {
+                        if (usedPrestigeGoods.has(pg)) {
+                            hasConflict = true;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!hasConflict) {
+                    solution.push(bestVariant);
+                    if (bestVariant.prestigeGoods) {
+                        bestVariant.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
+                    }
+                }
+            }
+            
+            return solution;
+        }
+
+        function solveCoverageFocused(baseCompanyGroups, maxSlots) {
+            const baseCompanies = Array.from(baseCompanyGroups.keys());
+            const shuffledCompanies = baseCompanies.sort(() => Math.random() - 0.5);
+            
+            const solution = [];
+            const usedPrestigeGoods = new Set();
+            const coveredBuildings = new Set();
+            
+            for (const baseCompany of shuffledCompanies) {
+                if (solution.length >= maxSlots) break;
+                
+                const variants = baseCompanyGroups.get(baseCompany);
+                
+                // Find variant that provides most new coverage
+                let bestVariant = null;
+                let bestNewCoverage = -1;
+                
+                for (const variant of variants) {
+                    // Check prestige good conflicts
+                    let hasConflict = false;
+                    if (variant.prestigeGoods) {
+                        for (const pg of variant.prestigeGoods) {
+                            if (usedPrestigeGoods.has(pg)) {
+                                hasConflict = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (!hasConflict) {
+                        // Count new buildings this variant would add
+                        const newBuildings = variant.buildings.filter(b => !coveredBuildings.has(b));
+                        const newSelectedBuildings = newBuildings.filter(b => selectedBuildings.includes(b));
+                        const newPriorityBuildings = newBuildings.filter(b => priorityBuildings.includes(b));
+                        
+                        const newCoverage = newSelectedBuildings.length + newPriorityBuildings.length * 2;
+                        
+                        if (newCoverage > bestNewCoverage) {
+                            bestNewCoverage = newCoverage;
+                            bestVariant = variant;
+                        }
+                    }
+                }
+                
+                if (bestVariant && bestNewCoverage > 0) {
+                    solution.push(bestVariant);
+                    
+                    // Mark prestige goods and buildings as used
+                    if (bestVariant.prestigeGoods) {
+                        bestVariant.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
+                    }
+                    bestVariant.buildings.forEach(b => coveredBuildings.add(b));
+                }
+            }
+            
+            return solution;
+        }
+
+        function isValidSolution(solution) {
+            // Check prestige good conflicts
+            const usedPrestigeGoods = new Set();
+            for (const company of solution) {
+                if (company.prestigeGoods) {
+                    for (const pg of company.prestigeGoods) {
+                        if (usedPrestigeGoods.has(pg)) {
+                            return false; // Duplicate prestige good
+                        }
+                        usedPrestigeGoods.add(pg);
+                    }
+                }
+            }
+            
+            // Check required prestige goods are satisfied
+            if (requiredPrestigeGoods.length > 0) {
+                const providedBaseTypes = new Set();
+                for (const company of solution) {
+                    if (company.prestigeGoods) {
+                        for (const pg of company.prestigeGoods) {
+                            const baseType = prestigeGoodsMapping[pg];
+                            if (baseType) {
+                                providedBaseTypes.add(baseType);
+                            }
+                        }
+                    }
+                }
+                
+                for (const requiredType of requiredPrestigeGoods) {
+                    if (!providedBaseTypes.has(requiredType)) {
+                        return false; // Missing required prestige good
+                    }
+                }
+            }
+            
+            return true;
+        }
+
+        function calculateCombinationScore(companies) {
+            const coveredBuildings = new Set();
+            const usedPrestigeGoods = new Set();
+            const usedCharters = new Map();
+            let totalScore = 0;
+            
+            // First pass: collect all buildings from base companies  
+            for (const company of companies) {
+                const baseBuildings = company.buildings.filter(b => b !== company.selectedCharter);
+                baseBuildings.forEach(b => coveredBuildings.add(b));
+                
+                // Add prestige goods
+                if (company.prestigeGoods) {
+                    company.prestigeGoods.forEach(pg => usedPrestigeGoods.add(pg));
+                }
+            }
+            
+            // Score for unique building coverage
+            const selectedCovered = [...coveredBuildings].filter(b => selectedBuildings.includes(b));
+            const priorityCovered = [...coveredBuildings].filter(b => priorityBuildings.includes(b));
+            const nonSelectedCovered = [...coveredBuildings].filter(b => !selectedBuildings.includes(b));
+            
+            totalScore += selectedCovered.length * 10;
+            totalScore += priorityCovered.length * 20;
+            totalScore += nonSelectedCovered.length * 0.1;
+            totalScore += usedPrestigeGoods.size * 1;
+            
+            // Evaluate charters - heavily penalize overlaps
+            for (const company of companies) {
+                if (company.selectedCharter) {
+                    const charter = company.selectedCharter;
+                    const currentUses = usedCharters.get(charter) || 0;
+                    
+                    totalScore -= 0.01; // Base charter cost
+                    totalScore -= currentUses * 50; // Strong overlap penalty
+                    
+                    // Charter value only if provides new coverage
+                    if (!coveredBuildings.has(charter)) {
+                        if (selectedBuildings.includes(charter)) {
+                            totalScore += 10;
+                        }
+                        if (priorityBuildings.includes(charter)) {
+                            totalScore += 20;
+                        }
+                        if (!selectedBuildings.includes(charter)) {
+                            totalScore += 0.1;
+                        }
+                        coveredBuildings.add(charter);
+                    } else {
+                        // Charter provides no new coverage - heavily penalize
+                        totalScore -= 25;
+                    }
+                    
+                    usedCharters.set(charter, currentUses + 1);
+                }
+            }
+            
+            return totalScore;
+        }
+
+        function calculateIndividualScore(variant) {
+            let score = 0;
+            
+            // Building coverage (1 point per unique building type covered)
+            const selectedBuildingsCovered = new Set(variant.buildings.filter(b => selectedBuildings.includes(b)));
+            score += selectedBuildingsCovered.size * 1;
+            
+            // Priority building coverage (2 points per unique priority building type covered)
+            const priorityBuildingsCovered = new Set(variant.buildings.filter(b => priorityBuildings.includes(b)));
+            score += priorityBuildingsCovered.size * 2;
+            
+            // Prestige goods (0.1 points each)
+            score += (variant.prestigeGoods?.length || 0) * 0.1;
+            
+            // Non-selected buildings (0.01 points each)
+            score += variant.buildings.filter(b => !selectedBuildings.includes(b)).length * 0.01;
+            
+            // Charter penalty (very small)
+            if (variant.selectedCharter) score -= 0.001;
+            
+            return score;
+        }
+
+        // Company variant expansion (charters as separate companies)
+        function expandCompaniesWithCharters(companies) {
+            const expandedCompanies = [];
+            
+            companies.forEach(company => {
+                // Always add the base company (no charter)
+                const baseCompany = {
+                    ...company,
+                    buildings: [...company.buildings],
+                    variantType: 'base',
+                    selectedCharter: null,
+                    baseCompanyName: company.name
+                };
+                expandedCompanies.push(baseCompany);
+                
+                // Add variant for each charter
+                if (company.industryCharters && company.industryCharters.length > 0) {
+                    company.industryCharters.forEach(charter => {
+                        const charterVariant = {
+                            ...company,
+                            name: `${company.name} + ${charter}`,
+                            buildings: [...company.buildings, charter],
+                            variantType: 'charter',
+                            selectedCharter: charter,
+                            baseCompanyName: company.name
+                        };
+                        expandedCompanies.push(charterVariant);
+                    });
+                }
+            });
+            
+            console.log(`Expanded ${companies.length} companies into ${expandedCompanies.length} variants`);
+            
+            // Debug: Check Panama Canal Company specifically
+            const panamaVariants = expandedCompanies.filter(v => v.baseCompanyName === 'Panama Canal Company');
+            console.log(`\n=== PANAMA CANAL VARIANTS ===`);
+            panamaVariants.forEach(variant => {
+                const score = calculateIndividualScore(variant);
+                console.log(`${variant.name}: Score ${score.toFixed(3)}, Buildings: [${variant.buildings.join(', ')}]`);
+            });
+            
+            return expandedCompanies;
+        }
+
+        // Main optimization function using simplified Linear Programming
+        async function optimizeCompaniesLP() {
+            const slots = parseInt(document.getElementById('companySlots').value);
+            
+            if (selectedBuildings.length === 0) {
+                alert('Please select at least one building type to optimize for.');
+                return;
+            }
+            
+            if (selectedCompanies.length === 0) {
+                alert('Please select at least one company to consider for optimization.');
+                return;
+            }
+            
+            console.log('Starting Linear Programming optimization...');
+            
+            // Expand companies with charter variants
+            const expandedCompanies = expandCompaniesWithCharters(selectedCompanies);
+            
+            // Include all companies in optimization (canal companies don't use slots but can still take charters)
+            const allCompanies = expandedCompanies;
+            const regularCompanies = expandedCompanies.filter(c => c.special !== 'canal');
+            
+            console.log('Running ILP optimization with', allCompanies.length, 'variants (', regularCompanies.length, 'regular +', allCompanies.length - regularCompanies.length, 'canal) and', slots, 'slots');
+            
+            const selectedVariants = await solveIntegerLP(allCompanies, slots);
+            
+            // Convert back to display format (all selected variants including canal companies)
+            const allSelectedCompanies = selectedVariants.map(variant => ({
+                ...variant,
+                name: variant.baseCompanyName, // Use original name only, charter shown separately
+                buildings: variant.selectedCharter ? 
+                    variant.buildings.filter(b => b !== variant.selectedCharter) : // Remove charter from buildings list
+                    variant.buildings,
+                industryCharters: variant.selectedCharter ? [variant.selectedCharter] : [], // Show taken charter
+                selectedCharter: variant.selectedCharter // Keep for scoring
+            }));
+            
+            const results = [{
+                companies: allSelectedCompanies,
+                score: calculateScore(allSelectedCompanies),
+                details: 'Integer Linear Programming optimization'
+            }];
+            
+            displayMultipleResults(results, slots);
+        }
+    </script>
+</body>
+</html>

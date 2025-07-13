@@ -1,0 +1,10 @@
+/node_modules
+/lib
+/coverage
+/temp
+/.vscode
+/benchmarks/types
+
+cases/
+
+pnpm-lock.yaml

@@ -1,0 +1,26 @@
+# System files
+.DS_Store
+*.log
+*~
+
+# Node modules and packages
+node_modules/
+package-lock.json
+*.zip
+
+# Debug and test files
+debug_*.js
+test_*.js
+decode_*.js
+find_*.js
+
+# Backup files
+backup_*.html
+
+# Claude session files
+.claude/
+
+# Development files
+server.log
+yalps_test.*
+test_*.html

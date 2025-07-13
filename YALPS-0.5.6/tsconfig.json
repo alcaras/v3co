@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Docs: https://www.typescriptlang.org/tsconfig */
+    // Output
+    "target": "ES2020",
+    "module": "ES2020",
+    "outDir": "lib/module",
+    "declaration": true,
+    "declarationDir": "lib/types",
+
+    // Files and resolution
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+
+    // Code related
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["src/**/*.ts"]
+}

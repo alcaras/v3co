@@ -1,0 +1,2489 @@
+{{Version|1.9}}{{Economynav}}
+<section begin="intro" />Many historical [[companies]] are represented as flavored companies. The AI is more likely to establish a flavored company over a basic one. These companies are typically tied to specific [[state]]s or [[culture]]s. As such they are heavily associated with certain [[countries]], but those tied to states are not technically limited to specific countries as in theory any country can conquer any state.<section end="intro" /> These companies are organized here by the countries they are most commonly associated with.
+<!-- Editor note: to add new labeled sections for transclusion, add <section begin="Name" /> to the end of the line above the included row(s) (before the |-) and <section end="Name" />to the end of the last included row; disconnected rows can be "merged" by using the same section name on separate table sections; be sure to add the new name to the list in Template:Company list/doc -->
+== American companies ==
+These companies are associated with states or countries in North and South America.
+===Argentina===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Bunge & Born
+|
+* {{iconify|Food Industries|building|30px}}
+* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Maize Farm|building|30px}}
+|
+* {{iconify|Fertilizer Plants|building|30px}}
+| {{iconify|Gourmet Groceries|prestige}}
+|
+* '''+20%''' {{icon|Rural Folk|3=1}} pop attraction
+* {{green|+10%}} Tooling Workshop throughput
+| Owns 3 or more incorporated states in the La Plata region with a level 5 or higher Wheat Farm or Maize Farm
+|-
+| {{icon|cotsb}} Centro Vitivinícola Nacional
+| {{iconify|Vineyards|building|30px}} 
+| {{iconify|Livestock Ranches|building|30px}} 
+| {{icon|no}}
+| {{green|+20%}} {{icon|Prestige|3=1}}
+|
+* Is {{flag|Argentina}}
+* Owns 2 or more incorporated states in the La Plata region with a level 5 or higher Vineyard
+* Has researched {{technology|Central Planning}}
+|-
+| {{icon|cotsb}} Ferrocarril Central Córdoba
+| {{iconify|Railway|building|30px}}
+|
+* {{iconify|Coal Mines|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Wheat Farm throughput
+* {{green|+5%}} Livestock Ranches throughput
+|
+* Has researched {{technology|Railways}}
+* Córdoba is an incorporated state with a Railway
+* Owns 2 or more incorporated states with a level 5 or higher Railway and the ''{{state trait|Pampas|grazing}}'' trait
+|-
+| {{icon|cocb}} Compañía Sansinena de Carnes Congeladas
+|
+* {{iconify|Food Industries|building|30px}}
+* {{iconify|Livestock Ranches|building|30px}}
+|
+* {{iconify|Port|building|30px}}
+| {{iconify|River Plate Beef|prestige}}
+|
+* {{green|+10%}} Trade Advantage
+* {{green|+10%}} Port building throughput
+|
+* Buenos Aires is an incorporated state with a level 5 or higher Food Industry
+* Any state in the La Plata region is an incorporated state with a level 5 or higher Livestock Ranch
+|}
+
+===Bolivia===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Compañía de Salitres y Ferrocarril de Antofagasta
+|
+* {{iconify|Railway|building|30px}}
+* {{iconify|Sulfur Mine|building|30px}}
+|
+* {{iconify|Iron Mine|building|30px}}
+| {{icon|no}}
+|
+* {{green|+3}} {{icon|Industrialists|3=1}} approval
+* {{green|+5%}} Infrastructure
+|
+* Has researched {{technology|Railways}}
+* Antofagasta is an incorporated state with a level 5 or higher Sulfur Mine
+|-
+| {{icon|cotsb}} Compañía Estañífera de Llallagua
+| {{iconify|Lead Mines|building|30px}}
+|
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Sulfur Mines|building|30px}}
+| {{icon|no}}
+|
+* '''+15%''' {{icon|Industrialists|3=1}} political strength
+* {{green|+10%}} Lead Mines building throughput
+| Potosí is an incorporated state with a level 5 or higher Lead Mine
+|}
+===Brazil===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Klabin Irmãos & Cia.
+|
+* {{iconify|Paper Mills|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+|
+* {{iconify|Sulfur Mine|building|30px}}
+| {{iconify|Rosewood|prestige}}
+|
+* {{green|+10%}} Tooling Workshop throughput
+* {{green|+15}} Max infrastructure from population
+|
+* Any incorporated state in the Brazil region has a level 5 or higher Paper Mill
+* Has researched {{technology|Mechanical Tools}} 
+|-
+| {{icon|cotsb}} São Paulo Railway Co. Ltd.
+| {{iconify|Railway|building|30px}}
+| 
+* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+|
+* {{green|+15%}} Coffee Plantation throughput
+* {{green|+10%}} Trade capacity
+|
+* Has researched {{technology|Railways}}
+* São Paulo is an incorporated state with a Railway and level 5 or higher Coffee Plantation
+* Owns 2 or more incorporated states in the Brazil region with a level 5 or higher Railway
+|-
+| {{icon|cotsb}} Estaleiro Mauá
+|
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Shipyards|building|30px}}
+|
+* {{iconify|Logging Camp|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Convoys
+* {{green|+10%}} Steel Mills throughput
+| Rio de Janeiro is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+|-
+| {{icon|cotsb}} Companhia Fiação e Tecidos de Pernambuco
+| {{iconify|Textile Mills|building|30px}}
+|
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Livestock Ranches|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* {{green|+10%}} Cotton Plantation throughput
+* {{green|+5%}} Rubber Plantation throughput
+|
+* Pernambuco is an incorporated state with a level 5 or higher Textile Mill
+|-
+| {{icon|cotsb}} Fundição Ipanema
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Coal Mine|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+5%}} Munition Plants throughput
+* {{green|+10%}} Arms Industries throughput
+| São Paulo is an incorporated state with a level 5 or higher Steel Mill or Iron Mine
+|-
+| {{icon|cotsb}} Amadeo Rossi & Cia.
+|
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+| {{iconify|Explosives Factory|building|30px}}
+| {{iconify|High-powered Small Arms|prestige}}
+|
+* {{green|+10%}} Livestock Ranch throughput
+* {{green|+5%}} Fertilizer Plants throughput
+|
+* Rio Grande do Sul is an incorporated state with a level 5 or higher Arms Industry
+|}
+===Canada===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Hudson’s Bay Company
+|
+* {{iconify|Fishing Wharf|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+|
+* {{iconify|Port|building|30px}}
+* {{iconify|Food Industries|building|30px}}
+| {{iconify|Select Fish|prestige}}
+|
+* {{green|+0.10}} Colony growth generation
+* {{green|+5%}} Textile Mills throughput
+|
+* Manitoba is an incorporated state with a level 5 or higher Food Industry
+* ''{{flag|Great Britain}} starts with this company established''
+|-
+| Massey-Harris Limited
+|
+* {{iconify|Tooling Workshops|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+|
+* {{iconify|Iron Mines|building|30px}}
+| {{iconify|Precision Tools|prestige}}
+| {{green|+15%}} Agriculture Throughput
+|
+* Has researched {{technology|Railways}}
+* Ontario is incorporated state with a level 5 or higher Motor Industries
+|}
+
+===Colombia===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Canals" />
+|-
+| Panama Canal Company
+|
+* {{iconify|Port|building|30px}}
+* {{iconify|Trade Center|building|30px}}
+|
+* {{iconify|Shipyards|building|30px}}
+| {{iconify|Swift Merchant Marine|prestige}}
+|
+* {{green|+25%}} Trade advantage
+* {{green|+50,000}}{{icon|money}} Tax income
+* {{green|+1}} Max companies
+|
+* Owns Panama with the Panama Canal which has 50% or higher employment
+* Owns any state with a level 5 or higher Port or Trade Center<section end="Canals" />
+|}
+
+===Chile===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Fábrica de Armas de la Nación
+|
+* {{iconify|Arms Industry|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+|
+* {{iconify|Explosives Factory|building|30px}}
+| {{iconify|High-powered Small Arms|prestige}}
+| 
+* {{green|+10%}} Offense
+* {{green|+5%}} Steel Mills throughput
+|
+* Santiago is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Gunsmithing}}
+|-
+| {{icon|cotsb}} Compañía Sudamericana de Vapores
+| {{iconify|Port|building|30px}}
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Colony growth speed
+* {{green|+10%}} Convoys
+|
+* Santiago is an incorporated state with a level 5 or higher Shipyard
+* Has researched {{technology|Screw Frigate}}
+|}
+===Mexico===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Fundidora de Fierro y Acero de Monterrey
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+|
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+5%}} Railway throughput
+* {{green|+10%}} Iron Mine throughput
+|
+* Río Grande is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Bessemer Process}}
+|-
+| El Águila
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plant|building|30px}}
+| {{icon|no}}
+| 
+* {{green|+15%}} Convoys
+* {{green|+3}} {{icon|Industrialists|3=1}} approval
+|
+* Owns level 5 or higher Oil Rig in any incorporated coastal state in Mexico
+* Has researched {{technology|Pumpjacks}}
+|}
+===Paraguay===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| La Rosada 
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+|
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+5%}} Defense
+* {{green|+10%}} Iron Mine throughput
+|
+* Bajo Paraguay is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Shell Gun}}
+|}
+
+===Peru===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Peruvian Amazon Company
+| {{iconify|Rubber Plantation|building|30px}}
+| {{iconify|Logging Camp|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Loyalists from movements
+* {{red|+10%}} Rubber Industry employee mortality
+| 
+* Owns Pastaza with a level 5 or higher Rubber Plantation
+* Has researched {{technology|Rubber Mastication}}
+|-
+| {{icon|cotsb}} Empresas Eléctricas Asociadas
+| {{iconify|Power Plant|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Construction efficiency
+* {{green|+5%}} Infrastructure from population
+|
+* Has reasearched {{technology|Electrical Generation}}
+* Lima is an incorporated state with a level 5 or higher Power Plant
+|}
+===United States===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Standard Oil
+|
+* {{iconify|Oil Rig|building|30px}}
+* {{iconify|Railway|building|30px}}
+| {{iconify|Port|building|30px}}
+| {{icon|no}}
+| {{green|+20%}} Railway throughput
+|
+* Owns an incorporated state in The Midwest region with a level 5 or higher Oil Rig
+* Has researched {{technology|Pumpjacks}}
+|-
+| United Fruit Company
+|
+* {{iconify|Banana Plantation|building|30px}}
+* {{iconify|Sugar Plantation|building|30px}}
+| {{iconify|Railway|building|30px}}
+| {{iconify|Gros Michel Banana|prestige}}
+|
+* {{red|−25%}} Infamy decay
+* {{green|+20%}} Plantations throughput
+|
+* Has Yankee or Dixie primary culture
+* Louisiana is an incorporated state with a level 5 or higher Sugar Plantation
+* Owns 5 or more levels of a single Banana Plantation in any state in Central or South America (including other countries' states)
+|-
+| Carnegie Steel Co.
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+| {{iconify|Arts Academy|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+10%}} Railway throughput
+* {{green|+10%}} Shipyards throughput
+|
+* Pennsylvania is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Open Hearth Process}}
+|-
+| General Electric
+|
+* {{iconify|Electrics Industries|building|30px}}
+* {{iconify|Power Plant|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{iconify|Radiola Radios|prestige}}
+|
+* {{green|+5%}} Innovation
+* {{green|+10%}} Motor Industries throughput
+|
+* Has researched {{technology|Telephone}}
+* Massachusetts or New York is an incorporated state with a level 5 or higher Electrics Industry
+|-
+| William Cramp & Sons
+|
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| {{iconify|Artillery Foundries|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Navy offense
+* {{green|+5%}} Navy defense
+|
+* New Jersey, Delaware or Maryland is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+* Has researched {{technology|Gantry Cranes}}
+* ''{{flag|America|United States of America}} starts with this company established''
+|-
+| Ford Motor Company
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Automotive Industries|building|30px}}
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Rubber plantation|building|30px}}
+| {{iconify|Ford Automobiles|prestige}}
+|
+* {{green|+15%}} Motor Industries throughput
+* {{green|+5%}} Automotive Industries throughput
+|
+* Michigan is an incorporated state with a level 5 or higher Motor Industry
+* Has researched {{technology|Combustion Engine}}
+|-
+| {{icon|cocb}} Colt's Patent Firearms Manufacturing Company
+|
+* {{iconify|Arms Industries|building|30px}}
+| {{iconify|Munition Plants|building|30px}}
+| {{iconify|Colt Revolvers|prestige}}
+|
+* {{green|+10%}} Army Offense
+* {{green|+10%}} Arms Industries Throughput
+| Connecticut is an incorporated state with a level 5 or higher Arms Industries
+|-
+| {{icon|cocb}} Lee Wilson & Company
+|
+* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+| {{iconify|Railway|building|30px}}
+| {{iconify|Sea Island Cotton|prestige}}
+|
+* {{green|+10%}} Textile Mills Throughput
+* {{green|+5%}} Power Plants Throughput
+| Arkansas is incorporated state with a level 5 or Cotton plantations or Logging Camps 
+|}
+
+===Venezuela===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Caribbean Petroleum Company 
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plant|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Convoys
+* {{green|+3}} {{icon|Industrialists|3=1}} approval
+|
+* Zulia or Miranda is an incorporated state with a level 5 or higher Oil Rig
+* Has researched {{technology|Pumpjacks}}
+|-
+| {{icon|cotsb}} C.A. La Electricidad de Caracas
+| {{iconify|Power Plant|building|30px}}
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5}} Infrastructure from population
+* {{green|+10}} Max infrastructure from population
+|
+* Has researched {{technology|Electrical Generation}}
+* Miranda is an incorporated state with a level 5 or higher Power Plant
+|}
+
+==Asian and Oceanian companies==
+These companies are associated with states or countries in East Asia and Oceania.
+
+===Australia===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| William Sandford Limited
+| {{iconify|Steel Mills|building|30px}}
+|
+* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+| {{green|+15%}} Railway throughput
+|
+* New South Wales is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Bessemer Process}}
+|}
+===China===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Kaiping Mining Company 
+|
+* {{iconify|Coal Mines|building|30px}}
+* {{iconify|Railway|building|30px}}
+|
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Lead Mines|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Technology spread
+|
+* Beijing or Hebei is an incorporated state with a level 5 or higher Coal Mine
+* Has researched {{technology|Steam Donkey}} and {{technology|Railways}}
+|-
+| Hanyang Arsenal
+|
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+|
+* {{iconify|Explosives Factory|building|30px}}
+| {{iconify|High-powered Small Arms|prestige}}
+|
+* {{green|+15%}} Morale recovery
+* {{green|+20%}} Shrapnel Artillery offense
+|
+* Eastern Hubei is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Breech-Loading Artillery}}
+|-
+| Foochow Shipyard
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Port throughput
+* {{green|+5%}} Navy offense
+|
+* Fujian is an incorporated state with a level 5 or higher Military Shipyard
+* Has researched {{technology|Ironclad}} and {{technology|Gantry Cranes}}
+|-
+| Jingdezhen Kilns
+| {{iconify|Glassworks|building|30px}}
+| {{iconify|Lead Mines|building|30px}}
+| {{iconify|Canton Porcelain|prestige}}
+|
+* {{green|+15%}} {{icon|Prestige|3=1}}
+* {{green|+5%}} Lead Mine throughput
+|
+* Jiangxi is an incorporated state with a level 5 or higher Glassworks
+* Has researched {{technology|Chemical Bleaching}}
+|-
+| {{icon|cocb}} Jiangnan Weaving Bureaus
+|
+* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Suzhou Silk|prestige}}
+|
+* {{green|+10%}} {{icon|Authority|3=1}}
+* {{green|+10%}} {{icon|Influence|3=1}}
+|
+* Suzhou, Zhejiang, or Nanjing is an incorporated state with a level 5 or higher Silk Plantation or Textile Mill
+|-
+| {{icon|cocb}} Ong Lung Sheng Tea Company
+| {{iconify|Tea Plantation|building|30px}}
+| {{iconify|Food Industries|building|30px}}
+| {{iconify|China Tea|prestige}}
+|
+* {{green|+5%}} {{icon|Bureaucracy|3=1}}
+* {{green|+5%}} {{icon|Loyalist|3=1}}s from legitimacy
+| Owns at least 3 states in the South China region with a level 5 or higher Tea Plantation
+|}
+===India===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Assam Company
+|
+* {{iconify|Tea Plantation|building|30px}}
+|
+* {{iconify|Logging Camp|building|30px}}
+| {{iconify|Assam Tea|prestige}}
+|
+* {{green|+20%}} Tea Plantation throughput
+* {{green|−5%}} Radicals from movements
+|
+* Assam is an incorporated state with a level 5 or higher Tea Plantation
+|-
+| {{icon|poeb}} Bengal Coal Company
+|
+* {{iconify|Coal Mines|building|30px}}
+|
+* {{iconify|Iron Mine|building|30px}}
+| {{icon|no}}
+|
+* '''+20%''' {{icon|Industrialists|3=1}} political strength
+* {{green|+10%}} Iron Mine throughput
+|
+* West Bengal is an incorporated state with a level 5 or higher Coal Mine
+|-
+| Bombay Burmah Trading Corporation
+|
+* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Rubber Plantation|building|30px}}
+|
+* {{iconify|Tea Plantation|building|30px}}
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Oil Rig|building|30px}}
+| {{iconify|Teak|prestige}}
+|
+* {{green|+10%}} Coffee Plantation throughput
+* {{green|+10%}} Tea Plantation throughput
+|
+* Either
+** Bombay is an incorporated state
+** The country or its top overlord has Trade Privileges with an owner of Bombay
+* Owns two states with the ''{{state trait|Burmese Teak|lumber}}'' trait with a level 5 or higher Logging Camp
+|-
+| {{icon|poeb}} Bombay Dyeing and Manufacturing Company Limited
+|
+* {{iconify|Textile Mill|building|30px}}
+|
+* {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* {{green|+20%}} Dye Plantation throughput
+* {{green|+5%}} Cotton Plantation throughput
+|
+* Bombay is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Cotton Gin}}
+|-
+| Calcutta Electric Supply Corporation Limited
+|
+* {{iconify|Power Plant|building|30px}}
+|
+* {{iconify|Coal Mines|building|30px}}
+| {{icon|no}}
+|
+* {{green|+6}} Infrastructure from population
+* {{green|+12}} Max infrastructure from population
+|
+* Has researched {{technology|Electrical Generation}}
+* West Bengal is an incorporated state with a level 5 or higher Power Plant
+|-
+| {{icon|poeb}} David Sassoon & Co., Ltd
+|
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Opium Plantation|building|30px}}
+|
+* {{iconify|Port|building|30px}}
+| {{iconify|Pure Opium|prestige}}
+|
+* {{green|+5%}} Trade advantage
+|
+* Bombay is an incorporated state with a level 5 or higher Cotton Plantation
+* Owns a state in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Opium Plantation
+|-
+| East India Company
+|
+* {{iconify|Tea Plantation|building|30px}}
+* {{iconify|Tobacco Plantation|building|30px}}
+* {{iconify|Opium Plantation|building|30px}}
+|
+* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Sugar Plantation|building|30px}}
+| {{iconify|Bengal Opium|prestige}}
+|
+* {{green|+20%}} Convoys
+|
+* Is {{flag|Great Britain}}
+* Owns 3 or more states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Tea, Opium or Tobacco Plantation
+* Has {{law|Mercantilism}} or {{law|Protectionism}}
+* ''{{flag|Great Britain}} starts with this company established''
+|-
+| Great Indian Peninsula Railway
+| {{iconify|Railway|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{icon|no}}
+|
+* {{green|+0.5}} Infrastructure from population
+* {{green|+20}} Max infrastructure from population
+|
+* Has researched {{technology|Railways}}
+* Owns 3 or more incorporated states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Railway
+|-
+| {{icon|poeb}} Madura Mills Co. Ltd
+|
+* {{iconify|Textile Mill|building|30px}}
+|
+* {{iconify|Rubber Plantation|building|30px}}
+* {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* '''+10%''' {{icon|Petite Bourgeoisie|3=1}} attraction
+* {{green|+10%}} Textile Mill throughput
+* {{green|+5%}} State religion wages
+|
+* Owns an incorporated state in the Madras region with a level 5 or higher Textile Mill
+* Has researched {{technology|Cotton Gin}}
+|-
+| {{icon|poeb}} Ralli Brothers
+|
+* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Wheat Farm|building|30px}}
+| 
+* {{iconify|Port|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+10%}} Sulfur Mines throughput
+* {{green|+10%}} Textile Mills throughput
+* {{green|+5%}} Trade advantage
+|
+* Bombay or West Bengal is an incorporated state
+* Owns 4 or more states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Rice or Wheat Farm
+|-
+| {{icon|poeb}} Steel Brothers & Co. Ltd
+|
+* {{iconify|Oil Rig|building|30px}}
+* {{iconify|Rice Farm|building|30px}}
+|
+* {{iconify|Logging Camp|building|30px}}
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+20%}} Logging Camp throughput
+|
+* Owns a state with the ''{{state trait|Burmese Teak|lumber}}'' trait with a level 5 or higher Oil Rig and Rice Farm
+* Has researched {{technology|Pumpjacks}}
+|-
+| Tata
+|
+* {{iconify|Textile Mills|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+|
+* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Motor Industry|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* {{green|+5%}} Construction sector throughput
+* {{green|+10}} Max weekly construction progress
+| Bombay is an incorporated state with a level 5 or higher Textile Mill or Steel Mill
+|-
+| {{icon|poeb}} Wadia Shipbuilders
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+| {{iconify|Motor Industry|building|30px}}
+| {{icon|no}}
+|
+* '''+10%''' {{icon|Petite Bourgeoisie|3=1}} attraction
+* {{green|+10%}} Convoys
+* {{green|−5%}} Radicalism increases for {{acceptance|discriminated}} statuses
+|
+* Bombay is an incorporated state with a level 5 or higher Shipyards or Military Shipyards
+* Has researched {{technology|Gantry Cranes}}
+|}
+
+===Japan===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Mitsui
+|
+* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Lead Mine|building|30px}}
+* {{iconify|Silk Plantation|building|30px}}
+| 
+* {{iconify|Shipyard|building|30px}}
+* {{iconify|Port|building|30px}}
+* {{iconify|Fertilizer Plant|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Tomioka Silk|prestige}}
+|
+* {{green|+10%}} Iron Mine throughput
+* '''+20%''' {{icon|Industrialists|3=1}} political strength
+|
+* Has researched {{technology|Cotton Gin}}
+* Kansai is an incorporated state with a level 5 or higher Textile Mill
+* Has completed the ''[[Honorable Restoration]]'' journal entry
+|-
+| South Manchuria Railway
+|
+* {{iconify|Railway|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Glassworks|building|30px}}
+|
+* {{iconify|Food Industry|building|30px}}
+* {{iconify|Fertilizer Plant|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Colony growth speed in non-homeland states
+* {{green|+15%}} Wheat Farm throughput
+|
+* Has Japanese primary culture
+* Has researched {{technology|Railways}}
+* Country or subject fully owns the state Shengjing
+* Owns 2 or more states in the Manchuria or North China strategic region with a level 5 Railway
+* Has completed the ''Honorable Restoration'' journal entry
+|-
+| Mitsubishi
+|
+* {{iconify|Paper Mill|building|30px}}
+* {{iconify|Military Shipyard|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+|
+* {{iconify|Shipyard|building|30px}}
+* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Port|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Washi Paper|prestige}}
+|
+* {{green|+2}} {{icon|Industrialists|3=1}} approval
+* {{green|+10%}} Automotive Industries throughput
+|
+* Has Japanese primary culture
+* Has researched {{technology|Ironclad}}
+* Chugoku is an incorporated state with a level 5 or higher Paper Mill or Military Shipyard
+* Has completed the ''Honorable Restoration'' journal entry
+|-
+| {{icon|cocb}} Kinkozan Sobei
+| {{iconify|Glassworks|building|30px}}
+| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Satsuma Ware|prestige}}
+|
+* {{green|+5%}} {{icon|Influence|3=1}}
+* {{green|+10%}} Infamy decay
+* {{green|+5%}} {{iconify|Leverage|power bloc}} generation
+| Kansai is an incorporated state with a level 5 or higher Glassworks
+|}
+
+===Korea===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Sunhwaguk
+|
+* {{iconify|Tobacco Plantation|building|30px}}
+* {{iconify|Rice Farm|building|30px}}
+|
+* {{iconify|Food Industry|building|30px}}
+* {{iconify|Chemical Plants|building|30px}}
+| {{iconify|Fine Grain|prestige}}
+| {{green|+10%}} Technology spread
+|
+* Owns an incorporated Korean homeland with a level 5 or higher Tobacco Plantation
+* Has researched {{technology|Central Planning}}
+|-
+| {{icon|soib}} Hanseong Jeongi Hoesa
+| {{iconify|Power Plant|building|30px}}
+| {{iconify|Railway|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Arts Academy throughput
+* {{green|+5%}} Railway throughput
+|
+* Has researched {{technology|Electrical Generation}}
+* Gyeonggi is an incorporated state with a level 5 or higher Power Plant
+|-
+| Oriental Development Company
+|
+* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Millet Farm|building|30px}}
+* {{iconify|Wheat Farm|building|30px}}
+|
+* {{iconify|Maize Farm|building|30px}}
+* {{iconify|Food Industry|building|30px}}
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+5%}} Railway throughput
+* {{green|+10%}} Migration attraction
+|
+* Has researched {{technology|Civilizing Mission}}
+* Owns four or more incorporated Korean homelands with a level 5 or higher Rice, Millet, or Wheat Farms
+|}
+
+===Lanfang===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| {{icon|cocb}} Lanfang Kongsi
+|
+* {{iconify|Gold Mines|building|30px}}
+* {{iconify|Port|building|30px}}
+|
+* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Agriculture throughput
+* {{green|+10%}} Home Defense
+|
+* Cultural acceptance of Hakka is at least {{icon|Second-class Citizen|3=1}}
+* Owns West, East, or North Borneo with a level 5 or higher Gold Mine
+|}
+===Philippines===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| San Miguel
+| {{iconify|Food Industries|building|30px}}
+|
+* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Maize Farm|building|30px}}
+* {{iconify|Rye Farm|building|30px}}
+| {{iconify|Gourmet Groceries|prestige}}
+| {{green|−10%}} Radicals from movements
+|
+* Owns an incorporated state in the Indonesia region with a level 5 or higher Food Industry
+* Has researched {{technology|Corporate Charters}}
+|}
+===Siam===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| B. Grimm
+| {{iconify|Rice Farm|building|30px}}
+| {{iconify|Chemical Plants|building|30px}}
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+10%}} Food Industries throughput
+* {{green|+10%}} Infrastructure from population
+| Bangkok is an incorporated state with a level 5 or higher Rice Farm
+|}
+===Vietnam===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Nam Định Textile Factory
+| {{iconify|Textile Mill|building|30px}}
+|
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Silk Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+| {{green|+10%}} Technology spread
+|
+* Tonkin is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Corporate Charters}}
+|}
+== European companies ==
+These companies are associated with states or countries in Europe.
+=== Austria-Hungary ===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Danube" /><section begin="Czech" />
+|-
+| Škoda Works
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+|
+* {{iconify|Automotive Industries|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+1}} General advancement speed
+* {{green|+15%}} Siege Artillery offense
+|
+* Bohemia is an incorporated state with a level 5 or higher Steel Mill, Arms Industry, or Artillery Foundry
+* Has researched {{technology|Shell Gun}}<section end="Czech" /><section begin="Hungary" />
+|-
+| MÁVAG
+|
+* {{iconify|Motor Industries|building|30px}} 
+* {{iconify|Tooling Workshops|building|30px}}
+|
+* {{iconify|Automotive Industries|building|30px}}
+| {{iconify|Precision Tools|prestige}}
+| {{green|+10%}} Railway throughput
+|
+* Central Hungary is an incorporated state with a level 5 or higher Motor Industry
+* Has researched {{technology|Railways}}
+|-
+| Manfréd Weiss Steel and Metal Works
+|
+* {{iconify|Steel Mills|building|30px}} 
+* {{iconify|Munition Plants|building|30px}}
+* {{iconify|Automotive Industries|building|30px}}
+|
+* {{iconify|Iron Mines|building|30px}} 
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+5%}} Offense
+* {{green|+5%}} Military technology spread
+|
+* Central Hungary is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Open Hearth Process}}<section end="Hungary" /><section end="Danube" />
+|-
+| Galician Carpathian Petroleum Company
+| {{iconify|Oil Rig|building|30px}}
+|
+* {{iconify|Power Plants|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Tooling Workshops throughput
+* {{green|+5%}} Railway throughput
+|
+* Has researched {{technology|Pumpjacks}}
+* East Galicia or West Galicia is an incorporated state with a level 5 or higher Oil Rig
+|-
+| Österreichische Waffenfabriks-Gesellschaft
+|
+* {{iconify|Arms Industry|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+* {{iconify|Electrics Industries|building|30px}}
+| {{iconify|High-powered Small Arms|prestige}}
+|
+* {{green|+5%}} Defense
+* {{green|+10%}} Munition Plants throughput
+|
+* Austria is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Percussion Cap}}<section begin="Danube" /><section begin="Czech" />
+|-
+| {{icon|cocb}} Glasfabrik Ludwig Moser & Söhne
+| {{iconify|Glassworks|building|30px}}
+| {{iconify|Lead Mine|building|30px}}
+| {{iconify|Bohemian Crystal|prestige}}
+|
+* {{green|+5%}} Influence
+* {{green|+5%}} Arts Academy throughput
+* {{green|+10%}} Leverage Generation
+| Bohemia is an incorporated state with a level 5 or higher Glassworks<section end="Czech" /><section end="Danube" />
+|-
+| {{icon|cocb}} Gebrüder Thonet
+| {{iconify|Furniture Manufacturies|building|30px}}
+| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Bentwood Furniture|prestige}}
+|
+* '''+10%''' {{icon|Bourgeoisie|3=1}} pop attraction
+* {{green|−5%}} Radicals from political movements
+* {{green|+10%}} Furniture Manufacturies throughput
+| Austria is an incorporated State with a level 5 or higher Furniture Manufactury
+|}
+
+=== Belgium ===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="UNL" />
+|-
+| Compagnie du Congo
+|
+* {{iconify|Rubber Plantation|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+|
+* {{iconify|Railway|building|30px}} 
+* {{iconify|Livestock Ranch|building|30px}} 
+| {{icon|no}}
+|
+* {{green|+15%}} {{icon|Prestige|3=1}}
+* {{red|+20%}} Rubber Industry employee mortality
+|
+* Has Wallonian primary culture
+* Country or any subject owns a state in the Congo region with a level 5 or higher Rubber Plantation
+|-
+| Société Franco-Belge
+|
+* {{iconify|Motor Industries|building|30px}} 
+* {{iconify|Railway|building|30px}}
+| {{iconify|Steel Mills|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Infrastructure
+| Flanders or Wallonia is an incorporated state with a level 5 or higher Motor Industry
+|-
+| Société anonyme John Cockerill
+|
+* {{iconify|Steel Mills|building|30px}} 
+* {{iconify|Tooling Workshops|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+|
+* {{iconify|Iron Mines|building|30px}} 
+| {{iconify|Precision Tools|prestige}}
+| {{green|+10%}} Railway throughput
+|
+* Flanders or Wallonia is an incorporated state with a level 5 or higher Steel Mill
+* ''{{flag|Belgium}} starts with this company established''<section end="UNL" />
+|}
+
+===Denmark===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Scandinavia" />
+|-
+| Chr. Hansen
+|
+* {{iconify|Food Industries|building|30px}}
+* {{iconify|Fertilizer Plant|building|30px}}s
+| {{iconify|Synthetics Plants|building|30px}}
+| {{iconify|Gourmet Groceries|prestige}}
+| 
+* {{green|+10%}} Livestock Ranches throughput
+* {{green|+10%}} Fishing Wharves throughput
+|
+* Zealand is an incorporated state with a level 5 or higher Food Industry or Fertilizer Plant
+|-
+| A.P. Møller
+| {{iconify|Port|building|30px}}s
+|
+* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Shipyards|building|30px}}
+| {{iconify|Swift Merchant Marine|prestige}}
+| 
+* {{green|+20%}} Convoys
+* '''+10%''' {{icon|Industrialists|3=1}} pop attraction 
+| Zealand is an incorporated state with a level 5 or higher Shipyard<section end="Scandinavia" />
+|}
+
+===Finland===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Scandinavia" />
+|-
+| Nokia
+|
+* {{iconify|Paper Mills|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Power Plant|building|30px}}
+| {{iconify|Electrics Industries|building|30px}}
+| {{iconify|Craft Paper|prestige}}
+|
+* {{green|+10%}} Electrics Industry throughput
+* {{green|+5%}} Synthetics Plants throughput
+|
+* Uusimaa is an incorporated state with a level 5 or higher Paper Mill
+* Has researched {{technology|Atmospheric Engine}}<section end="Scandinavia" />
+|}
+
+===France===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Algeria" />
+|-
+| Société Mokta El Hadid
+|
+* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Sulfur Mine|building|30px}}
+| {{iconify|Lead Mine|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Colony growth speed in non-homeland states
+|
+* Owns Constantine with a level 5 or higher Iron Mine
+* Has researched {{technology|Bessemer Process}}<section end="Algeria" />
+|-
+| Schneider et Cie
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| 
+* {{iconify|Railway|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+| {{iconify|Schneider Guns|prestige}}
+|
+* {{green|−10%}} Morale loss
+* {{green|+10%}} Morale recovery
+|
+* Burgundy is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Steelworking}}
+|-
+| Dollfus-Mieg et Compagnie
+|
+* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+|
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Dye Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+| {{green|+10%}} Assimilation
+|
+* Burgundy is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Cotton Gin}}
+* ''{{flag|France}} starts with this company established''
+|-
+| Confédération générale des vignerons
+| {{iconify|Vineyard|building|30px}}
+|
+* {{iconify|Food Industries|building|30px}}
+| {{iconify|Champagne|prestige}}
+|
+* {{green|+15%}} {{icon|Prestige|3=1}}
+* {{green|+10%}} Vineyard throughput
+|
+* Has French or Occitan primary culture
+* Champagne is an incorperated state with a level 5 or higher vineyard
+* Has researched {{technology|Joint-Stock Companies}}
+|-
+| Manufacture d'armes de Saint-Étienne
+| 
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+|
+* {{iconify|Explosives Factory|building|30px}}
+| {{iconify|Saint-Etienne Rifles|prestige}}
+|
+* {{green|+5%}} Offense
+* {{green|+5%}} Defense
+|
+* Rhône is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Bolt-Action Rifle}}
+|-
+| Forges et Chantiers de la Méditerranée
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Automotive Industries|building|30px}}
+| {{iconify|Steel Mills|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Navy offense
+* {{green|+10%}} Heavy Tanks offense
+|
+* Provence is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+* Has researched {{technology|Ironclad}}
+|-
+| Compagnie des mines d'Anzin
+| {{iconify|Coal Mine|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Railway throughput
+* {{green|+5%}} Steel Mills throughput
+| French Low Countries is an incorporated state with a level 5 or higher Coal Mines
+|-
+| {{icon|cocb}} Maison Worth
+|
+* {{iconify|Textile Mill|building|30px}}
+|
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Arts Academy|building|30px}}
+| {{iconify|Haute Couture|prestige}}
+|
+* {{green|+5%}} Country Influence
+* {{green|+5%}} Country Leverage Generation
+* {{green|+5%}} State Assimilation
+| Île-de-France is an incorporated state with a level 5 or higher Textile Mill
+|}
+
+===Germany===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Prussia" />
+|-
+| Friedrich Krupp
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+* {{iconify|Arms Industries|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Krupp Guns|prestige}}
+|
+* {{green|+10%}} Railway throughput
+* {{green|+10%}} Kill rate
+|
+* Ruhr is an incorporated state with a level 5 or higher Steel Mill, Arms Industry, or Artillery Foundry
+* Has researched {{technology|Steelworking}}
+* ''{{flag|Prussia}} starts with this company established''
+|-
+| Rheinmetall
+|
+* {{iconify|Explosives Factory|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+|
+* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+| {{iconify|Quick-fire Artillery|prestige}}
+|
+* {{green|+10%}} Siege Artillery offense
+* {{green|+10%}} Shrapnel Artillery offense
+* {{green|+5%}} Defense
+|
+* Ruhr or North Rhine is an incorporated state with a level 5 or higher Arms Industy, Munition Plant or Artillery Foundry
+* Has researched {{technology|Automatic Machine Guns}}
+|-
+| F. Schichau
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+|
+* {{iconify|Railway|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+| {{iconify|Schichau Engines|prestige}}
+|
+* {{green|+5%}} Navy offense
+* {{green|+10%}} Submarine offense
+|
+* Has researched {{technology|Railways}}
+* West Prussia is an incorporated state and has level 5 or higher Motor Industry
+|-
+| Siemens & Halske
+| {{iconify|Electrics Industries|building|30px}}
+|
+* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Railway|building|30px}}
+| {{icon|no}}
+| {{green|+15%}} Power Plant throughput
+|
+* Brandenburg is an incorporated state with a level 5 or higher Electrics Industry
+* Has researched {{technology|Electric Telegraph}}
+|-
+| Preußische Staatseisenbahnen
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor industry|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Formation movement speed
+|
+* Is {{flag|Prussia}} or was formed from Prussia
+* Has researched {{technology|Railways}}
+* Owns 3 or more incorporated states in the North Germany, South Germany, Rhine, or Poland regions with level 5 or higher Railway<section end="Prussia" /><section begin="Baden" />
+|-
+| BASF
+|
+* {{iconify|Fertilizer Plant|building|30px}}s
+* {{iconify|Synthetics Plants|building|30px}}
+|
+* {{iconify|Dye Plantation|building|30px}}
+* {{iconify|Sulfur Mine|building|30px}}
+| {{iconify|German Aniline|prestige}}
+|
+* {{green|+5%}} Oil Extractors throughput
+* {{green|+10%}} Innovation
+|
+* Has researched {{technology|Aniline}}
+* Baden is an incorporated state with a level 5 or higher Synthetics Plant<section end="Baden" /><section begin="Saxony" />
+|-
+| {{icon|cocb}} Königliche Porzellan-Manufaktur Meissen
+| {{iconify|Glassworks|building|30px}}
+| {{iconify|Lead Mine|building|30px}}
+| {{iconify|Meissen Porcelain|prestige}}
+|
+* {{green|+10%}} Prestige
+* {{green|+5%}} Arts Academy throughput
+* {{green|+5%}} Synthetics Plants throughput
+|
+* Has researched {{technology|Chemical Bleaching}}
+* Saxony is an incorporated state with a level 5 or higher Glassworks<section end="Saxony" />
+|}
+
+===Great Britain===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Scotland" />
+|-
+| J. & P. Coats
+| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* {{green|+15%}} Textile Mill throughput
+* {{green|+5%}} Cotton Plantation throughput
+|
+* Lowlands is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Cotton Gin}}
+|-
+| John Brown & Company
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Clyde-Built Liners|prestige}}
+|
+* {{green|+5%}} {{icon|Prestige|3=1}}
+* {{green|+10%}} Convoys
+|
+* Lowlands is an incorporated state with a level 5 or higher Shipyard
+* Has researched {{technology|Steelworking}} and {{technology|Hydraulic Cranes}}<section end="Scotland" />
+|-
+| Sir W. G. Armstrong Whitworth & Co.
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+| {{icon|no}}
+| {{iconify|Armstrong Ships|prestige}}
+|
+* {{green|+15%}} Carriers offense
+* {{green|+10%}} Navy defense
+|
+* Yorkshire is an incorporated state with a level 5 or higher Military Shipyard
+* Has researched {{technology|Ironclad}} and {{technology|Gantry Cranes}}
+|-
+| Great Western Railway
+| {{iconify|Railway|building|30px}}
+| {{iconify|Coal Mine|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} {{icon|Prestige|3=1}}
+* {{green|−5%}} Radicals from movements
+|
+* Has researched {{technology|Railways}}
+* Owns 3 or more incorporated states in the England region with a level 5 or higher Railway
+|-
+| Bolckow, Vaughan & Co.
+|
+* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+| {{iconify|Lead Mines|building|30px}}
+| {{iconify|Sheffield Steel|prestige}}
+|
+* {{green|+10%}} Shipyards throughput
+* {{green|+10%}} Military Shipyards throughput
+|
+* Yorkshire is an incorporated state with a level 5 or higher Coal Mine, Iron Mine, or Steel Mill
+* Has researched {{technology|Bessemer Process}}<section begin="Ireland" />
+|-
+| Arthur Guinness Son & Co. Ltd
+| {{iconify|Food Industry|building|30px}}
+|
+* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Rye Farm|building|30px}}
+| {{iconify|Gourmet Groceries|prestige}}
+|
+* {{green|−10%}} Radicals from movements
+* {{green|−5%}} Radicalism increases for {{acceptance|discriminated}} statuses
+|
+* Leinster is an incorporated state with a level 5 or higher Food Industry
+* Has researched {{technology|Corporate Charters}}<section end="Ireland" />
+|-
+| {{icon|cocb}} Maple & Co.
+| {{iconify|Furniture Manufacturies|building|30px}}
+| {{iconify|Logging Camp|building|30px}}
+| {{iconify|English Upholstery|prestige}}
+|
+* {{green|+5%}} Prestige
+* {{green|+10%}} Government Structures Throughput
+| Home Counties in an incorporated state with a level 5 or higher Furniture Manufacturies
+|}
+
+===Greece===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus 
+! Requirements
+|-
+| Basileiades
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Shipyards|building|30px}}
+| {{iconify|Military Shipyards|building|30px}}
+| {{icon|no}}
+|
+* {{green|+20%}} Convoys
+* {{green|+5%}} Infrastructure
+|
+* Attica is an incorporated state with a level 5 or higher Motor Industry or Shipyard
+* Has researched {{technology|Railways}}
+|-
+| Kouppas
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Tooling Workshops|building|30px}}
+| {{iconify|Automotive Industries|building|30px}}
+| {{iconify|Precision Tools|prestige}}
+|
+* {{green|+10%}} Railway throughput
+* {{green|+5%}} Steel Mills throughput
+|
+* Attica is an incorporated state with a level 5 or higher Motor Industry or Tooling Workshop
+* Has researched {{technology|Mechanical Tools}}
+|}
+
+===Italy===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Sardinia-Piedmont" />
+|-
+| Ilva
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Coal Mine|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+5%}} Artillery Foundry throughput
+* {{green|+10%}} Railway throughput
+|
+* Piedmont is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Arc Welding}}
+|-
+| Gio. Ansaldo & C.
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+| {{iconify|Power Plants|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+5%}} Army Offense
+* {{green|+5%}} Navy Offense
+| Piedmont is an incorporated state with a level 5 or higher Motor Industry, Arms Industry, or Artillery Foundry
+|-
+| FIAT
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Automotive Industries|building|30px}}
+| {{iconify|Steel Mills|building|30px}}
+| {{iconify|Turin Automobiles|prestige}}
+|
+* {{green|+5%}} Army Offense
+* {{green|+10%}} Formation movement speed
+|
+* Has researched {{technology|Railways}}
+* Has researched {{technology|Combustion Engine}}
+* Piedmont is an incorporated state with a level 5 or higher Motor Industry or Automotive Industry<section end="Sardinia-Piedmont" />
+|-
+| G. Ricordi & C.
+| {{iconify|Arts Academy|building|30px}}
+| {{iconify|Vineyard|building|30px}}
+| {{icon|no}}
+|
+* {{green|+15%}} {{icon|Prestige|3=1}}
+* {{green|+5%}} Loyalists from movements
+| Lombardy is an incorporated state with a level 5 or higher Arts Academy
+|-
+| Stabilimento Tecnico Triestino
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Convoys
+* {{green|+5%}} Navy defense
+|
+* Istria is an incorporated state with a level 5 or higher Shipyards or Military Shipyards
+* Has researched {{technology|Gantry Cranes}}
+|-
+| {{icon|cocb}} Anglo-Sicilian Sulphur Company
+| {{iconify|Sulfur Mine|building|30px}}
+| {{iconify|Port|building|30px}}
+| {{iconify|Sicilian Sulfur|prestige}}
+|
+* {{green|+10%}} Munition Plants throughput
+* {{green|+5%}} Plantations throughput
+* {{green|+5%}} Agriculture throughput
+|
+* Sicily is an incorporated state with a level 5 or higher Sulfur Mine
+* Is not at war with {{flag|Great Britain}}
+|-
+| {{icon|cocb}} Mantero Sera
+|
+* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Como Silk|prestige}}
+|
+* {{green|+5%}} {{icon|Prestige|3=1}}
+* {{green|+10%}} Synthetics Plants throughput
+|
+* Lombardy is an incorporated state with a level 5 or higher Silk Plantation or Textile Mill
+|}
+
+===Netherlands===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="UNL" />
+|-
+| Nederlandse Petroleum Maatschappij
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plant|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Colony growth speed
+|
+* Has Dutch primary culture
+* Owns an incorporated state in the Indonesia region with a level 5 or higher Oil Rig
+* Has researched {{technology|Pumpjacks}}
+|-
+| Philips
+| {{iconify|Electrics Industries|building|30px}}
+|
+* {{iconify|Power Plants|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| {{iconify|Chapel Radios|prestige}}
+|
+* {{green|+5%}} Innovation
+* {{green|+15}} Max innovation investment
+|
+* Has researched {{technology|Telephone}}
+* Holland or Gelre is an incorporated state with a level 5 or higher Electrics Industry<section end="UNL" />
+|}
+
+===Norway===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Scandinavia" />
+|-
+| Agers Mechaniske Værksted 
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| {{iconify|Military Shipyards|building|30px}}
+| {{icon|no}}
+|
+* {{green|+15%}} Convoys
+* {{green|+5%}} Fishing Wharf throughput
+|
+* Eastern Norway is an incorporated state with a level 5 or higher Shipyard
+* Has researched {{technology|Gantry Cranes}}
+|-
+| Norsk Hydroelektrisk Kvælstofaktieselskap
+|
+* {{iconify|Fertilizer Plants|building|30px}}
+* {{iconify|Power Plant|building|30px}}
+| {{iconify|Sulfur Mine|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Agriculture Throughput
+* {{green|+5%}} Technology Spread for Production
+|
+* Western Norway is an incorporated state with a Power Plant and a level 5 or higher Fertilizer Plants
+* Has researched {{technology|Electrical Generation}}<section end="Scandinavia" />
+|}
+===Poland===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Ursus
+| {{iconify|Motor Industries|building|30px}}
+|
+* {{iconify|Automotive Industries|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+| {{icon|no}}
+| {{green|+20%}} Wheat Farm throughput
+|
+* Warszawa is an incorporated state with a level 5 or higher Motor Industry
+* Has researched {{technology|Combustion Engine}}
+|-
+| Lilpop, Rau i Loewenstein
+|
+* {{iconify|Tooling Workshops|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+| {{green|+10%}} Motor Industries throughput
+| Mazovia or Warszawa is an incorporated state with a level 5 or higher Steel Mill
+|}
+
+===Portugal===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Companhia de Moçambique
+|
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Tea Plantation|building|30px}}
+* {{iconify|Rice Farm|building|30px}}
+| {{iconify|Logging Camp|building|30px}}s
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+0.10}} Colonial growth generation
+* {{green|+10%}} Colony growth speed
+|
+* Has Portuguese primary culture
+* Owns Mocambique, Zambezia, or Lourenço Marques with a level 5 or higher Cotton Plantation or Tea Plantation
+* Has researched {{technology|Mutual Funds}}
+|}
+
+===Romania===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Danube" />
+|-
+| Căile Ferate Române
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+|
+* {{green|+15%}} Trade capacity
+* {{green|+5%}} Infrastructure
+|
+* Has Romanian primary culture
+* Has researched {{technology|Railways}} 
+* Owns 2 or more incorporated Romanian homelands with a level 5 Railway
+|-
+| Steaua Română
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plants|building|30px}}
+| {{icon|no}}
+| {{green|+20%}} Oil Extractors throughput
+|
+* Has researched {{technology|Pumpjacks}}
+* Wallachia is an incorporated state with a level 5 or higher Oil Rig<section end="Danube" />
+|}
+
+===Russia===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Vodka Monopoly
+| 
+* {{iconify|Food Industries|building|30px}}
+* {{iconify|Vineyard|building|30px}}
+|
+* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Rye Farm|building|30px}}
+| {{iconify|Smirnoff Vodka|prestige}}
+| {{green|−15%}} Radicals from movements
+|
+* Has Russian primary culture
+* Does not have {{law|Laissez-Faire}}
+* Owns an incorporated state with a level 5 or higher Food Industry
+|-
+| Society of Putilov Factories
+|
+* {{iconify|Motor Industries|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+| {{iconify|Munition Plants|building|30px}}
+| {{iconify|Quick-fire Artillery|prestige}}
+|
+* {{green|+5%}} Infrastructure
+* {{green|+10%}} Railway throughput
+|
+* Ingria is an incorporated state with a level 5 or higher Motor Industry, Military Shipyard, or Artillery Foundry
+* Has researched {{technology|Railways}}<section begin="Azerbaijan" />
+|-
+| Branobel
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plants|building|30px}}
+| {{iconify|Baku Oil|prestige}}
+| 
+* {{green|+10%}} Migration attraction
+* {{green|+5%}} Railway throughput
+|
+* Owns Baku with a level 5 or higher Oil Rig
+* Has researched {{technology|Pumpjacks}}<section end="Azerbaijan" />
+|-
+| Izhevsk Arms Plant
+|
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+|
+* {{iconify|Artillery Foundries|building|30px}}
+* {{iconify|Steel Mills|building|30px}}
+| {{iconify|High-powered Small Arms|prestige}}
+|
+* {{green|+10%}} Arms Industries throughput
+* {{green|+10%}} Artillery Foundry throughput
+|
+* Perm is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Rifling}}
+|-
+| Savva Morozov & Sons
+| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* {{green|+10%}} {{icon|Prestige|3=1}}
+* '''+10%''' {{icon|Industrialists|3=1}} pop attraction 
+|
+* Moscow is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Joint-Stock Companies}}
+|-
+| New Russia Company Ltd.
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Railway|building|30px}}
+| {{iconify|Russia Iron|prestige}}
+|
+* {{green|+2}} {{icon|Industrialists|3=1}} approval
+* {{green|+10%}} Railway throughput
+|
+* Has researched {{technology|Bessemer Process}}
+* Kharkiv or Taurida is an incorporated state with a level 5 or higher Steel Mill, Coal Mine, or Iron Mine
+|-
+| Russian-American Company
+|
+* {{iconify|Logging Camp|building|30px}}s
+* {{iconify|Whaling Station|building|30px}}s
+* {{iconify|Port|building|30px}}s
+|
+* {{iconify|Coal Mine|building|30px}}s
+* {{iconify|Fishing Wharves|building|30px}}
+| {{iconify|Prime Meat|prestige}}
+|
+* {{green|+5%}} Conversion
+* {{green|+10%}} Colony Growth Speed
+* {{green|+5%}} Textile Mills throughput
+|
+* Has an East Slavic primary culture
+* Owns or a subject owns a state in the Pacific Coast region with a level 5 or higher Port, Whaling Station, or Logging Camp
+* ''{{flag|Russia}} starts with this company established''
+|}
+
+===Serbia===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Zastava
+|
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Munition Plants|building|30px}}
+|
+* {{iconify|Artillery Foundries|building|30px}}
+| {{iconify|High-powered Small Arms|prestige}}
+|
+* {{green|+5%}} Defense
+* {{green|+5%}} Recovery rate
+|
+* Northern Serbia is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Gunsmithing}}
+|}
+
+===Spain===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Altos Hornos de Vizcaya
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+| {{iconify|Coal Mine|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+| {{green|+10%}} Infrastructure
+|
+* Navarra is an incorporated state with a level 5 or higher Steel Mill
+* Has researched {{technology|Steelworking}}
+|-
+| Duro y Compañía
+|
+* {{iconify|Steel Mills|building|30px}}
+* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Coal Mine|building|30px}}
+| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Refined Steel|prestige}}
+|
+* {{green|+10%}} Arms Industries throughput
+* {{green|+10%}} Artillery Foundry throughput
+|
+* Asturias is an incorporated state with a level 5 or higher Coal Mine
+* Has researched {{technology|Steelworking}}
+|-
+| La España Industrial
+|
+* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Silk Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+| {{green|+15%}} Innovation
+|
+* Catalonia is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Cotton Gin}}
+|-
+| Fábrica de Armas de Trubia
+|
+* {{iconify|Arms Industries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
+|
+* {{iconify|Munition Plants|building|30px}}
+* {{iconify|Explosives Factory|building|30px}}
+| {{iconify|Quick-fire Artillery|prestige}}
+|
+* {{green|−5%}} Military goods cost
+* {{green|+5%}} Offense
+|
+* Asturias is an incorporated state with a level 5 or higher Arms Industry
+* Has researched {{technology|Gunsmithing}}
+|}
+
+===Sweden===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements<section begin="Scandinavia" />
+|-
+| Ericsson 
+| {{iconify|Electrics Industries|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Ericsson Apparatus|prestige}}
+|
+* {{green|+10%}} Innovation
+* {{green|+0.5%}} Education access from wealth
+|
+* Has researched {{technology|Telephone}}
+* Svealand is an incorporated state with a level 5 or higher Electrics Industry
+|-
+| LKAB
+| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Steel Mills|building|30px}}
+| {{iconify|Oregrounds Iron|prestige}}
+| {{green|+20%}} Iron Mine throughput
+|
+* Norrland is an incorporated state with a Railway and a level 5 or higher Iron Mine
+* Has researched {{technology|Open Hearth Process}}
+|-
+| Götaverken
+|
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
+| {{iconify|Logging Camp|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Navy offense
+* {{green|+5%}} Navy defense
+|
+* Götaland is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+* Has researched {{technology|Gantry Cranes}}
+|-
+| John Paradox & Company
+|
+* {{iconify|Arts Academy|building|30px}}
+* {{iconify|Electrics Industries|building|30px}}
+|
+* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Paper Mills|building|30px}}
+| {{icon|no}}
+|
+* {{green|+25%}} {{icon|Prestige|3=1}}
+* {{green|+25%}} Leverage generation
+|
+* Has researched {{technology|Telephone}} and {{technology|Zeppelins}}
+* Owns Svealand with a Skyscraper, level 20 Arts Academy and level 20 Electrics Industries
+|}
+
+==Middle Eastern companies==
+These companies are associated with states or countries in West Asia and the Middle East.
+
+===Afghanistan===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| {{icon|soib}} Də Afḡān Nasājī Šerkat
+| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+|
+* {{green|+5%}} Trade capacity
+* {{green|+10%}} Cotton Plantation throughput
+| Southern Turkestan is an incorporated state with a level 5 or higher Textile Mill
+|-
+| Šerkat-e Etteḥādīya-ye Welāyat-e Šemālī
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Textile Mill|building|30px}}
+| {{icon|no}}
+| {{green|+20%}} Opium Plantation throughput
+| Southern Turkestan is an incorporated state with a level 5 or higher Cotton Plantation
+|}
+===Egypt===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Misr Spinning and Weaving Company
+|
+* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Cotton Plantation|building|30px}}
+|
+* {{iconify|Silk Plantation|building|30px}}
+| {{iconify|Mit Afifi|prestige}}
+| {{green|+10%}} Loyalists from movements
+|
+* Lower Egypt is an incorporated state with a level 5 or higher Textile Mill
+* Has researched {{technology|Corporate Charters}}
+|-
+| Egyptian State Railways
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+| 
+* {{green|+10%}} Trade capacity
+* {{green|+20}} Max infrastructure from population
+|
+* Has researched {{technology|Corporate Charters}}
+* Has Misri primary culture
+* Owns 2 or more incorporated states in the Nile region with a level 5 Railway<section begin="Canals" />
+|-
+| Suez Canal Company
+|
+* {{iconify|Trade Center|building|30px}}
+* {{iconify|Port|building|30px}}
+|
+* {{iconify|Shipyards|building|30px}}
+| {{iconify|Swift Merchant Marine|prestige}}
+|
+* {{green|+25%}} Trade advantage
+* {{green|+50,000}}{{icon|money}} Tax income
+* {{green|+1}} Max companies
+|
+* Owns Sinai with the Suez Canal which has 50% or higher employment
+* Owns any state with a Level 5 or higher Trade Center or Port<section end="Canals" />
+|-
+| {{icon|soib}} MM. Nicolas Portalis et Cie.
+| {{iconify|Silk Plantation|building|30px}}
+|
+* {{iconify|Cotton Plantation|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} {{icon|Prestige|3=1}}
+* {{green|−5%}} Radicalism increases for {{acceptance|discriminated}} statuses
+| Lebanon is an incorporated state with a level 5 or higher Silk Plantation
+|}
+
+===Persia===
+{| class="wikitable plainlist"
+|- {{sticky|59px}}
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Imperial Tobacco Corporation of Persia
+| {{iconify|Tobacco Plantation|building|30px}}
+| {{iconify|Opium Plantation|building|30px}}
+| {{icon|no}}
+|
+* {{green|+20%}} Technology spread
+* {{red|−2}} {{icon|Rural Folk|3=1}} approval
+|
+* Owns 4 or more incorporated states in the Persia region with a level 5 or higher Tobacco Plantation
+* Has researched {{technology|Corporate Charters}}
+|-
+| Iranian State Railway
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Assimilation
+|
+* Has Persian primary culture
+* Has researched {{technology|Railways}}
+* Owns two or more incorporated states in the Persia region with a level 5 or higher Railway
+|-
+| Bongāh-e Enḥeṣār-e Ṣāderāt-e Taryāk
+| {{iconify|Opium Plantation|building|30px}}
+| {{iconify|Tobacco Plantation|building|30px}}
+| {{iconify|Pure Opium|prestige}}
+|
+* {{green|−10%}} Radicals from movements
+* {{green|+10%}} Morale recovery
+|
+* Owns any Persian homeland
+* Owns two or more incorporated states in the Persia region with level 5 or higher Opium Plantations
+|-
+| {{icon|soib}} Šerkat-e Eslāmiya
+| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Designer Clothes|prestige}}
+| '''+30%''' State religion wages
+| Isfahan is an incorporated state with a level 5 or higher Textile Mill
+|-
+| {{icon|soib}} Persshelk
+| {{iconify|Silk Plantation|building|30px}}
+| {{iconify|Textile Mill|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} {{icon|Prestige|3=1}}
+* '''+10%''' {{icon|Petite Bourgeoisie|3=1}} pop attraction
+|
+* Owns any Persian homeland
+* Owns 2 or more incorporated states in the Persia region with level 5 or higher Silk Plantations
+* Country or any ally has Russian primary culture
+|-
+| {{icon|soib}} Perskhlopok
+| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Textile Mill|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Textile Mill throughput
+* {{green|+2}} {{icon|Rural Folk|3=1}} approval
+|
+* Owns any Persian homeland
+* Owns 2 or more incorporated states in the Persia region with level 5 or higher Cotton Plantations
+* Country or any ally has Russian primary culture
+|-
+| {{icon|soib}} Moscow Irrigation Company
+|
+* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Rice Farm|building|30px}}
+|
+* {{iconify|Opium Plantation|building|30px}}
+* {{iconify|Wheat Farm|building|30px}}
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+20%}} Cotton Plantation throughput
+* '''+5%''' {{icon|Industrialists|3=1}} pop attraction
+|
+* Has an interest in the Persia region
+* Owns or an ally owns a state in Moscow
+* Fergana is an incorporated state with a level 5 or higher Cotton Plantation
+|-
+| {{icon|soib}} Anglo-Persian Oil Company
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plants|building|30px}}
+| {{icon|no}}
+| {{green|+30%}} Oil Extractors throughput
+|
+* Has English or Persian primary culture
+* Has researched {{technology|Pumpjacks}}
+* Country or an ally has English primary culture
+* Has not established National Iranian Oil Company
+* Arabistan is an incorporated state with a level 5 or higher Oil Rig
+|-
+| {{icon|soib}} National Iranian Oil Company
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plants|building|30px}}
+| {{icon|no}}
+|
+* '''+10%''' {{icon|Industrialists|3=1}} pop attraction
+* {{green|+10%}} Loyalists from legitimacy
+|
+* Has Persian primary culture
+* Has researched {{technology|Pumpjacks}}
+* Has not established Anglo-Persian Oil Company
+* Arabistan is an incorporated state with a level 5 or higher Oil Rig
+|}
+
+===Turkestan===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| {{icon|soib}} Tashkent Railroad
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Cotton Plantation throughput
+|
+* Has researched {{technology|Railways}}
+* Fergana is an incorporated state with a level 5 or higher Railway
+* Owns two or more incorporated states in the Central Asia region with a level 5 or higher Railway
+|-
+| {{icon|soib}} West Ural Petroleum Company, Limited
+| {{iconify|Oil Rig|building|30px}}
+|
+* {{iconify|Power Plants|building|30px}}
+* {{iconify|Railway|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Colony growth speed
+* {{green|+5%}} Power Plant throughput
+|
+* Has researched {{technology|Pumpjacks}}
+* Uralsk is an incorporated state with a level 5 or higher Oil Rig
+|-
+| {{icon|soib}} Kirgizian Mining Joint Stock Company
+| {{iconify|Coal Mine|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Power Plant throughput
+|
+* Has researched {{technology|Steam Donkey}}
+* Has researched {{technology|Railways}}
+* Semipalatinsk is an incorporated state with a level 5 or higher Coal Mine
+|}
+===Turkey===
+{| class="wikitable plainlist"
+! Name
+! Buildings
+! {{icon|cocb|24px}} Industry charters
+! {{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Tersâne-i Âmire
+| {{iconify|Military Shipyards|building|30px}}
+| {{iconify|Shipyards|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} Navy defense
+|
+* Eastern Thrace is an incorporated state with a 5 or higher Military Shipyard
+* Has researched {{technology|Hydraulic Cranes}}
+|-
+| Ottoman Tobacco Company
+| {{iconify|Tobacco Plantation|building|30px}}
+| {{iconify|Opium Plantation|building|30px}}
+| {{iconify|Turkish Tobacco|prestige}}
+| {{green|+10%}} Production technology spread
+|
+* Has Turkish primary culture
+* Does not have the modifier ''Sick Man of Europe''
+* Is not unrecognized
+* Owns 4 or more incorporated states with a level 5 or higher Tobacco Plantation
+|-
+| Allatini Mills
+|
+* {{iconify|Wheat Farm|building|30px}} 
+* {{iconify|Rye Farm|building|30px}}
+| {{iconify|Food Industry|building|30px}} 
+| {{iconify|Fine Grain|prestige}}
+|
+* {{green|+10%}} Food Industries throughput
+* {{green|−5%}} Radicalism increases for {{acceptance|discriminated}} statuses
+|
+* Does not have the modifier ''Sick Man of Europe''
+* Is not unrecognized
+* Macedonia is an incorporated state with a level 5 or higher Wheat Farm
+|-
+| Chemins de fer Orientaux
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor Industry|building|30px}}
+| {{icon|no}}
+| {{green|+10%}} {{icon|Prestige|3=1}}
+|
+* Does not have the modifier ''Sick Man of Europe''
+* Is not unrecognized
+* Fully owns Eastern Thrace
+* Owns 3 or more incorporated states in the Balkans region with a level 5 or higher Railway
+|-
+| Turkish Petroleum Company
+| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Power Plants|building|30px}}
+| {{icon|no}}
+|
+* {{green|+5%}} Trade capacity
+* {{green|+5%}} Railway throughput
+|
+* Has researched {{technology|Pumpjacks}}
+* Baghdad, Basra, or Mosul is an incorporated state with a level 5 or higher Oil Rig
+|}
+
+==African companies==
+These companies are associated with states or countries in sub-Saharan Africa.
+
+===Ethiopia===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| Imperial Ethiopian Railway Company
+| {{iconify|Railway|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Coffee Plantations throughput
+* {{green|+5%}} Livestock Ranches throughput
+|
+* Has researched {{technology|Railways}}
+* Owns any state in the Ethiopia region with a Railway and a level 5 or higher Coffee Plantation
+* Owns any coastal state in the Ethiopia region with a level 5 or higher Railways
+|}
+
+===Niger===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| John Holt and Company
+|
+* {{iconify|Rubber Plantation|building|30px}}
+* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Port|building|30px}}
+| {{iconify|Shipyards|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} Plantations throughput
+* {{green|−5%}} Institution bureaucracy cost
+|
+* Has researched {{technology|Rubber Mastication}}
+* Owns a state in the Niger region with a level 5 or higher Rubber Plantation
+|}
+
+===South Africa===
+{| class="wikitable plainlist"
+! Name
+! Buildings 
+!{{icon|cocb|24px}} Industry charters
+!{{icon|cocb|24px}} Prestige goods
+! Prosperity bonus
+! Requirements
+|-
+| {{icon|cocb}} De Beers Consolidated Mines Ltd.
+| {{iconify|Gold Mine|building|30px}}
+| {{iconify|Iron Mine|building|30px}}
+| {{icon|no}}
+|
+* {{green|+10%}} {{icon|Prestige|3=1}}
+* {{green|+5%}} Leverage generation
+* {{green|+5%}} Colony growth speed
+| Owns a state in the South Africa region with a level 5 or higher Gold Mine
+|}
+
+==References==
+<references />
+{{ConceptsNavbox}}
+[[Category:Economy]][[Category:Lists|F]]
+

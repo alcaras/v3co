@@ -1,0 +1,2597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Building Optimizer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .building-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .building-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .building-item:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+        
+        .building-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.3);
+        }
+        
+        .building-item label {
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .results-container {
+            max-height: 700px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+        }
+        
+        .result-item {
+            padding: 20px;
+            border-bottom: 1px solid #f1f3f4;
+            transition: background 0.3s ease;
+        }
+        
+        .result-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .score {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .companies-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .company-tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 6px 12px;
+            margin: 3px 6px 3px 0;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+        
+        .charters-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .charter-item {
+            margin: 5px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .prestige-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: #d1ecf1;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .prestige-item {
+            margin: 5px 0;
+            padding: 5px 0;
+        }
+        
+        .coverage-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        #maxCombinations, #maxCompanies {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .data-overview {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+
+        .optional-companies-container {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .company-card {
+            margin: 10px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: background 0.3s ease;
+        }
+
+        .company-card:hover {
+            background: #e9ecef;
+        }
+
+        .company-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .company-checkbox {
+            margin-top: 5px;
+            transform: scale(1.2);
+        }
+
+        .company-details {
+            flex: 1;
+        }
+
+        .company-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .company-info {
+            margin-bottom: 6px;
+        }
+
+        .company-requirements {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏭 Company Building Optimizer</h1>
+        
+        <div class="section">
+            <h2>📊 Company Data Overview</h2>
+            <div id="dataOverview" class="data-overview"></div>
+        </div>
+        
+        <div class="section">
+            <h2>🏭 Optional Flavored Companies</h2>
+            <p style="color: #6c757d; margin-bottom: 20px;">Select additional historical companies to include in optimization. These have specific requirements but offer unique bonuses.</p>
+            <div class="optional-companies-container">
+                <div id="optionalCompanies"></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🏢 Select Desired Buildings</h2>
+            <div class="controls">
+                <button onclick="selectAllBuildings()">Select All</button>
+                <button onclick="clearAllBuildings()">Clear All</button>
+                <label for="maxCombinations">Max Results:</label>
+                <input type="number" id="maxCombinations" value="20" min="1" max="100">
+                <label for="maxCompanies">Max Companies per Combo:</label>
+                <input type="number" id="maxCompanies" value="7" min="1" max="10">
+            </div>
+            <div id="buildingList" class="building-grid"></div>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 Optimization Results</h2>
+            <button onclick="findOptimalCombinations()" id="optimizeBtn">Find Optimal Combinations</button>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Define all companies with their buildings, charter options, and prestige bonuses
+        const basicCompanies = [
+            {
+                name: "Basic Agriculture 1",
+                mainBuildings: ["Wheat Farm", "Rye Farm"],
+                charterOptions: ["Maize Farm"],
+                prestigeGood: "Fine Grain",
+                prestigeBonus: "+10% Livestock Ranch throughput"
+            },
+            {
+                name: "Basic Agriculture 2", 
+                mainBuildings: ["Rice Farm", "Millet Farm", "Maize Farm"],
+                charterOptions: ["Rye Farm"],
+                prestigeGood: "Fine Grain",
+                prestigeBonus: "+10% Livestock Ranch throughput"
+            },
+            {
+                name: "Basic Fabrics",
+                mainBuildings: ["Livestock Ranch", "Cotton Plantation"],
+                charterOptions: ["Textile Mills"],
+                prestigeGood: "Prime Meat",
+                prestigeBonus: "+10% Textile Mills throughput"
+            },
+            {
+                name: "Basic Colonial Plantations 1",
+                mainBuildings: ["Tea Plantation", "Opium Plantation"],
+                charterOptions: ["Tobacco Plantation"],
+                prestigeGood: "Pure Opium", 
+                prestigeBonus: "−5% Radicals from movements"
+            },
+            {
+                name: "Basic Colonial Plantations 2",
+                mainBuildings: ["Coffee Plantation", "Sugar Plantation", "Tobacco Plantation"],
+                charterOptions: ["Tea Plantation"],
+                prestigeGood: "Reserve Coffee",
+                prestigeBonus: "+10% Colony growth speed"
+            },
+            {
+                name: "Basic Silk and Dye",
+                mainBuildings: ["Silk Plantation", "Dye Plantation"],
+                charterOptions: ["Textile Mills"],
+                prestigeGood: null,
+                prestigeBonus: "+10% Influence"
+            },
+            {
+                name: "Basic Wine and Fruit",
+                mainBuildings: ["Vineyard", "Banana Plantation"],
+                charterOptions: ["Sugar Plantation"],
+                prestigeGood: null,
+                prestigeBonus: "+10% Prestige"
+            },
+            {
+                name: "Basic Fishing",
+                mainBuildings: ["Fishing Wharf", "Whaling Station"],
+                charterOptions: ["Shipyard"],
+                prestigeGood: "Select Fish",
+                prestigeBonus: "+10% Convoys +5% Shipyards throughput"
+            },
+            {
+                name: "Basic Forestry",
+                mainBuildings: ["Logging Camp", "Rubber Plantation"],
+                charterOptions: ["Tooling Workshop"],
+                prestigeGood: null,
+                prestigeBonus: "+1 Infrastructure from population +20 Maximum infrastructure"
+            },
+            {
+                name: "Basic Oil",
+                mainBuildings: ["Oil Rig"],
+                charterOptions: ["Coal Mine"],
+                prestigeGood: null,
+                prestigeBonus: "+10% State migration attraction"
+            },
+            {
+                name: "Basic Gold Mining",
+                mainBuildings: ["Gold Mine"],
+                charterOptions: ["Lead Mine"],
+                prestigeGood: null,
+                prestigeBonus: "+5% Minting +5% Loyalists from movements"
+            },
+            {
+                name: "Basic Metal Mining",
+                mainBuildings: ["Iron Mine", "Lead Mine"],
+                charterOptions: ["Coal Mine"],
+                prestigeGood: null,
+                prestigeBonus: "+10% Steel Mills throughput"
+            },
+            {
+                name: "Basic Mineral Mining",
+                mainBuildings: ["Sulfur Mine", "Coal Mine"],
+                charterOptions: ["Iron Mine"],
+                prestigeGood: null,
+                prestigeBonus: "+10% Fertilizer Plants throughput"
+            },
+            {
+                name: "Basic Food",
+                mainBuildings: ["Food Industries"],
+                charterOptions: ["Livestock Ranch", "Wheat Farm"],
+                prestigeGood: "Gourmet Groceries",
+                prestigeBonus: "+5% Birth rate"
+            },
+            {
+                name: "Basic Paper",
+                mainBuildings: ["Paper Mills"],
+                charterOptions: ["Logging Camp"],
+                prestigeGood: "Craft Paper",
+                prestigeBonus: "+10% Bureaucracy"
+            },
+            {
+                name: "Basic Home Goods",
+                mainBuildings: ["Glassworks", "Furniture Manufacturies"],
+                charterOptions: ["Logging Camp", "Lead Mine"],
+                prestigeGood: "Stylish Furniture",
+                prestigeBonus: "+10% Loyalists from movements"
+            },
+            {
+                name: "Basic Textiles",
+                mainBuildings: ["Textile Mills"],
+                charterOptions: ["Cotton Plantation", "Silk Plantation"],
+                prestigeGood: "Designer Clothes",
+                prestigeBonus: "−10% Radicals from movements"
+            },
+            {
+                name: "Basic Steel",
+                mainBuildings: ["Steel Mills"],
+                charterOptions: ["Iron Mine", "Coal Mine"],
+                prestigeGood: "Refined Steel",
+                prestigeBonus: "+5% State construction efficiency"
+            },
+            {
+                name: "Basic Metalworks",
+                mainBuildings: ["Tooling Workshop"],
+                charterOptions: ["Iron Mine", "Steel Mills"],
+                prestigeGood: "Precision Tools",
+                prestigeBonus: "+5% Manufacturing throughput"
+            },
+            {
+                name: "Basic Shipyards",
+                mainBuildings: ["Shipyard", "Military Shipyard"],
+                charterOptions: ["Logging Camp"],
+                prestigeGood: null,
+                prestigeBonus: "+5% Navy Offense"
+            },
+            {
+                name: "Basic Chemicals",
+                mainBuildings: ["Fertilizer Plant", "Synthetics Plants"],
+                charterOptions: ["Sulfur Mine"],
+                prestigeGood: "Enriched Fertilizer",
+                prestigeBonus: "−5% Unit supply consumption"
+            },
+            {
+                name: "Basic Motors",
+                mainBuildings: ["Motor Industries", "Automotive Industries"],
+                charterOptions: ["Steel Mills"],
+                prestigeGood: null,
+                prestigeBonus: "+10% Formation travel speed"
+            },
+            {
+                name: "Basic Munitions",
+                mainBuildings: ["Munition Plants", "Explosives Factory"],
+                charterOptions: ["Sulfur Mine", "Steel Mills"],
+                prestigeGood: "High-grade Explosives",
+                prestigeBonus: "−10% Military goods cost"
+            },
+            {
+                name: "Basic Electrics",
+                mainBuildings: ["Electrics Industries"],
+                charterOptions: ["Iron Mine", "Rubber Plantation"],
+                prestigeGood: null,
+                prestigeBonus: "+10% Power Plant throughput"
+            },
+            {
+                name: "Basic Weapons",
+                mainBuildings: ["Arms Industries", "Artillery Foundries"],
+                charterOptions: ["Automotive Industries", "Steel Mills"],
+                prestigeGood: "High-powered Small Arms",
+                prestigeBonus: "+5% Army Offense"
+            }
+        ];
+
+        // Optional flavored companies by region
+        const optionalCompanies = {
+            "American Companies": [
+                {
+                    name: "United Construction Conglomerate",
+                    mainBuildings: ["Steel Mills", "Tooling Workshop", "Glassworks"],
+                    charterOptions: ["Lead Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Construction sector throughput",
+                    requirements: "Owns level 10+ Steel Mills, Tooling Workshops, or Glassworks + Construction III principle"
+                },
+                {
+                    name: "Bunge & Born",
+                    mainBuildings: ["Food Industries", "Wheat Farm", "Maize Farm"],
+                    charterOptions: ["Fertilizer Plant"],
+                    prestigeGood: "Gourmet Groceries",
+                    prestigeBonus: "+20% Rural Folk pop attraction +10% Tooling Workshop throughput",
+                    requirements: "Owns 3+ incorporated states in La Plata region with level 5+ Wheat Farm or Maize Farm"
+                },
+                {
+                    name: "Centro Vitivinícola Nacional",
+                    mainBuildings: ["Vineyard"],
+                    charterOptions: ["Livestock Ranch"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Prestige",
+                    requirements: "Is Argentina + Owns 2+ incorporated states in La Plata region with level 5+ Vineyard + Central Planning tech"
+                },
+                {
+                    name: "Ferrocarril Central Córdoba",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Coal Mine", "Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Wheat Farm throughput +5% Livestock Ranch throughput",
+                    requirements: "Railways tech + Córdoba incorporated with Railway + Owns 2+ states with level 5+ Railway and Pampas trait"
+                },
+                {
+                    name: "Compañía Sansinena de Carnes Congeladas",
+                    mainBuildings: ["Food Industries", "Livestock Ranch"],
+                    charterOptions: ["Port"],
+                    prestigeGood: "River Plate Beef",
+                    prestigeBonus: "+10% Trade Advantage +10% Port building throughput",
+                    requirements: "Buenos Aires incorporated with level 5+ Food Industry + La Plata region with level 5+ Livestock Ranch"
+                },
+                {
+                    name: "Compañía de Salitres y Ferrocarril de Antofagasta",
+                    mainBuildings: ["Railway", "Sulfur Mine"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+3 Industrialists approval +5% Infrastructure",
+                    requirements: "Railways tech + Antofagasta incorporated with level 5+ Sulfur Mine"
+                },
+                {
+                    name: "Compañía Estañífera de Llallagua",
+                    mainBuildings: ["Lead Mine"],
+                    charterOptions: ["Iron Mine", "Sulfur Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Industrialists political strength +10% Lead Mine throughput",
+                    requirements: "Potosí incorporated with level 5+ Lead Mine"
+                },
+                {
+                    name: "Klabin Irmãos & Cia.",
+                    mainBuildings: ["Paper Mills", "Logging Camp"],
+                    charterOptions: ["Sulfur Mine"],
+                    prestigeGood: "Rosewood",
+                    prestigeBonus: "+10% Tooling Workshop throughput +15 Max infrastructure from population",
+                    requirements: "Brazil region with level 5+ Paper Mill + Mechanical Tools tech"
+                },
+                {
+                    name: "São Paulo Railway Co. Ltd.",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Logging Camp", "Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Coffee Plantation throughput +10% Trade capacity",
+                    requirements: "Railways tech + São Paulo incorporated with Railway and level 5+ Coffee Plantation + 2+ Brazil region states with level 5+ Railway"
+                },
+                {
+                    name: "Estaleiro Mauá",
+                    mainBuildings: ["Military Shipyard", "Shipyard"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Convoys +10% Steel Mills throughput",
+                    requirements: "Rio de Janeiro incorporated with level 5+ Shipyard or Military Shipyard"
+                },
+                {
+                    name: "Companhia Fiação e Tecidos de Pernambuco",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation", "Livestock Ranch"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+10% Cotton Plantation throughput +5% Rubber Plantation throughput",
+                    requirements: "Pernambuco incorporated with level 5+ Textile Mill"
+                },
+                {
+                    name: "Fundição Ipanema",
+                    mainBuildings: ["Steel Mills", "Iron Mine"],
+                    charterOptions: ["Coal Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+5% Munition Plants throughput +10% Arms Industries throughput",
+                    requirements: "São Paulo incorporated with level 5+ Steel Mill or Iron Mine"
+                },
+                {
+                    name: "Amadeo Rossi & Cia.",
+                    mainBuildings: ["Arms Industries", "Munition Plants"],
+                    charterOptions: ["Explosives Factory"],
+                    prestigeGood: "High-powered Small Arms",
+                    prestigeBonus: "+10% Livestock Ranch throughput +5% Fertilizer Plants throughput",
+                    requirements: "Rio Grande do Sul incorporated with level 5+ Arms Industry"
+                },
+                {
+                    name: "Hudson's Bay Company",
+                    mainBuildings: ["Fishing Wharf", "Logging Camp"],
+                    charterOptions: ["Port", "Food Industries"],
+                    prestigeGood: "Select Fish",
+                    prestigeBonus: "+0.10 Colony growth generation +5% Textile Mills throughput",
+                    requirements: "Manitoba incorporated with level 5+ Food Industry"
+                },
+                {
+                    name: "Massey-Harris Limited",
+                    mainBuildings: ["Tooling Workshop", "Motor Industries"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Precision Tools",
+                    prestigeBonus: "+15% Agriculture Throughput",
+                    requirements: "Railways tech + Ontario incorporated with level 5+ Motor Industries"
+                },
+                {
+                    name: "Panama Canal Company",
+                    mainBuildings: ["Port", "Trade Center"],
+                    charterOptions: ["Shipyard"],
+                    prestigeGood: "Swift Merchant Marine",
+                    prestigeBonus: "+25% Trade advantage +50,000 Tax income +1 Max companies",
+                    requirements: "Owns Panama with Panama Canal 50%+ employment + level 5+ Port or Trade Center"
+                },
+                {
+                    name: "Fábrica de Armas de la Nación",
+                    mainBuildings: ["Arms Industries", "Artillery Foundries", "Munition Plants"],
+                    charterOptions: ["Explosives Factory"],
+                    prestigeGood: "High-powered Small Arms",
+                    prestigeBonus: "+10% Offense +5% Steel Mills throughput",
+                    requirements: "Santiago incorporated with level 5+ Arms Industry + Gunsmithing tech"
+                },
+                {
+                    name: "Compañía Sudamericana de Vapores",
+                    mainBuildings: ["Port"],
+                    charterOptions: ["Shipyard", "Logging Camp"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Colony growth speed +10% Convoys",
+                    requirements: "Santiago incorporated with level 5+ Shipyard + Screw Frigate tech"
+                },
+                {
+                    name: "Fundidora de Fierro y Acero de Monterrey",
+                    mainBuildings: ["Steel Mills", "Coal Mine"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+5% Railway throughput +10% Iron Mine throughput",
+                    requirements: "Río Grande incorporated with level 5+ Steel Mill + Bessemer Process tech"
+                },
+                {
+                    name: "El Águila",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Convoys +3 Industrialists approval",
+                    requirements: "Level 5+ Oil Rig in incorporated coastal state in Mexico + Pumpjacks tech"
+                },
+                {
+                    name: "La Rosada",
+                    mainBuildings: ["Steel Mills", "Arms Industries", "Artillery Foundries"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+5% Defense +10% Iron Mine throughput",
+                    requirements: "Bajo Paraguay incorporated with level 5+ Arms Industry + Shell Gun tech"
+                },
+                {
+                    name: "Peruvian Amazon Company",
+                    mainBuildings: ["Rubber Plantation"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Loyalists from movements +10% Rubber Industry employee mortality",
+                    requirements: "Owns Pastaza with level 5+ Rubber Plantation + Rubber Mastication tech"
+                },
+                {
+                    name: "Empresas Eléctricas Asociadas",
+                    mainBuildings: ["Power Plant"],
+                    charterOptions: ["Coal Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Construction efficiency +5% Infrastructure from population",
+                    requirements: "Electrical Generation tech + Lima incorporated with level 5+ Power Plant"
+                },
+                {
+                    name: "Standard Oil",
+                    mainBuildings: ["Oil Rig", "Railway"],
+                    charterOptions: ["Port"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Railway throughput",
+                    requirements: "Owns level 5+ Oil Rig in The Midwest region + Pumpjacks tech"
+                },
+                {
+                    name: "United Fruit Company",
+                    mainBuildings: ["Banana Plantation", "Sugar Plantation"],
+                    charterOptions: ["Railway"],
+                    prestigeGood: "Gros Michel Banana",
+                    prestigeBonus: "−25% Infamy decay +20% Plantations throughput",
+                    requirements: "Yankee/Dixie culture + Louisiana level 5+ Sugar Plantation + 5+ Banana Plantation levels in Central/South America"
+                },
+                {
+                    name: "Carnegie Steel Co.",
+                    mainBuildings: ["Steel Mills", "Iron Mine", "Coal Mine"],
+                    charterOptions: ["Arts Academy"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+10% Railway throughput +10% Shipyards throughput",
+                    requirements: "Pennsylvania level 5+ Steel Mill + Open Hearth Process tech"
+                },
+                {
+                    name: "General Electric",
+                    mainBuildings: ["Electrics Industries", "Power Plant"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: "Radiola Radios",
+                    prestigeBonus: "+5% Innovation +10% Motor Industries throughput",
+                    requirements: "Telephone tech + Massachusetts or New York level 5+ Electrics Industry"
+                },
+                {
+                    name: "William Cramp & Sons",
+                    mainBuildings: ["Military Shipyard", "Shipyard", "Motor Industries"],
+                    charterOptions: ["Artillery Foundries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Navy offense +5% Navy defense",
+                    requirements: "New Jersey/Delaware/Maryland level 5+ Shipyard or Military Shipyard + Gantry Cranes tech"
+                },
+                {
+                    name: "Ford Motor Company",
+                    mainBuildings: ["Motor Industries", "Automotive Industries"],
+                    charterOptions: ["Steel Mills", "Rubber Plantation"],
+                    prestigeGood: "Ford Automobiles",
+                    prestigeBonus: "+15% Motor Industries throughput +5% Automotive Industries throughput",
+                    requirements: "Michigan level 5+ Motor Industry + Combustion Engine tech"
+                },
+                {
+                    name: "Colt's Patent Firearms Manufacturing Company",
+                    mainBuildings: ["Arms Industries"],
+                    charterOptions: ["Munition Plants"],
+                    prestigeGood: "Colt Revolvers",
+                    prestigeBonus: "+10% Army Offense +10% Arms Industries Throughput",
+                    requirements: "Connecticut incorporated with level 5+ Arms Industries"
+                },
+                {
+                    name: "Lee Wilson & Company",
+                    mainBuildings: ["Wheat Farm", "Cotton Plantation", "Logging Camp"],
+                    charterOptions: ["Railway"],
+                    prestigeGood: "Sea Island Cotton",
+                    prestigeBonus: "+10% Textile Mills Throughput +5% Power Plants Throughput",
+                    requirements: "Arkansas incorporated with level 5+ Cotton plantations or Logging Camps"
+                },
+                {
+                    name: "Caribbean Petroleum Company",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Convoys +3 Industrialists approval",
+                    requirements: "Zulia or Miranda incorporated with level 5+ Oil Rig + Pumpjacks tech"
+                },
+                {
+                    name: "C.A. La Electricidad de Caracas",
+                    mainBuildings: ["Power Plant"],
+                    charterOptions: ["Motor Industries", "Coal Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5 Infrastructure from population +10 Max infrastructure from population",
+                    requirements: "Electrical Generation tech + Miranda incorporated with level 5+ Power Plant"
+                }
+            ],
+            "Asian Companies": [
+                {
+                    name: "William Sandford Limited",
+                    mainBuildings: ["Steel Mills"],
+                    charterOptions: ["Iron Mine", "Coal Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+15% Railway throughput",
+                    requirements: "New South Wales incorporated with level 5+ Steel Mill + Bessemer Process tech"
+                },
+                {
+                    name: "Kaiping Mining Company",
+                    mainBuildings: ["Coal Mine", "Railway"],
+                    charterOptions: ["Iron Mine", "Lead Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Technology spread",
+                    requirements: "Beijing or Hebei incorporated with level 5+ Coal Mine + Steam Donkey and Railways tech"
+                },
+                {
+                    name: "Hanyang Arsenal",
+                    mainBuildings: ["Arms Industries", "Artillery Foundries", "Munition Plants"],
+                    charterOptions: ["Explosives Factory"],
+                    prestigeGood: "High-powered Small Arms",
+                    prestigeBonus: "+15% Morale recovery +20% Shrapnel Artillery offense",
+                    requirements: "Eastern Hubei incorporated with level 5+ Arms Industry + Breech-Loading Artillery tech"
+                },
+                {
+                    name: "Foochow Shipyard",
+                    mainBuildings: ["Shipyard", "Military Shipyard"],
+                    charterOptions: ["Steel Mills", "Logging Camp"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Port throughput +5% Navy offense",
+                    requirements: "Fujian incorporated with level 5+ Military Shipyard + Ironclad and Gantry Cranes tech"
+                },
+                {
+                    name: "Jingdezhen Kilns",
+                    mainBuildings: ["Glassworks"],
+                    charterOptions: ["Lead Mine"],
+                    prestigeGood: "Canton Porcelain",
+                    prestigeBonus: "+15% Prestige +5% Lead Mine throughput",
+                    requirements: "Jiangxi incorporated with level 5+ Glassworks + Chemical Bleaching tech"
+                },
+                {
+                    name: "Jiangnan Weaving Bureaus",
+                    mainBuildings: ["Silk Plantation", "Textile Mills"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: "Suzhou Silk",
+                    prestigeBonus: "+10% Authority +10% Influence",
+                    requirements: "Suzhou, Zhejiang, or Nanjing incorporated with level 5+ Silk Plantation or Textile Mill"
+                },
+                {
+                    name: "Ong Lung Sheng Tea Company",
+                    mainBuildings: ["Tea Plantation"],
+                    charterOptions: ["Food Industries"],
+                    prestigeGood: "China Tea",
+                    prestigeBonus: "+5% Bureaucracy +5% Loyalists from legitimacy",
+                    requirements: "Owns 3+ states in South China region with level 5+ Tea Plantation"
+                },
+                {
+                    name: "Assam Company",
+                    mainBuildings: ["Tea Plantation"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "Assam Tea",
+                    prestigeBonus: "+20% Tea Plantation throughput −5% Radicals from movements",
+                    requirements: "Assam incorporated with level 5+ Tea Plantation"
+                },
+                {
+                    name: "Bengal Coal Company",
+                    mainBuildings: ["Coal Mine"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Industrialists political strength +10% Iron Mine throughput",
+                    requirements: "West Bengal incorporated with level 5+ Coal Mine"
+                },
+                {
+                    name: "Bombay Burmah Trading Corporation",
+                    mainBuildings: ["Logging Camp", "Rubber Plantation"],
+                    charterOptions: ["Tea Plantation", "Cotton Plantation", "Oil Rig"],
+                    prestigeGood: "Teak",
+                    prestigeBonus: "+10% Coffee Plantation throughput +10% Tea Plantation throughput",
+                    requirements: "Bombay incorporated or Trade Privileges + Owns 2 states with Burmese Teak trait with level 5+ Logging Camp"
+                },
+                {
+                    name: "Bombay Dyeing and Manufacturing Company Limited",
+                    mainBuildings: ["Textile Mills", "Cotton Plantation"],
+                    charterOptions: [],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+20% Dye Plantation throughput +5% Cotton Plantation throughput",
+                    requirements: "Bombay incorporated with level 5+ Textile Mill + Cotton Gin tech"
+                },
+                {
+                    name: "Calcutta Electric Supply Corporation Limited",
+                    mainBuildings: ["Power Plant", "Coal Mine"],
+                    charterOptions: [],
+                    prestigeGood: null,
+                    prestigeBonus: "+6 Infrastructure from population +12 Max infrastructure from population",
+                    requirements: "Electrical Generation tech + West Bengal incorporated with level 5+ Power Plant"
+                },
+                {
+                    name: "David Sassoon & Co., Ltd",
+                    mainBuildings: ["Cotton Plantation", "Opium Plantation"],
+                    charterOptions: ["Port"],
+                    prestigeGood: "Pure Opium",
+                    prestigeBonus: "+5% Trade advantage",
+                    requirements: "Bombay incorporated with level 5+ Cotton Plantation + Indian strategic regions with level 5+ Opium Plantation"
+                },
+                {
+                    name: "East India Company",
+                    mainBuildings: ["Tea Plantation", "Tobacco Plantation", "Opium Plantation"],
+                    charterOptions: ["Silk Plantation", "Sugar Plantation"],
+                    prestigeGood: "Bengal Opium",
+                    prestigeBonus: "+20% Convoys",
+                    requirements: "Great Britain + 3+ Indian states with level 5+ Tea/Opium/Tobacco Plantation + Mercantilism/Protectionism"
+                },
+                {
+                    name: "Great Indian Peninsula Railway",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+0.5 Infrastructure from population +20 Max infrastructure from population",
+                    requirements: "Railways tech + Owns 3+ incorporated states in Indian strategic regions with level 5+ Railway"
+                },
+                {
+                    name: "Madura Mills Co. Ltd",
+                    mainBuildings: ["Textile Mills", "Rubber Plantation", "Cotton Plantation"],
+                    charterOptions: [],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+10% Petite Bourgeoisie attraction +10% Textile Mill throughput +5% State religion wages",
+                    requirements: "Madras region incorporated state with level 5+ Textile Mill + Cotton Gin tech"
+                },
+                {
+                    name: "Ralli Brothers",
+                    mainBuildings: ["Rice Farm", "Wheat Farm"],
+                    charterOptions: ["Port", "Cotton Plantation", "Textile Mills"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+10% Sulfur Mine throughput +10% Textile Mills throughput +5% Trade advantage",
+                    requirements: "Bombay or West Bengal incorporated + Owns 4+ states in Indian strategic regions with level 5+ Rice or Wheat Farm"
+                },
+                {
+                    name: "Steel Brothers & Co. Ltd",
+                    mainBuildings: ["Oil Rig", "Rice Farm"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+20% Logging Camp throughput",
+                    requirements: "Owns state with Burmese Teak trait with level 5+ Oil Rig and Rice Farm + Pumpjacks tech"
+                },
+                {
+                    name: "Tata",
+                    mainBuildings: ["Textile Mills", "Steel Mills"],
+                    charterOptions: ["Iron Mine", "Motor Industries"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+5% Construction sector throughput +10 Max weekly construction progress",
+                    requirements: "Bombay incorporated with level 5+ Textile Mill or Steel Mill"
+                },
+                {
+                    name: "Wadia Shipbuilders",
+                    mainBuildings: ["Shipyard", "Military Shipyard"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Petite Bourgeoisie attraction +10% Convoys −5% Radicalism for discriminated statuses",
+                    requirements: "Bombay incorporated with level 5+ Shipyard or Military Shipyard + Gantry Cranes tech"
+                },
+                {
+                    name: "Mitsui",
+                    mainBuildings: ["Textile Mills", "Lead Mine", "Silk Plantation"],
+                    charterOptions: ["Shipyard", "Port", "Fertilizer Plant", "Iron Mine"],
+                    prestigeGood: "Tomioka Silk",
+                    prestigeBonus: "+10% Iron Mine throughput +20% Industrialists political strength",
+                    requirements: "Cotton Gin tech + Kansai incorporated with level 5+ Textile Mill + Honorable Restoration completed"
+                },
+                {
+                    name: "South Manchuria Railway",
+                    mainBuildings: ["Railway", "Coal Mine", "Glassworks"],
+                    charterOptions: ["Food Industries", "Fertilizer Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Colony growth speed in non-homeland states +15% Wheat Farm throughput",
+                    requirements: "Japanese culture + Railways tech + Owns Shengjing + 2+ Manchuria/North China states with level 5 Railway + Honorable Restoration completed"
+                },
+                {
+                    name: "Mitsubishi",
+                    mainBuildings: ["Paper Mills", "Military Shipyard", "Coal Mine"],
+                    charterOptions: ["Shipyard", "Motor Industries", "Port", "Iron Mine"],
+                    prestigeGood: "Washi Paper",
+                    prestigeBonus: "+2 Industrialists approval +10% Automotive Industries throughput",
+                    requirements: "Japanese culture + Ironclad tech + Chugoku incorporated with level 5+ Paper Mill or Military Shipyard + Honorable Restoration completed"
+                },
+                {
+                    name: "Kinkozan Sobei",
+                    mainBuildings: ["Glassworks"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "Satsuma Ware",
+                    prestigeBonus: "+5% Influence +10% Infamy decay +5% Leverage generation",
+                    requirements: "Kansai incorporated with level 5+ Glassworks"
+                },
+                {
+                    name: "Sunhwaguk",
+                    mainBuildings: ["Tobacco Plantation", "Rice Farm"],
+                    charterOptions: ["Food Industries", "Synthetics Plants"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+10% Technology spread",
+                    requirements: "Korean homeland incorporated with level 5+ Tobacco Plantation + Central Planning tech"
+                },
+                {
+                    name: "Hanseong Jeongi Hoesa",
+                    mainBuildings: ["Power Plant"],
+                    charterOptions: ["Railway"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Arts Academy throughput +5% Railway throughput",
+                    requirements: "Electrical Generation tech + Gyeonggi incorporated with level 5+ Power Plant"
+                },
+                {
+                    name: "Oriental Development Company",
+                    mainBuildings: ["Rice Farm", "Millet Farm", "Wheat Farm"],
+                    charterOptions: ["Maize Farm", "Food Industries"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+5% Railway throughput +10% Migration attraction",
+                    requirements: "Civilizing Mission tech + Owns 4+ incorporated Korean homelands with level 5+ Rice, Millet, or Wheat Farms"
+                },
+                {
+                    name: "Lanfang Kongsi",
+                    mainBuildings: ["Gold Mine", "Port"],
+                    charterOptions: ["Rice Farm", "Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Agriculture throughput +10% Home Defense",
+                    requirements: "Hakka cultural acceptance at least Second-class Citizen + Owns West/East/North Borneo with level 5+ Gold Mine"
+                },
+                {
+                    name: "San Miguel",
+                    mainBuildings: ["Food Industries"],
+                    charterOptions: ["Wheat Farm", "Maize Farm", "Rye Farm"],
+                    prestigeGood: "Gourmet Groceries",
+                    prestigeBonus: "−10% Radicals from movements",
+                    requirements: "Indonesia region incorporated state with level 5+ Food Industry + Corporate Charters tech"
+                },
+                {
+                    name: "B. Grimm",
+                    mainBuildings: ["Rice Farm"],
+                    charterOptions: ["Synthetics Plants"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+10% Food Industries throughput +10% Infrastructure from population",
+                    requirements: "Bangkok incorporated with level 5+ Rice Farm"
+                },
+                {
+                    name: "Nam Định Textile Factory",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation", "Silk Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+10% Technology spread",
+                    requirements: "Tonkin incorporated with level 5+ Textile Mill + Corporate Charters tech"
+                }
+            ],
+            "European Companies": [
+                {
+                    name: "Škoda Works",
+                    mainBuildings: ["Steel Mills", "Motor Industries", "Artillery Foundries"],
+                    charterOptions: ["Automotive Industries"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+1 General advancement speed +15% Siege Artillery offense",
+                    requirements: "Bohemia incorporated with level 5+ Steel Mill/Arms Industry/Artillery Foundry + Shell Gun tech"
+                },
+                {
+                    name: "MÁVAG",
+                    mainBuildings: ["Motor Industries", "Tooling Workshop"],
+                    charterOptions: ["Automotive Industries"],
+                    prestigeGood: "Precision Tools",
+                    prestigeBonus: "+10% Railway throughput",
+                    requirements: "Central Hungary incorporated with level 5+ Motor Industry + Railways tech"
+                },
+                {
+                    name: "Manfréd Weiss Steel and Metal Works",
+                    mainBuildings: ["Steel Mills", "Munition Plants", "Automotive Industries"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+5% Offense +5% Military technology spread",
+                    requirements: "Central Hungary incorporated with level 5+ Steel Mill + Open Hearth Process tech"
+                },
+                {
+                    name: "Galician Carpathian Petroleum Company",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant", "Coal Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Tooling Workshop throughput +5% Railway throughput",
+                    requirements: "Pumpjacks tech + East/West Galicia incorporated with level 5+ Oil Rig"
+                },
+                {
+                    name: "Österreichische Waffenfabriks-Gesellschaft",
+                    mainBuildings: ["Arms Industries", "Artillery Foundries"],
+                    charterOptions: ["Steel Mills", "Munition Plants", "Electrics Industries"],
+                    prestigeGood: "High-powered Small Arms",
+                    prestigeBonus: "+5% Defense +10% Munition Plants throughput",
+                    requirements: "Austria incorporated with level 5+ Arms Industry + Percussion Cap tech"
+                },
+                {
+                    name: "Glasfabrik Ludwig Moser & Söhne",
+                    mainBuildings: ["Glassworks"],
+                    charterOptions: ["Lead Mine"],
+                    prestigeGood: "Bohemian Crystal",
+                    prestigeBonus: "+5% Influence +5% Arts Academy throughput +10% Leverage Generation",
+                    requirements: "Bohemia incorporated with level 5+ Glassworks"
+                },
+                {
+                    name: "Gebrüder Thonet",
+                    mainBuildings: ["Furniture Manufacturies"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "Bentwood Furniture",
+                    prestigeBonus: "+10% Bourgeoisie pop attraction −5% Radicals from political movements +10% Furniture Manufacturies throughput",
+                    requirements: "Austria incorporated with level 5+ Furniture Manufactury"
+                },
+                {
+                    name: "Compagnie du Congo",
+                    mainBuildings: ["Rubber Plantation", "Logging Camp", "Iron Mine"],
+                    charterOptions: ["Railway", "Livestock Ranch"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Prestige +20% Rubber Industry employee mortality",
+                    requirements: "Wallonian culture + Congo region with level 5+ Rubber Plantation"
+                },
+                {
+                    name: "Société Franco-Belge",
+                    mainBuildings: ["Motor Industries", "Railway"],
+                    charterOptions: ["Steel Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Infrastructure",
+                    requirements: "Flanders or Wallonia incorporated with level 5+ Motor Industry"
+                },
+                {
+                    name: "Société anonyme John Cockerill",
+                    mainBuildings: ["Steel Mills", "Tooling Workshop", "Motor Industries"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Precision Tools",
+                    prestigeBonus: "+10% Railway throughput",
+                    requirements: "Flanders or Wallonia incorporated with level 5+ Steel Mill"
+                },
+                {
+                    name: "Chr. Hansen",
+                    mainBuildings: ["Food Industries", "Fertilizer Plant"],
+                    charterOptions: ["Synthetics Plants"],
+                    prestigeGood: "Gourmet Groceries",
+                    prestigeBonus: "+10% Livestock Ranch throughput +10% Fishing Wharf throughput",
+                    requirements: "Zealand incorporated with level 5+ Food Industry or Fertilizer Plant"
+                },
+                {
+                    name: "A.P. Møller",
+                    mainBuildings: ["Port"],
+                    charterOptions: ["Logging Camp", "Shipyard"],
+                    prestigeGood: "Swift Merchant Marine",
+                    prestigeBonus: "+20% Convoys +10% Industrialists pop attraction",
+                    requirements: "Zealand incorporated with level 5+ Shipyard"
+                },
+                {
+                    name: "Nokia",
+                    mainBuildings: ["Paper Mills", "Logging Camp", "Power Plant"],
+                    charterOptions: ["Electrics Industries"],
+                    prestigeGood: "Craft Paper",
+                    prestigeBonus: "+10% Electrics Industry throughput +5% Synthetics Plants throughput",
+                    requirements: "Uusimaa incorporated with level 5+ Paper Mill + Atmospheric Engine tech"
+                },
+                {
+                    name: "Société Mokta El Hadid",
+                    mainBuildings: ["Iron Mine", "Sulfur Mine"],
+                    charterOptions: ["Lead Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Colony growth speed in non-homeland states",
+                    requirements: "Owns Constantine with level 5+ Iron Mine + Bessemer Process tech"
+                },
+                {
+                    name: "Schneider et Cie",
+                    mainBuildings: ["Steel Mills", "Artillery Foundries", "Motor Industries"],
+                    charterOptions: ["Railway", "Military Shipyard"],
+                    prestigeGood: "Schneider Guns",
+                    prestigeBonus: "−10% Morale loss +10% Morale recovery",
+                    requirements: "Burgundy incorporated with level 5+ Steel Mill + Steelworking tech"
+                },
+                {
+                    name: "Dollfus-Mieg et Compagnie",
+                    mainBuildings: ["Textile Mills", "Coal Mine"],
+                    charterOptions: ["Cotton Plantation", "Dye Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+10% Assimilation",
+                    requirements: "Burgundy incorporated with level 5+ Textile Mill + Cotton Gin tech"
+                },
+                {
+                    name: "Confédération générale des vignerons",
+                    mainBuildings: ["Vineyard"],
+                    charterOptions: ["Food Industries"],
+                    prestigeGood: "Champagne",
+                    prestigeBonus: "+15% Prestige +10% Vineyard throughput",
+                    requirements: "French or Occitan culture + Champagne incorporated with level 5+ vineyard + Joint-Stock Companies tech"
+                },
+                {
+                    name: "Manufacture d'armes de Saint-Étienne",
+                    mainBuildings: ["Arms Industries", "Artillery Foundries", "Munition Plants"],
+                    charterOptions: ["Explosives Factory"],
+                    prestigeGood: "Saint-Etienne Rifles",
+                    prestigeBonus: "+5% Offense +5% Defense",
+                    requirements: "Rhône incorporated with level 5+ Arms Industry + Bolt-Action Rifle tech"
+                },
+                {
+                    name: "Forges et Chantiers de la Méditerranée",
+                    mainBuildings: ["Shipyard", "Military Shipyard", "Automotive Industries"],
+                    charterOptions: ["Steel Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Navy offense +10% Heavy Tanks offense",
+                    requirements: "Provence incorporated with level 5+ Shipyard or Military Shipyard + Ironclad tech"
+                },
+                {
+                    name: "Compagnie des mines d'Anzin",
+                    mainBuildings: ["Coal Mine"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Railway throughput +5% Steel Mills throughput",
+                    requirements: "French Low Countries incorporated with level 5+ Coal Mine"
+                },
+                {
+                    name: "Maison Worth",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation", "Arts Academy"],
+                    prestigeGood: "Haute Couture",
+                    prestigeBonus: "+5% Country Influence +5% Country Leverage Generation +5% State Assimilation",
+                    requirements: "Île-de-France incorporated with level 5+ Textile Mill"
+                },
+                {
+                    name: "Friedrich Krupp",
+                    mainBuildings: ["Steel Mills", "Artillery Foundries", "Arms Industries"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Krupp Guns",
+                    prestigeBonus: "+10% Railway throughput +10% Kill rate",
+                    requirements: "Ruhr incorporated with level 5+ Steel Mill/Arms Industry/Artillery Foundry + Steelworking tech"
+                },
+                {
+                    name: "Rheinmetall",
+                    mainBuildings: ["Explosives Factory", "Artillery Foundries", "Munition Plants"],
+                    charterOptions: ["Motor Industries", "Steel Mills"],
+                    prestigeGood: "Quick-fire Artillery",
+                    prestigeBonus: "+10% Siege Artillery offense +10% Shrapnel Artillery offense +5% Defense",
+                    requirements: "Ruhr or North Rhine incorporated with level 5+ Arms Industry/Munition Plant/Artillery Foundry + Automatic Machine Guns tech"
+                },
+                {
+                    name: "F. Schichau",
+                    mainBuildings: ["Shipyard", "Military Shipyard", "Motor Industries"],
+                    charterOptions: ["Railway", "Steel Mills"],
+                    prestigeGood: "Schichau Engines",
+                    prestigeBonus: "+5% Navy offense +10% Submarine offense",
+                    requirements: "Railways tech + West Prussia incorporated with level 5+ Motor Industry"
+                },
+                {
+                    name: "Siemens & Halske",
+                    mainBuildings: ["Electrics Industries"],
+                    charterOptions: ["Motor Industries", "Railway"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Power Plant throughput",
+                    requirements: "Brandenburg incorporated with level 5+ Electrics Industry + Electric Telegraph tech"
+                },
+                {
+                    name: "Preußische Staatseisenbahnen",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Formation movement speed",
+                    requirements: "Is Prussia or formed from Prussia + Railways tech + Owns 3+ incorporated states in North Germany/South Germany/Rhine/Poland regions with level 5+ Railway"
+                },
+                {
+                    name: "BASF",
+                    mainBuildings: ["Fertilizer Plant", "Synthetics Plants"],
+                    charterOptions: ["Dye Plantation", "Sulfur Mine"],
+                    prestigeGood: "German Aniline",
+                    prestigeBonus: "+5% Oil Extractors throughput +10% Innovation",
+                    requirements: "Aniline tech + Baden incorporated with level 5+ Synthetics Plant"
+                },
+                {
+                    name: "Königliche Porzellan-Manufaktur Meissen",
+                    mainBuildings: ["Glassworks"],
+                    charterOptions: ["Lead Mine"],
+                    prestigeGood: "Meissen Porcelain",
+                    prestigeBonus: "+10% Prestige +5% Arts Academy throughput +5% Synthetics Plants throughput",
+                    requirements: "Chemical Bleaching tech + Saxony incorporated with level 5+ Glassworks"
+                },
+                {
+                    name: "J. & P. Coats",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+15% Textile Mill throughput +5% Cotton Plantation throughput",
+                    requirements: "Lowlands incorporated with level 5+ Textile Mill + Cotton Gin tech"
+                },
+                {
+                    name: "John Brown & Company",
+                    mainBuildings: ["Shipyard", "Steel Mills", "Military Shipyard"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Clyde-Built Liners",
+                    prestigeBonus: "+5% Prestige +10% Convoys",
+                    requirements: "Lowlands incorporated with level 5+ Shipyard + Steelworking and Hydraulic Cranes tech"
+                },
+                {
+                    name: "Sir W. G. Armstrong Whitworth & Co.",
+                    mainBuildings: ["Motor Industries", "Munition Plants", "Military Shipyard"],
+                    charterOptions: [],
+                    prestigeGood: "Armstrong Ships",
+                    prestigeBonus: "+15% Carriers offense +10% Navy defense",
+                    requirements: "Yorkshire incorporated with level 5+ Military Shipyard + Ironclad and Gantry Cranes tech"
+                },
+                {
+                    name: "Great Western Railway",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Coal Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Prestige −5% Radicals from movements",
+                    requirements: "Railways tech + Owns 3+ incorporated states in England region with level 5+ Railway"
+                },
+                {
+                    name: "Bolckow, Vaughan & Co.",
+                    mainBuildings: ["Coal Mine", "Iron Mine", "Steel Mills"],
+                    charterOptions: ["Lead Mine"],
+                    prestigeGood: "Sheffield Steel",
+                    prestigeBonus: "+10% Shipyard throughput +10% Military Shipyard throughput",
+                    requirements: "Yorkshire incorporated with level 5+ Coal Mine/Iron Mine/Steel Mill + Bessemer Process tech"
+                },
+                {
+                    name: "Arthur Guinness Son & Co. Ltd",
+                    mainBuildings: ["Food Industries"],
+                    charterOptions: ["Wheat Farm", "Rye Farm"],
+                    prestigeGood: "Gourmet Groceries",
+                    prestigeBonus: "−10% Radicals from movements −5% Radicalism for discriminated statuses",
+                    requirements: "Leinster incorporated with level 5+ Food Industry + Corporate Charters tech"
+                },
+                {
+                    name: "Maple & Co.",
+                    mainBuildings: ["Furniture Manufacturies"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "English Upholstery",
+                    prestigeBonus: "+5% Prestige +10% Government Structures Throughput",
+                    requirements: "Home Counties incorporated with level 5+ Furniture Manufacturies"
+                },
+                {
+                    name: "Basileiades",
+                    mainBuildings: ["Motor Industries", "Shipyard"],
+                    charterOptions: ["Military Shipyard"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Convoys +5% Infrastructure",
+                    requirements: "Attica incorporated with level 5+ Motor Industry or Shipyard + Railways tech"
+                },
+                {
+                    name: "Kouppas",
+                    mainBuildings: ["Motor Industries", "Tooling Workshop"],
+                    charterOptions: ["Automotive Industries"],
+                    prestigeGood: "Precision Tools",
+                    prestigeBonus: "+10% Railway throughput +5% Steel Mills throughput",
+                    requirements: "Attica incorporated with level 5+ Motor Industry or Tooling Workshop + Mechanical Tools tech"
+                },
+                {
+                    name: "Ilva",
+                    mainBuildings: ["Steel Mills", "Iron Mine"],
+                    charterOptions: ["Coal Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+5% Artillery Foundry throughput +10% Railway throughput",
+                    requirements: "Piedmont incorporated with level 5+ Steel Mill + Arc Welding tech"
+                },
+                {
+                    name: "Gio. Ansaldo & C.",
+                    mainBuildings: ["Steel Mills", "Military Shipyard", "Artillery Foundries"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+5% Army Offense +5% Navy Offense",
+                    requirements: "Piedmont incorporated with level 5+ Motor Industry/Arms Industry/Artillery Foundry"
+                },
+                {
+                    name: "FIAT",
+                    mainBuildings: ["Motor Industries", "Automotive Industries"],
+                    charterOptions: ["Steel Mills"],
+                    prestigeGood: "Turin Automobiles",
+                    prestigeBonus: "+5% Army Offense +10% Formation movement speed",
+                    requirements: "Railways and Combustion Engine tech + Piedmont incorporated with level 5+ Motor Industry or Automotive Industry"
+                },
+                {
+                    name: "G. Ricordi & C.",
+                    mainBuildings: ["Arts Academy"],
+                    charterOptions: ["Vineyard"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Prestige +5% Loyalists from movements",
+                    requirements: "Lombardy incorporated with level 5+ Arts Academy"
+                },
+                {
+                    name: "Stabilimento Tecnico Triestino",
+                    mainBuildings: ["Shipyard", "Military Shipyard"],
+                    charterOptions: ["Motor Industries", "Steel Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Convoys +5% Navy defense",
+                    requirements: "Istria incorporated with level 5+ Shipyard or Military Shipyard + Gantry Cranes tech"
+                },
+                {
+                    name: "Anglo-Sicilian Sulphur Company",
+                    mainBuildings: ["Sulfur Mine"],
+                    charterOptions: ["Port"],
+                    prestigeGood: "Sicilian Sulfur",
+                    prestigeBonus: "+10% Munition Plants throughput +5% Plantations throughput +5% Agriculture throughput",
+                    requirements: "Sicily incorporated with level 5+ Sulfur Mine + Not at war with Great Britain"
+                },
+                {
+                    name: "Mantero Sera",
+                    mainBuildings: ["Silk Plantation", "Textile Mills"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: "Como Silk",
+                    prestigeBonus: "+5% Prestige +10% Synthetics Plants throughput",
+                    requirements: "Lombardy incorporated with level 5+ Silk Plantation or Textile Mill"
+                },
+                {
+                    name: "Nederlandse Petroleum Maatschappij",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Colony growth speed",
+                    requirements: "Dutch culture + Indonesia region incorporated state with level 5+ Oil Rig + Pumpjacks tech"
+                },
+                {
+                    name: "Philips",
+                    mainBuildings: ["Electrics Industries"],
+                    charterOptions: ["Power Plant", "Motor Industries"],
+                    prestigeGood: "Chapel Radios",
+                    prestigeBonus: "+5% Innovation +15 Max innovation investment",
+                    requirements: "Telephone tech + Holland or Gelre incorporated with level 5+ Electrics Industry"
+                },
+                {
+                    name: "Agers Mechaniske Værksted",
+                    mainBuildings: ["Shipyard", "Motor Industries"],
+                    charterOptions: ["Military Shipyard"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Convoys +5% Fishing Wharf throughput",
+                    requirements: "Eastern Norway incorporated with level 5+ Shipyard + Gantry Cranes tech"
+                },
+                {
+                    name: "Norsk Hydroelektrisk Kvælstofaktieselskap",
+                    mainBuildings: ["Fertilizer Plant", "Power Plant"],
+                    charterOptions: ["Sulfur Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Agriculture Throughput +5% Technology Spread for Production",
+                    requirements: "Western Norway incorporated with Power Plant and level 5+ Fertilizer Plant + Electrical Generation tech"
+                },
+                {
+                    name: "Ursus",
+                    mainBuildings: ["Motor Industries"],
+                    charterOptions: ["Automotive Industries", "Steel Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Wheat Farm throughput",
+                    requirements: "Warszawa incorporated with level 5+ Motor Industry + Combustion Engine tech"
+                },
+                {
+                    name: "Lilpop, Rau i Loewenstein",
+                    mainBuildings: ["Tooling Workshop", "Steel Mills", "Iron Mine"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+10% Motor Industries throughput",
+                    requirements: "Mazovia or Warszawa incorporated with level 5+ Steel Mill"
+                },
+                {
+                    name: "Companhia de Moçambique",
+                    mainBuildings: ["Cotton Plantation", "Tea Plantation", "Rice Farm"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+0.10 Colonial growth generation +10% Colony growth speed",
+                    requirements: "Portuguese culture + Owns Mocambique/Zambezia/Lourenço Marques with level 5+ Cotton Plantation or Tea Plantation + Mutual Funds tech"
+                },
+                {
+                    name: "Căile Ferate Române",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+15% Trade capacity +5% Infrastructure",
+                    requirements: "Romanian culture + Railways tech + Owns 2+ incorporated Romanian homelands with level 5 Railway"
+                },
+                {
+                    name: "Steaua Română",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Oil Extractors throughput",
+                    requirements: "Pumpjacks tech + Wallachia incorporated with level 5+ Oil Rig"
+                },
+                {
+                    name: "Vodka Monopoly",
+                    mainBuildings: ["Food Industries", "Vineyard"],
+                    charterOptions: ["Wheat Farm", "Rye Farm"],
+                    prestigeGood: "Smirnoff Vodka",
+                    prestigeBonus: "−15% Radicals from movements",
+                    requirements: "Russian culture + Does not have Laissez-Faire + Owns incorporated state with level 5+ Food Industry"
+                },
+                {
+                    name: "Society of Putilov Factories",
+                    mainBuildings: ["Motor Industries", "Military Shipyard", "Artillery Foundries"],
+                    charterOptions: ["Munition Plants"],
+                    prestigeGood: "Quick-fire Artillery",
+                    prestigeBonus: "+5% Infrastructure +10% Railway throughput",
+                    requirements: "Ingria incorporated with level 5+ Motor Industry/Military Shipyard/Artillery Foundry + Railways tech"
+                },
+                {
+                    name: "Branobel",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: "Baku Oil",
+                    prestigeBonus: "+10% Migration attraction +5% Railway throughput",
+                    requirements: "Owns Baku with level 5+ Oil Rig + Pumpjacks tech"
+                },
+                {
+                    name: "Izhevsk Arms Plant",
+                    mainBuildings: ["Arms Industries", "Munition Plants"],
+                    charterOptions: ["Artillery Foundries", "Steel Mills"],
+                    prestigeGood: "High-powered Small Arms",
+                    prestigeBonus: "+10% Arms Industries throughput +10% Artillery Foundry throughput",
+                    requirements: "Perm incorporated with level 5+ Arms Industry + Rifling tech"
+                },
+                {
+                    name: "Savva Morozov & Sons",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+10% Prestige +10% Industrialists pop attraction",
+                    requirements: "Moscow incorporated with level 5+ Textile Mill + Joint-Stock Companies tech"
+                },
+                {
+                    name: "New Russia Company Ltd.",
+                    mainBuildings: ["Steel Mills", "Coal Mine", "Iron Mine"],
+                    charterOptions: ["Railway"],
+                    prestigeGood: "Russia Iron",
+                    prestigeBonus: "+2 Industrialists approval +10% Railway throughput",
+                    requirements: "Bessemer Process tech + Kharkiv or Taurida incorporated with level 5+ Steel Mill/Coal Mine/Iron Mine"
+                },
+                {
+                    name: "Russian-American Company",
+                    mainBuildings: ["Logging Camp", "Whaling Station", "Port"],
+                    charterOptions: ["Coal Mine", "Fishing Wharf"],
+                    prestigeGood: "Prime Meat",
+                    prestigeBonus: "+5% Conversion +10% Colony Growth Speed +5% Textile Mills throughput",
+                    requirements: "East Slavic culture + Owns/subject owns Pacific Coast region state with level 5+ Port/Whaling Station/Logging Camp"
+                },
+                {
+                    name: "Zastava",
+                    mainBuildings: ["Arms Industries", "Munition Plants"],
+                    charterOptions: ["Artillery Foundries"],
+                    prestigeGood: "High-powered Small Arms",
+                    prestigeBonus: "+5% Defense +5% Recovery rate",
+                    requirements: "Northern Serbia incorporated with level 5+ Arms Industry + Gunsmithing tech"
+                },
+                {
+                    name: "Altos Hornos de Vizcaya",
+                    mainBuildings: ["Steel Mills", "Iron Mine"],
+                    charterOptions: ["Coal Mine"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+10% Infrastructure",
+                    requirements: "Navarra incorporated with level 5+ Steel Mill + Steelworking tech"
+                },
+                {
+                    name: "Duro y Compañía",
+                    mainBuildings: ["Steel Mills", "Iron Mine", "Coal Mine"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: "Refined Steel",
+                    prestigeBonus: "+10% Arms Industries throughput +10% Artillery Foundry throughput",
+                    requirements: "Asturias incorporated with level 5+ Coal Mine + Steelworking tech"
+                },
+                {
+                    name: "La España Industrial",
+                    mainBuildings: ["Textile Mills", "Cotton Plantation"],
+                    charterOptions: ["Silk Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+15% Innovation",
+                    requirements: "Catalonia incorporated with level 5+ Textile Mill + Cotton Gin tech"
+                },
+                {
+                    name: "Fábrica de Armas de Trubia",
+                    mainBuildings: ["Arms Industries", "Artillery Foundries"],
+                    charterOptions: ["Munition Plants", "Explosives Factory"],
+                    prestigeGood: "Quick-fire Artillery",
+                    prestigeBonus: "−5% Military goods cost +5% Offense",
+                    requirements: "Asturias incorporated with level 5+ Arms Industry + Gunsmithing tech"
+                },
+                {
+                    name: "Ericsson",
+                    mainBuildings: ["Electrics Industries"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: "Ericsson Apparatus",
+                    prestigeBonus: "+10% Innovation +0.5% Education access from wealth",
+                    requirements: "Telephone tech + Svealand incorporated with level 5+ Electrics Industry"
+                },
+                {
+                    name: "LKAB",
+                    mainBuildings: ["Iron Mine"],
+                    charterOptions: ["Steel Mills"],
+                    prestigeGood: "Oregrounds Iron",
+                    prestigeBonus: "+20% Iron Mine throughput",
+                    requirements: "Norrland incorporated with Railway and level 5+ Iron Mine + Open Hearth Process tech"
+                },
+                {
+                    name: "Götaverken",
+                    mainBuildings: ["Shipyard", "Military Shipyard", "Motor Industries"],
+                    charterOptions: ["Logging Camp"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Navy offense +5% Navy defense",
+                    requirements: "Götaland incorporated with level 5+ Shipyard or Military Shipyard + Gantry Cranes tech"
+                },
+                {
+                    name: "John Paradox & Company",
+                    mainBuildings: ["Arts Academy", "Electrics Industries"],
+                    charterOptions: ["Coal Mine", "Paper Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+25% Prestige +25% Leverage generation",
+                    requirements: "Telephone and Zeppelins tech + Owns Svealand with Skyscraper, level 20 Arts Academy and level 20 Electrics Industries"
+                }
+            ],
+            "Middle Eastern Companies": [
+                {
+                    name: "Də Afḡān Nasājī Šerkat",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+5% Trade capacity +10% Cotton Plantation throughput",
+                    requirements: "Southern Turkestan incorporated with level 5+ Textile Mill"
+                },
+                {
+                    name: "Šerkat-e Etteḥādīya-ye Welāyat-e Šemālī",
+                    mainBuildings: ["Cotton Plantation"],
+                    charterOptions: ["Textile Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Opium Plantation throughput",
+                    requirements: "Southern Turkestan incorporated with level 5+ Cotton Plantation"
+                },
+                {
+                    name: "Misr Spinning and Weaving Company",
+                    mainBuildings: ["Textile Mills", "Cotton Plantation"],
+                    charterOptions: ["Silk Plantation"],
+                    prestigeGood: "Mit Afifi",
+                    prestigeBonus: "+10% Loyalists from movements",
+                    requirements: "Lower Egypt incorporated with level 5+ Textile Mill + Corporate Charters tech"
+                },
+                {
+                    name: "Egyptian State Railways",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Trade capacity +20 Max infrastructure from population",
+                    requirements: "Corporate Charters tech + Misri culture + Owns 2+ incorporated states in Nile region with level 5 Railway"
+                },
+                {
+                    name: "Suez Canal Company",
+                    mainBuildings: ["Trade Center", "Port"],
+                    charterOptions: ["Shipyard"],
+                    prestigeGood: "Swift Merchant Marine",
+                    prestigeBonus: "+25% Trade advantage +50,000 Tax income +1 Max companies",
+                    requirements: "Owns Sinai with Suez Canal 50%+ employment + level 5+ Trade Center or Port"
+                },
+                {
+                    name: "MM. Nicolas Portalis et Cie.",
+                    mainBuildings: ["Silk Plantation"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Prestige −5% Radicalism for discriminated statuses",
+                    requirements: "Lebanon incorporated with level 5+ Silk Plantation"
+                },
+                {
+                    name: "Imperial Tobacco Corporation of Persia",
+                    mainBuildings: ["Tobacco Plantation"],
+                    charterOptions: ["Opium Plantation"],
+                    prestigeGood: null,
+                    prestigeBonus: "+20% Technology spread −2 Rural Folk approval",
+                    requirements: "Owns 4+ incorporated states in Persia region with level 5+ Tobacco Plantation + Corporate Charters tech"
+                },
+                {
+                    name: "Iranian State Railway",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Assimilation",
+                    requirements: "Persian culture + Railways tech + Owns 2+ incorporated states in Persia region with level 5+ Railway"
+                },
+                {
+                    name: "Bongāh-e Enḥeṣār-e Ṣāderāt-e Taryāk",
+                    mainBuildings: ["Opium Plantation"],
+                    charterOptions: ["Tobacco Plantation"],
+                    prestigeGood: "Pure Opium",
+                    prestigeBonus: "−10% Radicals from movements +10% Morale recovery",
+                    requirements: "Owns Persian homeland + Owns 2+ incorporated states in Persia region with level 5+ Opium Plantations"
+                },
+                {
+                    name: "Šerkat-e Eslāmiya",
+                    mainBuildings: ["Textile Mills"],
+                    charterOptions: ["Cotton Plantation"],
+                    prestigeGood: "Designer Clothes",
+                    prestigeBonus: "+30% State religion wages",
+                    requirements: "Isfahan incorporated with level 5+ Textile Mill"
+                },
+                {
+                    name: "Persshelk",
+                    mainBuildings: ["Silk Plantation"],
+                    charterOptions: ["Textile Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Prestige +10% Petite Bourgeoisie pop attraction",
+                    requirements: "Owns Persian homeland + Owns 2+ incorporated states in Persia region with level 5+ Silk Plantations + Ally has Russian culture"
+                },
+                {
+                    name: "Perskhlopok",
+                    mainBuildings: ["Cotton Plantation"],
+                    charterOptions: ["Textile Mills"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Textile Mill throughput +2 Rural Folk approval",
+                    requirements: "Owns Persian homeland + Owns 2+ incorporated states in Persia region with level 5+ Cotton Plantations + Ally has Russian culture"
+                },
+                {
+                    name: "Moscow Irrigation Company",
+                    mainBuildings: ["Cotton Plantation", "Rice Farm"],
+                    charterOptions: ["Opium Plantation", "Wheat Farm"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+20% Cotton Plantation throughput +5% Industrialists pop attraction",
+                    requirements: "Interest in Persia region + Owns/ally owns Moscow state + Fergana incorporated with level 5+ Cotton Plantation"
+                },
+                {
+                    name: "Anglo-Persian Oil Company",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+30% Oil Extractors throughput",
+                    requirements: "English/Persian culture + Pumpjacks tech + ally with English culture + Arabistan level 5+ Oil Rig + Not established National Iranian Oil Company"
+                },
+                {
+                    name: "National Iranian Oil Company",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Industrialists pop attraction +10% Loyalists from legitimacy",
+                    requirements: "Persian culture + Pumpjacks tech + Arabistan level 5+ Oil Rig + Not established Anglo-Persian Oil Company"
+                },
+                {
+                    name: "Tashkent Railroad",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Cotton Plantation throughput",
+                    requirements: "Railways tech + Fergana incorporated with level 5+ Railway + Owns 2+ incorporated states in Central Asia region with level 5+ Railway"
+                },
+                {
+                    name: "West Ural Petroleum Company, Limited",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant", "Railway"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Colony growth speed +5% Power Plant throughput",
+                    requirements: "Pumpjacks tech + Uralsk incorporated with level 5+ Oil Rig"
+                },
+                {
+                    name: "Kirgizian Mining Joint Stock Company",
+                    mainBuildings: ["Coal Mine"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Power Plant throughput",
+                    requirements: "Steam Donkey and Railways tech + Semipalatinsk incorporated with level 5+ Coal Mine"
+                },
+                {
+                    name: "Tersâne-i Âmire",
+                    mainBuildings: ["Military Shipyard"],
+                    charterOptions: ["Shipyard"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Navy defense",
+                    requirements: "Eastern Thrace incorporated with level 5+ Military Shipyard + Hydraulic Cranes tech"
+                },
+                {
+                    name: "Ottoman Tobacco Company",
+                    mainBuildings: ["Tobacco Plantation"],
+                    charterOptions: ["Opium Plantation"],
+                    prestigeGood: "Turkish Tobacco",
+                    prestigeBonus: "+10% Production technology spread",
+                    requirements: "Turkish culture + Does not have Sick Man of Europe + Not unrecognized + Owns 4+ incorporated states with level 5+ Tobacco Plantation"
+                },
+                {
+                    name: "Allatini Mills",
+                    mainBuildings: ["Wheat Farm", "Rye Farm"],
+                    charterOptions: ["Food Industries"],
+                    prestigeGood: "Fine Grain",
+                    prestigeBonus: "+10% Food Industries throughput −5% Radicalism for discriminated statuses",
+                    requirements: "Does not have Sick Man of Europe + Not unrecognized + Macedonia incorporated with level 5+ Wheat Farm"
+                },
+                {
+                    name: "Chemins de fer Orientaux",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Prestige",
+                    requirements: "Does not have Sick Man of Europe + Not unrecognized + Fully owns Eastern Thrace + Owns 3+ incorporated states in Balkans region with level 5+ Railway"
+                },
+                {
+                    name: "Turkish Petroleum Company",
+                    mainBuildings: ["Oil Rig"],
+                    charterOptions: ["Power Plant"],
+                    prestigeGood: null,
+                    prestigeBonus: "+5% Trade capacity +5% Railway throughput",
+                    requirements: "Pumpjacks tech + Baghdad/Basra/Mosul incorporated with level 5+ Oil Rig"
+                }
+            ],
+            "African Companies": [
+                {
+                    name: "Imperial Ethiopian Railway Company",
+                    mainBuildings: ["Railway"],
+                    charterOptions: ["Motor Industries"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Coffee Plantation throughput +5% Livestock Ranch throughput",
+                    requirements: "Railways tech + Ethiopia region state with Railway and level 5+ Coffee Plantation + Coastal Ethiopia region state with level 5+ Railway"
+                },
+                {
+                    name: "John Holt and Company",
+                    mainBuildings: ["Rubber Plantation", "Logging Camp", "Port"],
+                    charterOptions: ["Shipyard"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Plantations throughput −5% Institution bureaucracy cost",
+                    requirements: "Rubber Mastication tech + Niger region state with level 5+ Rubber Plantation"
+                },
+                {
+                    name: "De Beers Consolidated Mines Ltd.",
+                    mainBuildings: ["Gold Mine"],
+                    charterOptions: ["Iron Mine"],
+                    prestigeGood: null,
+                    prestigeBonus: "+10% Prestige +5% Leverage generation +5% Colony growth speed",
+                    requirements: "South Africa region state with level 5+ Gold Mine"
+                }
+            ]
+        };
+
+        // Get all unique building types from basic companies + all optional companies
+        const allOptionalCompanies = Object.values(optionalCompanies).flat();
+        const allBuildings = [...new Set([
+            ...basicCompanies.flatMap(c => c.mainBuildings),
+            ...basicCompanies.flatMap(c => c.charterOptions),
+            ...allOptionalCompanies.flatMap(c => c.mainBuildings),
+            ...allOptionalCompanies.flatMap(c => c.charterOptions)
+        ])].sort();
+
+        // Function to get currently active companies (basic + selected optional)
+        function getActiveCompanies() {
+            const activeCompanies = [...basicCompanies];
+            
+            // Add selected optional companies
+            Object.values(optionalCompanies).flat().forEach(company => {
+                const checkbox = document.getElementById(`company_${company.name.replace(/[^a-zA-Z0-9]/g, '_')}`);
+                if (checkbox && checkbox.checked) {
+                    activeCompanies.push(company);
+                }
+            });
+            
+            return activeCompanies;
+        }
+
+        // Initialize the application
+        window.onload = function() {
+            displayDataOverview();
+            generateOptionalCompaniesSection();
+            generateBuildingList();
+        };
+
+        function displayDataOverview() {
+            const overview = document.getElementById('dataOverview');
+            const totalBasicCompanies = basicCompanies.length;
+            const totalOptionalCompanies = Object.values(optionalCompanies).flat().length;
+            const totalBuildings = allBuildings.length;
+            const companiesWithPrestige = basicCompanies.filter(c => c.prestigeGood).length;
+            const totalCharters = basicCompanies.reduce((sum, c) => sum + c.charterOptions.length, 0);
+
+            overview.innerHTML = `
+                <strong>📈 ${totalBasicCompanies} basic companies</strong> always available<br>
+                <strong>🌟 ${totalOptionalCompanies} optional flavored companies</strong> available by region<br>
+                <strong>🏗️ ${totalBuildings} building types</strong> covered<br>
+                <strong>🏆 ${companiesWithPrestige} basic companies</strong> provide prestige goods<br>
+                <strong>🏛️ ${totalCharters} charter options</strong> available across basic companies
+            `;
+        }
+
+        function generateOptionalCompaniesSection() {
+            const container = document.getElementById('optionalCompanies');
+            container.innerHTML = '';
+
+            Object.entries(optionalCompanies).forEach(([region, companies]) => {
+                // Create region header
+                const regionHeader = document.createElement('div');
+                regionHeader.style.cssText = `
+                    font-weight: bold;
+                    font-size: 1.2em;
+                    color: #2c3e50;
+                    margin: 25px 0 15px 0;
+                    padding: 10px 0 5px 0;
+                    border-bottom: 2px solid #667eea;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                `;
+                
+                regionHeader.innerHTML = `
+                    <span>🌍 ${region}</span>
+                    <button onclick="toggleRegionSelection('${region}', this)" 
+                            style="padding: 4px 12px; font-size: 0.8em; background: #f8f9fa; color: #495057; border: 1px solid #dee2e6; border-radius: 5px; cursor: pointer;">
+                        Select All
+                    </button>
+                `;
+                container.appendChild(regionHeader);
+
+                // Add companies in this region
+                companies.forEach(company => {
+                    const companyDiv = document.createElement('div');
+                    companyDiv.className = 'company-card';
+                    companyDiv.setAttribute('data-region', region);
+
+                    const safeId = company.name.replace(/[^a-zA-Z0-9]/g, '_');
+                    
+                    companyDiv.innerHTML = `
+                        <div class="company-header">
+                            <input type="checkbox" id="company_${safeId}" class="company-checkbox" 
+                                   onchange="updateDataOverview()">
+                            <div class="company-details">
+                                <div class="company-name">
+                                    ${company.name}
+                                </div>
+                                <div class="company-info">
+                                    <strong>🏭 Buildings:</strong> ${company.mainBuildings.join(', ')}
+                                </div>
+                                ${company.charterOptions.length > 0 ? `
+                                    <div class="company-info">
+                                        <strong>🏛️ Charter Options:</strong> ${company.charterOptions.join(', ')}
+                                    </div>
+                                ` : ''}
+                                ${company.prestigeGood ? `
+                                    <div class="company-info">
+                                        <strong>🏆 Prestige Good:</strong> ${company.prestigeGood}
+                                    </div>
+                                ` : ''}
+                                <div class="company-info">
+                                    <strong>⚡ Bonus:</strong> ${company.prestigeBonus}
+                                </div>
+                                <div class="company-requirements">
+                                    <strong>📋 Requirements:</strong> ${company.requirements}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(companyDiv);
+                });
+            });
+        }
+
+        function toggleRegionSelection(region, button) {
+            const regionItems = document.querySelectorAll(`[data-region="${region}"] input[type="checkbox"]`);
+            const allSelected = Array.from(regionItems).every(cb => cb.checked);
+            
+            regionItems.forEach(cb => cb.checked = !allSelected);
+            button.textContent = allSelected ? 'Select All' : 'Clear All';
+            updateDataOverview();
+        }
+
+        function updateDataOverview() {
+            const activeCompanies = getActiveCompanies();
+            const selectedOptional = activeCompanies.length - basicCompanies.length;
+            
+            if (selectedOptional > 0) {
+                const overview = document.getElementById('dataOverview');
+                const totalBasicCompanies = basicCompanies.length;
+                const totalOptionalCompanies = Object.values(optionalCompanies).flat().length;
+                const totalBuildings = allBuildings.length;
+                const activePrestige = activeCompanies.filter(c => c.prestigeGood).length;
+                const activeCharters = activeCompanies.reduce((sum, c) => sum + c.charterOptions.length, 0);
+
+                overview.innerHTML = `
+                    <strong>📈 ${totalBasicCompanies} basic companies</strong> always available<br>
+                    <strong>🌟 ${selectedOptional}/${totalOptionalCompanies} optional companies</strong> selected<br>
+                    <strong>🏗️ ${totalBuildings} building types</strong> covered<br>
+                    <strong>🏆 ${activePrestige} companies</strong> provide prestige goods<br>
+                    <strong>🏛️ ${activeCharters} charter options</strong> available
+                `;
+            } else {
+                displayDataOverview(); // Reset to default view
+            }
+        }
+
+        function generateBuildingList() {
+            const container = document.getElementById('buildingList');
+            container.innerHTML = '';
+
+            // Group buildings by category
+            const buildingCategories = {
+                "Agriculture": [
+                    "Wheat Farm", "Rye Farm", "Rice Farm", "Millet Farm", "Maize Farm", "Vineyard"
+                ],
+                "Ranches": [
+                    "Livestock Ranch"
+                ],
+                "Plantations": [
+                    "Cotton Plantation", "Tea Plantation", "Opium Plantation", "Coffee Plantation", 
+                    "Sugar Plantation", "Tobacco Plantation", "Silk Plantation", "Dye Plantation", 
+                    "Banana Plantation"
+                ],
+                "Extraction": [
+                    "Fishing Wharf", "Whaling Station", "Logging Camp", "Rubber Plantation", 
+                    "Oil Rig", "Gold Mine", "Iron Mine", "Lead Mine", "Sulfur Mine", "Coal Mine"
+                ],
+                "Manufacturing Industries": [
+                    "Food Industries", "Paper Mills", "Glassworks", "Furniture Manufacturies", 
+                    "Textile Mills", "Steel Mills", "Tooling Workshop", "Shipyard", "Military Shipyard", 
+                    "Fertilizer Plant", "Synthetics Plants", "Motor Industries", "Automotive Industries", 
+                    "Munition Plants", "Explosives Factory", "Electrics Industries", "Arms Industries", 
+                    "Artillery Foundries"
+                ],
+                "Infrastructure": [
+                    "Railway", "Port", "Trade Center", "Power Plant"
+                ],
+                "Government & Culture": [
+                    "Arts Academy"
+                ]
+            };
+
+            // Create sections for each category
+            Object.entries(buildingCategories).forEach(([category, buildings]) => {
+                // Filter buildings that exist in our data
+                const availableBuildings = buildings.filter(building => allBuildings.includes(building));
+                
+                if (availableBuildings.length > 0) {
+                    // Create category header
+                    const categoryHeader = document.createElement('div');
+                    categoryHeader.style.cssText = `
+                        grid-column: 1 / -1;
+                        font-weight: bold;
+                        font-size: 1.1em;
+                        color: #2c3e50;
+                        margin: 20px 0 10px 0;
+                        padding: 10px 0 5px 0;
+                        border-bottom: 2px solid #667eea;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    `;
+                    
+                    categoryHeader.innerHTML = `
+                        <span>🏭 ${category}</span>
+                        <button onclick="toggleCategorySelection('${category}', this)" 
+                                style="padding: 4px 12px; font-size: 0.8em; background: #f8f9fa; color: #495057; border: 1px solid #dee2e6;">
+                            Select All
+                        </button>
+                    `;
+                    container.appendChild(categoryHeader);
+
+                    // Add buildings in this category
+                    availableBuildings.forEach(building => {
+                        const item = document.createElement('div');
+                        item.className = 'building-item';
+                        item.setAttribute('data-category', category);
+                        
+                        item.onclick = (e) => {
+                            // Only toggle if we didn't click the checkbox or label directly
+                            if (e.target.type !== 'checkbox' && e.target.tagName !== 'LABEL') {
+                                const checkbox = item.querySelector('input');
+                                checkbox.checked = !checkbox.checked;
+                            }
+                        };
+
+                        item.innerHTML = `
+                            <input type="checkbox" id="building_${building}">
+                            <label for="building_${building}" style="cursor: pointer; user-select: none;" onclick="event.stopPropagation()">${building}</label>
+                        `;
+
+                        container.appendChild(item);
+                    });
+                }
+            });
+        }
+
+        function toggleCategorySelection(category, button) {
+            const categoryItems = document.querySelectorAll(`[data-category="${category}"] input[type="checkbox"]`);
+            const allSelected = Array.from(categoryItems).every(cb => cb.checked);
+            
+            categoryItems.forEach(cb => cb.checked = !allSelected);
+            button.textContent = allSelected ? 'Select All' : 'Clear All';
+        }
+
+        function selectAllBuildings() {
+            document.querySelectorAll('#buildingList input[type="checkbox"]').forEach(cb => cb.checked = true);
+        }
+
+        function clearAllBuildings() {
+            document.querySelectorAll('#buildingList input[type="checkbox"]').forEach(cb => cb.checked = false);
+        }
+
+        function getSelectedBuildings() {
+            const selected = [];
+            document.querySelectorAll('#buildingList input[type="checkbox"]:checked').forEach(cb => {
+                const building = cb.id.replace('building_', '');
+                selected.push(building);
+            });
+            return selected;
+        }
+
+        function findOptimalCombinations() {
+            const selectedBuildings = getSelectedBuildings();
+            const maxResults = parseInt(document.getElementById('maxCombinations').value) || 20;
+            const resultsDiv = document.getElementById('results');
+
+            if (selectedBuildings.length === 0) {
+                resultsDiv.innerHTML = '<div class="error">Please select at least one building</div>';
+                return;
+            }
+
+            resultsDiv.innerHTML = '<div class="loading">🔄 Finding optimal combinations...</div>';
+
+            setTimeout(() => {
+                const combinations = findOptimalCombinationsEfficient(selectedBuildings, maxResults);
+                displayResults(combinations, selectedBuildings);
+            }, 100);
+        }
+
+        function findOptimalCombinations() {
+            const selectedBuildings = getSelectedBuildings();
+            const maxResults = parseInt(document.getElementById('maxCombinations').value) || 20;
+            const resultsDiv = document.getElementById('results');
+
+            if (selectedBuildings.length === 0) {
+                resultsDiv.innerHTML = '<div class="error">Please select at least one building</div>';
+                return;
+            }
+
+            resultsDiv.innerHTML = '<div class="loading">🔄 Finding optimal combinations using advanced algorithms...</div>';
+
+            setTimeout(() => {
+                const combinations = findOptimalCombinationsEfficient(selectedBuildings, maxResults);
+                displayResults(combinations, selectedBuildings);
+            }, 100);
+        }
+
+        function findOptimalCombinationsEfficient(selectedBuildings, maxResults) {
+            const activeCompanies = getActiveCompanies();
+            const dynamicMaxCompanies = getDynamicMaxCompanies(activeCompanies);
+            
+            // Step 1: Precompute company scores and coverage
+            const companyScores = activeCompanies.map(company => ({
+                company: company,
+                coverage: getCompanyCoverage(company, selectedBuildings),
+                score: getCompanyScore(company, selectedBuildings)
+            })).filter(item => item.coverage.length > 0)
+              .sort((a, b) => b.score - a.score);
+
+            if (companyScores.length === 0) {
+                return [];
+            }
+
+            const results = [];
+            
+            // Step 2: Use multiple starting strategies
+            // Strategy 1: Greedy by coverage
+            const greedyResults = findGreedyCombinations(companyScores, selectedBuildings, dynamicMaxCompanies, maxResults);
+            results.push(...greedyResults);
+            
+            // Strategy 2: Start with high-scoring companies
+            const topCompanyResults = findTopCompanyCombinations(companyScores, selectedBuildings, dynamicMaxCompanies, maxResults);
+            results.push(...topCompanyResults);
+            
+            // Strategy 3: Dynamic programming for smaller problems
+            if (selectedBuildings.length <= 15 && activeCompanies.length <= 50) {
+                const dpResults = findDPCombinations(companyScores, selectedBuildings, dynamicMaxCompanies);
+                results.push(...dpResults);
+            }
+
+            // Remove duplicates and sort by score
+            const uniqueResults = removeDuplicateCombinations(results);
+            uniqueResults.sort((a, b) => b.score - a.score);
+            
+            return uniqueResults.slice(0, maxResults);
+        }
+
+        function getDynamicMaxCompanies(activeCompanies) {
+            let baseMax = parseInt(document.getElementById('maxCompanies').value) || 7;
+            
+            const companyNames = activeCompanies.map(c => c.name);
+            const hasPanama = companyNames.includes('Panama Canal Company');
+            const hasSuez = companyNames.includes('Suez Canal Company');
+            
+            if (hasPanama && hasSuez) {
+                return Math.min(baseMax + 2, 10); // +2 for both canals, max 10
+            } else if (hasPanama || hasSuez) {
+                return Math.min(baseMax + 1, 10); // +1 for one canal, max 10
+            }
+            return baseMax;
+        }
+
+        function getCompanyCoverage(company, selectedBuildings) {
+            const covered = [];
+            
+            // Check main buildings
+            for (const building of company.mainBuildings) {
+                if (selectedBuildings.includes(building)) {
+                    covered.push(building);
+                }
+            }
+            
+            // Check best charter option
+            const bestCharter = company.charterOptions.find(charter => 
+                selectedBuildings.includes(charter) && !covered.includes(charter)
+            );
+            if (bestCharter) {
+                covered.push(bestCharter);
+            }
+            
+            return covered;
+        }
+
+        function getCompanyScore(company, selectedBuildings) {
+            const coverage = getCompanyCoverage(company, selectedBuildings);
+            const prestigeBonus = company.prestigeGood ? 0.5 : 0;
+            return coverage.length + prestigeBonus;
+        }
+
+        function findGreedyCombinations(companyScores, selectedBuildings, maxCompanies, maxResults) {
+            const results = [];
+            
+            // Try different greedy approaches
+            for (let startIdx = 0; startIdx < Math.min(5, companyScores.length); startIdx++) {
+                const combination = greedySearch(companyScores, selectedBuildings, maxCompanies, startIdx);
+                if (combination.length > 0) {
+                    const analysis = analyzeCompanyCombination(combination, selectedBuildings);
+                    if (analysis.coverage > 0) {
+                        results.push({
+                            companies: combination,
+                            ...analysis
+                        });
+                    }
+                }
+            }
+            
+            return results;
+        }
+
+        function greedySearch(companyScores, selectedBuildings, maxCompanies, startIdx = 0) {
+            const combination = [];
+            const covered = new Set();
+            const remainingBuildings = new Set(selectedBuildings);
+            
+            // Start with a specific company
+            if (startIdx < companyScores.length) {
+                const startCompany = companyScores[startIdx].company;
+                combination.push(startCompany);
+                const startCoverage = getCompanyCoverage(startCompany, selectedBuildings);
+                startCoverage.forEach(building => {
+                    covered.add(building);
+                    remainingBuildings.delete(building);
+                });
+            }
+            
+            // Greedily add companies
+            while (combination.length < maxCompanies && remainingBuildings.size > 0) {
+                let bestCompany = null;
+                let bestNewCoverage = 0;
+                
+                for (const item of companyScores) {
+                    if (combination.includes(item.company)) continue;
+                    
+                    const newCoverage = getCompanyCoverage(item.company, Array.from(remainingBuildings));
+                    const newCoverageCount = newCoverage.length;
+                    
+                    if (newCoverageCount > bestNewCoverage) {
+                        bestNewCoverage = newCoverageCount;
+                        bestCompany = item.company;
+                    }
+                }
+                
+                if (bestCompany && bestNewCoverage > 0) {
+                    combination.push(bestCompany);
+                    const newCoverage = getCompanyCoverage(bestCompany, Array.from(remainingBuildings));
+                    newCoverage.forEach(building => {
+                        covered.add(building);
+                        remainingBuildings.delete(building);
+                    });
+                } else {
+                    break;
+                }
+            }
+            
+            return combination;
+        }
+
+        function findTopCompanyCombinations(companyScores, selectedBuildings, maxCompanies, maxResults) {
+            const results = [];
+            const topCompanies = companyScores.slice(0, Math.min(15, companyScores.length));
+            
+            // Try combinations starting with top companies
+            for (let i = 0; i < Math.min(10, topCompanies.length); i++) {
+                for (let j = i + 1; j < Math.min(i + 8, topCompanies.length); j++) {
+                    const combination = [topCompanies[i].company, topCompanies[j].company];
+                    
+                    // Extend combination greedily
+                    const extended = extendCombination(combination, companyScores, selectedBuildings, maxCompanies);
+                    
+                    const analysis = analyzeCompanyCombination(extended, selectedBuildings);
+                    if (analysis.coverage > 0) {
+                        results.push({
+                            companies: extended,
+                            ...analysis
+                        });
+                    }
+                }
+            }
+            
+            return results;
+        }
+
+        function extendCombination(initialCombination, companyScores, selectedBuildings, maxCompanies) {
+            const combination = [...initialCombination];
+            const covered = new Set();
+            
+            // Calculate initial coverage
+            for (const company of combination) {
+                const coverage = getCompanyCoverage(company, selectedBuildings);
+                coverage.forEach(building => covered.add(building));
+            }
+            
+            const remainingBuildings = selectedBuildings.filter(b => !covered.has(b));
+            
+            // Greedily extend
+            while (combination.length < maxCompanies && remainingBuildings.length > 0) {
+                let bestCompany = null;
+                let bestNewCoverage = 0;
+                
+                for (const item of companyScores) {
+                    if (combination.includes(item.company)) continue;
+                    
+                    const newCoverage = getCompanyCoverage(item.company, remainingBuildings);
+                    if (newCoverage.length > bestNewCoverage) {
+                        bestNewCoverage = newCoverage.length;
+                        bestCompany = item.company;
+                    }
+                }
+                
+                if (bestCompany && bestNewCoverage > 0) {
+                    combination.push(bestCompany);
+                    const newCoverage = getCompanyCoverage(bestCompany, remainingBuildings);
+                    newCoverage.forEach(building => {
+                        covered.add(building);
+                        const idx = remainingBuildings.indexOf(building);
+                        if (idx > -1) remainingBuildings.splice(idx, 1);
+                    });
+                } else {
+                    break;
+                }
+            }
+            
+            return combination;
+        }
+
+        function findDPCombinations(companyScores, selectedBuildings, maxCompanies) {
+            // Simplified DP for small problems
+            const n = Math.min(companyScores.length, 30);
+            const buildingMask = (1 << selectedBuildings.length) - 1;
+            
+            // dp[mask] = minimum companies needed to cover buildings in mask
+            const dp = new Array(1 << selectedBuildings.length).fill(Infinity);
+            const parent = new Array(1 << selectedBuildings.length).fill(-1);
+            dp[0] = 0;
+            
+            for (let mask = 0; mask < (1 << selectedBuildings.length); mask++) {
+                if (dp[mask] === Infinity || dp[mask] >= maxCompanies) continue;
+                
+                for (let i = 0; i < n; i++) {
+                    const company = companyScores[i].company;
+                    const coverage = getCompanyCoverage(company, selectedBuildings);
+                    let companyMask = 0;
+                    
+                    for (const building of coverage) {
+                        const buildingIdx = selectedBuildings.indexOf(building);
+                        if (buildingIdx !== -1) {
+                            companyMask |= (1 << buildingIdx);
+                        }
+                    }
+                    
+                    const newMask = mask | companyMask;
+                    if (dp[mask] + 1 < dp[newMask]) {
+                        dp[newMask] = dp[mask] + 1;
+                        parent[newMask] = mask;
+                    }
+                }
+            }
+            
+            const results = [];
+            
+            // Extract solutions
+            for (let mask = 0; mask < (1 << selectedBuildings.length); mask++) {
+                if (dp[mask] <= maxCompanies && dp[mask] > 0) {
+                    const combination = reconstructDPSolution(mask, parent, companyScores, selectedBuildings);
+                    if (combination.length > 0) {
+                        const analysis = analyzeCompanyCombination(combination, selectedBuildings);
+                        results.push({
+                            companies: combination,
+                            ...analysis
+                        });
+                    }
+                }
+            }
+            
+            return results;
+        }
+
+        function reconstructDPSolution(finalMask, parent, companyScores, selectedBuildings) {
+            // This is a simplified reconstruction - in practice would need more bookkeeping
+            // Return empty for now since full DP reconstruction is complex
+            return [];
+        }
+
+        function removeDuplicateCombinations(results) {
+            const seen = new Set();
+            const unique = [];
+            
+            for (const result of results) {
+                const key = result.companies.map(c => c.name).sort().join('|');
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    unique.push(result);
+                }
+            }
+            
+            return unique;
+        }
+
+        function getCombinations(arr, size) {
+            if (size === 1) return arr.map(item => [item]);
+            if (size > arr.length) return [];
+
+            const combinations = [];
+            for (let i = 0; i <= arr.length - size; i++) {
+                const head = arr[i];
+                const tailCombinations = getCombinations(arr.slice(i + 1), size - 1);
+                for (const tail of tailCombinations) {
+                    combinations.push([head, ...tail]);
+                }
+            }
+            return combinations;
+        }
+
+        function analyzeCompanyCombination(companySet, selectedBuildings) {
+            const buildingProviders = new Map(); // building -> list of companies that provide it
+            const usedCharters = [];
+            const prestigeGoods = [];
+            const prestigeBonuses = [];
+
+            // First pass: collect all main buildings
+            for (const company of companySet) {
+                // Add main buildings
+                for (const building of company.mainBuildings) {
+                    if (selectedBuildings.includes(building)) {
+                        if (!buildingProviders.has(building)) {
+                            buildingProviders.set(building, []);
+                        }
+                        buildingProviders.get(building).push(company.name);
+                    }
+                }
+
+                // Collect prestige goods and bonuses
+                if (company.prestigeGood) {
+                    prestigeGoods.push({
+                        company: company.name,
+                        good: company.prestigeGood
+                    });
+                }
+                prestigeBonuses.push({
+                    company: company.name,
+                    bonus: company.prestigeBonus
+                });
+            }
+
+            // Second pass: add best charter options
+            for (const company of companySet) {
+                const bestCharter = findBestCharter(company, selectedBuildings, buildingProviders);
+                if (bestCharter) {
+                    usedCharters.push({
+                        company: company.name,
+                        building: bestCharter
+                    });
+                    if (!buildingProviders.has(bestCharter)) {
+                        buildingProviders.set(bestCharter, []);
+                    }
+                    buildingProviders.get(bestCharter).push(company.name);
+                }
+            }
+
+            // Calculate coverage and overlaps
+            const coveredBuildings = Array.from(buildingProviders.keys());
+            const coverageCount = coveredBuildings.length;
+            
+            // Count overlaps: each building provided by >1 company creates (providers-1) overlaps
+            let overlapCount = 0;
+            for (const [building, providers] of buildingProviders.entries()) {
+                if (providers.length > 1) {
+                    overlapCount += (providers.length - 1);
+                }
+            }
+
+            const coveragePercent = (coverageCount / selectedBuildings.length) * 100;
+            
+            // Score: coverage - overlaps (clean integer scoring)
+            const score = coverageCount - overlapCount;
+
+            return {
+                coverage: coverageCount,
+                totalBuildings: selectedBuildings.length,
+                coveragePercent: coveragePercent,
+                overlaps: overlapCount,
+                score: score,
+                usedCharters: usedCharters,
+                prestigeGoods: prestigeGoods,
+                prestigeBonuses: prestigeBonuses,
+                coveredBuildings: coveredBuildings
+            };
+        }
+
+        function findBestCharter(company, selectedBuildings, buildingProviders) {
+            // Find charter options that cover desired buildings
+            const availableCharters = company.charterOptions.filter(charter => 
+                selectedBuildings.includes(charter)
+            );
+
+            if (availableCharters.length === 0) return null;
+
+            // Prefer charters that cover new buildings over duplicates
+            const newCoverageCharters = availableCharters.filter(charter => 
+                !buildingProviders.has(charter)
+            );
+            
+            if (newCoverageCharters.length > 0) {
+                return newCoverageCharters[0];
+            }
+
+            // If all would be duplicates, still return one (might be worth it for redundancy)
+            return availableCharters[0];
+        }
+
+        function displayResults(results, selectedBuildings) {
+            const resultsDiv = document.getElementById('results');
+
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<div class="error">No combinations found that cover the selected buildings</div>';
+                return;
+            }
+
+            let html = `<div class="results-container">`;
+
+            results.forEach((result, index) => {
+                html += `
+                    <div class="result-item">
+                        <div class="result-header">
+                            <h3>🏆 Combination ${index + 1}</h3>
+                            <div class="score">Score: ${result.score}</div>
+                        </div>
+
+                        <div class="coverage-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">${result.coverage}</div>
+                                <div class="stat-label">Buildings Covered</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${result.coveragePercent.toFixed(0)}%</div>
+                                <div class="stat-label">Coverage</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${result.overlaps}</div>
+                                <div class="stat-label">Overlaps</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">${result.prestigeGoods.length}</div>
+                                <div class="stat-label">Prestige Goods</div>
+                            </div>
+                        </div>
+
+                        <div class="companies-section">
+                            <strong>🏭 Companies (${result.companies.length}):</strong><br>
+                            ${result.companies.map(c => `<span class="company-tag">${c.name}</span>`).join('')}
+                        </div>
+
+                        ${result.usedCharters.length > 0 ? `
+                            <div class="charters-section">
+                                <strong>🏛️ Required Industry Rights Charters:</strong>
+                                ${result.usedCharters.map(charter => `
+                                    <div class="charter-item">
+                                        • <strong>${charter.company}</strong> → ${charter.building}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+
+                        ${result.prestigeGoods.length > 0 || result.prestigeBonuses.length > 0 ? `
+                            <div class="prestige-section">
+                                <strong>🎖️ Prestige Benefits:</strong>
+                                ${result.prestigeGoods.map(pg => `
+                                    <div class="prestige-item">
+                                        <strong>🏆 ${pg.good}</strong> (from ${pg.company})
+                                    </div>
+                                `).join('')}
+                                ${result.prestigeBonuses.map(pb => `
+                                    <div class="prestige-item">
+                                        <strong>⚡ ${pb.bonus}</strong> (from ${pb.company})
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            resultsDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
