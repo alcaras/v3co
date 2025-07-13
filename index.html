@@ -389,7 +389,14 @@
         </div>
         
         <div class="section">
-            <h2>Available Companies</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 style="margin: 0;">Available Companies</h2>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button onclick="selectAllCompanies()" style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Select All</button>
+                    <button onclick="clearAllCompanies()" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Clear All</button>
+                    <span id="companySelectionCount" style="color: #666; font-size: 14px;">0/0 selected</span>
+                </div>
+            </div>
             <div style="margin-bottom: 15px; padding: 10px; background: #fff3cd; border-radius: 8px; font-size: 14px; color: #856404;">
                 <strong>Required Companies:</strong> Right-click companies to mark as required - they must be included in the optimization. Required companies marked with ★<br>
                 <strong>Company Selection:</strong> Select companies to consider them for inclusion - if you don't select a company, it won't be considered in optimization.
@@ -1147,6 +1154,9 @@
             document.getElementById('availableCompanies').textContent = `${visibleCompanies.length} (${allCompanies.length} w/ basic)`;
             document.getElementById('selectedCount').textContent = selectedCompanies.length;
             
+            // Update company selection count in Available Companies header
+            updateCompanySelectionCount();
+            
             // Calculate prestige goods
             const prestigeGoods = selectedCompanies.reduce((count, company) => 
                 count + company.prestigeGoods.length, 0);
@@ -1188,6 +1198,38 @@
             `;
         }
 
+        function selectAllCompanies() {
+            // Select all visible companies
+            const visibleCompanyCards = document.querySelectorAll('.company-card');
+            visibleCompanyCards.forEach(card => {
+                const companyName = card.dataset.company;
+                if (companyName && !selectedCompanies.includes(companyName)) {
+                    selectedCompanies.push(companyName);
+                    card.classList.add('selected');
+                }
+            });
+            updateCompanySelectionCount();
+            updateStats();
+        }
+
+        function clearAllCompanies() {
+            // Clear all selected companies
+            selectedCompanies.length = 0;
+            document.querySelectorAll('.company-card.selected').forEach(card => {
+                card.classList.remove('selected');
+            });
+            updateCompanySelectionCount();
+            updateStats();
+        }
+
+        function updateCompanySelectionCount() {
+            const totalCompanies = visibleCompanies.length;
+            const selectedCount = selectedCompanies.length;
+            const countElement = document.getElementById('companySelectionCount');
+            if (countElement) {
+                countElement.textContent = `${selectedCount}/${totalCompanies} selected`;
+            }
+        }
 
         function calculateScore(companies) {
             // Count building coverage from company buildings
