@@ -14,8 +14,9 @@ This will:
 1. ✅ Extract fresh localizations from `english/` folder
 2. ✅ Update `game-localizations.mjs` with correct prestige goods and company names
 3. ✅ Import company data from `game/` folder 
-4. ✅ Generate new `companies_extracted.json` with proper names
-5. ✅ Provide clear logging of what was updated
+4. ✅ Generate `prestige-goods.mjs` with automatic prestige goods mapping
+5. ✅ Generate new `companies_extracted.json` with proper names
+6. ✅ Provide clear logging of what was updated
 
 ## Manual Steps (if needed)
 
@@ -40,9 +41,10 @@ node game_data_importer.mjs game companies_extracted.json
 ## What Gets Updated
 
 ### Prestige Goods
-- Maps `prestige_good_generic_tools` → `"Precision Tools"`
-- Maps `prestige_good_generic_steel` → `"Refined Steel"`
-- All 16 generic prestige goods get proper display names
+- Automatically extracts all prestige goods from company data
+- Maps prestige goods to base types (e.g., "Precision Tools" → "Tools")
+- Generates mapping for 57+ unique prestige goods to 32+ base types
+- Handles both generic and flavored prestige goods
 
 ### Company Names
 - Maps `company_basic_agriculture_1` → `"Quality Grains Inc."`
@@ -66,6 +68,7 @@ english/                 # English localizations (gitignored)
 └── companies_l_english.yml # Company names
 
 game-localizations.mjs   # Generated mapping file
+prestige-goods.mjs       # Generated prestige goods mapping
 companies_extracted.json # Generated company data
 update_from_game_files.mjs # Update script (gitignored)
 ```

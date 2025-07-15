@@ -164,30 +164,56 @@
         
         .building-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
             margin-bottom: 20px;
         }
         
+        @media (max-width: 768px) {
+            .building-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .stats-summary {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .optimization-buttons {
+                flex-direction: column;
+            }
+        }
+        
         .building-item {
-            padding: 10px;
-            background: #f8f9fa;
-            border: 2px solid transparent;
-            border-radius: 8px;
+            padding: 12px 16px;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .building-item:hover {
-            background: #e9ecef;
+            background: #f8f9fa;
             border-color: #667eea;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
         
         .building-item.selected {
-            background: #e3f2fd;
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            border-color: #17a2b8;
+            color: #0c5460;
+            font-weight: 600;
+        }
+        
+        .building-item.priority {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
             border-color: #2196f3;
+            color: #1976d2;
             font-weight: 600;
         }
         
@@ -297,27 +323,38 @@
         }
         
         .stats-summary {
-            display: flex;
-            justify-content: space-around;
-            background: #e9ecef;
-            padding: 15px;
-            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
             margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(248, 249, 250, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(233, 236, 239, 0.3);
         }
         
         .stat-item {
+            background: rgba(255, 255, 255, 0.6);
+            color: #6c757d;
+            padding: 12px;
+            border-radius: 6px;
             text-align: center;
+            border: 1px solid rgba(233, 236, 239, 0.5);
+            font-size: 13px;
         }
         
         .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 18px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 2px;
         }
         
         .stat-label {
-            font-size: 14px;
-            color: #6c757d;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
         }
         
         .search-box {
@@ -350,19 +387,16 @@
         
         <div class="stats-summary">
             <div class="stat-item">
-                <div class="stat-number" id="selectedBuildings">0</div>
-                <div class="stat-label">Selected Buildings</div>
+                <div class="stat-number" id="totalCompanies">0</div>
+                <div class="stat-label">Companies</div>
+                <div class="stat-breakdown" id="companyBreakdown" style="font-size: 11px; margin-top: 4px; opacity: 0.8;"></div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="availableCompanies">0</div>
-                <div class="stat-label">Total Companies</div>
+                <div class="stat-number" id="totalBuildings">0</div>
+                <div class="stat-label">Buildings</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" id="selectedCount">0</div>
-                <div class="stat-label">Selected Companies</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="prestigeGoods">0</div>
+                <div class="stat-number" id="totalPrestigeGoods">0</div>
                 <div class="stat-label">Prestige Goods</div>
             </div>
         </div>
@@ -373,7 +407,9 @@
                 <button onclick="optimizeCompaniesLP().catch(console.error)" style="padding: 15px 30px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #28a745, #20c997); margin-right: 15px;">🎯 Optimize Companies</button>
                 <button onclick="scrollToResults()" style="padding: 15px 30px; font-size: 16px; background: linear-gradient(45deg, #667eea, #764ba2);">📊 View Results</button>
             </div>
-            <div class="controls">
+            <div class="controls-section">
+                <h3 style="margin-bottom: 15px; color: #2c3e50; font-size: 1.2em;">⚙️ Settings</h3>
+                <div class="controls">
                 <div class="control-group">
                     <label for="companySlots">Company Slots Available:</label>
                     <input type="number" id="companySlots" min="1" max="7" value="7">
@@ -382,6 +418,7 @@
                 <button onclick="exportSelections()" style="background: #17a2b8;">💾 Export Configuration</button>
                 <button onclick="importSelections()" style="background: #fd7e14;">📁 Import Configuration</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleFileImport(event)">
+                </div>
             </div>
             <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #6c757d;">
                 <strong>Optimization Method:</strong> Scores based on selected buildings coverage + prestige goods + industry charters. Penalizes overlaps between companies.<br>
@@ -390,10 +427,10 @@
         
         <div class="section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <h2 style="margin: 0;">Building Selection</h2>
+                <h2 style="margin: 0;">🏭 Building Selection</h2>
                 <div style="display: flex; gap: 10px; align-items: center;">
-                    <button onclick="selectAllBuildings()" class="select-all-btn">Select All</button>
-                    <button onclick="clearAllBuildings()" class="clear-all-btn">Clear All</button>
+                    <button onclick="selectAllBuildings()" class="select-all-btn">✅ Select All</button>
+                    <button onclick="clearAllBuildings()" class="clear-all-btn">❌ Clear All</button>
                     <span id="buildingSelectionCount" style="color: #666; font-size: 14px;">0/0 selected</span>
                 </div>
             </div>
@@ -416,10 +453,10 @@
         
         <div class="section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <h2 style="margin: 0;">Available Companies</h2>
+                <h2 style="margin: 0;">🏢 Available Companies</h2>
                 <div style="display: flex; gap: 10px; align-items: center;">
-                    <button onclick="selectAllCompanies()" style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Select All</button>
-                    <button onclick="clearAllCompanies()" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">Clear All</button>
+                    <button onclick="selectAllCompanies()" class="select-all-btn">✅ Select All</button>
+                    <button onclick="clearAllCompanies()" class="clear-all-btn">❌ Clear All</button>
                     <span id="companySelectionCount" style="color: #666; font-size: 14px;">0/0 selected</span>
                 </div>
             </div>
@@ -434,11 +471,11 @@
         </div>
         
         <div class="section" style="text-align: center; padding: 20px;">
-            <button onclick="optimizeCompaniesLP().catch(console.error)" style="padding: 15px 30px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #28a745, #20c997);">🎯 Optimize Companies</button>
+            <button onclick="optimizeCompaniesLP().catch(console.error)" style="padding: 15px 30px; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #28a745, #20c997);">🚀 Optimize Companies</button>
         </div>
         
         <div class="section results hidden" id="resultsSection">
-            <h2>Optimization Results</h2>
+            <h2>🎯 Optimization Results</h2>
             <div id="optimizationResults">
                 <!-- Results will be populated by JavaScript -->
             </div>
@@ -451,6 +488,7 @@
         
         // Import prestige goods module
         import { prestigeGoodsMapping, prestigeGoodBaseTypes, getPrestigeGoodBaseType, checkPrestigeGoodRequirements } from './prestige-goods.mjs';
+        
         
         // Import scoring and validation module
         import { calculateScore, calculateCombinationScore, isValidAddition, isValidSolution } from './scoring.mjs';
@@ -846,10 +884,10 @@
         }
         
         function updateBuildingSelectionCount() {
-            const totalBuildings = document.querySelectorAll('#buildingSelection .building-item').length;
-            const selectedCount = selectedBuildings.length;
             const countElement = document.getElementById('buildingSelectionCount');
             if (countElement) {
+                const totalBuildings = document.querySelectorAll('#buildingSelection .building-item').length;
+                const selectedCount = selectedBuildings.length;
                 countElement.textContent = `${selectedCount}/${totalBuildings} selected`;
             }
         }
@@ -1119,26 +1157,33 @@
         }
 
         function updateStats() {
-            document.getElementById('selectedBuildings').textContent = selectedBuildings.length;
-            
-            // Show counts for basic, flavored, canal, and mandate companies
+            // Show total companies loaded
             const basicCount = companies.basic ? companies.basic.length : 0;
             const flavoredCount = companies.flavored ? companies.flavored.length : 0;
             const canalCount = companies.canal ? companies.canal.length : 0;
             const mandateCount = companies.mandate ? companies.mandate.length : 0;
-            document.getElementById('availableCompanies').textContent = `${basicCount} basic, ${flavoredCount} flavored, ${canalCount} canal, ${mandateCount} mandate`;
-            document.getElementById('selectedCount').textContent = selectedCompanies.length;
+            const totalCount = basicCount + flavoredCount + canalCount + mandateCount;
+            document.getElementById('totalCompanies').textContent = totalCount;
+            
+            // Show detailed breakdown
+            const breakdownParts = [];
+            if (basicCount > 0) breakdownParts.push(`${basicCount} basic`);
+            if (flavoredCount > 0) breakdownParts.push(`${flavoredCount} flavored`);
+            if (canalCount > 0) breakdownParts.push(`${canalCount} canal`);
+            if (mandateCount > 0) breakdownParts.push(`${mandateCount} mandate`);
+            document.getElementById('companyBreakdown').textContent = breakdownParts.join(' • ');
+            
+            // Show total buildings available
+            document.getElementById('totalBuildings').textContent = allBuildings.length;
+            
+            // Show total prestige goods known
+            document.getElementById('totalPrestigeGoods').textContent = Object.keys(prestigeGoodsMapping).length;
             
             // Update building selection count in Building Selection header
             updateBuildingSelectionCount();
             
             // Update company selection count in Available Companies header
             updateCompanySelectionCount();
-            
-            // Calculate prestige goods
-            const prestigeGoods = selectedCompanies.reduce((count, company) => 
-                count + company.prestigeGoods.length, 0);
-            document.getElementById('prestigeGoods').textContent = prestigeGoods;
         }
 
         function searchCompanies() {

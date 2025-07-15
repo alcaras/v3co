@@ -255,6 +255,6 @@ export function companyToDisplayName(companyName) {
     return companyNamesMapping[companyName] || companyName.replace(/^company_/, '').replace(/_/g, ' ');
 }
 
-// Generated on: 2025-07-15T03:38:20.891Z
+// Generated on: 2025-07-15T04:55:44.529Z
 // Total prestige goods: 16
 // Total company names: 207

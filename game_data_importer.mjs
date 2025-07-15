@@ -285,9 +285,118 @@ function requirementsToDisplayName(requirements) {
 // Remove manual company mapping - now using English localization files
 
 /**
+ * Extract prestige goods mapping from company data
+ * @param {Array} companies - Array of all companies
+ * @returns {Object} - Prestige goods mapping and base types
+ */
+function extractPrestigeGoodsMapping(companies) {
+    const prestigeGoodsMapping = {};
+    const uniquePrestigeGoods = new Set();
+    
+    // Collect all unique prestige goods from companies
+    companies.forEach(company => {
+        if (company.prestigeGoods) {
+            company.prestigeGoods.forEach(pg => {
+                uniquePrestigeGoods.add(pg);
+            });
+        }
+    });
+    
+    // Create base type mapping by analyzing prestige good names
+    Array.from(uniquePrestigeGoods).forEach(prestigeGood => {
+        let baseType = '';
+        
+        // Map specific prestige goods to base types
+        const pgLower = prestigeGood.toLowerCase();
+        
+        if (pgLower.includes('artillery') || pgLower.includes('guns')) {
+            baseType = 'Artillery';
+        } else if (pgLower.includes('steel') || pgLower.includes('iron')) {
+            baseType = 'Steel';
+        } else if (pgLower.includes('tools') || pgLower.includes('precision')) {
+            baseType = 'Tools';
+        } else if (pgLower.includes('grain') || pgLower.includes('wheat')) {
+            baseType = 'Grain';
+        } else if (pgLower.includes('meat') || pgLower.includes('beef')) {
+            baseType = 'Meat';
+        } else if (pgLower.includes('fish') || pgLower.includes('seafood')) {
+            baseType = 'Fish';
+        } else if (pgLower.includes('coffee') || pgLower.includes('café')) {
+            baseType = 'Coffee';
+        } else if (pgLower.includes('opium') || pgLower.includes('drugs')) {
+            baseType = 'Opium';
+        } else if (pgLower.includes('paper') || pgLower.includes('washi')) {
+            baseType = 'Paper';
+        } else if (pgLower.includes('clothes') || pgLower.includes('fabric') || pgLower.includes('textile') || pgLower.includes('silk') || pgLower.includes('cotton') || pgLower.includes('couture')) {
+            baseType = 'Clothes';
+        } else if (pgLower.includes('furniture') || pgLower.includes('upholstery') || pgLower.includes('bentwood')) {
+            baseType = 'Furniture';
+        } else if (pgLower.includes('groceries') || pgLower.includes('food')) {
+            baseType = 'Groceries';
+        } else if (pgLower.includes('fertilizer') || pgLower.includes('chemicals')) {
+            baseType = 'Fertilizer';
+        } else if (pgLower.includes('explosives') || pgLower.includes('dynamite')) {
+            baseType = 'Explosives';
+        } else if (pgLower.includes('arms') || pgLower.includes('guns') || pgLower.includes('rifles') || pgLower.includes('revolvers')) {
+            baseType = 'Small Arms';
+        } else if (pgLower.includes('merchant') || pgLower.includes('marine') || pgLower.includes('ships') || pgLower.includes('liners') || pgLower.includes('steamers')) {
+            baseType = 'Merchant Marine';
+        } else if (pgLower.includes('automobiles') || pgLower.includes('cars') || pgLower.includes('motors')) {
+            baseType = 'Automobiles';
+        } else if (pgLower.includes('tea') || pgLower.includes('assam') || pgLower.includes('china tea')) {
+            baseType = 'Tea';
+        } else if (pgLower.includes('tobacco') || pgLower.includes('cigarettes')) {
+            baseType = 'Tobacco';
+        } else if (pgLower.includes('wine') || pgLower.includes('champagne') || pgLower.includes('alcohol')) {
+            baseType = 'Wine';
+        } else if (pgLower.includes('oil') || pgLower.includes('petroleum')) {
+            baseType = 'Oil';
+        } else if (pgLower.includes('porcelain') || pgLower.includes('pottery') || pgLower.includes('ceramic')) {
+            baseType = 'Porcelain';
+        } else if (pgLower.includes('crystal') || pgLower.includes('glass')) {
+            baseType = 'Glass';
+        } else if (pgLower.includes('wood') || pgLower.includes('timber') || pgLower.includes('teak')) {
+            baseType = 'Hardwood';
+        } else if (pgLower.includes('radio') || pgLower.includes('apparatus') || pgLower.includes('telephone')) {
+            baseType = 'Electronics';
+        } else if (pgLower.includes('sulfur') || pgLower.includes('sulphur')) {
+            baseType = 'Sulfur';
+        } else if (pgLower.includes('fruit') || pgLower.includes('banana')) {
+            baseType = 'Fruit';
+        } else if (pgLower.includes('liquor') || pgLower.includes('vodka')) {
+            baseType = 'Liquor';
+        } else if (pgLower.includes('dye') || pgLower.includes('aniline')) {
+            baseType = 'Dye';
+        } else if (pgLower.includes('engines') || pgLower.includes('motors')) {
+            baseType = 'Engines';
+        } else if (pgLower === 'mit afifi') {
+            baseType = 'Fabric';  // Mit Afifi is a prestige fabric
+        } else if (pgLower === 'satsuma ware') {
+            baseType = 'Porcelain';  // Satsuma ware is a type of Japanese pottery/porcelain
+        } else {
+            // Default: use the prestige good name as base type
+            baseType = prestigeGood.replace(/^(Quick-fire|High-grade|High-powered|Prime|Select|Fine|Gourmet|Enriched|Designer|Stylish|Pure|Craft|Refined|Precision|Swift|Reserve)\\s+/i, '').trim();
+        }
+        
+        prestigeGoodsMapping[prestigeGood] = baseType;
+    });
+    
+    // Get unique base types
+    const prestigeGoodBaseTypes = [...new Set(Object.values(prestigeGoodsMapping))].sort();
+    
+    log.info(`Extracted ${uniquePrestigeGoods.size} prestige goods mapping to ${prestigeGoodBaseTypes.length} base types`);
+    
+    return {
+        prestigeGoodsMapping,
+        prestigeGoodBaseTypes,
+        uniquePrestigeGoods: Array.from(uniquePrestigeGoods).sort()
+    };
+}
+
+/**
  * Import all company data from game files
  * @param {string} gameDir - Path to game directory
- * @returns {Object} - Imported company data
+ * @returns {Object} - Imported company data with prestige goods mapping
  */
 function importGameData(gameDir) {
     const companyTypesDir = join(gameDir, 'company_types');
@@ -305,10 +414,17 @@ function importGameData(gameDir) {
     const basicCompanies = parseParadoxScript(basicContent);
     
     for (const [companyId, companyData] of Object.entries(basicCompanies)) {
-        // Convert basic company ID to "Basic X" format
-        const basicName = companyId.replace(/^company_basic_/, '').replace(/_/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        // Convert basic company ID to "Basic X" format, with special handling for construction power bloc
+        let companyName;
+        if (companyId.includes('construction_power_bloc')) {
+            companyName = companyToDisplayName(companyId); // Use localization: "United Construction Conglomerate"
+        } else {
+            const basicName = companyId.replace(/^company_basic_/, '').replace(/_/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            companyName = `Basic ${basicName}`;
+        }
+        
         const company = {
-            name: `Basic ${basicName}`,
+            name: companyName,
             buildings: companyData.building_types?.map(buildingToDisplayName) || [],
             industryCharters: companyData.extension_building_types?.map(buildingToDisplayName) || [],
             prestigeGoods: companyData.possible_prestige_goods?.map(prestigeGoodToDisplayName) || [],
@@ -377,6 +493,15 @@ function importGameData(gameDir) {
     
     log.info(`Imported ${result.flavoredCompanies.length} flavored companies`);
     log.info(`Total companies imported: ${result.basicCompanies.length + result.flavoredCompanies.length}`);
+    
+    // Extract prestige goods mapping from all companies
+    const allCompanies = [...result.basicCompanies, ...result.flavoredCompanies];
+    const prestigeGoodsData = extractPrestigeGoodsMapping(allCompanies);
+    
+    // Add prestige goods data to result
+    result.prestigeGoodsMapping = prestigeGoodsData.prestigeGoodsMapping;
+    result.prestigeGoodBaseTypes = prestigeGoodsData.prestigeGoodBaseTypes;
+    result.uniquePrestigeGoods = prestigeGoodsData.uniquePrestigeGoods;
     
     return result;
 }

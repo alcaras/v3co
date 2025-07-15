@@ -23,10 +23,10 @@ async function loadCompanyData() {
         // Remove canal companies from flavored list
         companies.flavored = companies.flavored.filter(c => c.special !== 'canal');
         
-        // Find United Construction Conglomerate for display
+        // Find mandate company (construction power bloc) for display
         companies.mandate = companies.basic.filter(c => c.name === 'United Construction Conglomerate');
         
-        // Remove United Construction Conglomerate from basic companies to avoid duplication
+        // Remove mandate company from basic companies to avoid duplication
         companies.basic = companies.basic.filter(c => c.name !== 'United Construction Conglomerate');
         
         // All companies for optimization (basic + flavored + canal)
