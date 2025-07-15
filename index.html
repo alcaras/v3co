@@ -1984,7 +1984,7 @@
             // Convert back to display format (all selected variants including canal companies)
             const allSelectedCompanies = selectedVariants.map(variant => ({
                 ...variant,
-                name: variant.baseCompanyName, // Use original name only, charter shown separately
+                name: variant.baseCompanyName || variant.name, // Use baseCompanyName for charter variants, original name for base variants
                 buildings: variant.selectedCharter ? 
                     variant.buildings.filter(b => b !== variant.selectedCharter) : // Remove charter from buildings list
                     variant.buildings,

@@ -119,18 +119,16 @@ function expandCompaniesWithCharters(companies, selectedBuildings = []) {
         // Add variant for each charter
         if (company.industryCharters && company.industryCharters.length > 0) {
             company.industryCharters.forEach(charter => {
-                // Only add charter variants for selected buildings (if selectedBuildings is provided)
-                if (selectedBuildings.length === 0 || selectedBuildings.includes(charter)) {
-                    const charterVariant = {
-                        ...company,
-                        name: `${company.name} + ${charter}`,
-                        buildings: [...company.buildings, charter],
-                        variantType: 'charter',
-                        selectedCharter: charter,
-                        baseCompanyName: company.name
-                    };
-                    expandedCompanies.push(charterVariant);
-                }
+                // Always create charter variants - the LP solver will decide if they're beneficial
+                const charterVariant = {
+                    ...company,
+                    name: `${company.name} + ${charter}`,
+                    buildings: [...company.buildings, charter],
+                    variantType: 'charter',
+                    selectedCharter: charter,
+                    baseCompanyName: company.name
+                };
+                expandedCompanies.push(charterVariant);
             });
         }
     });
