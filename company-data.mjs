@@ -7,11 +7,9 @@
  */
 async function loadCompanyData() {
     try {
-        console.log('Starting to load company data...');
+        console.log('Loading company data...');
         const response = await fetch('companies_extracted.json');
-        console.log('Fetch response:', response.status, response.ok);
         const data = await response.json();
-        console.log('JSON data loaded:', data);
         
         const companies = {
             basic: data.basicCompanies || [],
@@ -20,7 +18,7 @@ async function loadCompanyData() {
             mandate: []
         };
         
-        console.log('Companies loaded - Basic:', companies.basic.length, 'Flavored:', companies.flavored.length, 'Canal:', companies.canal.length);
+        console.log(`Companies loaded: ${companies.basic.length} basic, ${companies.flavored.length} flavored, ${companies.canal.length} canal`);
         
         // Remove canal companies from flavored list
         companies.flavored = companies.flavored.filter(c => c.special !== 'canal');
@@ -36,13 +34,6 @@ async function loadCompanyData() {
         
         // Display companies (basic first, then mandate, then flavored, then canal)
         const visibleCompanies = [...companies.basic, ...companies.mandate, ...companies.flavored, ...companies.canal];
-        
-        console.log('All companies array length:', allCompanies.length);
-        console.log('Visible companies array length:', visibleCompanies.length);
-        console.log('Basic companies:', companies.basic.length);
-        console.log('Flavored companies after canal removal:', companies.flavored.length);
-        console.log('Canal companies:', companies.canal.length);
-        console.log('Mandate companies:', companies.mandate.length);
         
         // Extract all unique buildings from displayed companies
         const buildingSet = new Set();
@@ -69,7 +60,7 @@ async function loadCompanyData() {
  * @returns {Object} Object containing empty company data arrays
  */
 function loadSampleData() {
-    console.log('Loading sample data...');
+    console.log('Loading fallback sample data...');
     
     const companies = {
         basic: [],
@@ -133,7 +124,7 @@ function expandCompaniesWithCharters(companies, selectedBuildings = []) {
         }
     });
     
-    console.log(`Expanded ${companies.length} companies into ${expandedCompanies.length} variants`);
+    // Removed verbose expansion logging
     
     return expandedCompanies;
 }

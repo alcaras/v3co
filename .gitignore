@@ -24,3 +24,8 @@ backup_*.html
 server.log
 yalps_test.*
 test_*.html
+
+# Game files - don't include in repository
+game/
+english/
+update_from_game_files.mjs

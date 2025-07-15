@@ -1121,8 +1121,12 @@
         function updateStats() {
             document.getElementById('selectedBuildings').textContent = selectedBuildings.length;
             
-            // Show counts for displayed companies vs all companies used in optimization
-            document.getElementById('availableCompanies').textContent = `${visibleCompanies.length} (${allCompanies.length} w/ basic)`;
+            // Show counts for basic, flavored, canal, and mandate companies
+            const basicCount = companies.basic ? companies.basic.length : 0;
+            const flavoredCount = companies.flavored ? companies.flavored.length : 0;
+            const canalCount = companies.canal ? companies.canal.length : 0;
+            const mandateCount = companies.mandate ? companies.mandate.length : 0;
+            document.getElementById('availableCompanies').textContent = `${basicCount} basic, ${flavoredCount} flavored, ${canalCount} canal, ${mandateCount} mandate`;
             document.getElementById('selectedCount').textContent = selectedCompanies.length;
             
             // Update building selection count in Building Selection header
