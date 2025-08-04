@@ -81,6 +81,8 @@ class Victoria3CompanyParserV6Final:
             'building_textile_mills': 'fabric',
             'building_furniture_manufactories': 'furniture',
             'building_furniture_manufacturies': 'furniture',
+            # Additional mappings for prestige goods
+            'building_electrics_industry': 'telephones',  # Ericsson apparatus, radios
             'building_paper_mills': 'paper',
             'building_steel_mills': 'steel',
             'building_tooling_workshops': 'tools',
@@ -1850,8 +1852,54 @@ class Victoria3CompanyParserV6Final:
                 base_good = self.prestige_goods[prestige_good]
                 if base_good == building_good:
                     return True, prestige_good
+                
+                # Handle special cases for prestige goods that don't have direct building matches
+                if self._prestige_good_matches_building(prestige_good, base_good, building, building_good):
+                    return True, prestige_good
                     
         return False, None
+    
+    def _prestige_good_matches_building(self, prestige_good, base_good, building, building_good):
+        """Handle special cases where prestige goods don't have direct building matches"""
+        
+        # Luxury furniture can be made in furniture manufacturies
+        if base_good == 'luxury_furniture' and building_good == 'furniture':
+            return True
+        
+        # Luxury clothes can be made in textile mills
+        if base_good == 'luxury_clothes' and building_good == 'fabric':
+            return True
+        
+        # Regular clothes can be made in textile mills
+        if base_good == 'clothes' and building_good == 'fabric':
+            return True
+        
+        # Steamers, ironclads can be made in shipyards or military shipyards
+        if base_good in ['steamers', 'ironclads'] and building in ['building_shipyards', 'building_military_shipyards']:
+            return True
+        
+        # Merchant marine can be made in shipyards or ports
+        if base_good == 'merchant_marine' and building in ['building_shipyards', 'building_port', 'building_trade_center']:
+            return True
+        
+        # Telephones and radios can be made in electrics industry
+        if base_good in ['telephones', 'radios'] and building == 'building_electrics_industry':
+            return True
+        
+        # Hardwood from logging
+        if base_good == 'hardwood' and building_good == 'wood':
+            return True
+        
+        # Wine from vineyard plantations (special case)
+        if base_good == 'wine' and building == 'building_vineyard_plantation':
+            return True
+        
+        
+        # Porcelain can be made in glassworks (historical - many "glassworks" made ceramics)
+        if base_good == 'porcelain' and building_good == 'glass':
+            return True
+        
+        return False
     
     def cross_check_with_wiki(self):
         """Cross-check extracted country data with wiki data"""
