@@ -1703,6 +1703,13 @@ class Victoria3CompanyParserV6Final:
                                 culture_reqs = re.findall(r'country_has_primary_culture\s*=\s*cu:(\w+)', potential_content)
                                 for culture in culture_reqs:
                                     formation_reqs.append("Primary culture: {}".format(culture.replace('_', ' ').title()))
+                                
+                                # Extract direct country assignment (c:COUNTRY ?= this pattern)
+                                country_assignment = re.search(r'c:(\w+)\s*\?\s*=\s*this', potential_content)
+                                if country_assignment:
+                                    assigned_country = country_assignment.group(1)
+                                    company_data['country'] = assigned_country
+                                    company_data['country_confidence'] = 'definitive'
                     
                     company_data['formation_requirements'] = formation_reqs
                         
