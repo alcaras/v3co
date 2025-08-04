@@ -138,7 +138,9 @@ class Victoria3CompanyParserV6Final:
             'SIC': '🇮🇹', 'PAP': '🇮🇹', 'TUS': '🇮🇹', 'MOD': '🇮🇹', 'PAR': '🇮🇹',
             'LUC': '🇮🇹', 'VEN': '🇮🇹', 'TWO': '🇮🇹', 'LUX': '🇱🇺', 'WAL': '🇷🇴',
             'MOL': '🇷🇴', 'SER': '🇷🇸', 'MON': '🇲🇪', 'BOS': '🇧🇦', 'CRO': '🇭🇷',
-            'LAN': '🇨🇳'
+            'LAN': '🇨🇳', 'KOK': '🇺🇿', 'SOK': '🇳🇬', 'BIC': '🇮🇳', 'DAI': '🇻🇳',
+            'SIA': '🇹🇭', 'BUR': '🇲🇲', 'NSW': '🇦🇺', 'CLM': '🇨🇴', 'KUN': '🇦🇫',
+            'OZH': '🇰🇿', 'ARB': '🇸🇦', 'CON': '🇫🇷', 'AST': '🇦🇺'
         }
         
     def get_country_flag(self, country_code):
@@ -320,8 +322,20 @@ class Victoria3CompanyParserV6Final:
             'VEN': 'Venice',
             'LOM': 'Lombardy',
             'SAV': 'Savoy',
-            'OZH': 'Osh',
-            'LAN': 'Lanfang Republic'
+            'OZH': 'Kazakh Khanate',
+            'LAN': 'Lanfang Republic',
+            'KOK': 'Kokand',
+            'SOK': 'Sokoto Caliphate',
+            'BIC': 'British India',
+            'DAI': 'Dai Nam',
+            'SIA': 'Siam',
+            'BUR': 'Burma',
+            'NSW': 'New South Wales',
+            'CLM': 'Gran Colombia',
+            'KUN': 'Kunduz',
+            'ARB': 'Arabia',
+            'CON': 'French Congo',
+            'AST': 'Australia'
         }
         return country_names.get(country_code, country_code)  # Fallback to country code if not found
     
