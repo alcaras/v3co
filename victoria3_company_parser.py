@@ -1805,15 +1805,10 @@ class Victoria3CompanyParserV6Final:
                 
             # Check if this company can produce prestige goods for buildings it has as base
             if has_building and not as_extension and data['possible_prestige_goods']:
-                # Check if any prestige good matches this building's output
-                building_good = self.building_to_goods.get(building)
-                if building_good:
-                    for prestige_good in data['possible_prestige_goods']:
-                        if prestige_good in self.prestige_goods:
-                            base_good = self.prestige_goods[prestige_good]
-                            if base_good == building_good:
-                                has_prestige = True
-                                break
+                # Use the same logic as company_has_prestige_for_building
+                prestige_result = self.company_has_prestige_for_building(company_name, building)
+                if prestige_result and isinstance(prestige_result, tuple) and prestige_result[0]:
+                    has_prestige = True
                 
             if has_building:
                 if with_prestige and has_prestige:
@@ -1844,20 +1839,17 @@ class Victoria3CompanyParserV6Final:
         if not data['possible_prestige_goods'] or building not in data['building_types']:
             return False
             
-        # For companies that have prestige goods, check if this building contributes
-        # to their specialization. In Victoria 3, companies often have multiple buildings
-        # that support their main prestige good production.
-        
-        # If a company has prestige goods and this building is in their building types,
-        # we assume the building contributes to their prestige production.
-        # This matches Victoria 3's design where companies are specialized producers
-        # that use multiple building types to create their prestige goods.
-        
+        # Get the good that this building produces
+        building_good = self.building_to_goods.get(building)
+        if not building_good:
+            return False
+            
+        # Check if any prestige good matches this building's output
         for prestige_good in data['possible_prestige_goods']:
             if prestige_good in self.prestige_goods:
-                # Return the first prestige good for this building
-                # In the UI, companies will show their prestige specialization
-                return True, prestige_good
+                base_good = self.prestige_goods[prestige_good]
+                if base_good == building_good:
+                    return True, prestige_good
                     
         return False, None
     
