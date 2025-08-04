@@ -883,7 +883,8 @@ class Victoria3CompanyParserV6Final:
             
             # Special icon mappings for prestige goods that don't have exact icon matches
             icon_mappings = {
-                'burmese_teak': 'teak'
+                'burmese_teak': 'teak',
+                'swedish_bar_iron': 'oregrounds_iron'
             }
             
             if prestige_good_base in icon_mappings:
@@ -2758,7 +2759,8 @@ class Victoria3CompanyParserV6Final:
                         
                         # Special icon mappings for prestige goods that don't have exact icon matches
                         icon_mappings = {
-                            'burmese_teak': 'teak'
+                            'burmese_teak': 'teak',
+                            'swedish_bar_iron': 'oregrounds_iron'
                         }
                         
                         if prestige_good_base in icon_mappings:
@@ -3245,6 +3247,7 @@ if __name__ == "__main__":
                 'prestige_good_sheffield_steel': 'steel',
                 'prestige_good_russia_iron': 'iron',
                 'prestige_good_oregrounds_iron': 'iron',
+                'prestige_good_swedish_bar_iron': 'iron',
                 'prestige_good_baku_oil': 'oil',
                 'prestige_good_sicilian_sulfur': 'sulfur',
                 'prestige_good_rosewood': 'hardwood',
