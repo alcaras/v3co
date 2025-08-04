@@ -68,7 +68,13 @@ This regenerates `index.html` with latest data. Always use Python 3 for UTF-8 en
 3. Check for encoding errors or missing icons in terminal output
 
 ### Deployment
-Changes are automatically deployed to GitHub Pages when pushed to main branch.
+**CRITICAL**: Always commit and push both the parser changes AND the updated `index.html` file.
+```bash
+git add victoria3_company_parser.py index.html
+git commit -m "Your commit message"
+git push
+```
+The `index.html` file is what GitHub Pages displays, so it must be pushed for changes to appear on the live site.
 
 ## Common Issues & Solutions
 
