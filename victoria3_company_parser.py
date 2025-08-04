@@ -376,7 +376,7 @@ class Victoria3CompanyParserV6Final:
         clean_name = company_name.replace('company_', '')
         
         # Specific mappings for historical companies based on actual file names
-        historical_mappings = {
+        self.historical_mappings = {
             'us_steel': 'american_carnegie_steel',
             'carnegie_steel': 'american_carnegie_steel', 
             'ford_motor': 'american_ford',
@@ -548,8 +548,8 @@ class Victoria3CompanyParserV6Final:
         }
         
         # Check historical mappings first
-        if clean_name in historical_mappings:
-            historical_path = "companies/png/historical_company_icons/{}.png".format(historical_mappings[clean_name])
+        if clean_name in self.historical_mappings:
+            historical_path = "companies/png/historical_company_icons/{}.png".format(self.historical_mappings[clean_name])
             full_path = os.path.join(os.path.dirname(__file__), historical_path)
             if os.path.exists(full_path):
                 return historical_path
@@ -2842,13 +2842,28 @@ class Victoria3CompanyParserV6Final:
             // Remove company_ prefix for icon lookup
             const cleanName = companyName.replace('company_', '');
             
-            // Basic companies are in the root png folder, historical companies are in the subfolder
+            // Historical company mappings (generated from Python version)
+            const historicalMappings = {'''
+
+        # Generate JavaScript object from Python historical_mappings
+        for key, value in self.historical_mappings.items():
+            html += f'\n                "{key}": "{value}",'
+        
+        html += '''
+            };
+            
+            // Check if we have a specific mapping for historical companies
+            if (historicalMappings[cleanName]) {
+                return `companies/png/historical_company_icons/${historicalMappings[cleanName]}.png`;
+            }
+            
+            // Basic companies are in the root png folder
             if (cleanName.startsWith('basic_')) {
                 return `companies/png/${cleanName}.png`;
-            } else {
-                // Try historical company icons first, then fallback to root folder
-                return `companies/png/historical_company_icons/${cleanName}.png`;
-            }
+            } 
+            
+            // Default historical company path
+            return `companies/png/historical_company_icons/${cleanName}.png`;
         }
         
         // Table sorting functionality
