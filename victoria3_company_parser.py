@@ -3098,24 +3098,58 @@ class Victoria3CompanyParserV6Final:
             tooltip.innerHTML = html;
             tooltip.style.display = 'block';
             
-            // Position tooltip above and to the left to avoid going off screen
+            // Smart tooltip positioning to stay within viewport bounds
             const rect = event.target.getBoundingClientRect();
             const tooltipRect = tooltip.getBoundingClientRect();
             
+            // Get viewport dimensions and scroll position
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Calculate initial position (above and to the left of cursor)
             let left = event.pageX - 20;
             let top = event.pageY - tooltipRect.height - 10;
             
-            // Keep tooltip on screen horizontally
-            if (left + tooltipRect.width > window.innerWidth) {
-                left = window.innerWidth - tooltipRect.width - 20;
+            // Horizontal boundary detection and adjustment
+            const rightEdge = left + tooltipRect.width;
+            const leftEdge = left;
+            const viewportRight = scrollX + viewportWidth;
+            const viewportLeft = scrollX;
+            
+            if (rightEdge > viewportRight) {
+                // Tooltip goes off right edge, move it left
+                left = viewportRight - tooltipRect.width - 10;
             }
-            if (left < 10) {
-                left = 10;
+            if (leftEdge < viewportLeft) {
+                // Tooltip goes off left edge, move it right
+                left = viewportLeft + 10;
             }
             
-            // Keep tooltip on screen vertically
-            if (top < 10) {
-                top = event.pageY + 20; // Show below if can't fit above
+            // Vertical boundary detection and adjustment
+            const topEdge = top;
+            const bottomEdge = top + tooltipRect.height;
+            const viewportTop = scrollY;
+            const viewportBottom = scrollY + viewportHeight;
+            
+            if (topEdge < viewportTop) {
+                // Tooltip goes off top edge, show below cursor instead
+                top = event.pageY + 20;
+                // Check if it now goes off bottom edge
+                if (top + tooltipRect.height > viewportBottom) {
+                    // If it still doesn't fit, position at bottom of viewport
+                    top = viewportBottom - tooltipRect.height - 10;
+                }
+            } else if (bottomEdge > viewportBottom) {
+                // Tooltip goes off bottom edge, try to fit above
+                const newTop = event.pageY - tooltipRect.height - 10;
+                if (newTop >= viewportTop) {
+                    top = newTop;
+                } else {
+                    // Can't fit above either, position at top of viewport
+                    top = viewportTop + 10;
+                }
             }
             
             tooltip.style.left = left + 'px';
