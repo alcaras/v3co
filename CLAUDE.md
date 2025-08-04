@@ -275,15 +275,37 @@ This verification step is **critical** because:
 
 **Important**: Basic companies (`company_basic_*`) correctly have no flags. Focus only on historical companies.
 
+### Problem: Company has correct wiki country but shows no flag due to extraction failure
+
+**Root Cause**: Parser doesn't recognize Victoria 3 `c:COUNTRY ?= this` pattern in game files
+
+**Symptoms**: Company shows correct country in tooltip and wiki, but empty flag cell in table
+
+**Solution**:
+- **Check**: Look for direct country assignment patterns in `potential` section of game files
+- **Pattern**: `c:ARG ?= this` means "this company requires Argentina to form"
+- **Fix**: Add regex parsing in `parse_company_data()` around line 1708:
+  ```python
+  country_assignment = re.search(r'c:(\w+)\s*\?\s*=\s*this', potential_content)
+  if country_assignment:
+      assigned_country = country_assignment.group(1)
+      company_data['country'] = assigned_country
+      company_data['country_confidence'] = 'definitive'
+  ```
+
+**Examples Fixed**: Centro Vitivinícola Nacional and Ferrocarril Central Córdoba (both ARG)
+
 ### Key Debugging Principles Learned:
 
 1. **Systematic Company-by-Company Analysis**: When facing widespread issues, use systematic approach rather than trying to fix architecture
 2. **Always Push Both Parser AND HTML**: GitHub Pages displays `index.html`, so both files must be committed
-3. **Coordinate System Consistency**: Mix of page/viewport coordinates causes positioning bugs
-4. **JavaScript-Python Synchronization**: Dynamic generation prevents JavaScript from getting out of sync with Python logic
-5. **Icon Mapping Patterns**: Missing icons need mappings in BOTH company name and building column generation functions
-6. **Flag Mapping Completeness**: JavaScript tooltip mappings serve as reference for missing Python flag mappings
-7. **Wiki Verification**: Always verify country assignments match `wiki/flavored.wiki` organization structure
+3. **Game File Pattern Recognition**: Victoria 3 uses specific syntax patterns (`c:COUNTRY ?= this`) that need explicit parsing support
+4. **Country Extraction Completeness**: Check multiple sources - state requirements, direct assignments, manual overrides
+5. **Coordinate System Consistency**: Mix of page/viewport coordinates causes positioning bugs
+6. **JavaScript-Python Synchronization**: Dynamic generation prevents JavaScript from getting out of sync with Python logic
+7. **Icon Mapping Patterns**: Missing icons need mappings in BOTH company name and building column generation functions
+8. **Flag Mapping Completeness**: JavaScript tooltip mappings serve as reference for missing Python flag mappings
+9. **Wiki Verification**: Always verify country assignments match `wiki/flavored.wiki` organization structure
 
 ## Future Considerations
 - Company icon coverage could be improved (many missing icons)
