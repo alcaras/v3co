@@ -129,6 +129,52 @@ When making changes:
 - [ ] Test back-to-top navigation links
 - [ ] Confirm table sorting works
 
+## Troubleshooting Prestige Goods Icon Issues
+
+### Problem: Company showing services icon instead of correct prestige good icon
+
+**Symptoms**: Company has prestige good in tooltip but shows generic services icon in HTML tables
+
+**Root Causes & Solutions**:
+
+1. **Missing hardcoded prestige goods mapping**
+   - **Check**: Search for prestige good in hardcoded dictionary (around line 3240)
+   - **Fix**: Add `'prestige_good_name': 'base_good'` to hardcoded dictionary
+   - **Example**: `'prestige_good_swedish_bar_iron': 'iron'`
+
+2. **Missing building-to-goods mapping**
+   - **Check**: Verify company's buildings produce the right base good
+   - **Fix**: Add `'building_name': 'base_good'` to building_to_goods dictionary (around line 60)
+   - **Example**: `'building_synthetics_plants': 'dye'`
+
+3. **Missing icon file**
+   - **Check**: Look for `icons/24px-Prestige_[name].png` file
+   - **Fix**: Add icon mapping to both locations (around lines 885 and 2760):
+     ```python
+     icon_mappings = {
+         'prestige_good_base_name': 'existing_icon_name'
+     }
+     ```
+   - **Example**: `'swedish_bar_iron': 'oregrounds_iron'`
+
+4. **Special case needed**
+   - **Check**: If base goods don't match (e.g., `luxury_clothes` vs `clothes`)
+   - **Fix**: Add special case to `company_has_prestige_for_building()` method (around line 1875)
+
+### Systematic Debugging Process:
+1. Find company in game files: `grep -r "company_name" game/company_types/`
+2. Check prestige good definition: `grep "prestige_good_name" game/prestige_goods/00_prestige_goods.txt`
+3. Verify building mappings: `grep "building_name" victoria3_company_parser.py`
+4. Check hardcoded dictionary: `grep "prestige_good_name" victoria3_company_parser.py`
+5. Test available icons: `ls icons/ | grep "prestige_good_base"`
+
+### Examples Fixed:
+- **BASF German Aniline**: Missing `building_synthetics_plants` → `dye` mapping
+- **Russian-American Company**: Changed `building_whaling_station` from `oil` to `meat`
+- **Maison Worth**: Added special case for `luxury_clothes` + `building_textile_mills`
+- **Burmese Teak**: Added icon mapping `'burmese_teak': 'teak'`
+- **Swedish Bar Iron**: Added hardcoded mapping + icon mapping `'swedish_bar_iron': 'oregrounds_iron'`
+
 ## Future Considerations
 - Company icon coverage could be improved (many missing icons)
 - Consider adding search/filter functionality
