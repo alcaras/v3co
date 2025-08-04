@@ -881,6 +881,14 @@ class Victoria3CompanyParserV6Final:
         for prestige_good in prestige_goods:
             prestige_good_base = prestige_good.replace('prestige_good_generic_', '').replace('prestige_good_', '')
             
+            # Special icon mappings for prestige goods that don't have exact icon matches
+            icon_mappings = {
+                'burmese_teak': 'teak'
+            }
+            
+            if prestige_good_base in icon_mappings:
+                prestige_good_base = icon_mappings[prestige_good_base]
+            
             # Try prestige-specific icon first, fallback to goods icon
             prestige_icon_24px = "icons/24px-Prestige_{}.png".format(prestige_good_base)
             prestige_icon_40px = "icons/40px-Goods_{}.png".format(prestige_good_base)
@@ -2748,6 +2756,14 @@ class Victoria3CompanyParserV6Final:
                         # Use prestige good icon with proper alt text
                         prestige_good_base = prestige_good.replace('prestige_good_generic_', '').replace('prestige_good_', '')
                         
+                        # Special icon mappings for prestige goods that don't have exact icon matches
+                        icon_mappings = {
+                            'burmese_teak': 'teak'
+                        }
+                        
+                        if prestige_good_base in icon_mappings:
+                            prestige_good_base = icon_mappings[prestige_good_base]
+                        
                         # Try prestige-specific icon first, fallback to goods icon
                         prestige_icon_candidates = [
                             "icons/24px-Prestige_{}.png".format(prestige_good_base),
@@ -3183,6 +3199,7 @@ if __name__ == "__main__":
                 'prestige_good_baku_oil': 'oil',
                 'prestige_good_sicilian_sulfur': 'sulfur',
                 'prestige_good_rosewood': 'hardwood',
+                'prestige_good_burmese_teak': 'hardwood',
                 'prestige_good_teak': 'hardwood',
                 'prestige_good_prime_meat': 'meat',
                 'prestige_good_river_plate_beef': 'meat',
