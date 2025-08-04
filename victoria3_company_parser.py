@@ -3078,13 +3078,13 @@ class Victoria3CompanyParserV6Final:
                         };
                         
                         const mappedBase = iconMappings[prestigeGoodBase] || prestigeGoodBase;
-                        const prestigeIcon = `icons/24px-Prestige_$${mappedBase}.png`;
-                        const fallbackIcon = `icons/40px-Goods_$${mappedBase}.png`;
+                        const prestigeIcon = `icons/24px-Prestige_${mappedBase}.png`;
+                        const fallbackIcon = `icons/40px-Goods_${mappedBase}.png`;
                         
                         const goodDisplayName = good.replace('prestige_good_generic_', '').replace('prestige_good_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
                         
-                        html += `<li><img src="$${prestigeIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
-                                 onerror="this.src='$${fallbackIcon}'; this.onerror=null;">${goodDisplayName}</li>`;
+                        html += `<li><img src="${prestigeIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
+                                 onerror="this.src='${fallbackIcon}'; this.onerror=null;">${goodDisplayName}</li>`;
                     });
                     html += '</ul></div>';
                 }
@@ -3094,9 +3094,22 @@ class Victoria3CompanyParserV6Final:
                     html += '<div class="base-buildings"><h4>Base Buildings</h4><ul>';
                     data.base_buildings.forEach(building => {
                         const buildingName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
-                        const buildingIcon = `buildings/$${building}.png`;
                         
-                        html += `<li><img src="$${buildingIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
+                        // Building name mappings for icon files that have different names
+                        const buildingMappings = {
+                            'building_chemical_plants': 'chemicals_industry',
+                            'building_textile_mills': 'textile_industry', 
+                            'building_artillery_foundries': 'artillery_foundry',
+                            'building_automotive_industry': 'vehicles_industry',
+                            'building_livestock_ranch': 'cattle_ranch',
+                            'building_rubber_plantation': 'rubber_lodge',
+                            'building_vineyard_plantation': 'vineyards'
+                        };
+                        
+                        const mappedBuilding = buildingMappings[building] || building.replace('building_', '');
+                        const buildingIcon = `buildings/64px-Building_${mappedBuilding}.png`;
+                        
+                        html += `<li><img src="${buildingIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
                                  onerror="this.style.display='none';">${buildingName}</li>`;
                     });
                     html += '</ul></div>';
@@ -3107,9 +3120,22 @@ class Victoria3CompanyParserV6Final:
                     html += '<div class="industry-charters"><h4>Possible Industry Charters</h4><ul>';
                     data.industry_charters.forEach(charter => {
                         const charterName = charter.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
-                        const charterIcon = `buildings/$${charter}.png`;
                         
-                        html += `<li><img src="$${charterIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
+                        // Building name mappings for icon files that have different names
+                        const buildingMappings = {
+                            'building_chemical_plants': 'chemicals_industry',
+                            'building_textile_mills': 'textile_industry', 
+                            'building_artillery_foundries': 'artillery_foundry',
+                            'building_automotive_industry': 'vehicles_industry',
+                            'building_livestock_ranch': 'cattle_ranch',
+                            'building_rubber_plantation': 'rubber_lodge',
+                            'building_vineyard_plantation': 'vineyards'
+                        };
+                        
+                        const mappedCharter = buildingMappings[charter] || charter.replace('building_', '');
+                        const charterIcon = `buildings/64px-Building_${mappedCharter}.png`;
+                        
+                        html += `<li><img src="${charterIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
                                  onerror="this.style.display='none';">${charterName}</li>`;
                     });
                     html += '</ul></div>';
