@@ -255,6 +255,26 @@ This verification step is **critical** because:
 - **Fix**: Synchronize prestige detection logic across all functions
 - **Test**: Verify sorting maintains correct order after any prestige goods changes
 
+### Problem: Companies showing missing flags in table rows
+
+**Root Cause**: Country codes assigned to companies but missing from Python `country_flags` and `country_names` dictionaries
+
+**Symptoms**: Empty flag cells (`<td class="flag-column"></td>`) while tooltip shows correct country
+
+**Solution**:
+- **Check**: Compare JavaScript tooltip country mappings with Python flag dictionaries (around lines 120-145)
+- **Fix**: Add missing country codes to both `country_flags` and `country_names` dictionaries
+- **Test**: Verify flags appear in table and match wiki organization in `wiki/flavored.wiki`
+
+**Systematic Debugging Process**:
+1. Count missing flags: `grep -o 'flag-column"></td>' index.html | wc -l` 
+2. Find non-basic companies: `grep -A8 'flag-column"></td>' index.html | grep 'data-company=' | grep -v 'company_basic_'`
+3. Check country assignments in JavaScript tooltip data for reference mappings
+4. Cross-reference with `wiki/flavored.wiki` to verify correct country associations
+5. Add missing mappings in batches and test
+
+**Important**: Basic companies (`company_basic_*`) correctly have no flags. Focus only on historical companies.
+
 ### Key Debugging Principles Learned:
 
 1. **Systematic Company-by-Company Analysis**: When facing widespread issues, use systematic approach rather than trying to fix architecture
@@ -262,6 +282,8 @@ This verification step is **critical** because:
 3. **Coordinate System Consistency**: Mix of page/viewport coordinates causes positioning bugs
 4. **JavaScript-Python Synchronization**: Dynamic generation prevents JavaScript from getting out of sync with Python logic
 5. **Icon Mapping Patterns**: Missing icons need mappings in BOTH company name and building column generation functions
+6. **Flag Mapping Completeness**: JavaScript tooltip mappings serve as reference for missing Python flag mappings
+7. **Wiki Verification**: Always verify country assignments match `wiki/flavored.wiki` organization structure
 
 ## Future Considerations
 - Company icon coverage could be improved (many missing icons)
