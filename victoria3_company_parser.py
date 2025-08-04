@@ -81,12 +81,11 @@ class Victoria3CompanyParserV6Final:
             'building_textile_mills': 'fabric',
             'building_furniture_manufactories': 'furniture',
             'building_furniture_manufacturies': 'furniture',
-            # Additional mappings for prestige goods
-            'building_electrics_industry': 'telephones',  # Ericsson apparatus, radios
             'building_paper_mills': 'paper',
             'building_steel_mills': 'steel',
             'building_tooling_workshops': 'tools',
             'building_chemical_plants': 'fertilizer',
+            'building_synthetics_plants': 'dye',
             'building_synthetic_dye_plants': 'dye',
             'building_synthetic_fabric_plants': 'fabric',
             'building_glassworks': 'glass',
@@ -107,7 +106,15 @@ class Victoria3CompanyParserV6Final:
             'building_railway': 'transportation',
             'building_port': 'transportation',
             'building_trade_center': 'services',
-            'arts_academy': 'fine_art'
+            'arts_academy': 'fine_art',
+            # Missing mappings for prestige goods
+            'building_vineyard_plantation': 'wine',
+            'building_military_shipyards': 'ironclads',
+            'building_shipyards': 'steamers',  # Override clipper_transports
+            'building_electrics_industry': 'telephones',
+            'building_textile_mills': 'clothes',  # Override fabric  
+            'building_logging_camp': 'hardwood',  # Override wood
+            'building_port': 'merchant_marine'  # Override transportation
         }
 
     def setup_country_flags(self):
@@ -1860,45 +1867,16 @@ class Victoria3CompanyParserV6Final:
         return False, None
     
     def _prestige_good_matches_building(self, prestige_good, base_good, building, building_good):
-        """Handle special cases where prestige goods don't have direct building matches"""
+        """Handle the few essential special cases for prestige goods"""
         
-        # Luxury furniture can be made in furniture manufacturies
-        if base_good == 'luxury_furniture' and building_good == 'furniture':
+        # Just the essential cases we identified
+        if base_good == 'luxury_furniture' and building == 'building_furniture_manufacturies':
             return True
-        
-        # Luxury clothes can be made in textile mills
-        if base_good == 'luxury_clothes' and building_good == 'fabric':
+        if base_good == 'porcelain' and building == 'building_glassworks':
             return True
-        
-        # Regular clothes can be made in textile mills
-        if base_good == 'clothes' and building_good == 'fabric':
-            return True
-        
-        # Steamers in regular shipyards, ironclads in military shipyards
-        if base_good == 'steamers' and building == 'building_shipyards':
-            return True
-        if base_good == 'ironclads' and building == 'building_military_shipyards':
-            return True
-        
-        # Merchant marine can be made in shipyards or ports
-        if base_good == 'merchant_marine' and building in ['building_shipyards', 'building_port', 'building_trade_center']:
-            return True
-        
-        # Telephones and radios can be made in electrics industry
         if base_good in ['telephones', 'radios'] and building == 'building_electrics_industry':
             return True
-        
-        # Hardwood from logging
-        if base_good == 'hardwood' and building_good == 'wood':
-            return True
-        
-        # Wine from vineyard plantations (special case)
-        if base_good == 'wine' and building == 'building_vineyard_plantation':
-            return True
-        
-        
-        # Porcelain can be made in glassworks (historical - many "glassworks" made ceramics)
-        if base_good == 'porcelain' and building_good == 'glass':
+        if base_good == 'automobiles' and building == 'building_automotive_industry':
             return True
         
         return False
