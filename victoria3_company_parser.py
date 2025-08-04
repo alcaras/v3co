@@ -641,6 +641,9 @@ class Victoria3CompanyParserV6Final:
     def get_company_country_override(self, company_name):
         """Manual country assignments for companies without state requirements"""
         company_countries = {
+            # Argentine companies
+            'company_argentinian_wine': 'ARG',  # Centro Vitivinícola Nacional (Argentina)
+            
             # Russian companies (from icon/name analysis)
             'company_perskhlopok': 'RUS',  # Russian cotton company
             'company_persshelk': 'RUS',    # Russian silk company
@@ -1784,7 +1787,7 @@ class Victoria3CompanyParserV6Final:
                     # Add file-based country inference for companies without state requirements
                     file_country = self.infer_country_from_filename(filename)
                     for company_name, company_data in file_companies.items():
-                        if company_data['flavored_company'] and not company_data.get('country'):
+                        if company_data['flavored_company'] and (not company_data.get('country') or company_data.get('country') == ''):
                             # Try manual override first
                             override_country = self.get_company_country_override(company_name)
                             if override_country:
