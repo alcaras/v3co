@@ -1874,8 +1874,10 @@ class Victoria3CompanyParserV6Final:
         if base_good == 'clothes' and building_good == 'fabric':
             return True
         
-        # Steamers, ironclads can be made in shipyards or military shipyards
-        if base_good in ['steamers', 'ironclads'] and building in ['building_shipyards', 'building_military_shipyards']:
+        # Steamers in regular shipyards, ironclads in military shipyards
+        if base_good == 'steamers' and building == 'building_shipyards':
+            return True
+        if base_good == 'ironclads' and building == 'building_military_shipyards':
             return True
         
         # Merchant marine can be made in shipyards or ports
