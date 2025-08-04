@@ -76,7 +76,7 @@ class Victoria3CompanyParserV6Final:
             'building_sulfur_mine': 'sulfur',
             'building_gold_mine': 'gold',
             'building_oil_rig': 'oil',
-            'building_whaling_station': 'oil',
+            'building_whaling_station': 'meat',
             'building_food_industry': 'groceries',
             'building_textile_mills': 'fabric',
             'building_furniture_manufactories': 'furniture',
@@ -1877,6 +1877,8 @@ class Victoria3CompanyParserV6Final:
         if base_good in ['telephones', 'radios'] and building == 'building_electrics_industry':
             return True
         if base_good == 'automobiles' and building == 'building_automotive_industry':
+            return True
+        if base_good == 'luxury_clothes' and building == 'building_textile_mills':
             return True
         
         return False
