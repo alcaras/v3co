@@ -15,15 +15,15 @@ These companies are associated with states or countries in North and South Ameri
 | Bunge & Born
 |
 * {{iconify|Food Industries|building|30px}}
-* {{iconify|Wheat Farm|building|30px}}
-* {{iconify|Maize Farm|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
+* {{iconify|Maize Farms|building|30px}}
 |
 * {{iconify|Fertilizer Plants|building|30px}}
 | {{iconify|Gourmet Groceries|prestige}}
 |
 * '''+20%''' {{icon|Rural Folk|3=1}} pop attraction
-* {{green|+10%}} Tooling Workshop throughput
-| Owns 3 or more incorporated states in the La Plata region with a level 5 or higher Wheat Farm or Maize Farm
+* {{green|+10%}} Tooling Workshops throughput
+| Owns 3 or more incorporated states in the La Plata region with a level 5 or higher Wheat Farms or Maize Farms
 |-
 | {{icon|cotsb}} Centro Vitivinícola Nacional
 | {{iconify|Vineyards|building|30px}} 
@@ -32,7 +32,7 @@ These companies are associated with states or countries in North and South Ameri
 | {{green|+20%}} {{icon|Prestige|3=1}}
 |
 * Is {{flag|Argentina}}
-* Owns 2 or more incorporated states in the La Plata region with a level 5 or higher Vineyard
+* Owns 2 or more incorporated states in the La Plata region with a level 5 or higher Vineyards
 * Has researched {{technology|Central Planning}}
 |-
 | {{icon|cotsb}} Ferrocarril Central Córdoba
@@ -42,7 +42,7 @@ These companies are associated with states or countries in North and South Ameri
 * {{iconify|Motor Industries|building|30px}}
 | {{icon|no}}
 |
-* {{green|+10%}} Wheat Farm throughput
+* {{green|+10%}} Wheat Farms throughput
 * {{green|+5%}} Livestock Ranches throughput
 |
 * Has researched {{technology|Railways}}
@@ -60,8 +60,8 @@ These companies are associated with states or countries in North and South Ameri
 * {{green|+10%}} Trade Advantage
 * {{green|+10%}} Port building throughput
 |
-* Buenos Aires is an incorporated state with a level 5 or higher Food Industry
-* Any state in the La Plata region is an incorporated state with a level 5 or higher Livestock Ranch
+* Buenos Aires is an incorporated state with a level 5 or higher Food Industries
+* Any state in the La Plata region is an incorporated state with a level 5 or higher Livestock Ranches
 |}
 
 ===Bolivia===
@@ -76,16 +76,16 @@ These companies are associated with states or countries in North and South Ameri
 | Compañía de Salitres y Ferrocarril de Antofagasta
 |
 * {{iconify|Railway|building|30px}}
-* {{iconify|Sulfur Mine|building|30px}}
+* {{iconify|Sulfur Mines|building|30px}}
 |
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
 |
 * {{green|+3}} {{icon|Industrialists|3=1}} approval
 * {{green|+5%}} Infrastructure
 |
 * Has researched {{technology|Railways}}
-* Antofagasta is an incorporated state with a level 5 or higher Sulfur Mine
+* Antofagasta is an incorporated state with a level 5 or higher Sulfur Mines
 |-
 | {{icon|cotsb}} Compañía Estañífera de Llallagua
 | {{iconify|Lead Mines|building|30px}}
@@ -96,7 +96,7 @@ These companies are associated with states or countries in North and South Ameri
 |
 * '''+15%''' {{icon|Industrialists|3=1}} political strength
 * {{green|+10%}} Lead Mines building throughput
-| Potosí is an incorporated state with a level 5 or higher Lead Mine
+| Potosí is an incorporated state with a level 5 or higher Lead Mines
 |}
 ===Brazil===
 {| class="wikitable plainlist"
@@ -111,29 +111,29 @@ These companies are associated with states or countries in North and South Ameri
 | Klabin Irmãos & Cia.
 |
 * {{iconify|Paper Mills|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 |
-* {{iconify|Sulfur Mine|building|30px}}
+* {{iconify|Sulfur Mines|building|30px}}
 | {{iconify|Rosewood|prestige}}
 |
-* {{green|+10%}} Tooling Workshop throughput
+* {{green|+10%}} Tooling Workshops throughput
 * {{green|+15}} Max infrastructure from population
 |
-* Any incorporated state in the Brazil region has a level 5 or higher Paper Mill
+* Any incorporated state in the Brazil region has a level 5 or higher Paper Mills
 * Has researched {{technology|Mechanical Tools}} 
 |-
 | {{icon|cotsb}} São Paulo Railway Co. Ltd.
 | {{iconify|Railway|building|30px}}
 | 
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 * {{iconify|Motor Industries|building|30px}}
 | {{icon|no}}
 |
-* {{green|+15%}} Coffee Plantation throughput
+* {{green|+15%}} Coffee Plantations throughput
 * {{green|+10%}} Trade capacity
 |
 * Has researched {{technology|Railways}}
-* São Paulo is an incorporated state with a Railway and level 5 or higher Coffee Plantation
+* São Paulo is an incorporated state with a Railway and level 5 or higher Coffee Plantations
 * Owns 2 or more incorporated states in the Brazil region with a level 5 or higher Railway
 |-
 | {{icon|cotsb}} Estaleiro Mauá
@@ -141,12 +141,12 @@ These companies are associated with states or countries in North and South Ameri
 * {{iconify|Military Shipyards|building|30px}}
 * {{iconify|Shipyards|building|30px}}
 |
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Convoys
 * {{green|+10%}} Steel Mills throughput
-| Rio de Janeiro is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+| Rio de Janeiro is an incorporated state with a level 5 or higher Shipyards or Military Shipyards
 |-
 | {{icon|cotsb}} Companhia Fiação e Tecidos de Pernambuco
 | {{iconify|Textile Mills|building|30px}}
@@ -155,21 +155,21 @@ These companies are associated with states or countries in North and South Ameri
 * {{iconify|Livestock Ranches|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
-* {{green|+10%}} Cotton Plantation throughput
-* {{green|+5%}} Rubber Plantation throughput
+* {{green|+10%}} Cotton Plantations throughput
+* {{green|+5%}} Rubber Plantations throughput
 |
-* Pernambuco is an incorporated state with a level 5 or higher Textile Mill
+* Pernambuco is an incorporated state with a level 5 or higher Textile Mills
 |-
 | {{icon|cotsb}} Fundição Ipanema
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
-| {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 |
 * {{green|+5%}} Munition Plants throughput
 * {{green|+10%}} Arms Industries throughput
-| São Paulo is an incorporated state with a level 5 or higher Steel Mill or Iron Mine
+| São Paulo is an incorporated state with a level 5 or higher Steel Mills or Iron Mines
 |-
 | {{icon|cotsb}} Amadeo Rossi & Cia.
 |
@@ -178,10 +178,10 @@ These companies are associated with states or countries in North and South Ameri
 | {{iconify|Explosives Factory|building|30px}}
 | {{iconify|High-powered Small Arms|prestige}}
 |
-* {{green|+10%}} Livestock Ranch throughput
+* {{green|+10%}} Livestock Ranches throughput
 * {{green|+5%}} Fertilizer Plants throughput
 |
-* Rio Grande do Sul is an incorporated state with a level 5 or higher Arms Industry
+* Rio Grande do Sul is an incorporated state with a level 5 or higher Arms Industries
 |}
 ===Canada===
 {| class="wikitable plainlist"
@@ -194,8 +194,8 @@ These companies are associated with states or countries in North and South Ameri
 |-
 | Hudson’s Bay Company
 |
-* {{iconify|Fishing Wharf|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Fishing Wharves|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 |
 * {{iconify|Port|building|30px}}
 * {{iconify|Food Industries|building|30px}}
@@ -204,7 +204,7 @@ These companies are associated with states or countries in North and South Ameri
 * {{green|+0.10}} Colony growth generation
 * {{green|+5%}} Textile Mills throughput
 |
-* Manitoba is an incorporated state with a level 5 or higher Food Industry
+* Manitoba is an incorporated state with a level 5 or higher Food Industries
 * ''{{flag|Great Britain}} starts with this company established''
 |-
 | Massey-Harris Limited
@@ -256,7 +256,7 @@ These companies are associated with states or countries in North and South Ameri
 |-
 | Fábrica de Armas de la Nación
 |
-* {{iconify|Arms Industry|building|30px}}
+* {{iconify|Arms Industries|building|30px}}
 * {{iconify|Artillery Foundry|building|30px}}
 * {{iconify|Munition Plants|building|30px}}
 |
@@ -266,20 +266,20 @@ These companies are associated with states or countries in North and South Ameri
 * {{green|+10%}} Offense
 * {{green|+5%}} Steel Mills throughput
 |
-* Santiago is an incorporated state with a level 5 or higher Arms Industry
+* Santiago is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Gunsmithing}}
 |-
 | {{icon|cotsb}} Compañía Sudamericana de Vapores
 | {{iconify|Port|building|30px}}
 |
 * {{iconify|Shipyards|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Colony growth speed
 * {{green|+10%}} Convoys
 |
-* Santiago is an incorporated state with a level 5 or higher Shipyard
+* Santiago is an incorporated state with a level 5 or higher Shipyards
 * Has researched {{technology|Screw Frigate}}
 |}
 ===Mexico===
@@ -294,26 +294,26 @@ These companies are associated with states or countries in North and South Ameri
 | Fundidora de Fierro y Acero de Monterrey
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 |
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 |
 * {{green|+5%}} Railway throughput
-* {{green|+10%}} Iron Mine throughput
+* {{green|+10%}} Iron Mines throughput
 |
-* Río Grande is an incorporated state with a level 5 or higher Steel Mill
+* Río Grande is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Bessemer Process}}
 |-
 | El Águila
-| {{iconify|Oil Rig|building|30px}}
-| {{iconify|Power Plant|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
+| {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 | 
 * {{green|+15%}} Convoys
 * {{green|+3}} {{icon|Industrialists|3=1}} approval
 |
-* Owns level 5 or higher Oil Rig in any incorporated coastal state in Mexico
+* Owns level 5 or higher Oil Rigs in any incorporated coastal state in Mexico
 * Has researched {{technology|Pumpjacks}}
 |}
 ===Paraguay===
@@ -331,13 +331,13 @@ These companies are associated with states or countries in North and South Ameri
 * {{iconify|Arms Industries|building|30px}}
 * {{iconify|Artillery Foundry|building|30px}}
 |
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 |
 * {{green|+5%}} Defense
-* {{green|+10%}} Iron Mine throughput
+* {{green|+10%}} Iron Mines throughput
 |
-* Bajo Paraguay is an incorporated state with a level 5 or higher Arms Industry
+* Bajo Paraguay is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Shell Gun}}
 |}
 
@@ -351,18 +351,18 @@ These companies are associated with states or countries in North and South Ameri
 ! Requirements
 |-
 | Peruvian Amazon Company
-| {{iconify|Rubber Plantation|building|30px}}
-| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Rubber Plantations|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Loyalists from movements
 * {{red|+10%}} Rubber Industry employee mortality
 | 
-* Owns Pastaza with a level 5 or higher Rubber Plantation
+* Owns Pastaza with a level 5 or higher Rubber Plantations
 * Has researched {{technology|Rubber Mastication}}
 |-
 | {{icon|cotsb}} Empresas Eléctricas Asociadas
-| {{iconify|Power Plant|building|30px}}
+| {{iconify|Power Plants|building|30px}}
 | {{iconify|Coal Mines|building|30px}}
 | {{icon|no}}
 |
@@ -370,7 +370,7 @@ These companies are associated with states or countries in North and South Ameri
 * {{green|+5%}} Infrastructure from population
 |
 * Has reasearched {{technology|Electrical Generation}}
-* Lima is an incorporated state with a level 5 or higher Power Plant
+* Lima is an incorporated state with a level 5 or higher Power Plants
 |}
 ===United States===
 {| class="wikitable plainlist"
@@ -384,19 +384,19 @@ These companies are associated with states or countries in North and South Ameri
 |-
 | Standard Oil
 |
-* {{iconify|Oil Rig|building|30px}}
+* {{iconify|Oil Rigs|building|30px}}
 * {{iconify|Railway|building|30px}}
 | {{iconify|Port|building|30px}}
 | {{icon|no}}
 | {{green|+20%}} Railway throughput
 |
-* Owns an incorporated state in The Midwest region with a level 5 or higher Oil Rig
+* Owns an incorporated state in The Midwest region with a level 5 or higher Oil Rigs
 * Has researched {{technology|Pumpjacks}}
 |-
 | United Fruit Company
 |
-* {{iconify|Banana Plantation|building|30px}}
-* {{iconify|Sugar Plantation|building|30px}}
+* {{iconify|Banana Plantations|building|30px}}
+* {{iconify|Sugar Plantations|building|30px}}
 | {{iconify|Railway|building|30px}}
 | {{iconify|Gros Michel Banana|prestige}}
 |
@@ -404,27 +404,27 @@ These companies are associated with states or countries in North and South Ameri
 * {{green|+20%}} Plantations throughput
 |
 * Has Yankee or Dixie primary culture
-* Louisiana is an incorporated state with a level 5 or higher Sugar Plantation
-* Owns 5 or more levels of a single Banana Plantation in any state in Central or South America (including other countries' states)
+* Louisiana is an incorporated state with a level 5 or higher Sugar Plantations
+* Owns 5 or more levels of a single Banana Plantations in any state in Central or South America (including other countries' states)
 |-
 | Carnegie Steel Co.
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 | {{iconify|Arts Academy|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 |
 * {{green|+10%}} Railway throughput
 * {{green|+10%}} Shipyards throughput
 |
-* Pennsylvania is an incorporated state with a level 5 or higher Steel Mill
+* Pennsylvania is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Open Hearth Process}}
 |-
 | General Electric
 |
 * {{iconify|Electrics Industries|building|30px}}
-* {{iconify|Power Plant|building|30px}}
+* {{iconify|Power Plants|building|30px}}
 | {{iconify|Motor Industries|building|30px}}
 | {{iconify|Radiola Radios|prestige}}
 |
@@ -439,13 +439,13 @@ These companies are associated with states or countries in North and South Ameri
 * {{iconify|Military Shipyards|building|30px}}
 * {{iconify|Shipyards|building|30px}}
 * {{iconify|Motor Industries|building|30px}}
-| {{iconify|Artillery Foundries|building|30px}}
+| {{iconify|Artillery Foundry|building|30px}}
 | {{icon|no}}
 |
 * {{green|+5%}} Navy offense
 * {{green|+5%}} Navy defense
 |
-* New Jersey, Delaware or Maryland is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+* New Jersey, Delaware or Maryland is an incorporated state with a level 5 or higher Shipyards or Military Shipyards
 * Has researched {{technology|Gantry Cranes}}
 * ''{{flag|America|United States of America}} starts with this company established''
 |-
@@ -455,13 +455,13 @@ These companies are associated with states or countries in North and South Ameri
 * {{iconify|Automotive Industries|building|30px}}
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Rubber plantation|building|30px}}
+* {{iconify|Rubber Plantations|building|30px}}
 | {{iconify|Ford Automobiles|prestige}}
 |
 * {{green|+15%}} Motor Industries throughput
 * {{green|+5%}} Automotive Industries throughput
 |
-* Michigan is an incorporated state with a level 5 or higher Motor Industry
+* Michigan is an incorporated state with a level 5 or higher Motor Industries
 * Has researched {{technology|Combustion Engine}}
 |-
 | {{icon|cocb}} Colt's Patent Firearms Manufacturing Company
@@ -476,15 +476,15 @@ These companies are associated with states or countries in North and South Ameri
 |-
 | {{icon|cocb}} Lee Wilson & Company
 |
-* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
 * {{iconify|Cotton Plantations|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 | {{iconify|Railway|building|30px}}
 | {{iconify|Sea Island Cotton|prestige}}
 |
 * {{green|+10%}} Textile Mills Throughput
 * {{green|+5%}} Power Plants Throughput
-| Arkansas is incorporated state with a level 5 or Cotton plantations or Logging Camps 
+| Arkansas is incorporated state with a level 5 or higher Cotton plantations or Logging Camps 
 |}
 
 ===Venezuela===
@@ -497,18 +497,18 @@ These companies are associated with states or countries in North and South Ameri
 ! Requirements
 |-
 | Caribbean Petroleum Company 
-| {{iconify|Oil Rig|building|30px}}
-| {{iconify|Power Plant|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
+| {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Convoys
 * {{green|+3}} {{icon|Industrialists|3=1}} approval
 |
-* Zulia or Miranda is an incorporated state with a level 5 or higher Oil Rig
+* Zulia or Miranda is an incorporated state with a level 5 or higher Oil Rigs
 * Has researched {{technology|Pumpjacks}}
 |-
 | {{icon|cotsb}} C.A. La Electricidad de Caracas
-| {{iconify|Power Plant|building|30px}}
+| {{iconify|Power Plants|building|30px}}
 |
 * {{iconify|Motor Industries|building|30px}}
 * {{iconify|Coal Mines|building|30px}}
@@ -518,7 +518,7 @@ These companies are associated with states or countries in North and South Ameri
 * {{green|+10}} Max infrastructure from population
 |
 * Has researched {{technology|Electrical Generation}}
-* Miranda is an incorporated state with a level 5 or higher Power Plant
+* Miranda is an incorporated state with a level 5 or higher Power Plants
 |}
 
 ==Asian and Oceanian companies==
@@ -536,12 +536,12 @@ These companies are associated with states or countries in East Asia and Oceania
 | William Sandford Limited
 | {{iconify|Steel Mills|building|30px}}
 |
-* {{iconify|Iron Mine|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 | {{green|+15%}} Railway throughput
 |
-* New South Wales is an incorporated state with a level 5 or higher Steel Mill
+* New South Wales is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Bessemer Process}}
 |}
 ===China===
@@ -563,7 +563,7 @@ These companies are associated with states or countries in East Asia and Oceania
 | {{icon|no}}
 | {{green|+10%}} Technology spread
 |
-* Beijing or Hebei is an incorporated state with a level 5 or higher Coal Mine
+* Beijing or Hebei is an incorporated state with a level 5 or higher Coal Mines
 * Has researched {{technology|Steam Donkey}} and {{technology|Railways}}
 |-
 | Hanyang Arsenal
@@ -578,22 +578,22 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{green|+15%}} Morale recovery
 * {{green|+20%}} Shrapnel Artillery offense
 |
-* Eastern Hubei is an incorporated state with a level 5 or higher Arms Industry
+* Eastern Hubei is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Breech-Loading Artillery}}
 |-
-| Foochow Shipyard
+| Foochow Shipyards
 |
 * {{iconify|Shipyards|building|30px}}
 * {{iconify|Military Shipyards|building|30px}}
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Port throughput
 * {{green|+5%}} Navy offense
 |
-* Fujian is an incorporated state with a level 5 or higher Military Shipyard
+* Fujian is an incorporated state with a level 5 or higher Military Shipyards
 * Has researched {{technology|Ironclad}} and {{technology|Gantry Cranes}}
 |-
 | Jingdezhen Kilns
@@ -602,31 +602,31 @@ These companies are associated with states or countries in East Asia and Oceania
 | {{iconify|Canton Porcelain|prestige}}
 |
 * {{green|+15%}} {{icon|Prestige|3=1}}
-* {{green|+5%}} Lead Mine throughput
+* {{green|+5%}} Lead Mines throughput
 |
 * Jiangxi is an incorporated state with a level 5 or higher Glassworks
 * Has researched {{technology|Chemical Bleaching}}
 |-
 | {{icon|cocb}} Jiangnan Weaving Bureaus
 |
-* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Silk Plantations|building|30px}}
 * {{iconify|Textile Mills|building|30px}}
-| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Suzhou Silk|prestige}}
 |
 * {{green|+10%}} {{icon|Authority|3=1}}
 * {{green|+10%}} {{icon|Influence|3=1}}
 |
-* Suzhou, Zhejiang, or Nanjing is an incorporated state with a level 5 or higher Silk Plantation or Textile Mill
+* Suzhou, Zhejiang, or Nanjing is an incorporated state with a level 5 or higher Silk Plantations or Textile Mills
 |-
 | {{icon|cocb}} Ong Lung Sheng Tea Company
-| {{iconify|Tea Plantation|building|30px}}
+| {{iconify|Tea Plantations|building|30px}}
 | {{iconify|Food Industries|building|30px}}
 | {{iconify|China Tea|prestige}}
 |
 * {{green|+5%}} {{icon|Bureaucracy|3=1}}
 * {{green|+5%}} {{icon|Loyalist|3=1}}s from legitimacy
-| Owns at least 3 states in the South China region with a level 5 or higher Tea Plantation
+| Owns at least 3 states in the South China region with a level 5 or higher Tea Plantations
 |}
 ===India===
 {| class="wikitable plainlist"
@@ -640,62 +640,62 @@ These companies are associated with states or countries in East Asia and Oceania
 |-
 | Assam Company
 |
-* {{iconify|Tea Plantation|building|30px}}
+* {{iconify|Tea Plantations|building|30px}}
 |
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 | {{iconify|Assam Tea|prestige}}
 |
-* {{green|+20%}} Tea Plantation throughput
+* {{green|+20%}} Tea Plantations throughput
 * {{green|−5%}} Radicals from movements
 |
-* Assam is an incorporated state with a level 5 or higher Tea Plantation
+* Assam is an incorporated state with a level 5 or higher Tea Plantations
 |-
 | {{icon|poeb}} Bengal Coal Company
 |
 * {{iconify|Coal Mines|building|30px}}
 |
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
 |
 * '''+20%''' {{icon|Industrialists|3=1}} political strength
-* {{green|+10%}} Iron Mine throughput
+* {{green|+10%}} Iron Mines throughput
 |
-* West Bengal is an incorporated state with a level 5 or higher Coal Mine
+* West Bengal is an incorporated state with a level 5 or higher Coal Mines
 |-
 | Bombay Burmah Trading Corporation
 |
-* {{iconify|Logging Camp|building|30px}}
-* {{iconify|Rubber Plantation|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
+* {{iconify|Rubber Plantations|building|30px}}
 |
-* {{iconify|Tea Plantation|building|30px}}
-* {{iconify|Cotton Plantation|building|30px}}
-* {{iconify|Oil Rig|building|30px}}
+* {{iconify|Tea Plantations|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Oil Rigs|building|30px}}
 | {{iconify|Teak|prestige}}
 |
-* {{green|+10%}} Coffee Plantation throughput
-* {{green|+10%}} Tea Plantation throughput
+* {{green|+10%}} Coffee Plantations throughput
+* {{green|+10%}} Tea Plantations throughput
 |
 * Either
 ** Bombay is an incorporated state
 ** The country or its top overlord has Trade Privileges with an owner of Bombay
-* Owns two states with the ''{{state trait|Burmese Teak|lumber}}'' trait with a level 5 or higher Logging Camp
+* Owns two states with the ''{{state trait|Burmese Teak|lumber}}'' trait with a level 5 or higher Logging Camps
 |-
 | {{icon|poeb}} Bombay Dyeing and Manufacturing Company Limited
 |
-* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
 |
-* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
-* {{green|+20%}} Dye Plantation throughput
-* {{green|+5%}} Cotton Plantation throughput
+* {{green|+20%}} Dye Plantations throughput
+* {{green|+5%}} Cotton Plantations throughput
 |
-* Bombay is an incorporated state with a level 5 or higher Textile Mill
+* Bombay is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Cotton Gin}}
 |-
 | Calcutta Electric Supply Corporation Limited
 |
-* {{iconify|Power Plant|building|30px}}
+* {{iconify|Power Plants|building|30px}}
 |
 * {{iconify|Coal Mines|building|30px}}
 | {{icon|no}}
@@ -704,41 +704,41 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{green|+12}} Max infrastructure from population
 |
 * Has researched {{technology|Electrical Generation}}
-* West Bengal is an incorporated state with a level 5 or higher Power Plant
+* West Bengal is an incorporated state with a level 5 or higher Power Plants
 |-
 | {{icon|poeb}} David Sassoon & Co., Ltd
 |
-* {{iconify|Cotton Plantation|building|30px}}
-* {{iconify|Opium Plantation|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Opium Plantations|building|30px}}
 |
 * {{iconify|Port|building|30px}}
 | {{iconify|Pure Opium|prestige}}
 |
 * {{green|+5%}} Trade advantage
 |
-* Bombay is an incorporated state with a level 5 or higher Cotton Plantation
-* Owns a state in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Opium Plantation
+* Bombay is an incorporated state with a level 5 or higher Cotton Plantations
+* Owns a state in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Opium Plantations
 |-
 | East India Company
 |
-* {{iconify|Tea Plantation|building|30px}}
-* {{iconify|Tobacco Plantation|building|30px}}
-* {{iconify|Opium Plantation|building|30px}}
+* {{iconify|Tea Plantations|building|30px}}
+* {{iconify|Tobacco Plantations|building|30px}}
+* {{iconify|Opium Plantations|building|30px}}
 |
-* {{iconify|Silk Plantation|building|30px}}
-* {{iconify|Sugar Plantation|building|30px}}
+* {{iconify|Silk Plantations|building|30px}}
+* {{iconify|Sugar Plantations|building|30px}}
 | {{iconify|Bengal Opium|prestige}}
 |
 * {{green|+20%}} Convoys
 |
 * Is {{flag|Great Britain}}
-* Owns 3 or more states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Tea, Opium or Tobacco Plantation
+* Owns 3 or more states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Tea, Opium or Tobacco Plantations
 * Has {{law|Mercantilism}} or {{law|Protectionism}}
 * ''{{flag|Great Britain}} starts with this company established''
 |-
 | Great Indian Peninsula Railway
 | {{iconify|Railway|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
 |
 * {{green|+0.5}} Infrastructure from population
@@ -749,23 +749,23 @@ These companies are associated with states or countries in East Asia and Oceania
 |-
 | {{icon|poeb}} Madura Mills Co. Ltd
 |
-* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
 |
-* {{iconify|Rubber Plantation|building|30px}}
-* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Rubber Plantations|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
 * '''+10%''' {{icon|Petite Bourgeoisie|3=1}} attraction
-* {{green|+10%}} Textile Mill throughput
+* {{green|+10%}} Textile Mills throughput
 * {{green|+5%}} State religion wages
 |
-* Owns an incorporated state in the Madras region with a level 5 or higher Textile Mill
+* Owns an incorporated state in the Madras region with a level 5 or higher Textile Mills
 * Has researched {{technology|Cotton Gin}}
 |-
 | {{icon|poeb}} Ralli Brothers
 |
-* {{iconify|Rice Farm|building|30px}}
-* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
 | 
 * {{iconify|Port|building|30px}}
 * {{iconify|Cotton Plantations|building|30px}}
@@ -777,19 +777,19 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{green|+5%}} Trade advantage
 |
 * Bombay or West Bengal is an incorporated state
-* Owns 4 or more states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Rice or Wheat Farm
+* Owns 4 or more states in the {{tooltip|Indian strategic regions|Bengal, Bombay, Central India, Delhi, or Madras|tag=span|style=padding:2px;}} with a level 5 or higher Rice or Wheat Farms
 |-
 | {{icon|poeb}} Steel Brothers & Co. Ltd
 |
-* {{iconify|Oil Rig|building|30px}}
-* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Oil Rigs|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
 |
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 | {{iconify|Fine Grain|prestige}}
 |
-* {{green|+20%}} Logging Camp throughput
+* {{green|+20%}} Logging Camps throughput
 |
-* Owns a state with the ''{{state trait|Burmese Teak|lumber}}'' trait with a level 5 or higher Oil Rig and Rice Farm
+* Owns a state with the ''{{state trait|Burmese Teak|lumber}}'' trait with a level 5 or higher Oil Rigs and Rice Farms
 * Has researched {{technology|Pumpjacks}}
 |-
 | Tata
@@ -797,19 +797,19 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{iconify|Textile Mills|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
 |
-* {{iconify|Iron Mine|building|30px}}
-* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
 * {{green|+5%}} Construction sector throughput
 * {{green|+10}} Max weekly construction progress
-| Bombay is an incorporated state with a level 5 or higher Textile Mill or Steel Mill
+| Bombay is an incorporated state with a level 5 or higher Textile Mills or Steel Mills
 |-
 | {{icon|poeb}} Wadia Shipbuilders
 |
 * {{iconify|Shipyards|building|30px}}
 * {{iconify|Military Shipyards|building|30px}}
-| {{iconify|Motor Industry|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
 | {{icon|no}}
 |
 * '''+10%''' {{icon|Petite Bourgeoisie|3=1}} attraction
@@ -831,35 +831,35 @@ These companies are associated with states or countries in East Asia and Oceania
 |-
 | Mitsui
 |
-* {{iconify|Textile Mill|building|30px}}
-* {{iconify|Lead Mine|building|30px}}
-* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+* {{iconify|Lead Mines|building|30px}}
+* {{iconify|Silk Plantations|building|30px}}
 | 
-* {{iconify|Shipyard|building|30px}}
+* {{iconify|Shipyards|building|30px}}
 * {{iconify|Port|building|30px}}
-* {{iconify|Fertilizer Plant|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Fertilizer Plants|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{iconify|Tomioka Silk|prestige}}
 |
-* {{green|+10%}} Iron Mine throughput
+* {{green|+10%}} Iron Mines throughput
 * '''+20%''' {{icon|Industrialists|3=1}} political strength
 |
 * Has researched {{technology|Cotton Gin}}
-* Kansai is an incorporated state with a level 5 or higher Textile Mill
+* Kansai is an incorporated state with a level 5 or higher Textile Mills
 * Has completed the ''[[Honorable Restoration]]'' journal entry
 |-
 | South Manchuria Railway
 |
 * {{iconify|Railway|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 * {{iconify|Glassworks|building|30px}}
 |
-* {{iconify|Food Industry|building|30px}}
-* {{iconify|Fertilizer Plant|building|30px}}
+* {{iconify|Food Industries|building|30px}}
+* {{iconify|Fertilizer Plants|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Colony growth speed in non-homeland states
-* {{green|+15%}} Wheat Farm throughput
+* {{green|+15%}} Wheat Farms throughput
 |
 * Has Japanese primary culture
 * Has researched {{technology|Railways}}
@@ -869,14 +869,14 @@ These companies are associated with states or countries in East Asia and Oceania
 |-
 | Mitsubishi
 |
-* {{iconify|Paper Mill|building|30px}}
-* {{iconify|Military Shipyard|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Paper Mills|building|30px}}
+* {{iconify|Military Shipyards|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 |
-* {{iconify|Shipyard|building|30px}}
-* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Shipyards|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
 * {{iconify|Port|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{iconify|Washi Paper|prestige}}
 |
 * {{green|+2}} {{icon|Industrialists|3=1}} approval
@@ -884,12 +884,12 @@ These companies are associated with states or countries in East Asia and Oceania
 |
 * Has Japanese primary culture
 * Has researched {{technology|Ironclad}}
-* Chugoku is an incorporated state with a level 5 or higher Paper Mill or Military Shipyard
+* Chugoku is an incorporated state with a level 5 or higher Paper Mills or Military Shipyards
 * Has completed the ''Honorable Restoration'' journal entry
 |-
 | {{icon|cocb}} Kinkozan Sobei
 | {{iconify|Glassworks|building|30px}}
-| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{iconify|Satsuma Ware|prestige}}
 |
 * {{green|+5%}} {{icon|Influence|3=1}}
@@ -909,19 +909,19 @@ These companies are associated with states or countries in East Asia and Oceania
 |-
 | Sunhwaguk
 |
-* {{iconify|Tobacco Plantation|building|30px}}
-* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Tobacco Plantations|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
 |
-* {{iconify|Food Industry|building|30px}}
-* {{iconify|Chemical Plants|building|30px}}
+* {{iconify|Food Industries|building|30px}}
+* {{iconify|Fertilizer Plants|building|30px}}
 | {{iconify|Fine Grain|prestige}}
 | {{green|+10%}} Technology spread
 |
-* Owns an incorporated Korean homeland with a level 5 or higher Tobacco Plantation
+* Owns an incorporated Korean homeland with a level 5 or higher Tobacco Plantations
 * Has researched {{technology|Central Planning}}
 |-
 | {{icon|soib}} Hanseong Jeongi Hoesa
-| {{iconify|Power Plant|building|30px}}
+| {{iconify|Power Plants|building|30px}}
 | {{iconify|Railway|building|30px}}
 | {{icon|no}}
 |
@@ -929,16 +929,16 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{green|+5%}} Railway throughput
 |
 * Has researched {{technology|Electrical Generation}}
-* Gyeonggi is an incorporated state with a level 5 or higher Power Plant
+* Gyeonggi is an incorporated state with a level 5 or higher Power Plants
 |-
 | Oriental Development Company
 |
-* {{iconify|Rice Farm|building|30px}}
-* {{iconify|Millet Farm|building|30px}}
-* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
+* {{iconify|Millet Farms|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
 |
-* {{iconify|Maize Farm|building|30px}}
-* {{iconify|Food Industry|building|30px}}
+* {{iconify|Maize Farms|building|30px}}
+* {{iconify|Food Industries|building|30px}}
 | {{iconify|Fine Grain|prestige}}
 |
 * {{green|+5%}} Railway throughput
@@ -962,7 +962,7 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{iconify|Gold Mines|building|30px}}
 * {{iconify|Port|building|30px}}
 |
-* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
 * {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
 |
@@ -970,7 +970,7 @@ These companies are associated with states or countries in East Asia and Oceania
 * {{green|+10%}} Home Defense
 |
 * Cultural acceptance of Hakka is at least {{icon|Second-class Citizen|3=1}}
-* Owns West, East, or North Borneo with a level 5 or higher Gold Mine
+* Owns West, East, or North Borneo with a level 5 or higher Gold Mines
 |}
 ===Philippines===
 {| class="wikitable plainlist"
@@ -984,13 +984,13 @@ These companies are associated with states or countries in East Asia and Oceania
 | San Miguel
 | {{iconify|Food Industries|building|30px}}
 |
-* {{iconify|Wheat Farm|building|30px}}
-* {{iconify|Maize Farm|building|30px}}
-* {{iconify|Rye Farm|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
+* {{iconify|Maize Farms|building|30px}}
+* {{iconify|Rye Farms|building|30px}}
 | {{iconify|Gourmet Groceries|prestige}}
 | {{green|−10%}} Radicals from movements
 |
-* Owns an incorporated state in the Indonesia region with a level 5 or higher Food Industry
+* Owns an incorporated state in the Indonesia region with a level 5 or higher Food Industries
 * Has researched {{technology|Corporate Charters}}
 |}
 ===Siam===
@@ -1003,13 +1003,13 @@ These companies are associated with states or countries in East Asia and Oceania
 ! Requirements
 |-
 | B. Grimm
-| {{iconify|Rice Farm|building|30px}}
-| {{iconify|Chemical Plants|building|30px}}
+| {{iconify|Rice Farms|building|30px}}
+| {{iconify|Fertilizer Plants|building|30px}}
 | {{iconify|Fine Grain|prestige}}
 |
 * {{green|+10%}} Food Industries throughput
 * {{green|+10%}} Infrastructure from population
-| Bangkok is an incorporated state with a level 5 or higher Rice Farm
+| Bangkok is an incorporated state with a level 5 or higher Rice Farms
 |}
 ===Vietnam===
 {| class="wikitable plainlist"
@@ -1021,14 +1021,14 @@ These companies are associated with states or countries in East Asia and Oceania
 ! Requirements
 |-
 | Nam Định Textile Factory
-| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
 |
-* {{iconify|Cotton Plantation|building|30px}}
-* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Silk Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 | {{green|+10%}} Technology spread
 |
-* Tonkin is an incorporated state with a level 5 or higher Textile Mill
+* Tonkin is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Corporate Charters}}
 |}
 == European companies ==
@@ -1055,7 +1055,7 @@ These companies are associated with states or countries in Europe.
 * {{green|+1}} General advancement speed
 * {{green|+15%}} Siege Artillery offense
 |
-* Bohemia is an incorporated state with a level 5 or higher Steel Mill, Arms Industry, or Artillery Foundry
+* Bohemia is an incorporated state with a level 5 or higher Steel Mills, Arms Industries, or Artillery Foundry
 * Has researched {{technology|Shell Gun}}<section end="Czech" /><section begin="Hungary" />
 |-
 | MÁVAG
@@ -1067,7 +1067,7 @@ These companies are associated with states or countries in Europe.
 | {{iconify|Precision Tools|prestige}}
 | {{green|+10%}} Railway throughput
 |
-* Central Hungary is an incorporated state with a level 5 or higher Motor Industry
+* Central Hungary is an incorporated state with a level 5 or higher Motor Industries
 * Has researched {{technology|Railways}}
 |-
 | Manfréd Weiss Steel and Metal Works
@@ -1082,11 +1082,11 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Offense
 * {{green|+5%}} Military technology spread
 |
-* Central Hungary is an incorporated state with a level 5 or higher Steel Mill
+* Central Hungary is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Open Hearth Process}}<section end="Hungary" /><section end="Danube" />
 |-
 | Galician Carpathian Petroleum Company
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 |
 * {{iconify|Power Plants|building|30px}}
 * {{iconify|Coal Mines|building|30px}}
@@ -1096,11 +1096,11 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Railway throughput
 |
 * Has researched {{technology|Pumpjacks}}
-* East Galicia or West Galicia is an incorporated state with a level 5 or higher Oil Rig
+* East Galicia or West Galicia is an incorporated state with a level 5 or higher Oil Rigs
 |-
 | Österreichische Waffenfabriks-Gesellschaft
 |
-* {{iconify|Arms Industry|building|30px}}
+* {{iconify|Arms Industries|building|30px}}
 * {{iconify|Artillery Foundry|building|30px}}
 |
 * {{iconify|Steel Mills|building|30px}}
@@ -1111,12 +1111,12 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Defense
 * {{green|+10%}} Munition Plants throughput
 |
-* Austria is an incorporated state with a level 5 or higher Arms Industry
+* Austria is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Percussion Cap}}<section begin="Danube" /><section begin="Czech" />
 |-
 | {{icon|cocb}} Glasfabrik Ludwig Moser & Söhne
 | {{iconify|Glassworks|building|30px}}
-| {{iconify|Lead Mine|building|30px}}
+| {{iconify|Lead Mines|building|30px}}
 | {{iconify|Bohemian Crystal|prestige}}
 |
 * {{green|+5%}} Influence
@@ -1126,7 +1126,7 @@ These companies are associated with states or countries in Europe.
 |-
 | {{icon|cocb}} Gebrüder Thonet
 | {{iconify|Furniture Manufacturies|building|30px}}
-| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{iconify|Bentwood Furniture|prestige}}
 |
 * '''+10%''' {{icon|Bourgeoisie|3=1}} pop attraction
@@ -1146,19 +1146,19 @@ These companies are associated with states or countries in Europe.
 |-
 | Compagnie du Congo
 |
-* {{iconify|Rubber Plantation|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Rubber Plantations|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 |
 * {{iconify|Railway|building|30px}} 
-* {{iconify|Livestock Ranch|building|30px}} 
+* {{iconify|Livestock Ranches|building|30px}} 
 | {{icon|no}}
 |
 * {{green|+15%}} {{icon|Prestige|3=1}}
 * {{red|+20%}} Rubber Industry employee mortality
 |
 * Has Wallonian primary culture
-* Country or any subject owns a state in the Congo region with a level 5 or higher Rubber Plantation
+* Country or any subject owns a state in the Congo region with a level 5 or higher Rubber Plantations
 |-
 | Société Franco-Belge
 |
@@ -1168,7 +1168,7 @@ These companies are associated with states or countries in Europe.
 | {{icon|no}}
 |
 * {{green|+5%}} Infrastructure
-| Flanders or Wallonia is an incorporated state with a level 5 or higher Motor Industry
+| Flanders or Wallonia is an incorporated state with a level 5 or higher Motor Industries
 |-
 | Société anonyme John Cockerill
 |
@@ -1180,7 +1180,7 @@ These companies are associated with states or countries in Europe.
 | {{iconify|Precision Tools|prestige}}
 | {{green|+10%}} Railway throughput
 |
-* Flanders or Wallonia is an incorporated state with a level 5 or higher Steel Mill
+* Flanders or Wallonia is an incorporated state with a level 5 or higher Steel Mills
 * ''{{flag|Belgium}} starts with this company established''<section end="UNL" />
 |}
 
@@ -1196,25 +1196,25 @@ These companies are associated with states or countries in Europe.
 | Chr. Hansen
 |
 * {{iconify|Food Industries|building|30px}}
-* {{iconify|Fertilizer Plant|building|30px}}s
+* {{iconify|Fertilizer Plants|building|30px}}
 | {{iconify|Synthetics Plants|building|30px}}
 | {{iconify|Gourmet Groceries|prestige}}
 | 
 * {{green|+10%}} Livestock Ranches throughput
 * {{green|+10%}} Fishing Wharves throughput
 |
-* Zealand is an incorporated state with a level 5 or higher Food Industry or Fertilizer Plant
+* Zealand is an incorporated state with a level 5 or higher Food Industries or Fertilizer Plants
 |-
 | A.P. Møller
 | {{iconify|Port|building|30px}}s
 |
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 * {{iconify|Shipyards|building|30px}}
 | {{iconify|Swift Merchant Marine|prestige}}
 | 
 * {{green|+20%}} Convoys
 * '''+10%''' {{icon|Industrialists|3=1}} pop attraction 
-| Zealand is an incorporated state with a level 5 or higher Shipyard<section end="Scandinavia" />
+| Zealand is an incorporated state with a level 5 or higher Shipyards<section end="Scandinavia" />
 |}
 
 ===Finland===
@@ -1229,15 +1229,15 @@ These companies are associated with states or countries in Europe.
 | Nokia
 |
 * {{iconify|Paper Mills|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
-* {{iconify|Power Plant|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
+* {{iconify|Power Plants|building|30px}}
 | {{iconify|Electrics Industries|building|30px}}
 | {{iconify|Craft Paper|prestige}}
 |
 * {{green|+10%}} Electrics Industry throughput
 * {{green|+5%}} Synthetics Plants throughput
 |
-* Uusimaa is an incorporated state with a level 5 or higher Paper Mill
+* Uusimaa is an incorporated state with a level 5 or higher Paper Mills
 * Has researched {{technology|Atmospheric Engine}}<section end="Scandinavia" />
 |}
 
@@ -1253,13 +1253,13 @@ These companies are associated with states or countries in Europe.
 |-
 | Société Mokta El Hadid
 |
-* {{iconify|Iron Mine|building|30px}}
-* {{iconify|Sulfur Mine|building|30px}}
-| {{iconify|Lead Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Sulfur Mines|building|30px}}
+| {{iconify|Lead Mines|building|30px}}
 | {{icon|no}}
 | {{green|+10%}} Colony growth speed in non-homeland states
 |
-* Owns Constantine with a level 5 or higher Iron Mine
+* Owns Constantine with a level 5 or higher Iron Mines
 * Has researched {{technology|Bessemer Process}}<section end="Algeria" />
 |-
 | Schneider et Cie
@@ -1275,31 +1275,31 @@ These companies are associated with states or countries in Europe.
 * {{green|−10%}} Morale loss
 * {{green|+10%}} Morale recovery
 |
-* Burgundy is an incorporated state with a level 5 or higher Steel Mill
+* Burgundy is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Steelworking}}
 |-
 | Dollfus-Mieg et Compagnie
 |
-* {{iconify|Textile Mill|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 |
-* {{iconify|Cotton Plantation|building|30px}}
-* {{iconify|Dye Plantation|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Dye Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 | {{green|+10%}} Assimilation
 |
-* Burgundy is an incorporated state with a level 5 or higher Textile Mill
+* Burgundy is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Cotton Gin}}
 * ''{{flag|France}} starts with this company established''
 |-
 | Confédération générale des vignerons
-| {{iconify|Vineyard|building|30px}}
+| {{iconify|Vineyards|building|30px}}
 |
 * {{iconify|Food Industries|building|30px}}
 | {{iconify|Champagne|prestige}}
 |
 * {{green|+15%}} {{icon|Prestige|3=1}}
-* {{green|+10%}} Vineyard throughput
+* {{green|+10%}} Vineyards throughput
 |
 * Has French or Occitan primary culture
 * Champagne is an incorperated state with a level 5 or higher vineyard
@@ -1317,7 +1317,7 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Offense
 * {{green|+5%}} Defense
 |
-* Rhône is an incorporated state with a level 5 or higher Arms Industry
+* Rhône is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Bolt-Action Rifle}}
 |-
 | Forges et Chantiers de la Méditerranée
@@ -1331,12 +1331,12 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Navy offense
 * {{green|+10%}} Heavy Tanks offense
 |
-* Provence is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+* Provence is an incorporated state with a level 5 or higher Shipyards or Military Shipyards
 * Has researched {{technology|Ironclad}}
 |-
 | Compagnie des mines d'Anzin
-| {{iconify|Coal Mine|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Railway throughput
@@ -1345,16 +1345,16 @@ These companies are associated with states or countries in Europe.
 |-
 | {{icon|cocb}} Maison Worth
 |
-* {{iconify|Textile Mill|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
 |
-* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
 * {{iconify|Arts Academy|building|30px}}
 | {{iconify|Haute Couture|prestige}}
 |
 * {{green|+5%}} Country Influence
 * {{green|+5%}} Country Leverage Generation
 * {{green|+5%}} State Assimilation
-| Île-de-France is an incorporated state with a level 5 or higher Textile Mill
+| Île-de-France is an incorporated state with a level 5 or higher Textile Mills
 |}
 
 ===Germany===
@@ -1372,13 +1372,13 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Steel Mills|building|30px}}
 * {{iconify|Artillery Foundry|building|30px}}
 * {{iconify|Arms Industries|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{iconify|Krupp Guns|prestige}}
 |
 * {{green|+10%}} Railway throughput
 * {{green|+10%}} Kill rate
 |
-* Ruhr is an incorporated state with a level 5 or higher Steel Mill, Arms Industry, or Artillery Foundry
+* Ruhr is an incorporated state with a level 5 or higher Steel Mills, Arms Industries, or Artillery Foundry
 * Has researched {{technology|Steelworking}}
 * ''{{flag|Prussia}} starts with this company established''
 |-
@@ -1388,7 +1388,7 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Artillery Foundry|building|30px}}
 * {{iconify|Munition Plants|building|30px}}
 |
-* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
 | {{iconify|Quick-fire Artillery|prestige}}
 |
@@ -1413,22 +1413,22 @@ These companies are associated with states or countries in Europe.
 * {{green|+10%}} Submarine offense
 |
 * Has researched {{technology|Railways}}
-* West Prussia is an incorporated state and has level 5 or higher Motor Industry
+* West Prussia is an incorporated state and has level 5 or higher Motor Industries
 |-
 | Siemens & Halske
 | {{iconify|Electrics Industries|building|30px}}
 |
-* {{iconify|Motor Industry|building|30px}}
+* {{iconify|Motor Industries|building|30px}}
 * {{iconify|Railway|building|30px}}
 | {{icon|no}}
-| {{green|+15%}} Power Plant throughput
+| {{green|+15%}} Power Plants throughput
 |
 * Brandenburg is an incorporated state with a level 5 or higher Electrics Industry
 * Has researched {{technology|Electric Telegraph}}
 |-
 | Preußische Staatseisenbahnen
 | {{iconify|Railway|building|30px}}
-| {{iconify|Motor industry|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
 | {{icon|no}}
 | {{green|+10%}} Formation movement speed
 |
@@ -1438,11 +1438,11 @@ These companies are associated with states or countries in Europe.
 |-
 | BASF
 |
-* {{iconify|Fertilizer Plant|building|30px}}s
+* {{iconify|Fertilizer Plants|building|30px}}
 * {{iconify|Synthetics Plants|building|30px}}
 |
-* {{iconify|Dye Plantation|building|30px}}
-* {{iconify|Sulfur Mine|building|30px}}
+* {{iconify|Dye Plantations|building|30px}}
+* {{iconify|Sulfur Mines|building|30px}}
 | {{iconify|German Aniline|prestige}}
 |
 * {{green|+5%}} Oil Extractors throughput
@@ -1453,7 +1453,7 @@ These companies are associated with states or countries in Europe.
 |-
 | {{icon|cocb}} Königliche Porzellan-Manufaktur Meissen
 | {{iconify|Glassworks|building|30px}}
-| {{iconify|Lead Mine|building|30px}}
+| {{iconify|Lead Mines|building|30px}}
 | {{iconify|Meissen Porcelain|prestige}}
 |
 * {{green|+10%}} Prestige
@@ -1475,14 +1475,14 @@ These companies are associated with states or countries in Europe.
 ! Requirements<section begin="Scotland" />
 |-
 | J. & P. Coats
-| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
 | {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
-* {{green|+15%}} Textile Mill throughput
-* {{green|+5%}} Cotton Plantation throughput
+* {{green|+15%}} Textile Mills throughput
+* {{green|+5%}} Cotton Plantations throughput
 |
-* Lowlands is an incorporated state with a level 5 or higher Textile Mill
+* Lowlands is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Cotton Gin}}
 |-
 | John Brown & Company
@@ -1490,13 +1490,13 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Shipyards|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
 * {{iconify|Military Shipyards|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{iconify|Clyde-Built Liners|prestige}}
 |
 * {{green|+5%}} {{icon|Prestige|3=1}}
 * {{green|+10%}} Convoys
 |
-* Lowlands is an incorporated state with a level 5 or higher Shipyard
+* Lowlands is an incorporated state with a level 5 or higher Shipyards
 * Has researched {{technology|Steelworking}} and {{technology|Hydraulic Cranes}}<section end="Scotland" />
 |-
 | Sir W. G. Armstrong Whitworth & Co.
@@ -1510,12 +1510,12 @@ These companies are associated with states or countries in Europe.
 * {{green|+15%}} Carriers offense
 * {{green|+10%}} Navy defense
 |
-* Yorkshire is an incorporated state with a level 5 or higher Military Shipyard
+* Yorkshire is an incorporated state with a level 5 or higher Military Shipyards
 * Has researched {{technology|Ironclad}} and {{technology|Gantry Cranes}}
 |-
 | Great Western Railway
 | {{iconify|Railway|building|30px}}
-| {{iconify|Coal Mine|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
 | {{icon|no}}
 |
 * {{green|+5%}} {{icon|Prestige|3=1}}
@@ -1526,8 +1526,8 @@ These companies are associated with states or countries in Europe.
 |-
 | Bolckow, Vaughan & Co.
 |
-* {{iconify|Coal Mine|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
 | {{iconify|Lead Mines|building|30px}}
 | {{iconify|Sheffield Steel|prestige}}
@@ -1535,30 +1535,30 @@ These companies are associated with states or countries in Europe.
 * {{green|+10%}} Shipyards throughput
 * {{green|+10%}} Military Shipyards throughput
 |
-* Yorkshire is an incorporated state with a level 5 or higher Coal Mine, Iron Mine, or Steel Mill
+* Yorkshire is an incorporated state with a level 5 or higher Coal Mines, Iron Mines, or Steel Mills
 * Has researched {{technology|Bessemer Process}}<section begin="Ireland" />
 |-
 | Arthur Guinness Son & Co. Ltd
-| {{iconify|Food Industry|building|30px}}
+| {{iconify|Food Industries|building|30px}}
 |
-* {{iconify|Wheat Farm|building|30px}}
-* {{iconify|Rye Farm|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
+* {{iconify|Rye Farms|building|30px}}
 | {{iconify|Gourmet Groceries|prestige}}
 |
 * {{green|−10%}} Radicals from movements
 * {{green|−5%}} Radicalism increases for {{acceptance|discriminated}} statuses
 |
-* Leinster is an incorporated state with a level 5 or higher Food Industry
+* Leinster is an incorporated state with a level 5 or higher Food Industries
 * Has researched {{technology|Corporate Charters}}<section end="Ireland" />
 |-
 | {{icon|cocb}} Maple & Co.
 | {{iconify|Furniture Manufacturies|building|30px}}
-| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{iconify|English Upholstery|prestige}}
 |
 * {{green|+5%}} Prestige
 * {{green|+10%}} Government Structures Throughput
-| Home Counties in an incorporated state with a level 5 or higher Furniture Manufacturies
+| Home Counties is an incorporated state with a level 5 or higher Furniture Manufacturies
 |}
 
 ===Greece===
@@ -1580,7 +1580,7 @@ These companies are associated with states or countries in Europe.
 * {{green|+20%}} Convoys
 * {{green|+5%}} Infrastructure
 |
-* Attica is an incorporated state with a level 5 or higher Motor Industry or Shipyard
+* Attica is an incorporated state with a level 5 or higher Motor Industries or Shipyards
 * Has researched {{technology|Railways}}
 |-
 | Kouppas
@@ -1593,7 +1593,7 @@ These companies are associated with states or countries in Europe.
 * {{green|+10%}} Railway throughput
 * {{green|+5%}} Steel Mills throughput
 |
-* Attica is an incorporated state with a level 5 or higher Motor Industry or Tooling Workshop
+* Attica is an incorporated state with a level 5 or higher Motor Industries or Tooling Workshops
 * Has researched {{technology|Mechanical Tools}}
 |}
 
@@ -1610,14 +1610,14 @@ These companies are associated with states or countries in Europe.
 | Ilva
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
-| {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 |
 * {{green|+5%}} Artillery Foundry throughput
 * {{green|+10%}} Railway throughput
 |
-* Piedmont is an incorporated state with a level 5 or higher Steel Mill
+* Piedmont is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Arc Welding}}
 |-
 | Gio. Ansaldo & C.
@@ -1630,7 +1630,7 @@ These companies are associated with states or countries in Europe.
 |
 * {{green|+5%}} Army Offense
 * {{green|+5%}} Navy Offense
-| Piedmont is an incorporated state with a level 5 or higher Motor Industry, Arms Industry, or Artillery Foundry
+| Piedmont is an incorporated state with a level 5 or higher Motor Industries, Arms Industries, or Artillery Foundry
 |-
 | FIAT
 |
@@ -1644,11 +1644,11 @@ These companies are associated with states or countries in Europe.
 |
 * Has researched {{technology|Railways}}
 * Has researched {{technology|Combustion Engine}}
-* Piedmont is an incorporated state with a level 5 or higher Motor Industry or Automotive Industry<section end="Sardinia-Piedmont" />
+* Piedmont is an incorporated state with a level 5 or higher Motor Industries or Automotive Industry<section end="Sardinia-Piedmont" />
 |-
 | G. Ricordi & C.
 | {{iconify|Arts Academy|building|30px}}
-| {{iconify|Vineyard|building|30px}}
+| {{iconify|Vineyards|building|30px}}
 | {{icon|no}}
 |
 * {{green|+15%}} {{icon|Prestige|3=1}}
@@ -1671,7 +1671,7 @@ These companies are associated with states or countries in Europe.
 * Has researched {{technology|Gantry Cranes}}
 |-
 | {{icon|cocb}} Anglo-Sicilian Sulphur Company
-| {{iconify|Sulfur Mine|building|30px}}
+| {{iconify|Sulfur Mines|building|30px}}
 | {{iconify|Port|building|30px}}
 | {{iconify|Sicilian Sulfur|prestige}}
 |
@@ -1679,20 +1679,20 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Plantations throughput
 * {{green|+5%}} Agriculture throughput
 |
-* Sicily is an incorporated state with a level 5 or higher Sulfur Mine
+* Sicily is an incorporated state with a level 5 or higher Sulfur Mines
 * Is not at war with {{flag|Great Britain}}
 |-
 | {{icon|cocb}} Mantero Sera
 |
-* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Silk Plantations|building|30px}}
 * {{iconify|Textile Mills|building|30px}}
-| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Como Silk|prestige}}
 |
 * {{green|+5%}} {{icon|Prestige|3=1}}
 * {{green|+10%}} Synthetics Plants throughput
 |
-* Lombardy is an incorporated state with a level 5 or higher Silk Plantation or Textile Mill
+* Lombardy is an incorporated state with a level 5 or higher Silk Plantations or Textile Mills
 |}
 
 ===Netherlands===
@@ -1702,17 +1702,17 @@ These companies are associated with states or countries in Europe.
 !{{icon|cocb|24px}} Industry charters
 !{{icon|cocb|24px}} Prestige goods
 ! Prosperity bonus
-! Requirements<section begin="UNL" />
+! Requirements<section begin="UNL" /><section begin="East Indies" />
 |-
 | Nederlandse Petroleum Maatschappij
-| {{iconify|Oil Rig|building|30px}}
-| {{iconify|Power Plant|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
+| {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 | {{green|+10%}} Colony growth speed
 |
 * Has Dutch primary culture
-* Owns an incorporated state in the Indonesia region with a level 5 or higher Oil Rig
-* Has researched {{technology|Pumpjacks}}
+* Owns an incorporated state in the Indonesia region with a level 5 or higher Oil Rigs
+* Has researched {{technology|Pumpjacks}}<section end="East Indies" />
 |-
 | Philips
 | {{iconify|Electrics Industries|building|30px}}
@@ -1745,22 +1745,22 @@ These companies are associated with states or countries in Europe.
 | {{icon|no}}
 |
 * {{green|+15%}} Convoys
-* {{green|+5%}} Fishing Wharf throughput
+* {{green|+5%}} Fishing Wharves throughput
 |
-* Eastern Norway is an incorporated state with a level 5 or higher Shipyard
+* Eastern Norway is an incorporated state with a level 5 or higher Shipyards
 * Has researched {{technology|Gantry Cranes}}
 |-
 | Norsk Hydroelektrisk Kvælstofaktieselskap
 |
 * {{iconify|Fertilizer Plants|building|30px}}
-* {{iconify|Power Plant|building|30px}}
-| {{iconify|Sulfur Mine|building|30px}}
+* {{iconify|Power Plants|building|30px}}
+| {{iconify|Sulfur Mines|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Agriculture Throughput
 * {{green|+5%}} Technology Spread for Production
 |
-* Western Norway is an incorporated state with a Power Plant and a level 5 or higher Fertilizer Plants
+* Western Norway is an incorporated state with a Power Plants and a level 5 or higher Fertilizer Plants
 * Has researched {{technology|Electrical Generation}}<section end="Scandinavia" />
 |}
 ===Poland===
@@ -1778,20 +1778,20 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Automotive Industries|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
 | {{icon|no}}
-| {{green|+20%}} Wheat Farm throughput
+| {{green|+20%}} Wheat Farms throughput
 |
-* Warszawa is an incorporated state with a level 5 or higher Motor Industry
+* Warszawa is an incorporated state with a level 5 or higher Motor Industries
 * Has researched {{technology|Combustion Engine}}
 |-
 | Lilpop, Rau i Loewenstein
 |
 * {{iconify|Tooling Workshops|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{iconify|Motor Industries|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 | {{green|+10%}} Motor Industries throughput
-| Mazovia or Warszawa is an incorporated state with a level 5 or higher Steel Mill
+| Mazovia or Warszawa is an incorporated state with a level 5 or higher Steel Mills
 |}
 
 ===Portugal===
@@ -1805,17 +1805,17 @@ These companies are associated with states or countries in Europe.
 |-
 | Companhia de Moçambique
 |
-* {{iconify|Cotton Plantation|building|30px}}
-* {{iconify|Tea Plantation|building|30px}}
-* {{iconify|Rice Farm|building|30px}}
-| {{iconify|Logging Camp|building|30px}}s
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Tea Plantations|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{iconify|Fine Grain|prestige}}
 |
 * {{green|+0.10}} Colonial growth generation
 * {{green|+10%}} Colony growth speed
 |
 * Has Portuguese primary culture
-* Owns Mocambique, Zambezia, or Lourenço Marques with a level 5 or higher Cotton Plantation or Tea Plantation
+* Owns Mocambique, Zambezia, or Lourenço Marques with a level 5 or higher Cotton Plantations or Tea Plantations
 * Has researched {{technology|Mutual Funds}}
 |}
 
@@ -1841,13 +1841,13 @@ These companies are associated with states or countries in Europe.
 * Owns 2 or more incorporated Romanian homelands with a level 5 Railway
 |-
 | Steaua Română
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 | {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 | {{green|+20%}} Oil Extractors throughput
 |
 * Has researched {{technology|Pumpjacks}}
-* Wallachia is an incorporated state with a level 5 or higher Oil Rig<section end="Danube" />
+* Wallachia is an incorporated state with a level 5 or higher Oil Rigs<section end="Danube" />
 |}
 
 ===Russia===
@@ -1863,16 +1863,16 @@ These companies are associated with states or countries in Europe.
 | Vodka Monopoly
 | 
 * {{iconify|Food Industries|building|30px}}
-* {{iconify|Vineyard|building|30px}}
+* {{iconify|Vineyards|building|30px}}
 |
-* {{iconify|Wheat Farm|building|30px}}
-* {{iconify|Rye Farm|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
+* {{iconify|Rye Farms|building|30px}}
 | {{iconify|Smirnoff Vodka|prestige}}
 | {{green|−15%}} Radicals from movements
 |
 * Has Russian primary culture
 * Does not have {{law|Laissez-Faire}}
-* Owns an incorporated state with a level 5 or higher Food Industry
+* Owns an incorporated state with a level 5 or higher Food Industries
 |-
 | Society of Putilov Factories
 |
@@ -1885,18 +1885,18 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Infrastructure
 * {{green|+10%}} Railway throughput
 |
-* Ingria is an incorporated state with a level 5 or higher Motor Industry, Military Shipyard, or Artillery Foundry
+* Ingria is an incorporated state with a level 5 or higher Motor Industries, Military Shipyards, or Artillery Foundry
 * Has researched {{technology|Railways}}<section begin="Azerbaijan" />
 |-
 | Branobel
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 | {{iconify|Power Plants|building|30px}}
 | {{iconify|Baku Oil|prestige}}
 | 
 * {{green|+10%}} Migration attraction
 * {{green|+5%}} Railway throughput
 |
-* Owns Baku with a level 5 or higher Oil Rig
+* Owns Baku with a level 5 or higher Oil Rigs
 * Has researched {{technology|Pumpjacks}}<section end="Azerbaijan" />
 |-
 | Izhevsk Arms Plant
@@ -1904,32 +1904,32 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Arms Industries|building|30px}}
 * {{iconify|Munition Plants|building|30px}}
 |
-* {{iconify|Artillery Foundries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
 * {{iconify|Steel Mills|building|30px}}
 | {{iconify|High-powered Small Arms|prestige}}
 |
 * {{green|+10%}} Arms Industries throughput
 * {{green|+10%}} Artillery Foundry throughput
 |
-* Perm is an incorporated state with a level 5 or higher Arms Industry
+* Perm is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Rifling}}
 |-
 | Savva Morozov & Sons
-| {{iconify|Textile Mill|building|30px}}
-| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
 * {{green|+10%}} {{icon|Prestige|3=1}}
 * '''+10%''' {{icon|Industrialists|3=1}} pop attraction 
 |
-* Moscow is an incorporated state with a level 5 or higher Textile Mill
+* Moscow is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Joint-Stock Companies}}
 |-
 | New Russia Company Ltd.
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
 | {{iconify|Railway|building|30px}}
 | {{iconify|Russia Iron|prestige}}
 |
@@ -1937,15 +1937,15 @@ These companies are associated with states or countries in Europe.
 * {{green|+10%}} Railway throughput
 |
 * Has researched {{technology|Bessemer Process}}
-* Kharkiv or Taurida is an incorporated state with a level 5 or higher Steel Mill, Coal Mine, or Iron Mine
+* Kharkiv or Taurida is an incorporated state with a level 5 or higher Steel Mills, Coal Mines, or Iron Mines
 |-
 | Russian-American Company
 |
-* {{iconify|Logging Camp|building|30px}}s
-* {{iconify|Whaling Station|building|30px}}s
+* {{iconify|Logging Camps|building|30px}}
+* {{iconify|Whaling Stations|building|30px}}
 * {{iconify|Port|building|30px}}s
 |
-* {{iconify|Coal Mine|building|30px}}s
+* {{iconify|Coal Mines|building|30px}}
 * {{iconify|Fishing Wharves|building|30px}}
 | {{iconify|Prime Meat|prestige}}
 |
@@ -1954,7 +1954,7 @@ These companies are associated with states or countries in Europe.
 * {{green|+5%}} Textile Mills throughput
 |
 * Has an East Slavic primary culture
-* Owns or a subject owns a state in the Pacific Coast region with a level 5 or higher Port, Whaling Station, or Logging Camp
+* Owns or a subject owns a state in the Pacific Coast region with a level 5 or higher Port, Whaling Stations, or Logging Camps
 * ''{{flag|Russia}} starts with this company established''
 |}
 
@@ -1972,13 +1972,13 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Arms Industries|building|30px}}
 * {{iconify|Munition Plants|building|30px}}
 |
-* {{iconify|Artillery Foundries|building|30px}}
+* {{iconify|Artillery Foundry|building|30px}}
 | {{iconify|High-powered Small Arms|prestige}}
 |
 * {{green|+5%}} Defense
 * {{green|+5%}} Recovery rate
 |
-* Northern Serbia is an incorporated state with a level 5 or higher Arms Industry
+* Northern Serbia is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Gunsmithing}}
 |}
 
@@ -1994,37 +1994,37 @@ These companies are associated with states or countries in Europe.
 | Altos Hornos de Vizcaya
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
-| {{iconify|Coal Mine|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 | {{green|+10%}} Infrastructure
 |
-* Navarra is an incorporated state with a level 5 or higher Steel Mill
+* Navarra is an incorporated state with a level 5 or higher Steel Mills
 * Has researched {{technology|Steelworking}}
 |-
 | Duro y Compañía
 |
 * {{iconify|Steel Mills|building|30px}}
-* {{iconify|Iron Mine|building|30px}}
-* {{iconify|Coal Mine|building|30px}}
-| {{iconify|Logging Camp|building|30px}}
+* {{iconify|Iron Mines|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{iconify|Refined Steel|prestige}}
 |
 * {{green|+10%}} Arms Industries throughput
 * {{green|+10%}} Artillery Foundry throughput
 |
-* Asturias is an incorporated state with a level 5 or higher Coal Mine
+* Asturias is an incorporated state with a level 5 or higher Coal Mines
 * Has researched {{technology|Steelworking}}
 |-
 | La España Industrial
 |
-* {{iconify|Textile Mill|building|30px}}
-* {{iconify|Cotton Plantation|building|30px}}
-| {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+| {{iconify|Silk Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 | {{green|+15%}} Innovation
 |
-* Catalonia is an incorporated state with a level 5 or higher Textile Mill
+* Catalonia is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Cotton Gin}}
 |-
 | Fábrica de Armas de Trubia
@@ -2039,7 +2039,7 @@ These companies are associated with states or countries in Europe.
 * {{green|−5%}} Military goods cost
 * {{green|+5%}} Offense
 |
-* Asturias is an incorporated state with a level 5 or higher Arms Industry
+* Asturias is an incorporated state with a level 5 or higher Arms Industries
 * Has researched {{technology|Gunsmithing}}
 |}
 
@@ -2054,7 +2054,7 @@ These companies are associated with states or countries in Europe.
 |-
 | Ericsson 
 | {{iconify|Electrics Industries|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{iconify|Ericsson Apparatus|prestige}}
 |
 * {{green|+10%}} Innovation
@@ -2064,12 +2064,12 @@ These companies are associated with states or countries in Europe.
 * Svealand is an incorporated state with a level 5 or higher Electrics Industry
 |-
 | LKAB
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{iconify|Steel Mills|building|30px}}
 | {{iconify|Oregrounds Iron|prestige}}
-| {{green|+20%}} Iron Mine throughput
+| {{green|+20%}} Iron Mines throughput
 |
-* Norrland is an incorporated state with a Railway and a level 5 or higher Iron Mine
+* Norrland is an incorporated state with a Railway and a level 5 or higher Iron Mines
 * Has researched {{technology|Open Hearth Process}}
 |-
 | Götaverken
@@ -2077,13 +2077,13 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Shipyards|building|30px}}
 * {{iconify|Military Shipyards|building|30px}}
 * {{iconify|Motor Industries|building|30px}}
-| {{iconify|Logging Camp|building|30px}}
+| {{iconify|Logging Camps|building|30px}}
 | {{icon|no}}
 |
 * {{green|+5%}} Navy offense
 * {{green|+5%}} Navy defense
 |
-* Götaland is an incorporated state with a level 5 or higher Shipyard or Military Shipyard
+* Götaland is an incorporated state with a level 5 or higher Shipyards or Military Shipyards
 * Has researched {{technology|Gantry Cranes}}
 |-
 | John Paradox & Company
@@ -2091,7 +2091,7 @@ These companies are associated with states or countries in Europe.
 * {{iconify|Arts Academy|building|30px}}
 * {{iconify|Electrics Industries|building|30px}}
 |
-* {{iconify|Coal Mine|building|30px}}
+* {{iconify|Coal Mines|building|30px}}
 * {{iconify|Paper Mills|building|30px}}
 | {{icon|no}}
 |
@@ -2115,20 +2115,20 @@ These companies are associated with states or countries in West Asia and the Mid
 ! Requirements
 |-
 | {{icon|soib}} Də Afḡān Nasājī Šerkat
-| {{iconify|Textile Mill|building|30px}}
-| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
 |
 * {{green|+5%}} Trade capacity
-* {{green|+10%}} Cotton Plantation throughput
-| Southern Turkestan is an incorporated state with a level 5 or higher Textile Mill
+* {{green|+10%}} Cotton Plantations throughput
+| Southern Turkestan is an incorporated state with a level 5 or higher Textile Mills
 |-
 | Šerkat-e Etteḥādīya-ye Welāyat-e Šemālī
-| {{iconify|Cotton Plantation|building|30px}}
-| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
 | {{icon|no}}
-| {{green|+20%}} Opium Plantation throughput
-| Southern Turkestan is an incorporated state with a level 5 or higher Cotton Plantation
+| {{green|+20%}} Opium Plantations throughput
+| Southern Turkestan is an incorporated state with a level 5 or higher Cotton Plantations
 |}
 ===Egypt===
 {| class="wikitable plainlist"
@@ -2141,14 +2141,14 @@ These companies are associated with states or countries in West Asia and the Mid
 |-
 | Misr Spinning and Weaving Company
 |
-* {{iconify|Textile Mill|building|30px}}
-* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Textile Mills|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
 |
-* {{iconify|Silk Plantation|building|30px}}
+* {{iconify|Silk Plantations|building|30px}}
 | {{iconify|Mit Afifi|prestige}}
 | {{green|+10%}} Loyalists from movements
 |
-* Lower Egypt is an incorporated state with a level 5 or higher Textile Mill
+* Lower Egypt is an incorporated state with a level 5 or higher Textile Mills
 * Has researched {{technology|Corporate Charters}}
 |-
 | Egyptian State Railways
@@ -2179,14 +2179,14 @@ These companies are associated with states or countries in West Asia and the Mid
 * Owns any state with a Level 5 or higher Trade Center or Port<section end="Canals" />
 |-
 | {{icon|soib}} MM. Nicolas Portalis et Cie.
-| {{iconify|Silk Plantation|building|30px}}
+| {{iconify|Silk Plantations|building|30px}}
 |
-* {{iconify|Cotton Plantation|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} {{icon|Prestige|3=1}}
 * {{green|−5%}} Radicalism increases for {{acceptance|discriminated}} statuses
-| Lebanon is an incorporated state with a level 5 or higher Silk Plantation
+| Lebanon is an incorporated state with a level 5 or higher Silk Plantations
 |}
 
 ===Persia===
@@ -2200,14 +2200,14 @@ These companies are associated with states or countries in West Asia and the Mid
 ! Requirements
 |-
 | Imperial Tobacco Corporation of Persia
-| {{iconify|Tobacco Plantation|building|30px}}
-| {{iconify|Opium Plantation|building|30px}}
+| {{iconify|Tobacco Plantations|building|30px}}
+| {{iconify|Opium Plantations|building|30px}}
 | {{icon|no}}
 |
 * {{green|+20%}} Technology spread
 * {{red|−2}} {{icon|Rural Folk|3=1}} approval
 |
-* Owns 4 or more incorporated states in the Persia region with a level 5 or higher Tobacco Plantation
+* Owns 4 or more incorporated states in the Persia region with a level 5 or higher Tobacco Plantations
 * Has researched {{technology|Corporate Charters}}
 |-
 | Iranian State Railway
@@ -2221,8 +2221,8 @@ These companies are associated with states or countries in West Asia and the Mid
 * Owns two or more incorporated states in the Persia region with a level 5 or higher Railway
 |-
 | Bongāh-e Enḥeṣār-e Ṣāderāt-e Taryāk
-| {{iconify|Opium Plantation|building|30px}}
-| {{iconify|Tobacco Plantation|building|30px}}
+| {{iconify|Opium Plantations|building|30px}}
+| {{iconify|Tobacco Plantations|building|30px}}
 | {{iconify|Pure Opium|prestige}}
 |
 * {{green|−10%}} Radicals from movements
@@ -2232,15 +2232,15 @@ These companies are associated with states or countries in West Asia and the Mid
 * Owns two or more incorporated states in the Persia region with level 5 or higher Opium Plantations
 |-
 | {{icon|soib}} Šerkat-e Eslāmiya
-| {{iconify|Textile Mill|building|30px}}
-| {{iconify|Cotton Plantation|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
 | {{iconify|Designer Clothes|prestige}}
-| '''+30%''' State religion wages
-| Isfahan is an incorporated state with a level 5 or higher Textile Mill
+| '''+20%''' Wages for state religion pops
+| Isfahan is an incorporated state with a level 5 or higher Textile Mills
 |-
 | {{icon|soib}} Persshelk
-| {{iconify|Silk Plantation|building|30px}}
-| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Silk Plantations|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
 | {{icon|no}}
 |
 * {{green|+5%}} {{icon|Prestige|3=1}}
@@ -2251,11 +2251,11 @@ These companies are associated with states or countries in West Asia and the Mid
 * Country or any ally has Russian primary culture
 |-
 | {{icon|soib}} Perskhlopok
-| {{iconify|Cotton Plantation|building|30px}}
-| {{iconify|Textile Mill|building|30px}}
+| {{iconify|Cotton Plantations|building|30px}}
+| {{iconify|Textile Mills|building|30px}}
 | {{icon|no}}
 |
-* {{green|+5%}} Textile Mill throughput
+* {{green|+5%}} Textile Mills throughput
 * {{green|+2}} {{icon|Rural Folk|3=1}} approval
 |
 * Owns any Persian homeland
@@ -2264,22 +2264,22 @@ These companies are associated with states or countries in West Asia and the Mid
 |-
 | {{icon|soib}} Moscow Irrigation Company
 |
-* {{iconify|Cotton Plantation|building|30px}}
-* {{iconify|Rice Farm|building|30px}}
+* {{iconify|Cotton Plantations|building|30px}}
+* {{iconify|Rice Farms|building|30px}}
 |
-* {{iconify|Opium Plantation|building|30px}}
-* {{iconify|Wheat Farm|building|30px}}
+* {{iconify|Opium Plantations|building|30px}}
+* {{iconify|Wheat Farms|building|30px}}
 | {{iconify|Fine Grain|prestige}}
 |
-* {{green|+20%}} Cotton Plantation throughput
+* {{green|+20%}} Cotton Plantations throughput
 * '''+5%''' {{icon|Industrialists|3=1}} pop attraction
 |
 * Has an interest in the Persia region
 * Owns or an ally owns a state in Moscow
-* Fergana is an incorporated state with a level 5 or higher Cotton Plantation
+* Fergana is an incorporated state with a level 5 or higher Cotton Plantations
 |-
 | {{icon|soib}} Anglo-Persian Oil Company
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 | {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 | {{green|+30%}} Oil Extractors throughput
@@ -2288,10 +2288,10 @@ These companies are associated with states or countries in West Asia and the Mid
 * Has researched {{technology|Pumpjacks}}
 * Country or an ally has English primary culture
 * Has not established National Iranian Oil Company
-* Arabistan is an incorporated state with a level 5 or higher Oil Rig
+* Arabistan is an incorporated state with a level 5 or higher Oil Rigs
 |-
 | {{icon|soib}} National Iranian Oil Company
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 | {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 |
@@ -2301,7 +2301,7 @@ These companies are associated with states or countries in West Asia and the Mid
 * Has Persian primary culture
 * Has researched {{technology|Pumpjacks}}
 * Has not established Anglo-Persian Oil Company
-* Arabistan is an incorporated state with a level 5 or higher Oil Rig
+* Arabistan is an incorporated state with a level 5 or higher Oil Rigs
 |}
 
 ===Turkestan===
@@ -2318,34 +2318,34 @@ These companies are associated with states or countries in West Asia and the Mid
 | {{iconify|Motor Industries|building|30px}}
 | {{icon|no}}
 |
-* {{green|+10%}} Cotton Plantation throughput
+* {{green|+10%}} Cotton Plantations throughput
 |
 * Has researched {{technology|Railways}}
 * Fergana is an incorporated state with a level 5 or higher Railway
 * Owns two or more incorporated states in the Central Asia region with a level 5 or higher Railway
 |-
 | {{icon|soib}} West Ural Petroleum Company, Limited
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 |
 * {{iconify|Power Plants|building|30px}}
 * {{iconify|Railway|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} Colony growth speed
-* {{green|+5%}} Power Plant throughput
+* {{green|+5%}} Power Plants throughput
 |
 * Has researched {{technology|Pumpjacks}}
-* Uralsk is an incorporated state with a level 5 or higher Oil Rig
+* Uralsk is an incorporated state with a level 5 or higher Oil Rigs
 |-
 | {{icon|soib}} Kirgizian Mining Joint Stock Company
-| {{iconify|Coal Mine|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Coal Mines|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
-| {{green|+10%}} Power Plant throughput
+| {{green|+10%}} Power Plants throughput
 |
 * Has researched {{technology|Steam Donkey}}
 * Has researched {{technology|Railways}}
-* Semipalatinsk is an incorporated state with a level 5 or higher Coal Mine
+* Semipalatinsk is an incorporated state with a level 5 or higher Coal Mines
 |}
 ===Turkey===
 {| class="wikitable plainlist"
@@ -2362,25 +2362,25 @@ These companies are associated with states or countries in West Asia and the Mid
 | {{icon|no}}
 | {{green|+10%}} Navy defense
 |
-* Eastern Thrace is an incorporated state with a 5 or higher Military Shipyard
+* Eastern Thrace is an incorporated state with a 5 or higher Military Shipyards
 * Has researched {{technology|Hydraulic Cranes}}
 |-
 | Ottoman Tobacco Company
-| {{iconify|Tobacco Plantation|building|30px}}
-| {{iconify|Opium Plantation|building|30px}}
+| {{iconify|Tobacco Plantations|building|30px}}
+| {{iconify|Opium Plantations|building|30px}}
 | {{iconify|Turkish Tobacco|prestige}}
 | {{green|+10%}} Production technology spread
 |
 * Has Turkish primary culture
 * Does not have the modifier ''Sick Man of Europe''
 * Is not unrecognized
-* Owns 4 or more incorporated states with a level 5 or higher Tobacco Plantation
+* Owns 4 or more incorporated states with a level 5 or higher Tobacco Plantations
 |-
 | Allatini Mills
 |
-* {{iconify|Wheat Farm|building|30px}} 
-* {{iconify|Rye Farm|building|30px}}
-| {{iconify|Food Industry|building|30px}} 
+* {{iconify|Wheat Farms|building|30px}} 
+* {{iconify|Rye Farms|building|30px}}
+| {{iconify|Food Industries|building|30px}} 
 | {{iconify|Fine Grain|prestige}}
 |
 * {{green|+10%}} Food Industries throughput
@@ -2388,11 +2388,11 @@ These companies are associated with states or countries in West Asia and the Mid
 |
 * Does not have the modifier ''Sick Man of Europe''
 * Is not unrecognized
-* Macedonia is an incorporated state with a level 5 or higher Wheat Farm
+* Macedonia is an incorporated state with a level 5 or higher Wheat Farms
 |-
 | Chemins de fer Orientaux
 | {{iconify|Railway|building|30px}}
-| {{iconify|Motor Industry|building|30px}}
+| {{iconify|Motor Industries|building|30px}}
 | {{icon|no}}
 | {{green|+10%}} {{icon|Prestige|3=1}}
 |
@@ -2402,7 +2402,7 @@ These companies are associated with states or countries in West Asia and the Mid
 * Owns 3 or more incorporated states in the Balkans region with a level 5 or higher Railway
 |-
 | Turkish Petroleum Company
-| {{iconify|Oil Rig|building|30px}}
+| {{iconify|Oil Rigs|building|30px}}
 | {{iconify|Power Plants|building|30px}}
 | {{icon|no}}
 |
@@ -2410,7 +2410,7 @@ These companies are associated with states or countries in West Asia and the Mid
 * {{green|+5%}} Railway throughput
 |
 * Has researched {{technology|Pumpjacks}}
-* Baghdad, Basra, or Mosul is an incorporated state with a level 5 or higher Oil Rig
+* Baghdad, Basra, or Mosul is an incorporated state with a level 5 or higher Oil Rigs
 |}
 
 ==African companies==
@@ -2434,7 +2434,7 @@ These companies are associated with states or countries in sub-Saharan Africa.
 * {{green|+5%}} Livestock Ranches throughput
 |
 * Has researched {{technology|Railways}}
-* Owns any state in the Ethiopia region with a Railway and a level 5 or higher Coffee Plantation
+* Owns any state in the Ethiopia region with a Railway and a level 5 or higher Coffee Plantations
 * Owns any coastal state in the Ethiopia region with a level 5 or higher Railways
 |}
 
@@ -2449,8 +2449,8 @@ These companies are associated with states or countries in sub-Saharan Africa.
 |-
 | John Holt and Company
 |
-* {{iconify|Rubber Plantation|building|30px}}
-* {{iconify|Logging Camp|building|30px}}
+* {{iconify|Rubber Plantations|building|30px}}
+* {{iconify|Logging Camps|building|30px}}
 * {{iconify|Port|building|30px}}
 | {{iconify|Shipyards|building|30px}}
 | {{icon|no}}
@@ -2459,7 +2459,7 @@ These companies are associated with states or countries in sub-Saharan Africa.
 * {{green|−5%}} Institution bureaucracy cost
 |
 * Has researched {{technology|Rubber Mastication}}
-* Owns a state in the Niger region with a level 5 or higher Rubber Plantation
+* Owns a state in the Niger region with a level 5 or higher Rubber Plantations
 |}
 
 ===South Africa===
@@ -2472,18 +2472,17 @@ These companies are associated with states or countries in sub-Saharan Africa.
 ! Requirements
 |-
 | {{icon|cocb}} De Beers Consolidated Mines Ltd.
-| {{iconify|Gold Mine|building|30px}}
-| {{iconify|Iron Mine|building|30px}}
+| {{iconify|Gold Mines|building|30px}}
+| {{iconify|Iron Mines|building|30px}}
 | {{icon|no}}
 |
 * {{green|+10%}} {{icon|Prestige|3=1}}
 * {{green|+5%}} Leverage generation
 * {{green|+5%}} Colony growth speed
-| Owns a state in the South Africa region with a level 5 or higher Gold Mine
+| Owns a state in the South Africa region with a level 5 or higher Gold Mines
 |}
 
 ==References==
 <references />
 {{ConceptsNavbox}}
 [[Category:Economy]][[Category:Lists|F]]
-
