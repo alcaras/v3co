@@ -15,10 +15,23 @@ An interactive web tool for analyzing Victoria 3 companies, their building requi
 
 ## Quick Start
 
+### For Users
 1. Open `index.html` in your web browser
 2. Browse companies by building type using the navigation menu
 3. Hover over company names for detailed information
 4. Click column headers to sort tables
+
+### For Developers
+To regenerate the data, you'll need to copy Victoria 3 game files from your installation:
+
+**Copy the `game/` directory from your Victoria 3 installation:**
+- Windows: `C:\Program Files (x86)\Steam\steamapps\common\Victoria 3\game\`
+- Mac: `~/Library/Application Support/Steam/steamapps/common/Victoria 3/game/`
+- Linux: `~/.steam/steam/steamapps/common/Victoria 3/game/`
+
+Then run: `python3 victoria3_company_parser.py`
+
+**Note**: Game files are not included in this repository due to copyright.
 
 ## Files
 

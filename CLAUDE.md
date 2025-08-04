@@ -23,18 +23,13 @@ dist/                           # Root directory (git repository)
 ├── buildings/                 # Building icon assets (64px PNGs)
 ├── companies/png/             # Company icon assets
 ├── icons/                     # Goods and UI icons (24px/40px PNGs)
-├── game/                      # Victoria 3 game data files (NOT IN REPO)
+├── game/                      # Victoria 3 game data files (gitignored)
 │   ├── company_types/         # Company definitions (.txt files)
 │   ├── buildings/             # Building definitions
 │   └── [other game data]/
 └── wiki/                      # Wikipedia mapping data
     └── flavored.wiki          # Company-to-country mappings
 ```
-
-**Important**: The `game/` directory contains Victoria 3 game files that are **not included in this repository** due to copyright. You must copy these from your own Victoria 3 installation:
-- Windows: `C:\Program Files (x86)\Steam\steamapps\common\Victoria 3\game\`
-- Mac: `~/Library/Application Support/Steam/steamapps/common/Victoria 3/game/`
-- Linux: `~/.steam/steam/steamapps/common/Victoria 3/game/`
 
 ## Key Technical Details
 
