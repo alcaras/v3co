@@ -1904,9 +1904,79 @@ class Victoria3CompanyParserV6Final:
     def generate_html_report(self):
         """Generate HTML analysis report with all bugs fixed"""
         
-        # Get building frequencies but keep original order
+        # Get building frequencies and order buildings logically based on Victoria 3 wiki
         building_counts = self.get_building_frequency(self.companies)
-        buildings_to_analyze = list(self.all_buildings)  # Keep original order
+        
+        # Define building order in user's preferred categorization
+        wiki_building_order = [
+            # Extraction
+            'building_coal_mine',
+            'building_fishing_wharf',
+            'building_gold_mine',
+            'building_iron_mine',
+            'building_lead_mine',
+            'building_logging_camp',
+            'building_oil_rig',
+            'building_rubber_plantation',
+            'building_sulfur_mine',
+            'building_whaling_station',
+            
+            # Manufacturing Industries
+            'building_arms_industry',
+            'building_artillery_foundries',
+            'building_automotive_industry',
+            'building_electrics_industry',
+            'building_explosives_factory',
+            'building_chemical_plants',
+            'building_food_industry',
+            'building_furniture_manufacturies',
+            'building_glassworks',
+            'building_military_shipyards',
+            'building_motor_industry',
+            'building_munition_plants',
+            'building_paper_mills',
+            'building_shipyards',
+            'building_steel_mills',
+            'building_synthetics_plants',
+            'building_textile_mills',
+            'building_tooling_workshops',
+            
+            # Infrastructure + Urban Facilities
+            'building_port',
+            'building_railway', 
+            'building_trade_center',
+            'building_power_plant',
+            'building_arts_academy',
+            
+            # Agriculture + Plantations + Ranches
+            'building_maize_farm',
+            'building_millet_farm', 
+            'building_rice_farm',
+            'building_rye_farm',
+            'building_wheat_farm',
+            'building_vineyard_plantation',
+            'building_banana_plantation',
+            'building_coffee_plantation', 
+            'building_cotton_plantation',
+            'building_dye_plantation',
+            'building_opium_plantation',
+            'building_silk_plantation',
+            'building_sugar_plantation',
+            'building_tea_plantation',
+            'building_tobacco_plantation',
+            'building_livestock_ranch'
+        ]
+        
+        # Filter to only buildings we actually have companies for, preserving wiki order
+        buildings_to_analyze = []
+        for building in wiki_building_order:
+            if building in self.all_buildings:
+                buildings_to_analyze.append(building)
+        
+        # Add any remaining buildings we have that weren't in the wiki order (shouldn't happen but safety net)
+        for building in sorted(self.all_buildings):
+            if building not in buildings_to_analyze:
+                buildings_to_analyze.append(building)
         
         html = u"""<!DOCTYPE html>
 <html lang="en">
@@ -2298,11 +2368,23 @@ class Victoria3CompanyParserV6Final:
             margin-bottom: 15px;
         }
         
-        .toc ul {
-            columns: 3;
-            column-gap: 20px;
+        /* Three-column flexbox layout */
+        .toc-columns {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .toc-column {
+            flex: 1;
+            min-width: 0; /* Allow shrinking */
+            overflow: hidden;
+        }
+        
+        .toc-column ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
         
         .toc li {
@@ -2319,6 +2401,40 @@ class Victoria3CompanyParserV6Final:
         .toc a:hover {
             text-decoration: underline;
         }
+        
+        /* Category headers in table of contents */
+        .category-header {
+            font-weight: bold;
+            color: #8b4513;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 15px;
+            border-bottom: 1px solid #d4c5a9;
+            padding-bottom: 3px;
+        }
+        
+        .category-header:first-child {
+            margin-top: 0;
+        }
+        
+        /* Category items in table of contents */
+        .category-item {
+            margin-bottom: 3px;
+        }
+        
+        .category-item a {
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Building icons in table of contents */
+        .toc-building-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -2329,17 +2445,73 @@ class Victoria3CompanyParserV6Final:
     
     <div class="toc">
         <h3>Buildings</h3>
-        <ul>"""
+        <div class="toc-columns">"""
         
-        # Generate table of contents
-        for building in buildings_to_analyze:
-            display_name = building.replace('building_', '').replace('_', ' ').title()
-            usage_count = building_counts.get(building, 0)
-            anchor_name = "building-{}".format(building)
-            html += '<li><a href="#{}">{} ({})</a></li>'.format(anchor_name, display_name, usage_count)
+        # Define three-column layout: Left + Middle + Right
+        column_groups = [
+            # Left Column: Extraction + Infrastructure + Urban Facilities
+            [
+                ("Extraction", [
+                    'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine',
+                    'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation',
+                    'building_sulfur_mine', 'building_whaling_station'
+                ]),
+                ("Infrastructure + Urban Facilities", [
+                    'building_port', 'building_railway', 'building_trade_center', 'building_power_plant',
+                    'building_arts_academy'
+                ])
+            ],
+            # Middle Column: Manufacturing Industries
+            [
+                ("Manufacturing Industries", [
+                    'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry',
+                    'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants',
+                    'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks',
+                    'building_military_shipyards', 'building_motor_industry', 'building_munition_plants',
+                    'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants',
+                    'building_textile_mills', 'building_tooling_workshops'
+                ])
+            ],
+            # Right Column: Agriculture + Plantations + Ranches
+            [
+                ("Agriculture + Plantations + Ranches", [
+                    'building_maize_farm', 'building_millet_farm', 'building_rice_farm', 'building_rye_farm',
+                    'building_wheat_farm', 'building_vineyard_plantation', 'building_banana_plantation',
+                    'building_coffee_plantation', 'building_cotton_plantation', 'building_dye_plantation',
+                    'building_opium_plantation', 'building_silk_plantation', 'building_sugar_plantation',
+                    'building_tea_plantation', 'building_tobacco_plantation', 'building_livestock_ranch'
+                ])
+            ]
+        ]
+        
+        # Generate each column
+        for column_categories in column_groups:
+            html += '<div class="toc-column"><ul>'
+            
+            for category_name, category_buildings in column_categories:
+                # Add category header
+                html += '<li class="category-header">{}</li>'.format(category_name)
+                
+                # Add buildings in this category
+                for building in category_buildings:
+                    if building in buildings_to_analyze:
+                        display_name = building.replace('building_', '').replace('_', ' ').title()
+                        usage_count = building_counts.get(building, 0)
+                        anchor_name = "building-{}".format(building)
+                        # Use the existing building icon path method
+                        icon_path = self.get_building_icon_path(building)
+                        if not icon_path:
+                            # Fallback if icon not found
+                            building_key = building.replace('building_', '')
+                            icon_path = "buildings/64px-Building_{}.png".format(building_key)
+                        html += '<li class="category-item"><a href="#{}">' \
+                               '<img src="{}" class="toc-building-icon" alt="{} icon">{} ({})' \
+                               '</a></li>'.format(anchor_name, icon_path, display_name, display_name, usage_count)
+            
+            html += '</ul></div>'
         
         html += '''
-        </ul>
+        </div>
     </div>'''
         
         # Add Legend/Key table
@@ -2923,9 +3095,87 @@ class Victoria3CompanyParserV6Final:
 if __name__ == "__main__":
     try:
         parser = Victoria3CompanyParserV6Final("game")
-        parser.cross_check_with_wiki()
+        
+        # Try to load existing data first, fall back to parsing if needed
+        try:
+            import json
+            with open('company_data.json', 'r') as f:
+                parser.companies = json.load(f)
+            
+            # Rebuild all_buildings set from loaded data
+            parser.all_buildings = set()
+            for company_data in parser.companies.values():
+                parser.all_buildings.update(company_data['building_types'])
+                parser.all_buildings.update(company_data['extension_building_types'])
+            
+            print("Loaded {} companies with {} unique buildings from existing data".format(len(parser.companies), len(parser.all_buildings)))
+            
+            # Load prestige goods mapping (needed for HTML generation)
+            parser.prestige_goods = {
+                'prestige_good_ford_automobiles': 'automobiles',
+                'prestige_good_turin_automobiles': 'automobiles',
+                'prestige_good_schichau_engines': 'engines',
+                'prestige_good_krupp_guns': 'artillery',
+                'prestige_good_schneider_guns': 'artillery',
+                'prestige_good_armstrong_ships': 'clipper_transports',
+                'prestige_good_colt_revolvers': 'small_arms',
+                'prestige_good_saint_etienne_rifles': 'small_arms',
+                'prestige_good_bohemian_crystal': 'glass',
+                'prestige_good_meissen_porcelain': 'porcelain',
+                'prestige_good_bentwood_furniture': 'furniture',
+                'prestige_good_stylish_furniture': 'luxury_furniture',
+                'prestige_good_english_upholstery': 'luxury_furniture',
+                'prestige_good_designer_clothes': 'luxury_clothes',
+                'prestige_good_haute_couture': 'luxury_clothes',
+                'prestige_good_como_silk': 'silk',
+                'prestige_good_suzhou_silk': 'silk',
+                'prestige_good_tomioka_silk': 'silk',
+                'prestige_good_sea_island_cotton': 'fabric',
+                'prestige_good_craft_paper': 'paper',
+                'prestige_good_washi_paper': 'paper',
+                'prestige_good_precision_tools': 'tools',
+                'prestige_good_refined_steel': 'steel',
+                'prestige_good_sheffield_steel': 'steel',
+                'prestige_good_russia_iron': 'iron',
+                'prestige_good_oregrounds_iron': 'iron',
+                'prestige_good_baku_oil': 'oil',
+                'prestige_good_sicilian_sulfur': 'sulfur',
+                'prestige_good_rosewood': 'hardwood',
+                'prestige_good_teak': 'hardwood',
+                'prestige_good_prime_meat': 'meat',
+                'prestige_good_river_plate_beef': 'meat',
+                'prestige_good_select_fish': 'fish',
+                'prestige_good_gourmet_groceries': 'groceries',
+                'prestige_good_fine_grain': 'grain',
+                'prestige_good_reserve_coffee': 'coffee',
+                'prestige_good_china_tea': 'tea',
+                'prestige_good_assam_tea': 'tea',
+                'prestige_good_mit_afifi': 'tobacco',
+                'prestige_good_turkish_tobacco': 'tobacco',
+                'prestige_good_champagne': 'wine',
+                'prestige_good_gros_michel_banana': 'fruit',
+                'prestige_good_pure_opium': 'opium',
+                'prestige_good_bengal_opium': 'opium',
+                'prestige_good_smirnoff_vodka': 'liquor',
+                'prestige_good_swift_merchant_marine': 'clipper_transports',
+                'prestige_good_clyde_built_liners': 'steamers',
+                'prestige_good_high_grade_explosives': 'explosives',
+                'prestige_good_enriched_fertilizer': 'fertilizer',
+                'prestige_good_german_aniline': 'dye',
+                'prestige_good_high_powered_small_arms': 'small_arms',
+                'prestige_good_quick_fire_artillery': 'artillery',
+                'prestige_good_satsuma_ware': 'porcelain',
+                'prestige_good_radiola_radios': 'radios',
+                'prestige_good_chapel_radios': 'radios',
+                'prestige_good_ericsson_apparatus': 'telephones'
+            }
+            
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print("Could not load existing data ({}), parsing from game files...".format(e))
+            parser.cross_check_with_wiki()
+            parser.save_raw_data()
+        
         parser.save_html_report()
-        parser.save_raw_data()
         
     except Exception as e:
         print("Error: {}".format(e))
