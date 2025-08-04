@@ -175,6 +175,49 @@ When making changes:
 - **Burmese Teak**: Added icon mapping `'burmese_teak': 'teak'`
 - **Swedish Bar Iron**: Added hardcoded mapping + icon mapping `'swedish_bar_iron': 'oregrounds_iron'`
 
+## Other Common Issues & Solutions
+
+### Problem: Company tooltip shows blank/missing company icon
+
+**Root Cause**: JavaScript `getCompanyIconPath()` function missing historical company mappings
+
+**Symptoms**: Company icon displays correctly in HTML table but not in tooltip card
+
+**Solution**:
+- **Check**: Compare Python `self.historical_mappings` with JavaScript `historicalMappings`
+- **Fix**: Ensure JavaScript function is generated dynamically from Python mappings (around line 2846)
+- **Example**: East India Company needs `"east_india_company": "gb_eic"` mapping
+
+### Problem: Tooltip positioning goes off-screen
+
+**Root Cause**: Basic boundary detection not accounting for viewport scroll or all edges
+
+**Symptoms**: Tooltips disappear near screen edges, especially when scrolled
+
+**Solution**:
+- **Check**: Tooltip positioning logic handles all viewport boundaries
+- **Fix**: Use proper coordinate systems (`pageX/pageY` with `scrollX/scrollY + innerWidth/innerHeight`)
+- **Implementation**: Smart positioning with fallback strategies for all edge cases
+
+### Problem: Column sorting broken after prestige goods changes
+
+**Root Cause**: Inconsistent logic between HTML generation and sorting functions
+
+**Symptoms**: Tables sort charter buildings between prestige and base instead of prestige > base > charter > blank
+
+**Solution**:
+- **Check**: Ensure `get_companies_with_building()` uses same prestige logic as HTML generation
+- **Fix**: Synchronize prestige detection logic across all functions
+- **Test**: Verify sorting maintains correct order after any prestige goods changes
+
+### Key Debugging Principles Learned:
+
+1. **Systematic Company-by-Company Analysis**: When facing widespread issues, use systematic approach rather than trying to fix architecture
+2. **Always Push Both Parser AND HTML**: GitHub Pages displays `index.html`, so both files must be committed
+3. **Coordinate System Consistency**: Mix of page/viewport coordinates causes positioning bugs
+4. **JavaScript-Python Synchronization**: Dynamic generation prevents JavaScript from getting out of sync with Python logic
+5. **Icon Mapping Patterns**: Missing icons need mappings in BOTH company name and building column generation functions
+
 ## Future Considerations
 - Company icon coverage could be improved (many missing icons)
 - Consider adding search/filter functionality
