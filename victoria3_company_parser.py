@@ -2112,10 +2112,10 @@ class Victoria3CompanyParserV6Final:
             padding-bottom: 5px;
         }
         
-        /* Company icon in tooltip - bigger and positioned on the right */
+        /* Company icon in tooltip - 256x256 and positioned on the right */
         .company-tooltip .company-icon {
-            width: 120px;
-            height: 120px;
+            width: 256px;
+            height: 256px;
             border-radius: 12px;
             float: right;
             margin-left: 20px;
@@ -2125,8 +2125,8 @@ class Victoria3CompanyParserV6Final:
         }
         
         .company-tooltip .company-icon-placeholder {
-            width: 120px;
-            height: 120px;
+            width: 256px;
+            height: 256px;
             background: #e8e2d4;
             border: 3px dashed #bbb;
             border-radius: 8px;
@@ -2137,7 +2137,7 @@ class Victoria3CompanyParserV6Final:
         
         .company-tooltip .company-details {
             display: block;
-            margin-right: 150px; /* Make room for the icon on the right */
+            margin-right: 286px; /* Make room for the 256px icon + margins on the right */
         }
         
         .company-tooltip .requirements, .company-tooltip .bonuses, 
