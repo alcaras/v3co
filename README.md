@@ -1,5 +1,7 @@
 # Victoria 3 Company Analysis Tool
 
+🌐 **Live Demo: https://alcaras.github.io/v3co/**
+
 An interactive web tool for analyzing Victoria 3 companies, their building requirements, formation conditions, and available industry charters.
 
 ## Features
