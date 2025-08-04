@@ -3064,31 +3064,53 @@ class Victoria3CompanyParserV6Final:
                     html += '</ul></div>';
                 }
                 
-                // Add prestige goods section
+                // Add prestige goods section with icons
                 if (data.prestige_goods && data.prestige_goods.length > 0) {
                     html += '<div class="prestige-goods"><h4>Prestige Goods</h4><ul>';
                     data.prestige_goods.forEach(good => {
-                        html += `<li>${good}</li>`;
+                        // Get prestige good icon
+                        const prestigeGoodBase = good.replace('prestige_good_generic_', '').replace('prestige_good_', '');
+                        
+                        // Icon mappings for prestige goods that don't have exact matches
+                        const iconMappings = {
+                            'burmese_teak': 'teak',
+                            'swedish_bar_iron': 'oregrounds_iron'
+                        };
+                        
+                        const mappedBase = iconMappings[prestigeGoodBase] || prestigeGoodBase;
+                        const prestigeIcon = `icons/24px-Prestige_$${mappedBase}.png`;
+                        const fallbackIcon = `icons/40px-Goods_$${mappedBase}.png`;
+                        
+                        const goodDisplayName = good.replace('prestige_good_generic_', '').replace('prestige_good_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                        
+                        html += `<li><img src="$${prestigeIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
+                                 onerror="this.src='$${fallbackIcon}'; this.onerror=null;">${goodDisplayName}</li>`;
                     });
                     html += '</ul></div>';
                 }
                 
-                // Add base buildings section
+                // Add base buildings section with icons
                 if (data.base_buildings && data.base_buildings.length > 0) {
                     html += '<div class="base-buildings"><h4>Base Buildings</h4><ul>';
                     data.base_buildings.forEach(building => {
                         const buildingName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
-                        html += `<li>${buildingName}</li>`;
+                        const buildingIcon = `buildings/$${building}.png`;
+                        
+                        html += `<li><img src="$${buildingIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
+                                 onerror="this.style.display='none';">${buildingName}</li>`;
                     });
                     html += '</ul></div>';
                 }
                 
-                // Add possible industry charters section
+                // Add possible industry charters section with icons
                 if (data.industry_charters && data.industry_charters.length > 0) {
                     html += '<div class="industry-charters"><h4>Possible Industry Charters</h4><ul>';
                     data.industry_charters.forEach(charter => {
                         const charterName = charter.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
-                        html += `<li>${charterName}</li>`;
+                        const charterIcon = `buildings/$${charter}.png`;
+                        
+                        html += `<li><img src="$${charterIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
+                                 onerror="this.style.display='none';">${charterName}</li>`;
                     });
                     html += '</ul></div>';
                 }
