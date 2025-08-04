@@ -2090,7 +2090,7 @@ class Victoria3CompanyParserV6Final:
             padding: 12px 20px;
         }
         
-        /* Company card tooltip - positioned above table */
+        /* Company card tooltip - positioned above table, wider for 256px icon */
         .company-tooltip {
             position: absolute;
             background: #fff;
@@ -2099,8 +2099,8 @@ class Victoria3CompanyParserV6Final:
             padding: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 1000;
-            min-width: 450px;
-            max-width: 600px;
+            min-width: 650px;
+            max-width: 800px;
             display: none;
             font-size: 14px;
         }

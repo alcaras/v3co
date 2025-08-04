@@ -123,11 +123,56 @@ When making changes:
 - [ ] Run `python3 victoria3_company_parser.py` successfully
 - [ ] Check terminal for encoding errors or warnings
 - [ ] Verify `index.html` generates properly
+- [ ] **Test changes took effect**: Use grep to verify HTML contains expected changes
 - [ ] Test in browser for layout issues
 - [ ] Check that prestige goods appear in correct columns
 - [ ] Verify building icons display properly
 - [ ] Test back-to-top navigation links
 - [ ] Confirm table sorting works
+
+### Verification Testing Process
+After making changes to Python code, always verify the changes were applied to the generated HTML:
+
+**CSS/Styling Changes:**
+```bash
+# Verify specific CSS rules were generated correctly
+grep -A10 -B5 "class-name\|css-property" index.html
+
+# Example: Check company icon sizing
+grep -A10 "company-tooltip.*company-icon" index.html
+```
+
+**JavaScript Changes:**
+```bash
+# Verify JavaScript functions were generated correctly  
+grep -A20 "function functionName" index.html
+
+# Example: Check tooltip positioning
+grep -A10 "Smart tooltip positioning" index.html
+```
+
+**HTML Content Changes:**
+```bash
+# Verify specific companies show expected content
+grep -A3 -B3 "CompanyName" index.html
+
+# Example: Check prestige goods icons
+grep -A2 -B2 "LKAB\|lkab" index.html
+```
+
+**Icon/Mapping Changes:**
+```bash
+# Verify mappings were generated correctly
+grep "mapping-name.*expected-value" index.html
+
+# Example: Check historical company mappings  
+grep -A5 -B5 "east_india_company.*gb_eic" index.html
+```
+
+This verification step is **critical** because:
+- Python changes don't automatically appear in HTML until parser runs
+- Generated HTML might not match expected changes due to syntax errors
+- Verifying in HTML confirms the change worked end-to-end
 
 ## Troubleshooting Prestige Goods Icon Issues
 
