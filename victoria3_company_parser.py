@@ -98,7 +98,7 @@ class Victoria3CompanyParserV6Final:
             'building_munition_plants': 'ammunition',
             'building_explosives_factory': 'explosives',
             'building_artillery_foundries': 'artillery',
-            'building_motor_industry': 'automobiles',
+            'building_motor_industry': 'engines',
             'building_automotive_industry': 'automobiles',
             'building_shipyards': 'clipper_transports',
             'building_railway': 'transportation',
@@ -891,7 +891,8 @@ class Victoria3CompanyParserV6Final:
     def parse_state_to_country_mappings(self):
         """Parse state to country mappings from game files"""
         try:
-            with open(self.states_file, 'r') as f:
+            import codecs
+            with codecs.open(self.states_file, 'r', encoding='utf-8') as f:
                 content = f.read()
                 
             # Find all state definitions with country assignments
@@ -908,7 +909,8 @@ class Victoria3CompanyParserV6Final:
     def parse_subject_relationships(self):
         """Parse subject relationships from diplomacy files"""
         try:
-            with open(self.diplomacy_file, 'r') as f:
+            import codecs
+            with codecs.open(self.diplomacy_file, 'r', encoding='utf-8') as f:
                 content = f.read()
                 
             # Find diplomatic pacts with subject relationships
@@ -964,7 +966,8 @@ class Victoria3CompanyParserV6Final:
             return
             
         try:
-            with open(self.wiki_file, 'r') as f:
+            import codecs
+            with codecs.open(self.wiki_file, 'r', encoding='utf-8') as f:
                 content = f.read()
                 
             # Parse wiki format: Country sections (===Country===) with company tables
@@ -1289,7 +1292,8 @@ class Victoria3CompanyParserV6Final:
     def parse_prestige_goods(self):
         """Parse prestige goods to map them to their base goods"""
         try:
-            with open(self.prestige_goods_dir, 'r') as f:
+            import codecs
+            with codecs.open(self.prestige_goods_dir, 'r', encoding='utf-8') as f:
                 content = f.read()
                 
             # Find prestige good definitions
@@ -1736,7 +1740,8 @@ class Victoria3CompanyParserV6Final:
                 file_path = os.path.join(self.company_types_dir, filename)
                 print("Parsing {}...".format(filename))
                 try:
-                    with open(file_path, 'r') as f:
+                    import codecs
+                    with codecs.open(file_path, 'r', encoding='utf-8') as f:
                         content = f.read()
                         
                     file_companies = self.parse_paradox_file(content)
@@ -1908,7 +1913,7 @@ class Victoria3CompanyParserV6Final:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Victoria 3 Company Building Analysis v6 Final</title>
+    <title>Victoria 3 Company Analysis Tool</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1938,6 +1943,46 @@ class Victoria3CompanyParserV6Final:
             margin-bottom: 15px;
             color: #666;
             font-style: italic;
+        }
+        
+        
+        /* Description column styling for legend table */
+        .description {
+            font-size: 14px;
+            color: #555;
+            padding: 8px 12px;
+        }
+        
+        /* Legend table specific overrides */
+        #legend .building-table {
+            width: auto;
+            min-width: 500px;
+            max-width: none;
+        }
+        
+        #legend .table-container {
+            overflow-x: visible;
+            width: auto;
+        }
+        
+        #legend th, #legend td {
+            white-space: nowrap;
+            min-width: auto;
+        }
+        
+        #legend .company-header, #legend .building-header {
+            padding: 12px 20px;
+        }
+        
+        #legend .company-name, #legend .description {
+            padding: 12px 20px;
+        }
+        
+        /* Make legend "Meaning" header match company name styling */
+        #legend .company-header {
+            text-align: left !important;
+            font-weight: normal !important;
+            padding: 12px 20px;
         }
         
         /* Company card tooltip - positioned above table */
@@ -2277,7 +2322,7 @@ class Victoria3CompanyParserV6Final:
     </style>
 </head>
 <body>
-    <h1>Victoria 3 Company Building Analysis v6 Final</h1>
+    <h1>Victoria 3 Company Analysis Tool</h1>
     
     <!-- Company tooltip -->
     <div id="companyTooltip" class="company-tooltip"></div>
@@ -2295,6 +2340,37 @@ class Victoria3CompanyParserV6Final:
         
         html += '''
         </ul>
+    </div>'''
+        
+        # Add Legend/Key table
+        html += '''
+    <!-- Legend/Key Table -->
+    <div id="legend" class="building-section">
+        <h2>Symbol Legend</h2>
+        <div class="table-container">
+            <table class="building-table">
+                <thead>
+                    <tr>
+                        <th class="company-header">Meaning</th>
+                        <th class="building-header" style="min-width: 120px;">e.g.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Prestige Good</td>
+                        <td class="prestige-building"><img src="icons/24px-Prestige_ford_automobiles.png" width="16" height="16" alt="Prestige Good Example" title="Prestige Good"></td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Base Building</td>
+                        <td class="base-building">&#x25CF;</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Industry Charter</td>
+                        <td class="extension-building">&#x25CB;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>'''
         
         # Generate separate table for each building
@@ -2346,8 +2422,8 @@ class Victoria3CompanyParserV6Final:
         <table class="building-table sortable">
             <thead>
                 <tr>
-                    <th class="flag-column" title="Country">Flag</th>
-                    <th class="buildings-column" title="Base Coverage . Available Industry Charters">Chart</th>
+                    <th class="flag-column" title="Country">🏳️</th>
+                    <th class="buildings-column" title="Base Coverage . Available Industry Charters">📊</th>
                     <th class="company-name">Company Name</th>'''.format(anchor_name, building_icon_html, display_name, len(all_companies_with_building))
             
             # Add columns for all buildings these companies can use (frequency ordered within this company set)
@@ -2822,12 +2898,13 @@ class Victoria3CompanyParserV6Final:
         
         return html
 
-    def save_html_report(self, filename="victoria3_company_building_analysis_v6.html"):
+    def save_html_report(self, filename="index.html"):
         """Save the HTML report to a file"""
         html_content = self.generate_html_report()
         
         output_path = os.path.join(os.path.dirname(__file__), filename)
-        with open(output_path, 'w', encoding='utf-8') as f:
+        import codecs
+        with codecs.open(output_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
             
         print("HTML report generated: {}".format(output_path))
@@ -2836,7 +2913,8 @@ class Victoria3CompanyParserV6Final:
     def save_raw_data(self, filename="company_data_v6.json"):
         """Save raw company data as JSON for analysis"""
         output_path = os.path.join(os.path.dirname(__file__), filename)
-        with open(output_path, 'w') as f:
+        import codecs
+        with codecs.open(output_path, 'w', encoding='utf-8') as f:
             json.dump(self.companies, f, indent=2, ensure_ascii=False)
             
         print("Raw data saved: {}".format(output_path))
