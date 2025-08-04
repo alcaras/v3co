@@ -42,13 +42,6 @@ The tool organizes buildings in a specific logical order based on Victoria 3 wik
 
 This order is defined in `wiki_building_order` list in the Python script.
 
-### Prestige Goods Bug Fix
-**CRITICAL**: There was a major bug where prestige automobiles appeared in both Motor Industry and Automotive Industry columns. This was fixed by correcting the `building_to_goods` mapping:
-```python
-'building_motor_industry': 'engines',        # Was incorrectly 'automobiles'
-'building_automotive_industry': 'automobiles',
-```
-
 ### Icon System
 - **Building Icons**: Uses `building_name_mappings` dictionary for icon path resolution
 - **Company Icons**: Historical company icons in `companies/png/` directory
