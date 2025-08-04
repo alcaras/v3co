@@ -2435,16 +2435,32 @@ class Victoria3CompanyParserV6Final:
             margin-right: 6px;
             flex-shrink: 0;
         }
+        
+        /* Back to top link styling */
+        .back-to-top {
+            float: right;
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            font-weight: normal;
+            margin-left: 20px;
+        }
+        
+        .back-to-top:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <h1>Victoria 3 Company Analysis Tool</h1>
+    <h1 id="top">Victoria 3 Company Analysis Tool</h1>
     
     <!-- Company tooltip -->
     <div id="companyTooltip" class="company-tooltip"></div>
     
     <div class="toc">
-        <h3>Buildings</h3>
+        <a name="buildings"></a>
+        <h3 id="buildings">Buildings</h3>
         <div class="toc-columns">"""
         
         # Define three-column layout: Left + Middle + Right
@@ -2587,7 +2603,7 @@ class Victoria3CompanyParserV6Final:
                 building_icon_html = '<img src="{}" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="{} icon">'.format(building_icon_path, display_name)
             
             html += '''
-    <h2 id="{}">{}{}</h2>
+    <h2 id="{}">{}{} <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: {}</p>
     
     <div class="table-container">

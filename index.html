@@ -455,16 +455,32 @@
             margin-right: 6px;
             flex-shrink: 0;
         }
+        
+        /* Back to top link styling */
+        .back-to-top {
+            float: right;
+            font-size: 14px;
+            color: #666;
+            text-decoration: none;
+            font-weight: normal;
+            margin-left: 20px;
+        }
+        
+        .back-to-top:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <h1>Victoria 3 Company Analysis Tool</h1>
+    <h1 id="top">Victoria 3 Company Analysis Tool</h1>
     
     <!-- Company tooltip -->
     <div id="companyTooltip" class="company-tooltip"></div>
     
     <div class="toc">
-        <h3>Buildings</h3>
+        <a name="buildings"></a>
+        <h3 id="buildings">Buildings</h3>
         <div class="toc-columns"><div class="toc-column"><ul><li class="category-header">Extraction</li><li class="category-item"><a href="#building-building_coal_mine"><img src="buildings/64px-Building_coal_mine.png" class="toc-building-icon" alt="Coal Mine icon">Coal Mine (28)</a></li><li class="category-item"><a href="#building-building_fishing_wharf"><img src="buildings/64px-Building_fishing_wharf.png" class="toc-building-icon" alt="Fishing Wharf icon">Fishing Wharf (3)</a></li><li class="category-item"><a href="#building-building_gold_mine"><img src="buildings/64px-Building_gold_mine.png" class="toc-building-icon" alt="Gold Mine icon">Gold Mine (3)</a></li><li class="category-item"><a href="#building-building_iron_mine"><img src="buildings/64px-Building_iron_mine.png" class="toc-building-icon" alt="Iron Mine icon">Iron Mine (37)</a></li><li class="category-item"><a href="#building-building_lead_mine"><img src="buildings/64px-Building_lead_mine.png" class="toc-building-icon" alt="Lead Mine icon">Lead Mine (12)</a></li><li class="category-item"><a href="#building-building_logging_camp"><img src="buildings/64px-Building_logging_camp.png" class="toc-building-icon" alt="Logging Camp icon">Logging Camp (26)</a></li><li class="category-item"><a href="#building-building_oil_rig"><img src="buildings/64px-Building_oil_rig.png" class="toc-building-icon" alt="Oil Rig icon">Oil Rig (14)</a></li><li class="category-item"><a href="#building-building_rubber_plantation"><img src="buildings/64px-Building_rubber_lodge.png" class="toc-building-icon" alt="Rubber Plantation icon">Rubber Plantation (8)</a></li><li class="category-item"><a href="#building-building_sulfur_mine"><img src="buildings/64px-Building_sulfur_mine.png" class="toc-building-icon" alt="Sulfur Mine icon">Sulfur Mine (10)</a></li><li class="category-item"><a href="#building-building_whaling_station"><img src="buildings/64px-Building_whaling_station.png" class="toc-building-icon" alt="Whaling Station icon">Whaling Station (2)</a></li><li class="category-header">Infrastructure + Urban Facilities</li><li class="category-item"><a href="#building-building_port"><img src="buildings/64px-Building_port.png" class="toc-building-icon" alt="Port icon">Port (15)</a></li><li class="category-item"><a href="#building-building_railway"><img src="buildings/64px-Building_railway.png" class="toc-building-icon" alt="Railway icon">Railway (25)</a></li><li class="category-item"><a href="#building-building_trade_center"><img src="buildings/64px-Building_trade_center.png" class="toc-building-icon" alt="Trade Center icon">Trade Center (2)</a></li><li class="category-item"><a href="#building-building_power_plant"><img src="buildings/64px-Building_power_plant.png" class="toc-building-icon" alt="Power Plant icon">Power Plant (19)</a></li><li class="category-item"><a href="#building-building_arts_academy"><img src="buildings/64px-Building_arts_academy.png" class="toc-building-icon" alt="Arts Academy icon">Arts Academy (4)</a></li></ul></div><div class="toc-column"><ul><li class="category-header">Manufacturing Industries</li><li class="category-item"><a href="#building-building_arms_industry"><img src="buildings/64px-Building_arms_industry.png" class="toc-building-icon" alt="Arms Industry icon">Arms Industry (12)</a></li><li class="category-item"><a href="#building-building_artillery_foundries"><img src="buildings/64px-Building_artillery_foundry.png" class="toc-building-icon" alt="Artillery Foundries icon">Artillery Foundries (16)</a></li><li class="category-item"><a href="#building-building_automotive_industry"><img src="buildings/64px-Building_vehicles_industry.png" class="toc-building-icon" alt="Automotive Industry icon">Automotive Industry (11)</a></li><li class="category-item"><a href="#building-building_electrics_industry"><img src="buildings/64px-Building_electrics_industry.png" class="toc-building-icon" alt="Electrics Industry icon">Electrics Industry (8)</a></li><li class="category-item"><a href="#building-building_explosives_factory"><img src="buildings/64px-Building_explosives_factory.png" class="toc-building-icon" alt="Explosives Factory icon">Explosives Factory (7)</a></li><li class="category-item"><a href="#building-building_chemical_plants"><img src="buildings/64px-Building_chemicals_industry.png" class="toc-building-icon" alt="Chemical Plants icon">Chemical Plants (9)</a></li><li class="category-item"><a href="#building-building_food_industry"><img src="buildings/64px-Building_food_industry.png" class="toc-building-icon" alt="Food Industry icon">Food Industry (14)</a></li><li class="category-item"><a href="#building-building_furniture_manufacturies"><img src="buildings/64px-Building_furniture_manufacturies.png" class="toc-building-icon" alt="Furniture Manufacturies icon">Furniture Manufacturies (3)</a></li><li class="category-item"><a href="#building-building_glassworks"><img src="buildings/64px-Building_glassworks.png" class="toc-building-icon" alt="Glassworks icon">Glassworks (7)</a></li><li class="category-item"><a href="#building-building_military_shipyards"><img src="buildings/64px-Building_military_shipyards.png" class="toc-building-icon" alt="Military Shipyards icon">Military Shipyards (18)</a></li><li class="category-item"><a href="#building-building_motor_industry"><img src="buildings/64px-Building_motor_industry.png" class="toc-building-icon" alt="Motor Industry icon">Motor Industry (37)</a></li><li class="category-item"><a href="#building-building_munition_plants"><img src="buildings/64px-Building_munition_plants.png" class="toc-building-icon" alt="Munition Plants icon">Munition Plants (14)</a></li><li class="category-item"><a href="#building-building_paper_mills"><img src="buildings/64px-Building_paper_mills.png" class="toc-building-icon" alt="Paper Mills icon">Paper Mills (5)</a></li><li class="category-item"><a href="#building-building_shipyards"><img src="buildings/64px-Building_shipyards.png" class="toc-building-icon" alt="Shipyards icon">Shipyards (21)</a></li><li class="category-item"><a href="#building-building_steel_mills"><img src="buildings/64px-Building_steel_mills.png" class="toc-building-icon" alt="Steel Mills icon">Steel Mills (37)</a></li><li class="category-item"><a href="#building-building_synthetics_plants"><img src="buildings/64px-Building_synthetics_plants.png" class="toc-building-icon" alt="Synthetics Plants icon">Synthetics Plants (3)</a></li><li class="category-item"><a href="#building-building_textile_mills"><img src="buildings/64px-Building_textile_industry.png" class="toc-building-icon" alt="Textile Mills icon">Textile Mills (23)</a></li><li class="category-item"><a href="#building-building_tooling_workshops"><img src="buildings/64px-Building_tooling_workshops.png" class="toc-building-icon" alt="Tooling Workshops icon">Tooling Workshops (8)</a></li></ul></div><div class="toc-column"><ul><li class="category-header">Agriculture + Plantations + Ranches</li><li class="category-item"><a href="#building-building_maize_farm"><img src="buildings/64px-Building_maize_farm.png" class="toc-building-icon" alt="Maize Farm icon">Maize Farm (5)</a></li><li class="category-item"><a href="#building-building_millet_farm"><img src="buildings/64px-Building_millet_farm.png" class="toc-building-icon" alt="Millet Farm icon">Millet Farm (2)</a></li><li class="category-item"><a href="#building-building_rice_farm"><img src="buildings/64px-Building_rice_farm.png" class="toc-building-icon" alt="Rice Farm icon">Rice Farm (9)</a></li><li class="category-item"><a href="#building-building_rye_farm"><img src="buildings/64px-Building_rye_farm.png" class="toc-building-icon" alt="Rye Farm icon">Rye Farm (6)</a></li><li class="category-item"><a href="#building-building_wheat_farm"><img src="buildings/64px-Building_wheat_farm.png" class="toc-building-icon" alt="Wheat Farm icon">Wheat Farm (11)</a></li><li class="category-item"><a href="#building-building_vineyard_plantation"><img src="buildings/64px-Building_vineyards.png" class="toc-building-icon" alt="Vineyard Plantation icon">Vineyard Plantation (5)</a></li><li class="category-item"><a href="#building-building_banana_plantation"><img src="buildings/64px-Building_banana_plantation.png" class="toc-building-icon" alt="Banana Plantation icon">Banana Plantation (2)</a></li><li class="category-item"><a href="#building-building_coffee_plantation"><img src="buildings/64px-Building_coffee_plantation.png" class="toc-building-icon" alt="Coffee Plantation icon">Coffee Plantation (1)</a></li><li class="category-item"><a href="#building-building_cotton_plantation"><img src="buildings/64px-Building_cotton_plantation.png" class="toc-building-icon" alt="Cotton Plantation icon">Cotton Plantation (25)</a></li><li class="category-item"><a href="#building-building_dye_plantation"><img src="buildings/64px-Building_dye_plantation.png" class="toc-building-icon" alt="Dye Plantation icon">Dye Plantation (3)</a></li><li class="category-item"><a href="#building-building_opium_plantation"><img src="buildings/64px-Building_opium_plantation.png" class="toc-building-icon" alt="Opium Plantation icon">Opium Plantation (7)</a></li><li class="category-item"><a href="#building-building_silk_plantation"><img src="buildings/64px-Building_silk_plantation.png" class="toc-building-icon" alt="Silk Plantation icon">Silk Plantation (11)</a></li><li class="category-item"><a href="#building-building_sugar_plantation"><img src="buildings/64px-Building_sugar_plantation.png" class="toc-building-icon" alt="Sugar Plantation icon">Sugar Plantation (4)</a></li><li class="category-item"><a href="#building-building_tea_plantation"><img src="buildings/64px-Building_tea_plantation.png" class="toc-building-icon" alt="Tea Plantation icon">Tea Plantation (7)</a></li><li class="category-item"><a href="#building-building_tobacco_plantation"><img src="buildings/64px-Building_tobacco_plantation.png" class="toc-building-icon" alt="Tobacco Plantation icon">Tobacco Plantation (7)</a></li><li class="category-item"><a href="#building-building_livestock_ranch"><img src="buildings/64px-Building_cattle_ranch.png" class="toc-building-icon" alt="Livestock Ranch icon">Livestock Ranch (6)</a></li></ul></div>
         </div>
     </div>
@@ -496,7 +512,7 @@
             </table>
         </div>
     </div>
-    <h2 id="building-building_coal_mine"><img src="buildings/64px-Building_coal_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Coal Mine icon">Coal Mine</h2>
+    <h2 id="building-building_coal_mine"><img src="buildings/64px-Building_coal_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Coal Mine icon">Coal Mine <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 28</p>
     
     <div class="table-container">
@@ -812,7 +828,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_fishing_wharf"><img src="buildings/64px-Building_fishing_wharf.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Fishing Wharf icon">Fishing Wharf</h2>
+    <h2 id="building-building_fishing_wharf"><img src="buildings/64px-Building_fishing_wharf.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Fishing Wharf icon">Fishing Wharf <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 3</p>
     
     <div class="table-container">
@@ -869,7 +885,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_gold_mine"><img src="buildings/64px-Building_gold_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Gold Mine icon">Gold Mine</h2>
+    <h2 id="building-building_gold_mine"><img src="buildings/64px-Building_gold_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Gold Mine icon">Gold Mine <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 3</p>
     
     <div class="table-container">
@@ -922,7 +938,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_iron_mine"><img src="buildings/64px-Building_iron_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Iron Mine icon">Iron Mine</h2>
+    <h2 id="building-building_iron_mine"><img src="buildings/64px-Building_iron_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Iron Mine icon">Iron Mine <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 37</p>
     
     <div class="table-container">
@@ -1323,7 +1339,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_lead_mine"><img src="buildings/64px-Building_lead_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Lead Mine icon">Lead Mine</h2>
+    <h2 id="building-building_lead_mine"><img src="buildings/64px-Building_lead_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Lead Mine icon">Lead Mine <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 12</p>
     
     <div class="table-container">
@@ -1479,7 +1495,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_logging_camp"><img src="buildings/64px-Building_logging_camp.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Logging Camp icon">Logging Camp</h2>
+    <h2 id="building-building_logging_camp"><img src="buildings/64px-Building_logging_camp.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Logging Camp icon">Logging Camp <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 26</p>
     
     <div class="table-container">
@@ -1783,7 +1799,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_oil_rig"><img src="buildings/64px-Building_oil_rig.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Oil Rig icon">Oil Rig</h2>
+    <h2 id="building-building_oil_rig"><img src="buildings/64px-Building_oil_rig.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Oil Rig icon">Oil Rig <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 14</p>
     
     <div class="table-container">
@@ -1945,7 +1961,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_rubber_plantation"><img src="buildings/64px-Building_rubber_lodge.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Rubber Plantation icon">Rubber Plantation</h2>
+    <h2 id="building-building_rubber_plantation"><img src="buildings/64px-Building_rubber_lodge.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Rubber Plantation icon">Rubber Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 8</p>
     
     <div class="table-container">
@@ -2065,7 +2081,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_sulfur_mine"><img src="buildings/64px-Building_sulfur_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Sulfur Mine icon">Sulfur Mine</h2>
+    <h2 id="building-building_sulfur_mine"><img src="buildings/64px-Building_sulfur_mine.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Sulfur Mine icon">Sulfur Mine <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 10</p>
     
     <div class="table-container">
@@ -2201,7 +2217,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_whaling_station"><img src="buildings/64px-Building_whaling_station.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Whaling Station icon">Whaling Station</h2>
+    <h2 id="building-building_whaling_station"><img src="buildings/64px-Building_whaling_station.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Whaling Station icon">Whaling Station <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 2</p>
     
     <div class="table-container">
@@ -2247,7 +2263,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_arms_industry"><img src="buildings/64px-Building_arms_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Arms Industry icon">Arms Industry</h2>
+    <h2 id="building-building_arms_industry"><img src="buildings/64px-Building_arms_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Arms Industry icon">Arms Industry <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 12</p>
     
     <div class="table-container">
@@ -2387,7 +2403,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_artillery_foundries"><img src="buildings/64px-Building_artillery_foundry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Artillery Foundries icon">Artillery Foundries</h2>
+    <h2 id="building-building_artillery_foundries"><img src="buildings/64px-Building_artillery_foundry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Artillery Foundries icon">Artillery Foundries <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 16</p>
     
     <div class="table-container">
@@ -2573,7 +2589,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_automotive_industry"><img src="buildings/64px-Building_vehicles_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Automotive Industry icon">Automotive Industry</h2>
+    <h2 id="building-building_automotive_industry"><img src="buildings/64px-Building_vehicles_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Automotive Industry icon">Automotive Industry <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 11</p>
     
     <div class="table-container">
@@ -2710,7 +2726,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_electrics_industry"><img src="buildings/64px-Building_electrics_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Electrics Industry icon">Electrics Industry</h2>
+    <h2 id="building-building_electrics_industry"><img src="buildings/64px-Building_electrics_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Electrics Industry icon">Electrics Industry <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 8</p>
     
     <div class="table-container">
@@ -2826,7 +2842,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_explosives_factory"><img src="buildings/64px-Building_explosives_factory.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Explosives Factory icon">Explosives Factory</h2>
+    <h2 id="building-building_explosives_factory"><img src="buildings/64px-Building_explosives_factory.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Explosives Factory icon">Explosives Factory <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 7</p>
     
     <div class="table-container">
@@ -2919,7 +2935,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_chemical_plants"><img src="buildings/64px-Building_chemicals_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Chemical Plants icon">Chemical Plants</h2>
+    <h2 id="building-building_chemical_plants"><img src="buildings/64px-Building_chemicals_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Chemical Plants icon">Chemical Plants <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 9</p>
     
     <div class="table-container">
@@ -3054,7 +3070,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_food_industry"><img src="buildings/64px-Building_food_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Food Industry icon">Food Industry</h2>
+    <h2 id="building-building_food_industry"><img src="buildings/64px-Building_food_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Food Industry icon">Food Industry <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 14</p>
     
     <div class="table-container">
@@ -3232,7 +3248,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_furniture_manufacturies"><img src="buildings/64px-Building_furniture_manufacturies.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Furniture Manufacturies icon">Furniture Manufacturies</h2>
+    <h2 id="building-building_furniture_manufacturies"><img src="buildings/64px-Building_furniture_manufacturies.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Furniture Manufacturies icon">Furniture Manufacturies <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 3</p>
     
     <div class="table-container">
@@ -3283,7 +3299,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_glassworks"><img src="buildings/64px-Building_glassworks.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Glassworks icon">Glassworks</h2>
+    <h2 id="building-building_glassworks"><img src="buildings/64px-Building_glassworks.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Glassworks icon">Glassworks <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 7</p>
     
     <div class="table-container">
@@ -3382,7 +3398,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_military_shipyards"><img src="buildings/64px-Building_military_shipyards.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Military Shipyards icon">Military Shipyards</h2>
+    <h2 id="building-building_military_shipyards"><img src="buildings/64px-Building_military_shipyards.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Military Shipyards icon">Military Shipyards <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 18</p>
     
     <div class="table-container">
@@ -3588,7 +3604,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_motor_industry"><img src="buildings/64px-Building_motor_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Motor Industry icon">Motor Industry</h2>
+    <h2 id="building-building_motor_industry"><img src="buildings/64px-Building_motor_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Motor Industry icon">Motor Industry <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 37</p>
     
     <div class="table-container">
@@ -3975,7 +3991,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_munition_plants"><img src="buildings/64px-Building_munition_plants.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Munition Plants icon">Munition Plants</h2>
+    <h2 id="building-building_munition_plants"><img src="buildings/64px-Building_munition_plants.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Munition Plants icon">Munition Plants <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 14</p>
     
     <div class="table-container">
@@ -4139,7 +4155,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_paper_mills"><img src="buildings/64px-Building_paper_mills.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Paper Mills icon">Paper Mills</h2>
+    <h2 id="building-building_paper_mills"><img src="buildings/64px-Building_paper_mills.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Paper Mills icon">Paper Mills <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 5</p>
     
     <div class="table-container">
@@ -4224,7 +4240,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_shipyards"><img src="buildings/64px-Building_shipyards.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Shipyards icon">Shipyards</h2>
+    <h2 id="building-building_shipyards"><img src="buildings/64px-Building_shipyards.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Shipyards icon">Shipyards <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 21</p>
     
     <div class="table-container">
@@ -4469,7 +4485,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_steel_mills"><img src="buildings/64px-Building_steel_mills.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Steel Mills icon">Steel Mills</h2>
+    <h2 id="building-building_steel_mills"><img src="buildings/64px-Building_steel_mills.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Steel Mills icon">Steel Mills <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 37</p>
     
     <div class="table-container">
@@ -4862,7 +4878,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_synthetics_plants"><img src="buildings/64px-Building_synthetics_plants.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Synthetics Plants icon">Synthetics Plants</h2>
+    <h2 id="building-building_synthetics_plants"><img src="buildings/64px-Building_synthetics_plants.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Synthetics Plants icon">Synthetics Plants <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 3</p>
     
     <div class="table-container">
@@ -4915,7 +4931,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_textile_mills"><img src="buildings/64px-Building_textile_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Textile Mills icon">Textile Mills</h2>
+    <h2 id="building-building_textile_mills"><img src="buildings/64px-Building_textile_industry.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Textile Mills icon">Textile Mills <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 23</p>
     
     <div class="table-container">
@@ -5172,7 +5188,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_tooling_workshops"><img src="buildings/64px-Building_tooling_workshops.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Tooling Workshops icon">Tooling Workshops</h2>
+    <h2 id="building-building_tooling_workshops"><img src="buildings/64px-Building_tooling_workshops.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Tooling Workshops icon">Tooling Workshops <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 8</p>
     
     <div class="table-container">
@@ -5278,7 +5294,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_port"><img src="buildings/64px-Building_port.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Port icon">Port</h2>
+    <h2 id="building-building_port"><img src="buildings/64px-Building_port.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Port icon">Port <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 15</p>
     
     <div class="table-container">
@@ -5481,7 +5497,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_railway"><img src="buildings/64px-Building_railway.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Railway icon">Railway</h2>
+    <h2 id="building-building_railway"><img src="buildings/64px-Building_railway.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Railway icon">Railway <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 25</p>
     
     <div class="table-container">
@@ -5770,7 +5786,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_trade_center"><img src="buildings/64px-Building_trade_center.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Trade Center icon">Trade Center</h2>
+    <h2 id="building-building_trade_center"><img src="buildings/64px-Building_trade_center.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Trade Center icon">Trade Center <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 2</p>
     
     <div class="table-container">
@@ -5810,7 +5826,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_power_plant"><img src="buildings/64px-Building_power_plant.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Power Plant icon">Power Plant</h2>
+    <h2 id="building-building_power_plant"><img src="buildings/64px-Building_power_plant.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Power Plant icon">Power Plant <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 19</p>
     
     <div class="table-container">
@@ -6023,7 +6039,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_arts_academy"><img src="buildings/64px-Building_arts_academy.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Arts Academy icon">Arts Academy</h2>
+    <h2 id="building-building_arts_academy"><img src="buildings/64px-Building_arts_academy.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Arts Academy icon">Arts Academy <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 4</p>
     
     <div class="table-container">
@@ -6093,7 +6109,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_maize_farm"><img src="buildings/64px-Building_maize_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Maize Farm icon">Maize Farm</h2>
+    <h2 id="building-building_maize_farm"><img src="buildings/64px-Building_maize_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Maize Farm icon">Maize Farm <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 5</p>
     
     <div class="table-container">
@@ -6168,7 +6184,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_millet_farm"><img src="buildings/64px-Building_millet_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Millet Farm icon">Millet Farm</h2>
+    <h2 id="building-building_millet_farm"><img src="buildings/64px-Building_millet_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Millet Farm icon">Millet Farm <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 2</p>
     
     <div class="table-container">
@@ -6214,7 +6230,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_rice_farm"><img src="buildings/64px-Building_rice_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Rice Farm icon">Rice Farm</h2>
+    <h2 id="building-building_rice_farm"><img src="buildings/64px-Building_rice_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Rice Farm icon">Rice Farm <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 9</p>
     
     <div class="table-container">
@@ -6345,7 +6361,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_rye_farm"><img src="buildings/64px-Building_rye_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Rye Farm icon">Rye Farm</h2>
+    <h2 id="building-building_rye_farm"><img src="buildings/64px-Building_rye_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Rye Farm icon">Rye Farm <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 6</p>
     
     <div class="table-container">
@@ -6429,7 +6445,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_wheat_farm"><img src="buildings/64px-Building_wheat_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Wheat Farm icon">Wheat Farm</h2>
+    <h2 id="building-building_wheat_farm"><img src="buildings/64px-Building_wheat_farm.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Wheat Farm icon">Wheat Farm <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 11</p>
     
     <div class="table-container">
@@ -6574,7 +6590,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_vineyard_plantation"><img src="buildings/64px-Building_vineyards.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Vineyard Plantation icon">Vineyard Plantation</h2>
+    <h2 id="building-building_vineyard_plantation"><img src="buildings/64px-Building_vineyards.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Vineyard Plantation icon">Vineyard Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 5</p>
     
     <div class="table-container">
@@ -6651,7 +6667,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_banana_plantation"><img src="buildings/64px-Building_banana_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Banana Plantation icon">Banana Plantation</h2>
+    <h2 id="building-building_banana_plantation"><img src="buildings/64px-Building_banana_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Banana Plantation icon">Banana Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 2</p>
     
     <div class="table-container">
@@ -6693,7 +6709,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_coffee_plantation"><img src="buildings/64px-Building_coffee_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Coffee Plantation icon">Coffee Plantation</h2>
+    <h2 id="building-building_coffee_plantation"><img src="buildings/64px-Building_coffee_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Coffee Plantation icon">Coffee Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 1</p>
     
     <div class="table-container">
@@ -6726,7 +6742,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_cotton_plantation"><img src="buildings/64px-Building_cotton_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Cotton Plantation icon">Cotton Plantation</h2>
+    <h2 id="building-building_cotton_plantation"><img src="buildings/64px-Building_cotton_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Cotton Plantation icon">Cotton Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 25</p>
     
     <div class="table-container">
@@ -6999,7 +7015,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_dye_plantation"><img src="buildings/64px-Building_dye_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Dye Plantation icon">Dye Plantation</h2>
+    <h2 id="building-building_dye_plantation"><img src="buildings/64px-Building_dye_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Dye Plantation icon">Dye Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 3</p>
     
     <div class="table-container">
@@ -7058,7 +7074,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_opium_plantation"><img src="buildings/64px-Building_opium_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Opium Plantation icon">Opium Plantation</h2>
+    <h2 id="building-building_opium_plantation"><img src="buildings/64px-Building_opium_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Opium Plantation icon">Opium Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 7</p>
     
     <div class="table-container">
@@ -7155,7 +7171,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_silk_plantation"><img src="buildings/64px-Building_silk_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Silk Plantation icon">Silk Plantation</h2>
+    <h2 id="building-building_silk_plantation"><img src="buildings/64px-Building_silk_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Silk Plantation icon">Silk Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 11</p>
     
     <div class="table-container">
@@ -7296,7 +7312,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_sugar_plantation"><img src="buildings/64px-Building_sugar_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Sugar Plantation icon">Sugar Plantation</h2>
+    <h2 id="building-building_sugar_plantation"><img src="buildings/64px-Building_sugar_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Sugar Plantation icon">Sugar Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 4</p>
     
     <div class="table-container">
@@ -7366,7 +7382,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_tea_plantation"><img src="buildings/64px-Building_tea_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Tea Plantation icon">Tea Plantation</h2>
+    <h2 id="building-building_tea_plantation"><img src="buildings/64px-Building_tea_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Tea Plantation icon">Tea Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 7</p>
     
     <div class="table-container">
@@ -7469,7 +7485,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_tobacco_plantation"><img src="buildings/64px-Building_tobacco_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Tobacco Plantation icon">Tobacco Plantation</h2>
+    <h2 id="building-building_tobacco_plantation"><img src="buildings/64px-Building_tobacco_plantation.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Tobacco Plantation icon">Tobacco Plantation <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 7</p>
     
     <div class="table-container">
@@ -7566,7 +7582,7 @@
             </tbody>
         </table>
     </div>
-    <h2 id="building-building_livestock_ranch"><img src="buildings/64px-Building_cattle_ranch.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Livestock Ranch icon">Livestock Ranch</h2>
+    <h2 id="building-building_livestock_ranch"><img src="buildings/64px-Building_cattle_ranch.png" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="Livestock Ranch icon">Livestock Ranch <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: 6</p>
     
     <div class="table-container">

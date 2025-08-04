@@ -1,0 +1,4116 @@
+{
+  "company_ludwig_moser_and_sons": {
+    "building_types": [
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_bohemian_crystal"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOHEMIA",
+      "Level 5+ Glassworks required"
+    ],
+    "prestige_bonuses": [
+      "Arts Academy +5% throughput"
+    ],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Glasfabrik Ludwig Moser & Söhne"
+  },
+  "company_compania_sansinena_de_carnes_congeladas": {
+    "building_types": [
+      "building_livestock_ranch",
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_port"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_river_plate_beef"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BUENOS_AIRES",
+      "Control region in Region La Plata (level 5+ buildings required)",
+      "Level 5+ Food Industry required",
+      "Level 5+ Livestock Ranch required"
+    ],
+    "prestige_bonuses": [
+      "Port +10% throughput"
+    ],
+    "country": "ARG",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Compañía Sansinena de Carnes Congeladas"
+  },
+  "company_konigliche_porzellan_manufaktur_meissen": {
+    "building_types": [
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_meissen_porcelain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SAXONY",
+      "Level 5+ Glassworks required",
+      "Technology: Chemical Bleaching"
+    ],
+    "prestige_bonuses": [
+      "Arts Academy +5% throughput",
+      "Synthetics Plants +5% throughput"
+    ],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Königliche Porzellan-Manufaktur Meissen"
+  },
+  "company_jiangnan_weaving_bureaus": {
+    "building_types": [
+      "building_silk_plantation",
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_suzhou_silk"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_NANJING",
+      "Control state STATE_SUZHOU",
+      "Control state STATE_ZHEJIANG",
+      "Level 5+ Silk Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "CHI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Jiangnan Weaving Bureaus"
+  },
+  "company_russian_american_company": {
+    "building_types": [
+      "building_logging_camp",
+      "building_whaling_station",
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_coal_mine",
+      "building_fishing_wharf"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_meat"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Pacific Coast (level 5+ buildings required)",
+      "Level 5+ Port required"
+    ],
+    "prestige_bonuses": [
+      "Textile Mills +5% throughput"
+    ],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Russian-American Company"
+  },
+  "company_maison_worth": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation",
+      "building_arts_academy"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_haute_couture"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ILE_DE_FRANCE",
+      "Level 5+ Textile Mills required"
+    ],
+    "prestige_bonuses": [],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Maison Worth"
+  },
+  "company_lee_wilson": {
+    "building_types": [
+      "building_cotton_plantation",
+      "building_logging_camp",
+      "building_wheat_farm"
+    ],
+    "extension_building_types": [
+      "building_railway"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_sea_island_cotton"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ARKANSAS",
+      "Level 5+ Cotton Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Power Plant +5% throughput",
+      "Textile Mills +10% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Lee Wilson & Company"
+  },
+  "company_colt_firearms": {
+    "building_types": [
+      "building_arms_industry"
+    ],
+    "extension_building_types": [
+      "building_munition_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_colt_revolvers"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CONNECTICUT",
+      "Level 5+ Arms Industry required"
+    ],
+    "prestige_bonuses": [
+      "Arms Industry +10% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Colt's Patent Firearms Manufacturing Company"
+  },
+  "company_gebruder_thonet": {
+    "building_types": [
+      "building_furniture_manufacturies"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_bentwood_furniture"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_AUSTRIA",
+      "Level 5+ Furniture Manufacturies required"
+    ],
+    "prestige_bonuses": [
+      "Furniture Manufacturies +10% throughput"
+    ],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Gebrüder Thonet"
+  },
+  "company_kinkozan_sobei": {
+    "building_types": [
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_satsuma_ware"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_KANSAI",
+      "Level 5+ Glassworks required"
+    ],
+    "prestige_bonuses": [],
+    "country": "JAP",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Kinkozan Sobei"
+  },
+  "company_maple_and_co": {
+    "building_types": [
+      "building_furniture_manufacturies"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_english_upholstery"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_HOME_COUNTIES",
+      "Level 5+ Furniture Manufacturies required"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Government +10% throughput"
+    ],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Maple & Co."
+  },
+  "company_ong_lung_sheng_tea_company": {
+    "building_types": [
+      "building_tea_plantation"
+    ],
+    "extension_building_types": [
+      "building_food_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_china_tea"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region South China (level 5+ buildings required)",
+      "Level 5+ Tea Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "CHI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ong Lung Sheng Tea Company"
+  },
+  "company_anglo_sicilian_sulphur_company": {
+    "building_types": [
+      "building_sulfur_mine"
+    ],
+    "extension_building_types": [
+      "building_port"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_sicilian_sulfur"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SICILY",
+      "Level 5+ Sulfur Mine required"
+    ],
+    "prestige_bonuses": [
+      "Munition Plants +10% throughput",
+      "Group Bg Plantations +5% throughput",
+      "Group Bg Agriculture +5% throughput"
+    ],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Anglo-Sicilian Sulphur Company"
+  },
+  "company_mantero_seta": {
+    "building_types": [
+      "building_silk_plantation",
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_como_silk"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOMBARDY",
+      "Level 5+ Silk Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Synthetics Plants +10% throughput"
+    ],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Mantero Sera"
+  },
+  "company_norsk_hydro": {
+    "building_types": [
+      "building_chemical_plants",
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_sulfur_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WESTERN_NORWAY",
+      "Level 5+ Chemical Plants required",
+      "Technology: Electrical Generation"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Agriculture +10% throughput"
+    ],
+    "country": "NOR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Norsk Hydroelektrisk Kvælstofaktieselskap"
+  },
+  "company_massey_harris": {
+    "building_types": [
+      "building_motor_industry",
+      "building_tooling_workshops"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_tools"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ONTARIO",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Agriculture +15% throughput"
+    ],
+    "country": "CAN",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Massey-Harris Limited"
+  },
+  "company_de_beers": {
+    "building_types": [
+      "building_gold_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Southern Africa (level 5+ buildings required)",
+      "Level 5+ Gold Mine required"
+    ],
+    "prestige_bonuses": [],
+    "country": "SAF",
+    "country_confidence": "wiki_assignment",
+    "display_name": "De Beers Consolidated Mines Ltd."
+  },
+  "company_john_holt": {
+    "building_types": [
+      "building_rubber_plantation",
+      "building_logging_camp",
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_shipyards"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Niger (level 5+ buildings required)",
+      "Level 5+ Rubber Plantation required",
+      "Technology: Rubber Mastication"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Plantations +10% throughput"
+    ],
+    "country": "SOK",
+    "country_confidence": "wiki_assignment",
+    "display_name": "John Holt and Company"
+  },
+  "company_imperial_ethiopian_railways": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Ethiopia (level 5+ buildings required)",
+      "Level 5+ Coffee Plantation required",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Coffee Plantations +10% throughput",
+      "Livestock Ranch +5% throughput"
+    ],
+    "country": "ETH",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Imperial Ethiopian Railway Company"
+  },
+  "company_lanfang_kongsi": {
+    "building_types": [
+      "building_gold_mine",
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_rice_farm",
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_EAST_BORNEO",
+      "Control state STATE_NORTH_BORNEO",
+      "Control state STATE_WEST_BORNEO",
+      "Level 5+ Gold Mine required"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Agriculture +5% throughput"
+    ],
+    "country": "LAN",
+    "country_confidence": "definitive",
+    "display_name": "Lanfang Kongsi"
+  },
+  "company_paradox": {
+    "building_types": [
+      "building_arts_academy",
+      "building_electrics_industry"
+    ],
+    "extension_building_types": [
+      "building_coal_mine",
+      "building_paper_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [],
+    "prestige_bonuses": [],
+    "country": "SWE",
+    "country_confidence": "wiki_assignment",
+    "display_name": "John Paradox & Company"
+  },
+  "company_kaiping_mining": {
+    "building_types": [
+      "building_coal_mine",
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_iron_mine",
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BEIJING",
+      "Control state STATE_ZHILI",
+      "Level 5+ Coal Mine required",
+      "Technology: Steam Donkey",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "CHI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Kaiping Mining Company"
+  },
+  "company_hanyang_arsenal": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_explosives_factory"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_EASTERN_HUBEI",
+      "Level 5+ Arms Industry required",
+      "Technology: Breech Loading Artillery"
+    ],
+    "prestige_bonuses": [],
+    "country": "CHI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Hanyang Arsenal"
+  },
+  "company_foochow_arsenal": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_steel_mills",
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_FUJIAN",
+      "Level 5+ Military Shipyards required",
+      "Technology: Ironclad Tech",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [
+      "Port +10% throughput"
+    ],
+    "country": "CHI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Foochow Shipyards"
+  },
+  "company_jingdezhen": {
+    "building_types": [
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_canton_porcelain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_JIANGXI",
+      "Level 5+ Glassworks required",
+      "Technology: Chemical Bleaching"
+    ],
+    "prestige_bonuses": [
+      "Lead Mine +5% throughput"
+    ],
+    "country": "CHI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Jingdezhen Kilns"
+  },
+  "company_misr": {
+    "building_types": [
+      "building_textile_mills",
+      "building_cotton_plantation"
+    ],
+    "extension_building_types": [
+      "building_silk_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_mit_afifi"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOWER_EGYPT",
+      "Level 5+ Textile Mills required",
+      "Technology: Corporate Charters"
+    ],
+    "prestige_bonuses": [],
+    "country": "EGY",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Misr Spinning and Weaving Company"
+  },
+  "company_egyptian_rail": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Nile Basin (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Primary culture: Misri",
+      "Technology: Corporate Charters"
+    ],
+    "prestige_bonuses": [],
+    "country": "EGY",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Egyptian State Railways"
+  },
+  "company_suez_company": {
+    "building_types": [
+      "building_trade_center",
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_shipyards"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_merchant_marine"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SINAI",
+      "Level 5+ Suez Canal required"
+    ],
+    "prestige_bonuses": [],
+    "country": "EGY",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Suez Canal Company"
+  },
+  "company_bengal_coal_company": {
+    "building_types": [
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WEST_BENGAL",
+      "Level 5+ Coal Mine required"
+    ],
+    "prestige_bonuses": [
+      "Iron Mine +10% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Bengal Coal Company"
+  },
+  "company_bombay_dyeing_company": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOMBAY",
+      "Level 5+ Textile Mills required",
+      "Technology: Cotton Gin"
+    ],
+    "prestige_bonuses": [
+      "Dye Plantation +20% throughput",
+      "Cotton Plantation +5% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Bombay Dyeing and Manufacturing Company Limited"
+  },
+  "company_david_sassoon": {
+    "building_types": [
+      "building_opium_plantation",
+      "building_cotton_plantation"
+    ],
+    "extension_building_types": [
+      "building_port"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_opium"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOMBAY",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Level 5+ Cotton Plantation required",
+      "Level 5+ Opium Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "David Sassoon & Co., Ltd"
+  },
+  "company_bombay_burmah_trading_corporation": {
+    "building_types": [
+      "building_logging_camp",
+      "building_rubber_plantation"
+    ],
+    "extension_building_types": [
+      "building_tea_plantation",
+      "building_cotton_plantation",
+      "building_oil_rig"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_burmese_teak"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOMBAY",
+      "States with Burmese Teak trait",
+      "Level 5+ Logging Camp required"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Tea Plantations +10% throughput",
+      "Group Bg Coffee Plantations +10% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Bombay Burmah Trading Corporation"
+  },
+  "company_madura_mills": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_rubber_plantation",
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MADRAS",
+      "Level 5+ Textile Mills required",
+      "Technology: Cotton Gin"
+    ],
+    "prestige_bonuses": [
+      "Textile Mills +10% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Madura Mills Co. Ltd"
+  },
+  "company_assam_company": {
+    "building_types": [
+      "building_tea_plantation"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_assam_tea"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ASSAM",
+      "Level 5+ Tea Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Tea Plantations +20% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Assam Company"
+  },
+  "company_wadia_shipbuilders": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOMBAY",
+      "Level 5+ Shipyards required",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Wadia Shipbuilders"
+  },
+  "company_steel_brothers": {
+    "building_types": [
+      "building_oil_rig",
+      "building_rice_farm"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "States with Burmese Teak trait",
+      "Level 5+ Oil Rig required",
+      "Level 5+ Rice Farm required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Logging +20% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Steel Brothers & Co. Ltd"
+  },
+  "company_ralli_brothers": {
+    "building_types": [
+      "building_rice_farm",
+      "building_wheat_farm"
+    ],
+    "extension_building_types": [
+      "building_port",
+      "building_cotton_plantation",
+      "building_textile_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOMBAY",
+      "Control state STATE_WEST_BENGAL",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Level 5+ Rice Farm required",
+      "Level 5+ Wheat Farm required"
+    ],
+    "prestige_bonuses": [
+      "Sulfur Mine +10% throughput",
+      "Textile Mills +10% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ralli Brothers"
+  },
+  "company_calcutta_electric": {
+    "building_types": [
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WEST_BENGAL",
+      "Level 5+ Power Plant required",
+      "Technology: Electrical Generation"
+    ],
+    "prestige_bonuses": [],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Calcutta Electric Supply Corporation Limited"
+  },
+  "company_ccci": {
+    "building_types": [
+      "building_rubber_plantation",
+      "building_logging_camp",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_railway",
+      "building_livestock_ranch"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Congo (level 5+ buildings required)",
+      "Level 5+ Rubber Plantation required",
+      "Primary culture: Wallonian"
+    ],
+    "prestige_bonuses": [],
+    "country": "BEL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Compagnie du Congo"
+  },
+  "company_franco_belge": {
+    "building_types": [
+      "building_motor_industry",
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WALLONIA",
+      "Control state STATE_FLANDERS",
+      "Level 5+ Motor Industry required"
+    ],
+    "prestige_bonuses": [],
+    "country": "BEL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Société Franco-Belge"
+  },
+  "company_john_cockerill": {
+    "building_types": [
+      "building_steel_mills",
+      "building_tooling_workshops",
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_tools"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WALLONIA",
+      "Control state STATE_FLANDERS",
+      "Level 5+ Steel Mills required"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput"
+    ],
+    "country": "BEL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Société anonyme John Cockerill"
+  },
+  "company_nederlandse_petroleum": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Indonesia (level 5+ buildings required)",
+      "Level 5+ Oil Rig required",
+      "Primary culture: Dutch",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [],
+    "country": "NET",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Nederlandse Petroleum Maatschappij"
+  },
+  "company_philips": {
+    "building_types": [
+      "building_electrics_industry"
+    ],
+    "extension_building_types": [
+      "building_power_plant",
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_philips_chapel_radio"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_GELRE",
+      "Control state STATE_HOLLAND",
+      "Level 5+ Electrics Industry required",
+      "Technology: Telephone"
+    ],
+    "prestige_bonuses": [],
+    "country": "NET",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Philips"
+  },
+  "company_basileiades": {
+    "building_types": [
+      "building_motor_industry",
+      "building_shipyards"
+    ],
+    "extension_building_types": [
+      "building_military_shipyards"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ATTICA",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "GRE",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Basileiades"
+  },
+  "company_kouppas": {
+    "building_types": [
+      "building_motor_industry",
+      "building_tooling_workshops"
+    ],
+    "extension_building_types": [
+      "building_automotive_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_tools"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ATTICA",
+      "Level 5+ Motor Industry required",
+      "Technology: Mechanical Tools"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput",
+      "Steel Mills +5% throughput"
+    ],
+    "country": "GRE",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Kouppas"
+  },
+  "company_ericsson": {
+    "building_types": [
+      "building_electrics_industry"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_ericsson_apparatus"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SVEALAND",
+      "Level 5+ Electrics Industry required",
+      "Technology: Telephone"
+    ],
+    "prestige_bonuses": [],
+    "country": "SWE",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ericsson"
+  },
+  "company_lkab": {
+    "building_types": [
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_swedish_bar_iron"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_NORRLAND",
+      "Level 5+ Iron Mine required",
+      "Technology: Open Hearth Process"
+    ],
+    "prestige_bonuses": [
+      "Iron Mine +20% throughput"
+    ],
+    "country": "SWE",
+    "country_confidence": "wiki_assignment",
+    "display_name": "LKAB"
+  },
+  "company_gotaverken": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards",
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_GOTALAND",
+      "Level 5+ Shipyards required",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "SWE",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Götaverken"
+  },
+  "company_aker_mek": {
+    "building_types": [
+      "building_shipyards",
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_military_shipyards"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_EASTERN_NORWAY",
+      "Level 5+ Shipyards required",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [
+      "Fishing Wharf +5% throughput"
+    ],
+    "country": "NOR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Aker Mek"
+  },
+  "company_nokia": {
+    "building_types": [
+      "building_paper_mills",
+      "building_logging_camp",
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_electrics_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_paper"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_UUSIMAA",
+      "Level 5+ Paper Mills required",
+      "Technology: Atmospheric Engine"
+    ],
+    "prestige_bonuses": [
+      "Electrics Industry +10% throughput",
+      "Synthetics Plants +5% throughput"
+    ],
+    "country": "FIN",
+    "country_confidence": "definitive",
+    "display_name": "Nokia"
+  },
+  "company_ursus": {
+    "building_types": [
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_automotive_industry",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_GREATER_POLAND",
+      "Level 5+ Motor Industry required",
+      "Technology: Combustion Engine"
+    ],
+    "prestige_bonuses": [
+      "Wheat Farm +20% throughput"
+    ],
+    "country": "POL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ursus"
+  },
+  "company_lilpop": {
+    "building_types": [
+      "building_steel_mills",
+      "building_iron_mine",
+      "building_tooling_workshops"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_GREATER_POLAND",
+      "Control state STATE_MAZOVIA",
+      "Level 5+ Steel Mills required",
+      "Technology: Steelworking"
+    ],
+    "prestige_bonuses": [
+      "Motor Industry +10% throughput"
+    ],
+    "country": "POL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Lilpop, Rau i Loewenstein"
+  },
+  "company_mozambique_company": {
+    "building_types": [
+      "building_cotton_plantation",
+      "building_tea_plantation",
+      "building_rice_farm"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ZAMBEZIA",
+      "Control state STATE_MOCAMBIQUE",
+      "Control state STATE_LOURENCO_MARQUES",
+      "Level 5+ Cotton Plantation required",
+      "Primary culture: Portuguese",
+      "Technology: Mutual Funds"
+    ],
+    "prestige_bonuses": [],
+    "country": "POR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Companhia de Moçambique"
+  },
+  "company_altos_hornos_de_vizcaya": {
+    "building_types": [
+      "building_steel_mills",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_NAVARRA",
+      "Level 5+ Steel Mills required",
+      "Technology: Steelworking"
+    ],
+    "prestige_bonuses": [],
+    "country": "SPA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Altos Hornos de Vizcaya"
+  },
+  "company_duro_y_compania": {
+    "building_types": [
+      "building_coal_mine",
+      "building_steel_mills",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ASTURIAS",
+      "Level 5+ Coal Mine required",
+      "Technology: Steelworking"
+    ],
+    "prestige_bonuses": [
+      "Arms Industry +10% throughput",
+      "Artillery Foundries +10% throughput"
+    ],
+    "country": "SPA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Duro y Compañía"
+  },
+  "company_espana_industrial": {
+    "building_types": [
+      "building_textile_mills",
+      "building_cotton_plantation"
+    ],
+    "extension_building_types": [
+      "building_silk_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CATALONIA",
+      "Level 5+ Textile Mills required",
+      "Technology: Cotton Gin"
+    ],
+    "prestige_bonuses": [],
+    "country": "SPA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "La España Industrial"
+  },
+  "company_trubia": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries"
+    ],
+    "extension_building_types": [
+      "building_munition_plants",
+      "building_explosives_factory"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_artillery"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ASTURIAS",
+      "Level 5+ Arms Industry required",
+      "Technology: Gunsmithing"
+    ],
+    "prestige_bonuses": [],
+    "country": "SPA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Fábrica de Armas de Trubia"
+  },
+  "company_zastava": {
+    "building_types": [
+      "building_arms_industry",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_artillery_foundries"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_NORTHERN_SERBIA",
+      "Level 5+ Arms Industry required",
+      "Technology: Gunsmithing"
+    ],
+    "prestige_bonuses": [],
+    "country": "SER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Zastava"
+  },
+  "company_chr_hansens": {
+    "building_types": [
+      "building_food_industry",
+      "building_chemical_plants"
+    ],
+    "extension_building_types": [
+      "building_synthetics_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_groceries"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ZEALAND",
+      "Level 5+ Food Industry required"
+    ],
+    "prestige_bonuses": [
+      "Livestock Ranch +10% throughput",
+      "Fishing Wharf +10% throughput"
+    ],
+    "country": "DEN",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Chr. Hansen"
+  },
+  "company_ap_moller": {
+    "building_types": [
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_shipyards",
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_merchant_marine"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ZEALAND",
+      "Level 5+ Shipyards required"
+    ],
+    "prestige_bonuses": [],
+    "country": "DEN",
+    "country_confidence": "wiki_assignment",
+    "display_name": "A.P. Møller"
+  },
+  "company_cfr": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Railway required",
+      "Primary culture: Romanian",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "ROM",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Căile Ferate Române"
+  },
+  "company_romanian_star": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WALLACHIA",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Oil Extraction +20% throughput"
+    ],
+    "country": "ROM",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Steaua Română"
+  },
+  "company_j_p_coats": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOWLANDS",
+      "Level 5+ Textile Mills required",
+      "Technology: Cotton Gin"
+    ],
+    "prestige_bonuses": [
+      "Textile Mills +15% throughput",
+      "Cotton Plantation +5% throughput"
+    ],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "J. & P. Coats"
+  },
+  "company_armstrong_whitworth": {
+    "building_types": [
+      "building_military_shipyards",
+      "building_motor_industry",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_automotive_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_armstrong_ships"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_YORKSHIRE",
+      "Level 5+ Military Shipyards required",
+      "Technology: Ironclad Tech",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Sir W. G. Armstrong Whitworth & Co."
+  },
+  "company_john_brown": {
+    "building_types": [
+      "building_military_shipyards",
+      "building_shipyards",
+      "building_steel_mills"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_clyde_built_liners"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOWLANDS",
+      "Level 5+ Shipyards required",
+      "Technology: Steelworking",
+      "Technology: Hydraulic Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "John Brown & Company"
+  },
+  "company_gwr": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region England (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Great Western Railway"
+  },
+  "company_bolckow_vaughan": {
+    "building_types": [
+      "building_coal_mine",
+      "building_iron_mine",
+      "building_steel_mills"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_sheffield_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_YORKSHIRE",
+      "Level 5+ Coal Mine required",
+      "Technology: Bessemer Process"
+    ],
+    "prestige_bonuses": [
+      "Shipyards +10% throughput",
+      "Military Shipyards +10% throughput"
+    ],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Bolckow, Vaughan & Co."
+  },
+  "company_krupp": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries",
+      "building_steel_mills"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_krupp_guns"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_RUHR",
+      "Level 5+ Steel Mills required",
+      "Technology: Steelworking"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput"
+    ],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Friedrich Krupp"
+  },
+  "company_rheinmetall": {
+    "building_types": [
+      "building_artillery_foundries",
+      "building_munition_plants",
+      "building_explosives_factory"
+    ],
+    "extension_building_types": [
+      "building_motor_industry",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_artillery"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_RUHR",
+      "Control state STATE_NORTH_RHINE",
+      "Level 5+ Arms Industry required",
+      "Technology: Automatic Machine Guns"
+    ],
+    "prestige_bonuses": [],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Rheinmetall"
+  },
+  "company_schichau": {
+    "building_types": [
+      "building_motor_industry",
+      "building_military_shipyards",
+      "building_shipyards"
+    ],
+    "extension_building_types": [
+      "building_railway",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_schichau_engines"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WEST_PRUSSIA",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "F. Schichau"
+  },
+  "company_siemens_and_halske": {
+    "building_types": [
+      "building_electrics_industry"
+    ],
+    "extension_building_types": [
+      "building_motor_industry",
+      "building_railway"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BRANDENBURG",
+      "Level 5+ Electrics Industry required",
+      "Technology: Electric Telegraph"
+    ],
+    "prestige_bonuses": [
+      "Power Plant +15% throughput"
+    ],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Siemens & Halske"
+  },
+  "company_prussian_state_railways": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region South Germany (level 5+ buildings required)",
+      "Control region in Region Poland (level 5+ buildings required)",
+      "Control region in Region Rhine (level 5+ buildings required)",
+      "Control region in Region North Germany (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Preußische Staatseisenbahnen"
+  },
+  "company_basf": {
+    "building_types": [
+      "building_synthetics_plants",
+      "building_chemical_plants"
+    ],
+    "extension_building_types": [
+      "building_dye_plantation",
+      "building_sulfur_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_german_aniline"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BADEN",
+      "Level 5+ Synthetics Plants required",
+      "Technology: Aniline"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Oil Extraction +5% throughput"
+    ],
+    "country": "DEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "BASF"
+  },
+  "company_fundidora_monterrey": {
+    "building_types": [
+      "building_steel_mills",
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_RIO_GRANDE",
+      "Level 5+ Steel Mills required",
+      "Technology: Bessemer Process"
+    ],
+    "prestige_bonuses": [
+      "Railway +5% throughput",
+      "Iron Mine +10% throughput"
+    ],
+    "country": "MEX",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Fundidora de Fierro y Acero de Monterrey"
+  },
+  "company_el_aguila": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Mexico (level 5+ buildings required)",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [],
+    "country": "MEX",
+    "country_confidence": "wiki_assignment",
+    "display_name": "El Águila"
+  },
+  "company_csfa": {
+    "building_types": [
+      "building_sulfur_mine",
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ANTOFAGASTA",
+      "Level 5+ Sulfur Mine required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "BOL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Compañía de Salitres y Ferrocarril de Antofagasta"
+  },
+  "company_caribbean_petroleum": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MIRANDA",
+      "Control state STATE_ZULIA",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [],
+    "country": "VNZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Caribbean Petroleum Company"
+  },
+  "company_bunge_born": {
+    "building_types": [
+      "building_wheat_farm",
+      "building_maize_farm",
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_chemical_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_groceries"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region La Plata (level 5+ buildings required)",
+      "Level 5+ Wheat Farm required"
+    ],
+    "prestige_bonuses": [
+      "Tooling Workshops +10% throughput"
+    ],
+    "country": "ARG",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Bunge & Born"
+  },
+  "company_la_rosada": {
+    "building_types": [
+      "building_steel_mills",
+      "building_arms_industry",
+      "building_artillery_foundries"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BAJO_PARAGUAY",
+      "Level 5+ Arms Industry required",
+      "Technology: Shell Gun"
+    ],
+    "prestige_bonuses": [
+      "Iron Mine +10% throughput"
+    ],
+    "country": "PRG",
+    "country_confidence": "wiki_assignment",
+    "display_name": "La Rosada"
+  },
+  "company_famae": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_explosives_factory"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SANTIAGO",
+      "Level 5+ Arms Industry required",
+      "Technology: Gunsmithing"
+    ],
+    "prestige_bonuses": [
+      "Steel Mills +5% throughput"
+    ],
+    "country": "CHL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Fábrica de Armas de la Nación"
+  },
+  "company_peruvian_amazon": {
+    "building_types": [
+      "building_rubber_plantation"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PASTAZA",
+      "Level 5+ Rubber Plantation required",
+      "Technology: Rubber Mastication"
+    ],
+    "prestige_bonuses": [],
+    "country": "PEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Peruvian Amazon Company"
+  },
+  "company_kablin": {
+    "building_types": [
+      "building_paper_mills",
+      "building_logging_camp"
+    ],
+    "extension_building_types": [
+      "building_sulfur_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_rosewood"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Brazil (level 5+ buildings required)",
+      "Level 5+ Paper Mills required",
+      "Technology: Mechanical Tools"
+    ],
+    "prestige_bonuses": [
+      "Tooling Workshops +10% throughput"
+    ],
+    "country": "BRZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Klabin Irmãos & Cia."
+  },
+  "company_hbc": {
+    "building_types": [
+      "building_fishing_wharf",
+      "building_logging_camp"
+    ],
+    "extension_building_types": [
+      "building_port",
+      "building_food_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_fish"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MANITOBA",
+      "Level 5+ Food Industry required"
+    ],
+    "prestige_bonuses": [
+      "Textile Mills +5% throughput"
+    ],
+    "country": "CAN",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Hudson's Bay Company"
+  },
+  "company_panama_company": {
+    "building_types": [
+      "building_trade_center",
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_shipyards"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_merchant_marine"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PANAMA",
+      "Level 5+ Panama Canal required"
+    ],
+    "prestige_bonuses": [],
+    "country": "CLM",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Panama Canal Company"
+  },
+  "company_vodka_monopoly": {
+    "building_types": [
+      "building_food_industry",
+      "building_vineyard_plantation"
+    ],
+    "extension_building_types": [
+      "building_wheat_farm",
+      "building_rye_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_smirnoff_vodka"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Food Industry required",
+      "Primary culture: Russian"
+    ],
+    "prestige_bonuses": [],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Vodka Monopoly"
+  },
+  "company_putilov_company": {
+    "building_types": [
+      "building_motor_industry",
+      "building_military_shipyards",
+      "building_artillery_foundries"
+    ],
+    "extension_building_types": [
+      "building_munition_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_artillery"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_INGRIA",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput"
+    ],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Society of Putilov Factories"
+  },
+  "company_branobel": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_baku_oil"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_AZERBAIJAN",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Railway +5% throughput"
+    ],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Branobel"
+  },
+  "company_izhevsk_arms_plant": {
+    "building_types": [
+      "building_arms_industry",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_artillery_foundries",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PERM",
+      "Level 5+ Arms Industry required",
+      "Technology: Rifling"
+    ],
+    "prestige_bonuses": [
+      "Arms Industry +10% throughput",
+      "Artillery Foundries +10% throughput"
+    ],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Izhevsk Arms Plant"
+  },
+  "company_savva_morozov": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MOSCOW",
+      "Level 5+ Textile Mills required",
+      "Technology: Joint Stock Companies"
+    ],
+    "prestige_bonuses": [],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Savva Morozov & Sons"
+  },
+  "company_john_hughes": {
+    "building_types": [
+      "building_steel_mills",
+      "building_coal_mine",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_railway"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_russia_iron"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_KHARKOV",
+      "Control state STATE_TAURIDA",
+      "Level 5+ Steel Mills required",
+      "Technology: Bessemer Process"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput"
+    ],
+    "country": "RUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "New Russia Company Ltd."
+  },
+  "company_east_india_company": {
+    "building_types": [
+      "building_tea_plantation",
+      "building_tobacco_plantation",
+      "building_opium_plantation"
+    ],
+    "extension_building_types": [
+      "building_silk_plantation",
+      "building_sugar_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_bengal_opium"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Level 5+ Tea Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "East India Company"
+  },
+  "company_imperial_arsenal": {
+    "building_types": [
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_shipyards"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_EASTERN_THRACE",
+      "Level 5+ Military Shipyards required",
+      "Technology: Hydraulic Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "TUR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Tersâne-i Âmire"
+  },
+  "company_ottoman_tobacco_regie": {
+    "building_types": [
+      "building_tobacco_plantation"
+    ],
+    "extension_building_types": [
+      "building_opium_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_turkish_tobacco"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Tobacco Plantation required",
+      "Primary culture: Turkish"
+    ],
+    "prestige_bonuses": [],
+    "country": "TUR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ottoman Tobacco Company"
+  },
+  "company_allatini_mills": {
+    "building_types": [
+      "building_wheat_farm",
+      "building_rye_farm"
+    ],
+    "extension_building_types": [
+      "building_food_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MACEDONIA",
+      "Level 5+ Wheat Farm required"
+    ],
+    "prestige_bonuses": [
+      "Food Industry +10% throughput"
+    ],
+    "country": "TUR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Allatini Mills"
+  },
+  "company_orient_express": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Balkans (level 5+ buildings required)",
+      "Level 5+ Railway required"
+    ],
+    "prestige_bonuses": [],
+    "country": "TUR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Chemins de fer Orientaux"
+  },
+  "company_great_indian_railway": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Great Indian Peninsula Railway"
+  },
+  "company_tata": {
+    "building_types": [
+      "building_textile_mills",
+      "building_steel_mills"
+    ],
+    "extension_building_types": [
+      "building_iron_mine",
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOMBAY",
+      "Level 5+ Textile Mills required"
+    ],
+    "prestige_bonuses": [
+      "Construction Sector +5% throughput"
+    ],
+    "country": "BIC",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Tata"
+  },
+  "company_sunhwaguk": {
+    "building_types": [
+      "building_tobacco_plantation",
+      "building_rice_farm"
+    ],
+    "extension_building_types": [
+      "building_food_industry",
+      "building_chemical_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Tobacco Plantation required",
+      "Technology: Central Planning"
+    ],
+    "prestige_bonuses": [],
+    "country": "KOR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Sunhwaguk"
+  },
+  "company_nam_dinh": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation",
+      "building_silk_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_TONKIN",
+      "Level 5+ Textile Mills required",
+      "Technology: Corporate Charters"
+    ],
+    "prestige_bonuses": [],
+    "country": "DAI",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Nam Định Textile Factory"
+  },
+  "company_imperial_tobacco": {
+    "building_types": [
+      "building_tobacco_plantation"
+    ],
+    "extension_building_types": [
+      "building_opium_plantation"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Persia (level 5+ buildings required)",
+      "Level 5+ Tobacco Plantation required",
+      "Technology: Corporate Charters"
+    ],
+    "prestige_bonuses": [],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Imperial Tobacco Corporation of Persia"
+  },
+  "company_san_miguel": {
+    "building_types": [
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_wheat_farm",
+      "building_maize_farm",
+      "building_rye_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_groceries"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Indonesia (level 5+ buildings required)",
+      "Level 5+ Food Industry required",
+      "Technology: Corporate Charters"
+    ],
+    "prestige_bonuses": [],
+    "country": "PHI",
+    "country_confidence": "manual_assignment",
+    "display_name": "San Miguel"
+  },
+  "company_william_sandford": {
+    "building_types": [
+      "building_steel_mills"
+    ],
+    "extension_building_types": [
+      "building_iron_mine",
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_NEW_SOUTH_WALES",
+      "Level 5+ Steel Mills required",
+      "Technology: Bessemer Process"
+    ],
+    "prestige_bonuses": [
+      "Railway +15% throughput"
+    ],
+    "country": "AST",
+    "country_confidence": "wiki_assignment",
+    "display_name": "William Sandford Limited"
+  },
+  "company_b_grimm": {
+    "building_types": [
+      "building_rice_farm"
+    ],
+    "extension_building_types": [
+      "building_chemical_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BANGKOK",
+      "Level 5+ Rice Farm required"
+    ],
+    "prestige_bonuses": [
+      "Food Industry +10% throughput"
+    ],
+    "country": "SIA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "B. Grimm"
+  },
+  "company_skoda": {
+    "building_types": [
+      "building_steel_mills",
+      "building_motor_industry",
+      "building_artillery_foundries"
+    ],
+    "extension_building_types": [
+      "building_automotive_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BOHEMIA",
+      "Level 5+ Steel Mills required",
+      "Technology: Shell Gun"
+    ],
+    "prestige_bonuses": [],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Škoda Works"
+  },
+  "company_mav": {
+    "building_types": [
+      "building_motor_industry",
+      "building_tooling_workshops"
+    ],
+    "extension_building_types": [
+      "building_automotive_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_tools"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CENTRAL_HUNGARY",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput"
+    ],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "MÁVAG"
+  },
+  "company_manfred_weiss": {
+    "building_types": [
+      "building_steel_mills",
+      "building_munition_plants",
+      "building_automotive_industry"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CENTRAL_HUNGARY",
+      "Level 5+ Steel Mills required",
+      "Technology: Open Hearth Process"
+    ],
+    "prestige_bonuses": [],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Manfréd Weiss Steel and Metal Works"
+  },
+  "company_galician_carpathian_oil": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant",
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_EAST_GALICIA",
+      "Control state STATE_WEST_GALICIA",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Railway +5% throughput",
+      "Tooling Workshops +10% throughput"
+    ],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Galician Carpathian Petroleum Company"
+  },
+  "company_oevg": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries"
+    ],
+    "extension_building_types": [
+      "building_steel_mills",
+      "building_munition_plants",
+      "building_electrics_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_AUSTRIA",
+      "Level 5+ Arms Industry required",
+      "Technology: Percussion Cap"
+    ],
+    "prestige_bonuses": [
+      "Munition Plants +10% throughput"
+    ],
+    "country": "AUS",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Österreichische Waffenfabriks-Gesellschaft"
+  },
+  "company_sao_paulo_railway": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_logging_camp",
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SAO_PAULO",
+      "Control region in Region Brazil (level 5+ buildings required)",
+      "Level 5+ Coffee Plantation required",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Coffee Plantations +15% throughput"
+    ],
+    "country": "BRZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "São Paulo Railway Co. Ltd."
+  },
+  "company_estaleiro_maua": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_RIO_DE_JANEIRO",
+      "Level 5+ Shipyards required"
+    ],
+    "prestige_bonuses": [
+      "Steel Mills +10% throughput"
+    ],
+    "country": "BRZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Estaleiro Mauá"
+  },
+  "company_pernambuco_textiles": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation",
+      "building_livestock_ranch"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PERNAMBUCO",
+      "Level 5+ Textile Mills required"
+    ],
+    "prestige_bonuses": [
+      "Cotton Plantation +10% throughput",
+      "Rubber Plantation +5% throughput"
+    ],
+    "country": "BRZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Companhia Fiação e Tecidos de Pernambuco"
+  },
+  "company_fundicao_ipanema": {
+    "building_types": [
+      "building_steel_mills",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SAO_PAULO",
+      "Level 5+ Steel Mills required"
+    ],
+    "prestige_bonuses": [
+      "Munition Plants +5% throughput",
+      "Arms Industry +10% throughput"
+    ],
+    "country": "BRZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Fundição Ipanema"
+  },
+  "company_rossi": {
+    "building_types": [
+      "building_arms_industry",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_explosives_factory"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_RIO_GRANDE_DO_SUL",
+      "Level 5+ Arms Industry required"
+    ],
+    "prestige_bonuses": [
+      "Livestock Ranch +10% throughput",
+      "Chemical Plants +5% throughput"
+    ],
+    "country": "BRZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Amadeo Rossi & Cia."
+  },
+  "company_estanifera_llallagua": {
+    "building_types": [
+      "building_lead_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine",
+      "building_sulfur_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_POTOSI",
+      "Level 5+ Lead Mine required"
+    ],
+    "prestige_bonuses": [
+      "Lead Mine +10% throughput"
+    ],
+    "country": "BOL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Compañía Estañífera de Llallagua"
+  },
+  "company_argentinian_wine": {
+    "building_types": [
+      "building_vineyard_plantation"
+    ],
+    "extension_building_types": [
+      "building_livestock_ranch"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Control region in Region La Plata (level 5+ buildings required)",
+      "Level 5+ Vineyard Plantation required",
+      "Technology: Central Planning"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Centro Vitivinícola Nacional"
+  },
+  "company_sudamericana_de_vapores": {
+    "building_types": [
+      "building_port"
+    ],
+    "extension_building_types": [
+      "building_shipyards",
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SANTIAGO",
+      "Level 5+ Shipyards required",
+      "Technology: Screw Frigate"
+    ],
+    "prestige_bonuses": [],
+    "country": "CHL",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Compañía Sudamericana de Vapores"
+  },
+  "company_electricidad_de_caracas": {
+    "building_types": [
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_motor_industry",
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MIRANDA",
+      "Level 5+ Power Plant required",
+      "Technology: Electrical Generation"
+    ],
+    "prestige_bonuses": [],
+    "country": "VNZ",
+    "country_confidence": "wiki_assignment",
+    "display_name": "C.A. La Electricidad de Caracas"
+  },
+  "company_cordoba_railway": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_coal_mine",
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LA_PAMPA",
+      "States with Pampas trait",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Wheat Farm +10% throughput",
+      "Livestock Ranch +5% throughput"
+    ],
+    "country": "ARG",
+    "country_confidence": "definitive",
+    "display_name": "Ferrocarril Central Córdoba"
+  },
+  "company_eea": {
+    "building_types": [
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LIMA",
+      "Level 5+ Power Plant required",
+      "Technology: Electrical Generation"
+    ],
+    "prestige_bonuses": [],
+    "country": "PEU",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Empresas Eléctricas Asociadas"
+  },
+  "company_standard_oil": {
+    "building_types": [
+      "building_oil_rig",
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_port"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region The Midwest (level 5+ buildings required)",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Railway +20% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Standard Oil"
+  },
+  "company_united_fruit": {
+    "building_types": [
+      "building_sugar_plantation",
+      "building_banana_plantation"
+    ],
+    "extension_building_types": [
+      "building_railway"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_gros_michel_banana"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOUISIANA",
+      "Level 5+ Sugar Plantation required",
+      "Primary culture: Yankee",
+      "Primary culture: Dixie"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Plantations +20% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "United Fruit Company"
+  },
+  "company_us_steel": {
+    "building_types": [
+      "building_steel_mills",
+      "building_iron_mine",
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_arts_academy"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PENNSYLVANIA",
+      "Level 5+ Steel Mills required",
+      "Technology: Open Hearth Process"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput",
+      "Shipyards +10% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Carnegie Steel Co."
+  },
+  "company_general_electric": {
+    "building_types": [
+      "building_electrics_industry",
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_radiola_radios"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MASSACHUSETTS",
+      "Control state STATE_NEW_YORK",
+      "Level 5+ Electrics Industry required",
+      "Technology: Telephone"
+    ],
+    "prestige_bonuses": [
+      "Motor Industry +10% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "General Electric"
+  },
+  "company_william_cramp": {
+    "building_types": [
+      "building_military_shipyards",
+      "building_shipyards",
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_artillery_foundries"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MARYLAND",
+      "Control state STATE_DELAWARE",
+      "Control state STATE_NEW_JERSEY",
+      "Level 5+ Military Shipyards required",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "William Cramp & Sons"
+  },
+  "company_ford_motor": {
+    "building_types": [
+      "building_motor_industry",
+      "building_automotive_industry"
+    ],
+    "extension_building_types": [
+      "building_steel_mills",
+      "building_rubber_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_ford_automobiles"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MICHIGAN",
+      "Level 5+ Motor Industry required",
+      "Technology: Combustion Engine"
+    ],
+    "prestige_bonuses": [
+      "Motor Industry +15% throughput",
+      "Automotive Industry +5% throughput"
+    ],
+    "country": "USA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ford Motor Company"
+  },
+  "company_da_afghan_nassaji_sherkat": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BALKH",
+      "Level 5+ Textile Mills required"
+    ],
+    "prestige_bonuses": [
+      "Cotton Plantation +10% throughput"
+    ],
+    "country": "AFG",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Də Afḡān Nasājī Šerkat"
+  },
+  "company_iranian_state_railway": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Persia (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Primary culture: Persian",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Iranian State Railway"
+  },
+  "company_tashkent_railroad": {
+    "building_types": [
+      "building_railway"
+    ],
+    "extension_building_types": [
+      "building_motor_industry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_FERGANA",
+      "Control region in Region Central Asia (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Cotton Plantation +10% throughput"
+    ],
+    "country": "KOK",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Tashkent Railroad"
+  },
+  "company_west_ural_petroleum": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant",
+      "building_railway"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_URALSK",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Power Plant +5% throughput"
+    ],
+    "country": "KOK",
+    "country_confidence": "wiki_assignment",
+    "display_name": "West Ural Petroleum Company, Limited"
+  },
+  "company_sherkat_shemali": {
+    "building_types": [
+      "building_cotton_plantation"
+    ],
+    "extension_building_types": [
+      "building_textile_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BALKH",
+      "Level 5+ Cotton Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Opium Plantation +20% throughput"
+    ],
+    "country": "AFG",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Šerkat-e Etteḥādīya-ye Welāyat-e Šemālī"
+  },
+  "company_opium_export_monopoly": {
+    "building_types": [
+      "building_opium_plantation"
+    ],
+    "extension_building_types": [
+      "building_tobacco_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_opium"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Persia (level 5+ buildings required)",
+      "Level 5+ Opium Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Bongāh-e Enḥeṣār-e Ṣāderāt-e Taryāk"
+  },
+  "company_sherkate_eslamiya": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ISFAHAN",
+      "Level 5+ Textile Mills required"
+    ],
+    "prestige_bonuses": [],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Šerkat-e Eslāmiya"
+  },
+  "company_nicolas_portalis": {
+    "building_types": [
+      "building_silk_plantation"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LEBANON",
+      "Level 5+ Silk Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "EGY",
+    "country_confidence": "wiki_assignment",
+    "display_name": "MM. Nicolas Portalis et Cie."
+  },
+  "company_hanseong_jeongi_hoesa": {
+    "building_types": [
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_railway"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SEOUL",
+      "Level 5+ Power Plant required",
+      "Technology: Electrical Generation"
+    ],
+    "prestige_bonuses": [
+      "Arts Academy +5% throughput",
+      "Railway +5% throughput"
+    ],
+    "country": "KOR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Hanseong Jeongi Hoesa"
+  },
+  "company_kirgizian_mining_company": {
+    "building_types": [
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SEMIRECHE",
+      "Level 5+ Coal Mine required",
+      "Technology: Steam Donkey",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Power Plant +10% throughput"
+    ],
+    "country": "KOK",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Kirgizian Mining Joint Stock Company"
+  },
+  "company_persshelk": {
+    "building_types": [
+      "building_silk_plantation"
+    ],
+    "extension_building_types": [
+      "building_textile_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Persia (level 5+ buildings required)",
+      "Level 5+ Silk Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Persshelk"
+  },
+  "company_perskhlopok": {
+    "building_types": [
+      "building_cotton_plantation"
+    ],
+    "extension_building_types": [
+      "building_textile_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Persia (level 5+ buildings required)",
+      "Level 5+ Cotton Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Textile Mills +5% throughput"
+    ],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Perskhlopok"
+  },
+  "company_moscow_irrigation_company": {
+    "building_types": [
+      "building_cotton_plantation",
+      "building_rice_farm"
+    ],
+    "extension_building_types": [
+      "building_wheat_farm",
+      "building_opium_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_FERGANA",
+      "Control state STATE_MOSCOW",
+      "Level 5+ Cotton Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Cotton Plantation +20% throughput"
+    ],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Moscow Irrigation Company"
+  },
+  "company_guinness": {
+    "building_types": [
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_wheat_farm",
+      "building_rye_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_groceries"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LEINSTER",
+      "Level 5+ Food Industry required",
+      "Technology: Corporate Charters"
+    ],
+    "prestige_bonuses": [],
+    "country": "GBR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Arthur Guinness Son & Co. Ltd"
+  },
+  "company_oriental_development_company": {
+    "building_types": [
+      "building_rice_farm",
+      "building_millet_farm",
+      "building_wheat_farm"
+    ],
+    "extension_building_types": [
+      "building_maize_farm",
+      "building_food_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Rice Farm required",
+      "Technology: Civilizing Mission"
+    ],
+    "prestige_bonuses": [
+      "Railway +5% throughput"
+    ],
+    "country": "KOR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Oriental Development Company"
+  },
+  "company_turkish_petroleum": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BASRA",
+      "Control state STATE_BAGHDAD",
+      "Control state STATE_MOSUL",
+      "Level 5+ Oil Rig required",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Railway +5% throughput"
+    ],
+    "country": "TUR",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Turkish Petroleum Company"
+  },
+  "company_anglo_persian_oil": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_KHUZESTAN",
+      "Level 5+ Oil Rig required",
+      "Primary culture: British",
+      "Primary culture: Persian",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Oil Extraction +30% throughput"
+    ],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Anglo-Persian Oil Company"
+  },
+  "company_national_iranian_oil": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_KHUZESTAN",
+      "Level 5+ Oil Rig required",
+      "Primary culture: Persian",
+      "Technology: Pumpjacks"
+    ],
+    "prestige_bonuses": [],
+    "country": "PER",
+    "country_confidence": "wiki_assignment",
+    "display_name": "National Iranian Oil Company"
+  },
+  "company_ilva": {
+    "building_types": [
+      "building_steel_mills",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PIEDMONT",
+      "Level 5+ Steel Mills required",
+      "Technology: Arc Welding"
+    ],
+    "prestige_bonuses": [
+      "Railway +10% throughput",
+      "Artillery Foundries +5% throughput"
+    ],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Ilva"
+  },
+  "company_ansaldo": {
+    "building_types": [
+      "building_artillery_foundries",
+      "building_steel_mills",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PIEDMONT",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Gio. Ansaldo & C."
+  },
+  "company_ricordi": {
+    "building_types": [
+      "building_arts_academy"
+    ],
+    "extension_building_types": [
+      "building_vineyard_plantation"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOMBARDY",
+      "Level 5+ Arts Academy required"
+    ],
+    "prestige_bonuses": [],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "G. Ricordi & C."
+  },
+  "company_fiat": {
+    "building_types": [
+      "building_motor_industry",
+      "building_automotive_industry"
+    ],
+    "extension_building_types": [
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_turin_automobiles"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PIEDMONT",
+      "Level 5+ Motor Industry required",
+      "Technology: Railways",
+      "Technology: Combustion Engine"
+    ],
+    "prestige_bonuses": [],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "FIAT"
+  },
+  "company_stt": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_motor_industry",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ISTRIA",
+      "Level 5+ Shipyards required",
+      "Technology: Gantry Cranes"
+    ],
+    "prestige_bonuses": [],
+    "country": "ITA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Stabilimento Tecnico Triestino"
+  },
+  "company_societe_mokta_el_hadid": {
+    "building_types": [
+      "building_iron_mine",
+      "building_sulfur_mine"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CONSTANTINE",
+      "Level 5+ Iron Mine required",
+      "Technology: Bessemer Process"
+    ],
+    "prestige_bonuses": [],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Société Mokta El Hadid"
+  },
+  "company_schneider_creusot": {
+    "building_types": [
+      "building_steel_mills",
+      "building_artillery_foundries",
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_railway",
+      "building_military_shipyards"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_schneider_guns"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BURGUNDY",
+      "Level 5+ Steel Mills required",
+      "Technology: Steelworking"
+    ],
+    "prestige_bonuses": [],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Schneider et Cie"
+  },
+  "company_dmc": {
+    "building_types": [
+      "building_textile_mills",
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_dye_plantation",
+      "building_cotton_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_BURGUNDY",
+      "Level 5+ Textile Mills required",
+      "Technology: Cotton Gin"
+    ],
+    "prestige_bonuses": [],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Dollfus-Mieg et Compagnie"
+  },
+  "company_cgv": {
+    "building_types": [
+      "building_vineyard_plantation"
+    ],
+    "extension_building_types": [
+      "building_food_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_champagne"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CHAMPAGNE",
+      "Level 5+ Vineyard Plantation required",
+      "Primary culture: French",
+      "Primary culture: Occitan",
+      "Technology: Joint Stock Companies"
+    ],
+    "prestige_bonuses": [
+      "Vineyard Plantation +10% throughput"
+    ],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Confédération générale des vignerons"
+  },
+  "company_saint_etienne": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries",
+      "building_munition_plants"
+    ],
+    "extension_building_types": [
+      "building_explosives_factory"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_saint_etienne_rifles"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_RHONE",
+      "Level 5+ Arms Industry required",
+      "Technology: Bolt Action Rifles"
+    ],
+    "prestige_bonuses": [],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Manufacture d'armes de Saint-Étienne"
+  },
+  "company_fcm": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards",
+      "building_automotive_industry"
+    ],
+    "extension_building_types": [
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_PROVENCE",
+      "Level 5+ Shipyards required",
+      "Technology: Ironclad Tech"
+    ],
+    "prestige_bonuses": [],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Forges et Chantiers de la Méditerranée"
+  },
+  "company_mines_anzin": {
+    "building_types": [
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_FRENCH_LOW_COUNTRIES",
+      "Level 5+ Coal Mine required"
+    ],
+    "prestige_bonuses": [
+      "Steel Mills +5% throughput",
+      "Railway +10% throughput"
+    ],
+    "country": "FRA",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Compagnie des mines d'Anzin"
+  },
+  "company_mitsui": {
+    "building_types": [
+      "building_textile_mills",
+      "building_silk_plantation",
+      "building_lead_mine"
+    ],
+    "extension_building_types": [
+      "building_shipyards",
+      "building_port",
+      "building_chemical_plants",
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_tomioka_silk"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_KANSAI",
+      "Level 5+ Textile Mills required",
+      "Technology: Cotton Gin"
+    ],
+    "prestige_bonuses": [
+      "Iron Mine +10% throughput"
+    ],
+    "country": "JAP",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Mitsui"
+  },
+  "company_mantetsu": {
+    "building_types": [
+      "building_railway",
+      "building_coal_mine",
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_food_industry",
+      "building_chemical_plants"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control region in Region Manchuria (level 5+ buildings required)",
+      "Control region in Region North China (level 5+ buildings required)",
+      "Level 5+ Railway required",
+      "Primary culture: Japanese",
+      "Technology: Railways"
+    ],
+    "prestige_bonuses": [
+      "Wheat Farm +15% throughput"
+    ],
+    "country": "JAP",
+    "country_confidence": "wiki_assignment",
+    "display_name": "South Manchuria Railway"
+  },
+  "company_mitsubishi": {
+    "building_types": [
+      "building_military_shipyards",
+      "building_coal_mine",
+      "building_paper_mills"
+    ],
+    "extension_building_types": [
+      "building_shipyards",
+      "building_motor_industry",
+      "building_port",
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_washi_paper"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CHUGOKU",
+      "Level 5+ Paper Mills required",
+      "Primary culture: Japanese",
+      "Technology: Ironclad Tech"
+    ],
+    "prestige_bonuses": [
+      "Automotive Industry +10% throughput"
+    ],
+    "country": "JAP",
+    "country_confidence": "wiki_assignment",
+    "display_name": "Mitsubishi"
+  },
+  "company_basic_agriculture_1": {
+    "building_types": [
+      "building_wheat_farm",
+      "building_rye_farm"
+    ],
+    "extension_building_types": [
+      "building_maize_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Wheat Farm required"
+    ],
+    "prestige_bonuses": [
+      "Livestock Ranch +10% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Agriculture 1"
+  },
+  "company_type_names": {
+    "building_types": [],
+    "extension_building_types": [],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Type Names"
+  },
+  "company_basic_agriculture_2": {
+    "building_types": [
+      "building_rice_farm",
+      "building_millet_farm",
+      "building_maize_farm"
+    ],
+    "extension_building_types": [
+      "building_rye_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_grain"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Millet Farm required"
+    ],
+    "prestige_bonuses": [
+      "Livestock Ranch +10% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Agriculture 2"
+  },
+  "company_basic_fabrics": {
+    "building_types": [
+      "building_cotton_plantation",
+      "building_livestock_ranch"
+    ],
+    "extension_building_types": [
+      "building_textile_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_meat"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Cotton Plantation required"
+    ],
+    "prestige_bonuses": [
+      "Textile Mills +10% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Fabrics"
+  },
+  "company_basic_colonial_plantations_1": {
+    "building_types": [
+      "building_opium_plantation",
+      "building_tea_plantation"
+    ],
+    "extension_building_types": [
+      "building_tobacco_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_opium"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Opium Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Colonial Plantations 1"
+  },
+  "company_basic_colonial_plantations_2": {
+    "building_types": [
+      "building_coffee_plantation",
+      "building_sugar_plantation",
+      "building_tobacco_plantation"
+    ],
+    "extension_building_types": [
+      "building_tea_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_coffee"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Coffee Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Colonial Plantations 2"
+  },
+  "company_basic_silk_and_dye": {
+    "building_types": [
+      "building_silk_plantation",
+      "building_dye_plantation"
+    ],
+    "extension_building_types": [
+      "building_textile_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Silk Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Silk And Dye"
+  },
+  "company_basic_wine_and_fruit": {
+    "building_types": [
+      "building_vineyard_plantation",
+      "building_banana_plantation"
+    ],
+    "extension_building_types": [
+      "building_sugar_plantation"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Vineyard Plantation required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Wine And Fruit"
+  },
+  "company_basic_fishing": {
+    "building_types": [
+      "building_fishing_wharf",
+      "building_whaling_station"
+    ],
+    "extension_building_types": [
+      "building_shipyards"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_fish"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Fishing Wharf required"
+    ],
+    "prestige_bonuses": [
+      "Shipyards +5% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Fishing"
+  },
+  "company_basic_forestry": {
+    "building_types": [
+      "building_logging_camp",
+      "building_rubber_plantation"
+    ],
+    "extension_building_types": [
+      "building_tooling_workshops"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Logging Camp required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Forestry"
+  },
+  "company_basic_oil": {
+    "building_types": [
+      "building_oil_rig"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Oil Rig required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Oil"
+  },
+  "company_basic_gold_mining": {
+    "building_types": [
+      "building_gold_mine"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Gold Mine required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Gold Mining"
+  },
+  "company_basic_metal_mining": {
+    "building_types": [
+      "building_iron_mine",
+      "building_lead_mine"
+    ],
+    "extension_building_types": [
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Iron Mine required"
+    ],
+    "prestige_bonuses": [
+      "Steel Mills +10% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Metal Mining"
+  },
+  "company_basic_mineral_mining": {
+    "building_types": [
+      "building_sulfur_mine",
+      "building_coal_mine"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Sulfur Mine required"
+    ],
+    "prestige_bonuses": [
+      "Chemical Plants +10% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Mineral Mining"
+  },
+  "company_basic_food": {
+    "building_types": [
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_livestock_ranch",
+      "building_wheat_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_groceries"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Food Industry required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Food"
+  },
+  "company_basic_paper": {
+    "building_types": [
+      "building_paper_mills"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_paper"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Paper Mills required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Paper"
+  },
+  "company_basic_home_goods": {
+    "building_types": [
+      "building_glassworks",
+      "building_furniture_manufacturies"
+    ],
+    "extension_building_types": [
+      "building_logging_camp",
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_furniture"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Glassworks required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Home Goods"
+  },
+  "company_basic_textiles": {
+    "building_types": [
+      "building_textile_mills"
+    ],
+    "extension_building_types": [
+      "building_cotton_plantation",
+      "building_silk_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Textile Mills required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Textiles"
+  },
+  "company_basic_steel": {
+    "building_types": [
+      "building_steel_mills"
+    ],
+    "extension_building_types": [
+      "building_iron_mine",
+      "building_coal_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_steel"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Steel Mills required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Steel"
+  },
+  "company_basic_metalworks": {
+    "building_types": [
+      "building_tooling_workshops"
+    ],
+    "extension_building_types": [
+      "building_steel_mills",
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_tools"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Tooling Workshops required"
+    ],
+    "prestige_bonuses": [
+      "Group Bg Manufacturing +5% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Metalworks"
+  },
+  "company_basic_shipyards": {
+    "building_types": [
+      "building_shipyards",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Shipyards required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Shipyards"
+  },
+  "company_basic_chemicals": {
+    "building_types": [
+      "building_chemical_plants",
+      "building_synthetics_plants"
+    ],
+    "extension_building_types": [
+      "building_sulfur_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_fertilizer"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Chemical Plants required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Chemicals"
+  },
+  "company_basic_motors": {
+    "building_types": [
+      "building_motor_industry",
+      "building_automotive_industry"
+    ],
+    "extension_building_types": [
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Motor Industry required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Motors"
+  },
+  "company_basic_munitions": {
+    "building_types": [
+      "building_munition_plants",
+      "building_explosives_factory"
+    ],
+    "extension_building_types": [
+      "building_sulfur_mine",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_explosives"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Munition Plants required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Munitions"
+  },
+  "company_basic_electrics": {
+    "building_types": [
+      "building_electrics_industry"
+    ],
+    "extension_building_types": [
+      "building_iron_mine",
+      "building_rubber_plantation"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Electrics Industry required"
+    ],
+    "prestige_bonuses": [
+      "Power Plant +10% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Electrics"
+  },
+  "company_basic_weapons": {
+    "building_types": [
+      "building_arms_industry",
+      "building_artillery_foundries"
+    ],
+    "extension_building_types": [
+      "building_automotive_industry",
+      "building_steel_mills"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_small_arms"
+    ],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 5+ Arms Industry required"
+    ],
+    "prestige_bonuses": [],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "Basic Weapons"
+  },
+  "company_construction_power_bloc": {
+    "building_types": [
+      "building_steel_mills",
+      "building_tooling_workshops",
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_lead_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": false,
+    "formation_requirements": [
+      "Level 10+ Steel Mills required"
+    ],
+    "prestige_bonuses": [
+      "Construction Sector +20% throughput"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "display_name": "United Construction Conglomerate"
+  }
+}
