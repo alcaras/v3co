@@ -2265,6 +2265,156 @@ class Victoria3CompanyParserV6Final:
             margin-right: 8px;
         }
         
+        /* Custom Company Collection Styling */
+        #custom-companies-section {
+            background: #f0ead6;
+            border: 2px solid #8b6914;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        #custom-companies-section h2 {
+            margin-top: 0;
+            color: #8b4513;
+            text-align: center;
+        }
+        
+        .add-to-custom-btn {
+            background: #4a7c59;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .add-to-custom-btn:hover:not(:disabled) {
+            background: #5a8c69;
+        }
+        
+        .add-to-custom-btn:disabled {
+            background: #6c7b5e;
+            cursor: not-allowed;
+        }
+        
+        .remove-btn {
+            background: #c85450;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .remove-btn:hover {
+            background: #d86460;
+        }
+        
+        .select-column {
+            width: 40px;
+            text-align: center;
+        }
+        
+        .company-checkbox {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        
+        /* Charter Selection Styling */
+        .clickable-charter {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .clickable-charter:hover {
+            background-color: #fff3cd !important;
+        }
+        
+        .selected-charter {
+            background-color: #ffd700 !important;
+            color: #000 !important;
+            font-weight: bold;
+        }
+        
+        .dimmed-charter {
+            opacity: 0.4;
+            color: #999 !important;
+        }
+        
+        /* Drag and Drop Styling - only for draggable cells */
+        #custom-companies-table td[draggable="true"] {
+            cursor: grab;
+        }
+        
+        #custom-companies-table td[draggable="true"]:active {
+            cursor: grabbing;
+        }
+        
+        #custom-companies-table td[draggable="true"]:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* Selection Control Buttons */
+        .control-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        
+        .import-export-buttons .control-btn {
+            margin: 0 4px;
+        }
+        
+        .import-export-buttons .control-btn:first-child {
+            margin-left: 0;
+        }
+        
+        .import-export-buttons .control-btn:last-child {
+            margin-right: 0;
+        }
+        
+        .clear-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .clear-btn:hover:not(:disabled) {
+            background-color: #c82333;
+        }
+        
+        .control-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .save-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .save-btn:hover:not(:disabled) {
+            background-color: #218838;
+        }
+        
+        .import-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .import-btn:hover {
+            background-color: #0056b3;
+        }
+        
         /* Sortable table styling */
         table.sortable th {
             cursor: pointer;
@@ -2516,6 +2666,24 @@ class Victoria3CompanyParserV6Final:
 <body>
     <h1 id="top">Victoria 3 Company Analysis Tool</h1>
     
+    <!-- Custom Company Collection Section -->
+    <div id="custom-companies-section">
+        <h2>Selected Companies</h2>
+        <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: flex-end; align-items: center;">
+            <div class="import-export-buttons" style="margin-right: 20px;">
+                <button onclick="generateShareURL()" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🔗 Share Build</button>
+                <button onclick="saveSelection()" class="control-btn save-btn">Export to JSON</button>
+                <button onclick="triggerImportSelection()" class="control-btn import-btn">Import from JSON</button>
+                <input type="file" id="import-file-input" accept=".json" onchange="importSelection(event)" style="display: none;">
+            </div>
+            <button onclick="clearSelection()" class="control-btn clear-btn">Clear Selection</button>
+        </div>
+        <div id="custom-companies-table">
+            <p style="text-align: center; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>
+        </div>
+        <br>
+    </div>
+    
     <!-- Company tooltip -->
     <div id="companyTooltip" class="company-tooltip"></div>
     
@@ -2664,13 +2832,14 @@ class Victoria3CompanyParserV6Final:
                 building_icon_html = '<img src="{}" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="{} icon">'.format(building_icon_path, display_name)
             
             html += '''
-    <h2 id="{}">{}{} <a href="#buildings" class="back-to-top" title="Back to Table of Contents">↑ Back to Top</a></h2>
+    <h2 id="{}">{}{} <a href="#custom-companies-section" class="back-to-top" title="Back to Selected Companies">↑ Back to Top</a></h2>
     <p class="building-summary">Companies that can utilize this building: {}</p>
     
     <div class="table-container">
         <table class="building-table sortable">
             <thead>
                 <tr>
+                    <th class="select-column" title="Select Company">☐</th>
                     <th class="flag-column" title="Country">🏳️</th>
                     <th class="buildings-column" title="Base Coverage . Available Industry Charters">📊</th>
                     <th class="company-name">Company Name</th>'''.format(anchor_name, building_icon_html, display_name, len(all_companies_with_building))
@@ -2691,6 +2860,7 @@ class Victoria3CompanyParserV6Final:
                 html += '''
                     <th class="{}" {} title="{} ({} companies)">
                     </th>'''.format(header_class, header_style, avail_display, usage_in_set)
+            
             
             html += '''
                 </tr>
@@ -2763,6 +2933,9 @@ class Victoria3CompanyParserV6Final:
                 
                 html += '''
             <tr>
+                <td class="select-column">
+                    <input type="checkbox" class="company-checkbox" data-company="{}" onchange="toggleCompanySelection('{}')">
+                </td>
                 <td class="flag-column">{}</td>
                 <td class="buildings-column">{}</td>
                 <td class="company-name"
@@ -2770,7 +2943,7 @@ class Victoria3CompanyParserV6Final:
                     onmouseout="hideCompanyTooltip()" 
                     data-company="{}">
                     {}{}{}
-                </td>'''.format(flag_cell_html, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
+                </td>'''.format(company_name, company_name, flag_cell_html, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
                 
                 # Add columns for all available buildings
                 for avail_building in available_buildings:
@@ -2831,6 +3004,7 @@ class Victoria3CompanyParserV6Final:
                         html += '<td class="{}">{}</td>'.format(cell_class, cell_content)
                     except UnicodeDecodeError:
                         html += '<td class="{}">&#x25CF;</td>'.format(cell_class)
+                
                 
                 html += '</tr>'
             
@@ -3251,16 +3425,901 @@ class Victoria3CompanyParserV6Final:
             }, 100);
         }
         
+        // Custom Company Collection functionality
+        const STORAGE_KEY = 'v3-custom-companies';
+        const CHARTER_STORAGE_KEY = 'v3-selected-charters';
+        
+        function getCustomCompanies() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            } catch {
+                return [];
+            }
+        }
+        
+        function saveCustomCompanies(companies) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(companies));
+        }
+        
+        function getSelectedCharters() {
+            try {
+                return JSON.parse(localStorage.getItem(CHARTER_STORAGE_KEY) || '{}');
+            } catch {
+                return {};
+            }
+        }
+        
+        function saveSelectedCharters(charters) {
+            localStorage.setItem(CHARTER_STORAGE_KEY, JSON.stringify(charters));
+        }
+        
+        function selectCharter(companyName, building) {
+            const selectedCharters = getSelectedCharters();
+            // Toggle selection: if clicking same charter, deselect it
+            if (selectedCharters[companyName] === building) {
+                delete selectedCharters[companyName];
+            } else {
+                selectedCharters[companyName] = building;
+            }
+            saveSelectedCharters(selectedCharters);
+            updateCustomTable();
+        }
+        
+        function getBuildingIconPath(building) {
+            // Building icon mappings for special cases (generated from Python)
+            const buildingIconMappings = ''' + self._get_building_icon_mappings_js() + ''';
+            
+            // Check if we have a specific mapping
+            const iconName = buildingIconMappings[building];
+            if (iconName) {
+                return `buildings/64px-Building_${iconName}.png`;
+            }
+            
+            // Default building icon path logic
+            const buildingName = building.replace('building_', '');
+            return `buildings/64px-Building_${buildingName}.png`;
+        }
+        
+        function toggleCompanySelection(companyName) {
+            const customCompanies = getCustomCompanies();
+            const index = customCompanies.indexOf(companyName);
+            
+            if (index > -1) {
+                // Remove from collection
+                customCompanies.splice(index, 1);
+            } else {
+                // Add to collection
+                customCompanies.push(companyName);
+            }
+            
+            saveCustomCompanies(customCompanies);
+            updateCustomTable();
+            updateCheckboxes();
+        }
+        
+        function removeFromCustomCollection(companyName) {
+            const customCompanies = getCustomCompanies();
+            const index = customCompanies.indexOf(companyName);
+            if (index > -1) {
+                customCompanies.splice(index, 1);
+                saveCustomCompanies(customCompanies);
+                updateCustomTable();
+                updateAddButtons();
+            }
+        }
+        
+        function getAllBuildingsForCompanies(companyNames) {
+            const allBuildings = new Set();
+            companyNames.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(building => allBuildings.add(building));
+                    company.industry_charters.forEach(building => allBuildings.add(building));
+                }
+            });
+            return Array.from(allBuildings).sort();
+        }
+        
+        function generateSummarySection(customCompanies) {
+            if (customCompanies.length === 0) return '';
+            
+            const selectedCharters = getSelectedCharters();
+            const baseBuildings = new Set();
+            const charterBuildings = new Set();
+            const allPrestigeGoods = new Set();
+            const prestige_icon_paths = ''' + self._get_prestige_icon_mappings_js() + ''';
+            
+            // Collect base buildings, charters, prestige goods and bonuses from selected companies
+            const allPrestigeBonuses = new Set();
+            customCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (!company) return;
+                
+                // Add base buildings
+                company.base_buildings.forEach(building => baseBuildings.add(building));
+                
+                // Add selected charter if any
+                const selectedCharter = selectedCharters[companyName];
+                if (selectedCharter && company.industry_charters.includes(selectedCharter)) {
+                    charterBuildings.add(selectedCharter);
+                }
+                
+                // Add prestige goods
+                if (company.prestige_goods) {
+                    company.prestige_goods.forEach(good => allPrestigeGoods.add(good));
+                }
+                
+                // Add actual prestige bonuses from companies
+                if (company.prestige_bonuses) {
+                    company.prestige_bonuses.forEach(bonus => allPrestigeBonuses.add(bonus));
+                }
+            });
+            
+            // Define building order by categories (same as table of contents)
+            const buildingOrder = [
+                // Extraction
+                'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine', 
+                'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation', 
+                'building_sulfur_mine', 'building_whaling_station',
+                
+                // Manufacturing Industries  
+                'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry', 
+                'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants', 
+                'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks', 
+                'building_military_shipyards', 'building_motor_industry', 'building_munition_plants', 
+                'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants', 
+                'building_textile_mills', 'building_tooling',
+                
+                // Infrastructure + Urban Facilities
+                'building_ports', 'building_railways', 'building_urban_center',
+                
+                // Agriculture + Plantations + Ranches
+                'building_cattle_ranch', 'building_coffee_plantations', 'building_cotton_plantations', 
+                'building_dye_plantations', 'building_maize_farms', 'building_opium_plantations', 
+                'building_rice_farms', 'building_rye_farms', 'building_silk_plantations', 'building_sugar_plantations', 
+                'building_tea_plantations', 'building_tobacco_plantations', 'building_wheat_farms'
+            ];
+            
+            const categoryBreaks = [10, 28, 31]; // After extraction, manufacturing, infrastructure
+            
+            // Track building sources and overlaps
+            const buildingToCompanies = {};
+            const overlaps = {};
+            
+            // Track base buildings by company
+            customCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (!company) return;
+                
+                company.base_buildings.forEach(building => {
+                    if (!buildingToCompanies[building]) buildingToCompanies[building] = [];
+                    buildingToCompanies[building].push({company: companyName, type: 'base'});
+                });
+                
+                // Track selected charters
+                const selectedCharter = selectedCharters[companyName];
+                if (selectedCharter && company.industry_charters.includes(selectedCharter)) {
+                    if (!buildingToCompanies[selectedCharter]) buildingToCompanies[selectedCharter] = [];
+                    buildingToCompanies[selectedCharter].push({company: companyName, type: 'charter'});
+                }
+            });
+            
+            // Find overlaps (buildings appearing in multiple companies)
+            Object.keys(buildingToCompanies).forEach(building => {
+                if (buildingToCompanies[building].length > 1) {
+                    overlaps[building] = buildingToCompanies[building];
+                }
+            });
+            
+            // Generate ALL building icons with coverage status
+            const coveredBuildings = new Set([...baseBuildings, ...charterBuildings]);
+            let allBuildingIconsHTML = '';
+            
+            buildingOrder.forEach((building, index) => {
+                const iconPath = getBuildingIconPath(building);
+                const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                const isCovered = coveredBuildings.has(building);
+                const isCharter = charterBuildings.has(building);
+                
+                // Add category break (whitespace divider)
+                if (categoryBreaks.includes(index)) {
+                    allBuildingIconsHTML += '<span style="margin-right: 16px;"></span>';
+                }
+                
+                let iconStyle = 'width: 32px; height: 32px; margin: 2px;';
+                let titleText = displayName;
+                
+                if (isCovered) {
+                    if (isCharter) {
+                        // Charter building - prominent yellow background only
+                        iconStyle += ' background-color: #ffeaa7;';
+                        titleText += ' (Charter)';
+                    } else {
+                        // Base building - normal appearance
+                        titleText += ' (Base)';
+                    }
+                } else {
+                    // Not covered - grayed out
+                    iconStyle += ' opacity: 0.3; filter: grayscale(100%);';
+                    titleText += ' (Not covered)';
+                }
+                
+                allBuildingIconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}" onerror="this.style.display='none'">`;
+            });
+            
+            // Generate prestige goods icons
+            let prestigeIconsHTML = '';
+            Array.from(allPrestigeGoods).sort().forEach(good => {
+                const iconPath = prestige_icon_paths[good] || 'icons/40px-Goods_services.png';
+                const displayName = good.replace('prestige_good_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                prestigeIconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${displayName}" class="prestige-icon" style="width: 24px; height: 24px; margin: 2px;">`;
+            });
+            
+            // Calculate totals
+            const totalPrestigeGoods = allPrestigeGoods.size;
+            const totalBuildings = baseBuildings.size + charterBuildings.size;
+            const totalOverlaps = Object.keys(overlaps).length;
+            const actualBonuses = Array.from(allPrestigeBonuses);
+            
+            let summaryHTML = '<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px;">';
+            
+            // Add country flags for selected companies
+            const countries = new Set();
+            customCompanies.forEach(companyKey => {
+                const company = allCompanies[companyKey];
+                if (company && company.country) {
+                    countries.add(company.country);
+                }
+            });
+            
+            if (countries.size > 0) {
+                summaryHTML += '<div style="margin-bottom: 8px;"><strong>Countries:</strong> ';
+                Array.from(countries).forEach(country => {
+                    const flag = countryFlags[country] || '';
+                    const name = countryNames[country] || country;
+                    summaryHTML += `<span style="margin-right: 8px;">${flag} ${name}</span>`;
+                });
+                summaryHTML += '</div>';
+            }
+            summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">Selected Companies (' + customCompanies.length + ')</h4>';
+            
+            // Compact buildings section - showing all buildings with coverage status
+            const totalAvailableBuildings = buildingOrder.length;
+            summaryHTML += `<div style="margin-bottom: 8px;">`;
+            summaryHTML += `<strong>Buildings (${totalBuildings}/${totalAvailableBuildings}):</strong> `;
+            if (baseBuildings.size > 0) {
+                summaryHTML += `${baseBuildings.size} base`;
+                if (charterBuildings.size > 0) {
+                    summaryHTML += `, ${charterBuildings.size} charters`;
+                }
+            } else if (charterBuildings.size > 0) {
+                summaryHTML += `${charterBuildings.size} charters`;
+            }
+            summaryHTML += `, ${totalOverlaps} overlaps`;
+            summaryHTML += `<br><div style="margin-top: 4px;">${allBuildingIconsHTML}</div>`;
+            
+            // Show overlap details if any exist
+            if (totalOverlaps > 0) {
+                summaryHTML += `<div style="margin-top: 6px; font-size: 12px; color: #666;">`;
+                summaryHTML += `<strong>Overlaps:</strong> `;
+                const overlapDetails = [];
+                Object.keys(overlaps).forEach(building => {
+                    const iconPath = getBuildingIconPath(building);
+                    const buildingName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                    const count = overlaps[building].length;
+                    const companies = overlaps[building].map(item => {
+                        const companyIconPath = getCompanyIconPath(item.company);
+                        const companyName = companyData[item.company]?.name || item.company;
+                        return `<img src="${companyIconPath}" style="width: 16px; height: 16px; margin-right: 2px;" onerror="this.style.display='none'">${companyName}`;
+                    }).join(', ');
+                    overlapDetails.push(`${count}x <img src="${iconPath}" style="width: 16px; height: 16px; vertical-align: middle;" onerror="this.style.display='none'"> ${buildingName} (${companies})`);
+                });
+                summaryHTML += overlapDetails.join(', ');
+                summaryHTML += `</div>`;
+            }
+            summaryHTML += `</div>`;
+            
+            // Prestige goods section (compact)
+            if (totalPrestigeGoods > 0) {
+                summaryHTML += `<div style="margin-bottom: 8px;">`;
+                summaryHTML += `<strong>Prestige Goods (${totalPrestigeGoods}):</strong><br>`;
+                summaryHTML += `<div style="margin-top: 4px;">${prestigeIconsHTML}</div>`;
+                summaryHTML += `</div>`;
+            }
+            
+            // Actual prestige bonuses from companies
+            if (actualBonuses.length > 0) {
+                summaryHTML += `<div style="margin-bottom: 8px;">`;
+                summaryHTML += `<strong>Prestige Bonuses:</strong> ${actualBonuses.join(', ')}`;
+                summaryHTML += `</div>`;
+            }
+            
+            summaryHTML += '</div>';
+            return summaryHTML;
+        }
+        
+        function updateCustomTable() {
+            const customCompanies = getCustomCompanies();
+            const customTableDiv = document.getElementById('custom-companies-table');
+            
+            // Update button states
+            updateControlButtons();
+            
+            if (customCompanies.length === 0) {
+                customTableDiv.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>';
+                return;
+            }
+            const allBuildings = getAllBuildingsForCompanies(customCompanies);
+            
+            let tableHTML = `
+                <div class="table-container">
+                    <table class="building-table sortable">
+                        <thead>
+                        <tr>
+                            <th class="select-column" title="Remove Company">☑</th>
+                            <th class="flag-column" title="Country">🏳️</th>
+                            <th class="buildings-column" title="Base Coverage . Available Industry Charters">📊</th>
+                            <th class="company-name">Company Name</th>`;
+            
+            allBuildings.forEach(building => {
+                const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                // Get building icon path (this will be generated from Python)
+                const iconPath = getBuildingIconPath(building);
+                let headerContent = '';
+                if (iconPath) {
+                    headerContent = `<div style="background-image: url(${iconPath}); width: 32px; height: 32px; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>`;
+                } else {
+                    headerContent = displayName;
+                }
+                tableHTML += `<th class="building-header" title="${displayName}">${headerContent}</th>`;
+            });
+            
+            tableHTML += `</tr></thead><tbody>`;
+            
+            customCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (!company) return;
+                
+                const companyIconPath = getCompanyIconPath(companyName);
+                const companyIconHTML = `<img src="${companyIconPath}" class="company-icon" alt="Company Icon" onerror="this.style.display='none'">`;
+                
+                // Calculate building count display like other tables (decimal format - fixed)
+                const totalBuildings = company.base_buildings.length + company.industry_charters.length;
+                const baseCount = company.base_buildings.length;
+                const charters = company.industry_charters.length;
+                const buildingCountDisplay = charters > 0 ? `${baseCount}.${charters}` : `${baseCount}`; // DECIMAL FORMAT FIX
+                
+                // Generate prestige icons using exact same logic as main tables
+                let prestigeIcons = '';
+                if (company.prestige_goods && company.prestige_goods.length > 0) {
+                    // Prestige icon mappings pre-calculated from Python (same logic as main tables)
+                    const prestigeIconPaths = ''' + self._get_prestige_icon_mappings_js() + ''';
+                    
+                    company.prestige_goods.forEach(good => {
+                        const iconPath = prestigeIconPaths[good] || 'icons/40px-Goods_services.png';
+                        const prestigeName = good.replace('prestige_good_', '').replace(/_/g, ' ');
+                        prestigeIcons += `<img src="${iconPath}" width="16" height="16" alt="${prestigeName}" title="${prestigeName}" class="prestige-icon">`;
+                    });
+                }
+                
+                tableHTML += `<tr data-company="${companyName}">
+                    <td class="select-column">
+                        <input type="checkbox" class="company-checkbox" data-company="${companyName}" onchange="toggleCompanySelection('${companyName}')" checked>
+                    </td>`;
+                
+                // Flag column (draggable)
+                tableHTML += `<td class="flag-column" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)" ondragend="dragEnd(event)">`;
+                if (company.country) {
+                    const countryFlags = ''' + self._get_country_flags_js() + ''';
+                    const countryNames = ''' + self._get_country_names_js() + ''';
+                    const flag = countryFlags[company.country] || '';
+                    const countryName = countryNames[company.country] || company.country;
+                    if (flag) {
+                        tableHTML += `<span title="${countryName}">${flag}</span>`;
+                    }
+                }
+                tableHTML += `</td>`;
+                
+                // Buildings column (draggable)
+                tableHTML += `<td class="buildings-column" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)" ondragend="dragEnd(event)">${buildingCountDisplay}</td>`;
+                
+                // Company name column with tooltip (draggable)
+                tableHTML += `<td class="company-name" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)" ondragend="dragEnd(event)"
+                    onmouseover="showCompanyTooltip(event, '${companyName}')" 
+                    onmouseout="hideCompanyTooltip()" 
+                    data-company="${companyName}">
+                    ${companyIconHTML}${prestigeIcons}${company.name}
+                </td>`;
+                
+                // Building columns with charter selection
+                const selectedCharters = getSelectedCharters();
+                const selectedCharter = selectedCharters[companyName];
+                
+                allBuildings.forEach(building => {
+                    const hasBase = company.base_buildings.includes(building);
+                    const hasExtension = company.industry_charters.includes(building);
+                    let cellContent = "";
+                    let cellClass = "";
+                    let onClick = "";
+                    
+                    if (hasBase && hasExtension) {
+                        if (selectedCharter === building) {
+                            cellContent = "&#x25CF;"; // Filled circle for selected charter
+                            cellClass = "base-building selected-charter";
+                        } else if (selectedCharter) {
+                            cellContent = "&#x25CB;"; // Hollow circle for dimmed unselected charter
+                            cellClass = "base-building dimmed-charter";
+                        } else {
+                            cellContent = "&#x25CB;"; // Hollow circle for clickable charter
+                            cellClass = "base-building clickable-charter";
+                        }
+                        onClick = `onclick="selectCharter('${companyName}', '${building}')"`;
+                    } else if (hasBase) {
+                        // Base building only - always present, not selectable
+                        cellContent = "&#x25CF;";
+                        cellClass = "base-building";
+                        // No onClick for base buildings - they're always available
+                    } else if (hasExtension) {
+                        if (selectedCharter === building) {
+                            cellContent = "&#x25CF;"; // Filled circle for selected charter
+                            cellClass = "extension-building selected-charter";
+                        } else if (selectedCharter) {
+                            cellContent = "&#x25CB;"; // Hollow circle for dimmed unselected
+                            cellClass = "extension-building dimmed-charter";
+                        } else {
+                            cellContent = "&#x25CB;"; // Hollow circle for clickable
+                            cellClass = "extension-building clickable-charter";
+                        }
+                        onClick = `onclick="selectCharter('${companyName}', '${building}')"`;
+                    }
+                    
+                    let title = '';
+                    let style = '';
+                    
+                    if (hasBase && !hasExtension) {
+                        // Base building only - not selectable
+                        title = 'Base Building: Always available';
+                        style = '';
+                    } else if (hasExtension || (hasBase && hasExtension)) {
+                        // Charter building - selectable
+                        title = `Industry Charter: Click to ${selectedCharter === building ? 'deselect' : 'select'}`;
+                        style = 'cursor: pointer;';
+                    }
+                    
+                    tableHTML += `<td class="${cellClass}" ${onClick} title="${title}" style="${style}">${cellContent}</td>`;
+                });
+                
+                tableHTML += `</tr>`;
+            });
+            
+            tableHTML += '</tbody></table></div>';
+            
+            // Add dynamic summary section
+            tableHTML += generateSummarySection(customCompanies);
+            
+            tableHTML += '<p style="text-align: center; font-style: italic; color: #666; margin-top: 12px; font-size: 12px;">Click charters to select • Drag to reorder</p>';
+            customTableDiv.innerHTML = tableHTML;
+            
+            // Make the custom table sortable
+            const customTable = document.querySelector('#custom-companies-table table');
+            if (customTable) makeSortable(customTable);
+        }
+        
+        function updateCheckboxes() {
+            const customCompanies = getCustomCompanies();
+            document.querySelectorAll('.company-checkbox').forEach(checkbox => {
+                const companyName = checkbox.dataset.company;
+                checkbox.checked = customCompanies.includes(companyName);
+            });
+        }
+        
+        function updateControlButtons() {
+            const customCompanies = getCustomCompanies();
+            const isEmpty = customCompanies.length === 0;
+            
+            // Update Clear button
+            const clearBtn = document.querySelector('.clear-btn');
+            if (clearBtn) {
+                clearBtn.disabled = isEmpty;
+            }
+            
+            // Update Save button  
+            const saveBtn = document.querySelector('.save-btn');
+            if (saveBtn) {
+                saveBtn.disabled = isEmpty;
+            }
+            
+            // Update Share button
+            const shareBtn = document.querySelector('.share-btn');
+            if (shareBtn) {
+                shareBtn.disabled = isEmpty;
+            }
+            
+            // Update Share button
+            const shareBtn = document.querySelector('.share-btn');
+            if (shareBtn) {
+                shareBtn.disabled = isEmpty;
+            }
+        }
+        
+        // Drag and Drop functionality for reordering companies
+        let draggedElement = null;
+        
+        function dragStart(event) {
+            draggedElement = event.target.closest('tr');
+            draggedElement.style.opacity = '0.5';
+            event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setData('text/html', draggedElement.outerHTML);
+        }
+        
+        function dragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+            const targetRow = event.target.closest('tr');
+            if (targetRow && targetRow !== draggedElement) {
+                targetRow.style.borderTop = '2px solid #8b6914';
+            }
+        }
+        
+        function dragDrop(event) {
+            event.preventDefault();
+            const targetRow = event.target.closest('tr');
+            if (targetRow && targetRow !== draggedElement) {
+                const customCompanies = getCustomCompanies();
+                const draggedCompany = draggedElement.dataset.company;
+                const targetCompany = targetRow.dataset.company;
+                
+                const draggedIndex = customCompanies.indexOf(draggedCompany);
+                const targetIndex = customCompanies.indexOf(targetCompany);
+                
+                // Remove dragged company and insert at target position
+                customCompanies.splice(draggedIndex, 1);
+                customCompanies.splice(targetIndex, 0, draggedCompany);
+                
+                saveCustomCompanies(customCompanies);
+                updateCustomTable();
+            }
+            clearDragStyles();
+        }
+        
+        function dragEnd(event) {
+            clearDragStyles();
+        }
+        
+        function clearDragStyles() {
+            if (draggedElement) {
+                draggedElement.style.opacity = '1';
+                draggedElement = null;
+            }
+            document.querySelectorAll('tr').forEach(row => {
+                row.style.borderTop = '';
+            });
+        }
+        
+        // Selection Management Functions
+        function clearSelection() {
+            const customCompanies = getCustomCompanies();
+            if (customCompanies.length === 0) return; // Don't do anything if already empty
+            
+            if (confirm('Are you sure you want to clear all selected companies?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(CHARTER_STORAGE_KEY);
+                updateCustomTable();
+                updateCheckboxes();
+            }
+        }
+        
+        function saveSelection() {
+            const customCompanies = getCustomCompanies();
+            if (customCompanies.length === 0) return; // Don't do anything if empty
+            
+            const selectedCharters = getSelectedCharters();
+            
+            // Create selection data object
+            const selectionData = {
+                version: "1.0",
+                timestamp: new Date().toISOString(),
+                companies: customCompanies,
+                charters: selectedCharters,
+                meta: {
+                    totalCompanies: customCompanies.length,
+                    selectedCharters: Object.keys(selectedCharters).length
+                }
+            };
+            
+            // Create and download JSON file
+            const dataStr = JSON.stringify(selectionData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `v3-company-selection-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+        
+        function triggerImportSelection() {
+            document.getElementById('import-file-input').click();
+        }
+        
+        function importSelection(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const selectionData = JSON.parse(e.target.result);
+                    
+                    // Validate the JSON structure
+                    if (!selectionData.companies || !Array.isArray(selectionData.companies)) {
+                        throw new Error('Invalid selection file format: missing companies array');
+                    }
+                    
+                    // Validate that companies exist in our data
+                    const validCompanies = selectionData.companies.filter(companyName => {
+                        return companyData.hasOwnProperty(companyName);
+                    });
+                    
+                    if (validCompanies.length === 0) {
+                        alert('No valid companies found in the selection file.');
+                        return;
+                    }
+                    
+                    // Import the selection
+                    saveCustomCompanies(validCompanies);
+                    
+                    // Import charters if they exist
+                    if (selectionData.charters && typeof selectionData.charters === 'object') {
+                        const validCharters = {};
+                        for (const [companyName, charter] of Object.entries(selectionData.charters)) {
+                            if (validCompanies.includes(companyName)) {
+                                validCharters[companyName] = charter;
+                            }
+                        }
+                        saveSelectedCharters(validCharters);
+                    }
+                    
+                    // Update UI
+                    updateCustomTable();
+                    updateCheckboxes();
+                    
+                    const importedCount = validCompanies.length;
+                    const totalCount = selectionData.companies.length;
+                    
+                    if (importedCount === totalCount) {
+                        alert(`Successfully imported ${importedCount} companies.`);
+                    } else {
+                        alert(`Imported ${importedCount} out of ${totalCount} companies. ${totalCount - importedCount} companies were not found in the current data.`);
+                    }
+                    
+                } catch (error) {
+                    alert('Error importing selection: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset the file input
+            event.target.value = '';
+        }
+
         // Initialize sortable tables when DOM is ready
+        // Load companies and charters from URL parameters
+        function loadFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const companiesParam = urlParams.get('companies');
+            const chartersParam = urlParams.get('charters');
+            
+            if (companiesParam) {
+                const companyNames = companiesParam.split(',').map(name => name.trim());
+                const validCompanies = [];
+                
+                // Find companies by name or key
+                companyNames.forEach(nameOrKey => {
+                    // Try exact match first
+                    let foundCompany = null;
+                    
+                    // Check if it's a company key (clean name)
+                    for (const [companyKey, company] of Object.entries(companyData)) {
+                        const cleanKey = companyKey.replace('company_', '').toLowerCase();
+                        if (cleanKey === nameOrKey.toLowerCase() || 
+                            company.name.toLowerCase() === nameOrKey.toLowerCase()) {
+                            foundCompany = companyKey;
+                            break;
+                        }
+                    }
+                    
+                    if (foundCompany) {
+                        validCompanies.push(foundCompany);
+                    } else {
+                        console.warn(`Company not found: ${nameOrKey}`);
+                    }
+                });
+                
+                if (validCompanies.length > 0) {
+                    // Save the companies
+                    saveCustomCompanies(validCompanies);
+                    
+                    // Load charters if provided
+                    if (chartersParam) {
+                        const charterEntries = chartersParam.split(',').map(entry => entry.trim());
+                        const validCharters = {};
+                        
+                        charterEntries.forEach(entry => {
+                            const [companyName, buildingName] = entry.split(':');
+                            if (companyName && buildingName) {
+                                // Find the company
+                                let foundCompany = null;
+                                for (const [companyKey, company] of Object.entries(companyData)) {
+                                    const cleanKey = companyKey.replace('company_', '').toLowerCase();
+                                    if (cleanKey === companyName.toLowerCase() || 
+                                        company.name.toLowerCase() === companyName.toLowerCase()) {
+                                        foundCompany = companyKey;
+                                        break;
+                                    }
+                                }
+                                
+                                if (foundCompany && validCompanies.includes(foundCompany)) {
+                                    const company = companyData[foundCompany];
+                                    // Find building (try with and without building_ prefix)
+                                    const buildingKey = buildingName.startsWith('building_') ? buildingName : `building_${buildingName}`;
+                                    if (company.industry_charters.includes(buildingKey)) {
+                                        validCharters[foundCompany] = buildingKey;
+                                    }
+                                }
+                            }
+                        });
+                        
+                        if (Object.keys(validCharters).length > 0) {
+                            saveSelectedCharters(validCharters);
+                        }
+                    }
+                    
+                    console.log(`Loaded ${validCompanies.length} companies from URL`);
+                }
+            }
+        }
+        
+        // Generate shareable URL with current selection
+        function generateShareURL() {
+            const customCompanies = getCustomCompanies();
+            const selectedCharters = getSelectedCharters();
+            
+            if (customCompanies.length === 0) {
+                alert('No companies selected to share');
+                return;
+            }
+            
+            const baseURL = 'https://alcaras.github.io/v3co/';
+            const params = new URLSearchParams();
+            
+            // Add companies (use clean names for readability)
+            const companyNames = customCompanies.map(companyKey => {
+                return companyKey.replace('company_', '');
+            });
+            params.set('companies', companyNames.join(','));
+            
+            // Add charters if any are selected
+            const charterEntries = [];
+            Object.entries(selectedCharters).forEach(([companyKey, buildingKey]) => {
+                const companyName = companyKey.replace('company_', '');
+                const buildingName = buildingKey.replace('building_', '');
+                charterEntries.push(`${companyName}:${buildingName}`);
+            });
+            
+            if (charterEntries.length > 0) {
+                params.set('charters', charterEntries.join(','));
+            }
+            
+            const shareURL = `${baseURL}?${params.toString()}`;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareURL).then(() => {
+                alert('Share URL copied to clipboard!');
+            }).catch(() => {
+                // Fallback - show the URL
+                prompt('Share URL (copy this):', shareURL);
+            });
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             var tables = document.querySelectorAll('table.sortable');
             tables.forEach(makeSortable);
+            
+            // Load from URL first, then update UI
+            loadFromURL();
+            updateCustomTable();
+            updateCheckboxes();
+            updateControlButtons();
         });
     </script>
 </body>
 </html>'''
         
         return html
+
+    def _get_country_flags_js(self):
+        """Generate JavaScript object for country flags"""
+        flags_js = []
+        for code, flag in self.country_flags.items():
+            flags_js.append(f'"{code}": "{flag}"')
+        return '{' + ', '.join(flags_js) + '}'
+    
+    def _get_country_names_js(self):
+        """Generate JavaScript object for country names"""
+        names_js = []
+        country_names = {
+            'USA': 'United States', 'GBR': 'Great Britain', 'FRA': 'France', 'DEU': 'Germany',
+            'PRU': 'Prussia', 'AUS': 'Austria-Hungary', 'RUS': 'Russia', 'JAP': 'Japan',
+            'CHI': 'China', 'ITA': 'Italy', 'SAR': 'Sardinia-Piedmont', 'SPA': 'Spain',
+            'TUR': 'Turkey', 'EGY': 'Egypt', 'PER': 'Persia', 'SWE': 'Sweden', 'NOR': 'Norway',
+            'DEN': 'Denmark', 'NET': 'Netherlands', 'BEL': 'Belgium', 'SWI': 'Switzerland',
+            'BRZ': 'Brazil', 'ARG': 'Argentina', 'CHL': 'Chile', 'COL': 'Colombia', 'MEX': 'Mexico'
+        }
+        for code, name in country_names.items():
+            names_js.append(f'"{code}": "{name}"')
+        return '{' + ', '.join(names_js) + '}'
+    
+    def _get_building_icon_mappings_js(self):
+        """Generate JavaScript object for building icon mappings"""
+        # Building name mappings for icon files that have different names (from get_building_icon_path)
+        building_name_mappings = {
+            'building_chemical_plants': 'chemicals_industry',
+            'building_textile_mills': 'textile_industry', 
+            'building_artillery_foundries': 'artillery_foundry',
+            'building_automotive_industry': 'vehicles_industry',
+            'building_livestock_ranch': 'cattle_ranch',
+            'building_rubber_plantation': 'rubber_lodge',
+            'building_vineyard_plantation': 'vineyards'
+        }
+        
+        mappings_js = []
+        for building, icon_name in building_name_mappings.items():
+            mappings_js.append(f'"{building}": "{icon_name}"')
+        return '{' + ', '.join(mappings_js) + '}'
+    
+    def _get_prestige_icon_mappings_js(self):
+        """Generate JavaScript object with prestige icon paths that actually exist"""
+        # Special icon mappings for prestige goods that don't have exact icon matches (same as main table logic)
+        icon_mappings = {
+            'burmese_teak': 'teak',
+            'swedish_bar_iron': 'oregrounds_iron'
+        }
+        
+        prestige_icon_paths = {}
+        
+        # Go through all known prestige goods and find their actual icon paths
+        for prestige_good in self.prestige_goods.keys():
+            prestige_good_base = prestige_good.replace('prestige_good_generic_', '').replace('prestige_good_', '')
+            
+            # Apply special mappings
+            if prestige_good_base in icon_mappings:
+                prestige_good_base = icon_mappings[prestige_good_base]
+            
+            # Try prestige-specific icon first, fallback to goods icon (same as main table logic)
+            prestige_icon_candidates = [
+                f"icons/24px-Prestige_{prestige_good_base}.png",
+                f"icons/40px-Goods_{prestige_good_base}.png"
+            ]
+            
+            for candidate in prestige_icon_candidates:
+                full_path = os.path.join(os.path.dirname(__file__), candidate)
+                if os.path.exists(full_path):
+                    prestige_icon_paths[prestige_good] = candidate
+                    break
+            
+            # If no icon found, use fallback
+            if prestige_good not in prestige_icon_paths:
+                prestige_icon_paths[prestige_good] = "icons/40px-Goods_services.png"
+        
+        # Convert to JavaScript object
+        mappings_js = []
+        for prestige_good, icon_path in prestige_icon_paths.items():
+            mappings_js.append(f'"{prestige_good}": "{icon_path}"')
+        return '{' + ', '.join(mappings_js) + '}'
 
     def save_html_report(self, filename="index.html"):
         """Save the HTML report to a file"""
