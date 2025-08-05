@@ -3495,6 +3495,7 @@ class Victoria3CompanyParserV6Final:
             saveCustomCompanies(customCompanies);
             updateCustomTable();
             updateCheckboxes();
+            updateControlButtons();
         }
         
         function removeFromCustomCollection(companyName) {
@@ -4006,6 +4007,7 @@ class Victoria3CompanyParserV6Final:
                 localStorage.removeItem(CHARTER_STORAGE_KEY);
                 updateCustomTable();
                 updateCheckboxes();
+                updateControlButtons();
             }
         }
         
@@ -4086,6 +4088,7 @@ class Victoria3CompanyParserV6Final:
                     // Update UI
                     updateCustomTable();
                     updateCheckboxes();
+                    updateControlButtons();
                     
                     const importedCount = validCompanies.length;
                     const totalCount = selectionData.companies.length;
