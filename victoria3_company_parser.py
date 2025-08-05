@@ -2719,8 +2719,11 @@ class Victoria3CompanyParserV6Final:
                 base_count, charter_count, _ = self.get_company_building_stats(company_name)
                 total_buildings = base_count + charter_count
                 
-                # Sort by priority first, then by total building count (descending), then by charter count (descending)
-                return (-priority, -total_buildings, -charter_count, company_name.replace('company_', '').lower())
+                # Sort by priority first, then by base count (descending), then by charter count (descending)
+                # This creates the effect of sorting by "base.charter" as a decimal number
+                sort_key = (-priority, -base_count, -charter_count, company_name.replace('company_', '').lower())
+                
+                return sort_key
             
             sorted_company_names = sorted(all_companies_with_building, key=company_sort_key)
             
