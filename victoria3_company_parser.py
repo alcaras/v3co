@@ -2699,11 +2699,13 @@ class Victoria3CompanyParserV6Final:
                 <li>Add companies from the tables below by checking the boxes</li>
                 <li>Once you add companies, you can select which industry charter you want for a company by clicking on the charter you want: <span style="display: inline-flex; align-items: center; width: 16px; height: 16px; background: #FFF3E0; border: 1px solid #FF9800; border-radius: 2px; justify-content: center; font-size: 10px; margin: 0 2px;">○</span></li>
                 <li>You can also drag and drop companies to reorder them</li>
-                <li>The numbers next to companies indicate the number of base buildings and industry charters that don't overlap with your selected companies.
+                <li>In the building tables, the numbers next to companies indicate the number of base buildings and industry charters that don't overlap with your selected companies.
                     <ul style="margin: 6px 0 0 0; padding-left: 20px;">
                         <li>For example, 3.1 means a company has 3 base buildings and 1 potential industry charter.</li>
+                        <li>In the selected companies view, it always shows the default coverage of the company.</li>
                     </ul>
                 </li>
+                <li>When you select companies, columns corresponding to buildings covered by that company will be hidden in the building tables to make it easier to see what remains uncovered by any company</li>
             </ul>
             
             <!-- Key/Legend moved here -->
@@ -3543,8 +3545,18 @@ class Victoria3CompanyParserV6Final:
             companyNames.forEach(companyName => {
                 const company = companyData[companyName];
                 if (company) {
-                    company.base_buildings.forEach(building => allBuildings.add(building));
-                    company.industry_charters.forEach(building => allBuildings.add(building));
+                    company.base_buildings.forEach(building => {
+                        allBuildings.add(building);
+                        if (building === 'building_urban_center') {
+                            console.log('🏙️ Urban Center found in company:', companyName, 'as base building');
+                        }
+                    });
+                    company.industry_charters.forEach(building => {
+                        allBuildings.add(building);
+                        if (building === 'building_urban_center') {
+                            console.log('🏙️ Urban Center found in company:', companyName, 'as industry charter');
+                        }
+                    });
                 }
             });
             return allBuildings; // Return Set, not array
@@ -3645,29 +3657,29 @@ class Victoria3CompanyParserV6Final:
         }
         
         
-        // Define building order by categories (global scope for use in multiple functions)
+        // Define building order by categories matching TOC structure (global scope for use in multiple functions)
         const buildingOrder = [
-            // Extraction
+            // Row 1: Extraction + Infrastructure + Urban Facilities (15 buildings total)
+            // Extraction (10 buildings)
             'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine', 
             'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation', 
             'building_sulfur_mine', 'building_whaling_station',
+            // Infrastructure + Urban Facilities (5 buildings)
+            'building_port', 'building_railway', 'building_trade_center', 'building_power_plant', 'building_arts_academy',
             
-            // Manufacturing Industries  
+            // Row 2: Manufacturing Industries (18 buildings)  
             'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry', 
             'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants', 
             'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks', 
             'building_military_shipyards', 'building_motor_industry', 'building_munition_plants', 
             'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants', 
-            'building_textile_mills', 'building_tooling',
+            'building_textile_mills', 'building_tooling_workshops',
             
-            // Infrastructure + Urban Facilities
-            'building_ports', 'building_railways', 'building_urban_center',
-            
-            // Agriculture + Plantations + Ranches
-            'building_cattle_ranch', 'building_coffee_plantations', 'building_cotton_plantations', 
-            'building_dye_plantations', 'building_maize_farms', 'building_opium_plantations', 
-            'building_rice_farms', 'building_rye_farms', 'building_silk_plantations', 'building_sugar_plantations', 
-            'building_tea_plantations', 'building_tobacco_plantations', 'building_wheat_farms'
+            // Row 3: Agriculture + Plantations + Ranches (16 buildings)
+            'building_maize_farm', 'building_millet_farm', 'building_rice_farm', 'building_rye_farm', 'building_wheat_farm',
+            'building_vineyard_plantation', 'building_banana_plantation', 'building_coffee_plantation', 'building_cotton_plantation', 
+            'building_dye_plantation', 'building_opium_plantation', 'building_silk_plantation', 'building_sugar_plantation',
+            'building_tea_plantation', 'building_tobacco_plantation', 'building_livestock_ranch'
         ];
         
         // Formation requirement to simple territorial name mapping
@@ -3799,7 +3811,12 @@ class Victoria3CompanyParserV6Final:
                 }
             });
             
-            const categoryBreaks = [10, 28, 31]; // After extraction, manufacturing, infrastructure
+            // Define category boundaries for three-row layout matching TOC structure
+            const categoryRanges = {
+                row1: { start: 0, end: 15 },   // Extraction (10) + Infrastructure (5) = 15 buildings
+                row2: { start: 15, end: 33 },  // Manufacturing Industries = 18 buildings  
+                row3: { start: 33, end: 49 }   // Agriculture + Plantations + Ranches = 16 buildings
+            };
             
             // Track building sources and overlaps
             const buildingToCompanies = {};
@@ -3830,41 +3847,52 @@ class Victoria3CompanyParserV6Final:
                 }
             });
             
-            // Generate ALL building icons with coverage status
+            // Generate ALL building icons with coverage status in three rows
             const coveredBuildings = new Set([...baseBuildings, ...charterBuildings]);
             let allBuildingIconsHTML = '';
             
-            buildingOrder.forEach((building, index) => {
-                const iconPath = getBuildingIconPath(building);
-                const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
-                const isCovered = coveredBuildings.has(building);
-                const isCharter = charterBuildings.has(building);
-                
-                // Add category break (whitespace divider)
-                if (categoryBreaks.includes(index)) {
-                    allBuildingIconsHTML += '<span style="margin-right: 16px;"></span>';
-                }
-                
-                let iconStyle = 'width: 32px; height: 32px; margin: 2px;';
-                let titleText = displayName;
-                
-                if (isCovered) {
-                    if (isCharter) {
-                        // Charter building - prominent yellow background only
-                        iconStyle += ' background-color: #ffeaa7;';
-                        titleText += ' (Charter)';
-                    } else {
-                        // Base building - normal appearance
-                        titleText += ' (Base)';
+            // Helper function to generate icons for a range
+            function generateIconsForRange(startIndex, endIndex) {
+                let rowHTML = '';
+                for (let index = startIndex; index < endIndex && index < buildingOrder.length; index++) {
+                    const building = buildingOrder[index];
+                    const iconPath = getBuildingIconPath(building);
+                    const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                    const isCovered = coveredBuildings.has(building);
+                    const isCharter = charterBuildings.has(building);
+                    
+                    // Add spacer between extraction and infrastructure in row 1 (after whaling station at index 9)
+                    if (index === 10 && startIndex === 0) {
+                        rowHTML += '<span style="margin-right: 16px;"></span>';
                     }
-                } else {
-                    // Not covered - grayed out
-                    iconStyle += ' opacity: 0.3; filter: grayscale(100%);';
-                    titleText += ' (Not covered)';
+                    
+                    let iconStyle = 'width: 32px; height: 32px; margin: 2px;';
+                    let titleText = displayName;
+                    
+                    if (isCovered) {
+                        if (isCharter) {
+                            // Charter building - prominent yellow background only
+                            iconStyle += ' background-color: #ffeaa7;';
+                            titleText += ' (Charter)';
+                        } else {
+                            // Base building - normal appearance
+                            titleText += ' (Base)';
+                        }
+                    } else {
+                        // Not covered - grayed out
+                        iconStyle += ' opacity: 0.3; filter: grayscale(100%);';
+                        titleText += ' (Not covered)';
+                    }
+                    
+                    rowHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}; cursor: pointer;" onclick="location.href='#building-${building}'" onerror="this.style.display='none'">`;
                 }
-                
-                allBuildingIconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}; cursor: pointer;" onclick="location.href='#building-${building}'" onerror="this.style.display='none'">`;
-            });
+                return rowHTML;
+            }
+            
+            // Generate three rows of building icons with min-width and spacing
+            allBuildingIconsHTML += '<div style="margin-bottom: 2px; min-width: 600px;">' + generateIconsForRange(categoryRanges.row1.start, categoryRanges.row1.end) + '</div>';
+            allBuildingIconsHTML += '<div style="margin-bottom: 2px; min-width: 600px;">' + generateIconsForRange(categoryRanges.row2.start, categoryRanges.row2.end) + '</div>';
+            allBuildingIconsHTML += '<div style="min-width: 600px;">' + generateIconsForRange(categoryRanges.row3.start, categoryRanges.row3.end) + '</div>';
             
             // Generate prestige goods icons
             let prestigeIconsHTML = '';
