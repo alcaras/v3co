@@ -2763,27 +2763,27 @@ class Victoria3CompanyParserV6Final:
         html += '''
     <!-- Legend/Key Table -->
     <div id="legend" class="building-section">
-        <h2>Symbol Legend</h2>
+        <h2>Key</h2>
         <div class="table-container">
             <table class="building-table">
                 <thead>
                     <tr>
+                        <th class="building-header" style="min-width: 120px;">Example</th>
                         <th class="company-header">Meaning</th>
-                        <th class="building-header" style="min-width: 120px;">e.g.</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="company-name">Prestige Good</td>
                         <td class="prestige-building"><img src="icons/24px-Prestige_ford_automobiles.png" width="16" height="16" alt="Prestige Good Example" title="Prestige Good"></td>
+                        <td class="company-name">Prestige Good</td>
                     </tr>
                     <tr>
-                        <td class="company-name">Base Building</td>
                         <td class="base-building">&#x25CF;</td>
+                        <td class="company-name">Base Building</td>
                     </tr>
                     <tr>
-                        <td class="company-name">Industry Charter</td>
                         <td class="extension-building">&#x25CB;</td>
+                        <td class="company-name">Industry Charter</td>
                     </tr>
                 </tbody>
             </table>
@@ -2832,8 +2832,7 @@ class Victoria3CompanyParserV6Final:
                 building_icon_html = '<img src="{}" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="{} icon">'.format(building_icon_path, display_name)
             
             html += '''
-    <h2 id="{}">{}{} <a href="#custom-companies-section" class="back-to-top" title="Back to Selected Companies">↑ Back to Top</a></h2>
-    <p class="building-summary">Companies that can utilize this building: {}</p>
+    <h2 id="{}">{}{} ({}) <a href="#custom-companies-section" class="back-to-top" title="Back to Selected Companies">↑ Back to Top</a></h2>
     
     <div class="table-container">
         <table class="building-table sortable">
