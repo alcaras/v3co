@@ -3049,6 +3049,10 @@ class Victoria3CompanyParserV6Final:
         html += '''
         };
         
+        // Global country mappings for flags and names
+        const countryFlags = ''' + self._get_country_flags_js() + ''';
+        const countryNames = ''' + self._get_country_names_js() + ''';
+        
         function getCompanyIconPath(companyName) {
             // Remove company_ prefix for icon lookup
             const cleanName = companyName.replace('company_', '');
