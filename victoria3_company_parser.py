@@ -4110,7 +4110,38 @@ class Victoria3CompanyParserV6Final:
                     let cellClass = "";
                     let onClick = "";
                     
-                    if (hasBase && hasExtension) {
+                    // Check if company has prestige goods for this building
+                    let hasPrestige = false;
+                    let prestigeGood = null;
+                    if (hasBase && company.prestige_goods) {
+                        // Use same prestige logic as main tables
+                        const buildingToGoods = ''' + self._get_building_to_goods_js() + ''';
+                        const prestigeToBase = ''' + self._get_prestige_to_base_goods_js() + ''';
+                        
+                        const buildingGood = buildingToGoods[building];
+                        if (buildingGood) {
+                            for (const prestige of company.prestige_goods) {
+                                const baseGood = prestigeToBase[prestige];
+                                if (baseGood === buildingGood) {
+                                    hasPrestige = true;
+                                    prestigeGood = prestige;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (hasPrestige && prestigeGood) {
+                        // Show prestige icon instead of circle
+                        const prestigeIconPaths = ''' + self._get_prestige_icon_mappings_js() + ''';
+                        const iconPath = prestigeIconPaths[prestigeGood] || 'icons/40px-Goods_services.png';
+                        const prestigeName = prestigeGood.replace('prestige_good_', '').replace(/_/g, ' ');
+                        cellContent = `<img src="${iconPath}" width="16" height="16" alt="${prestigeName}" title="${prestigeName}">`;
+                        cellClass = "prestige-building";
+                        title = `Prestige Good: ${prestigeName}`;
+                        style = '';
+                        // No onClick for prestige buildings - they're always prestige
+                    } else if (hasBase && hasExtension) {
                         if (selectedCharter === building) {
                             cellContent = "&#x25CF;"; // Filled circle for selected charter
                             cellClass = "base-building selected-charter";
@@ -4122,10 +4153,14 @@ class Victoria3CompanyParserV6Final:
                             cellClass = "base-building clickable-charter";
                         }
                         onClick = `onclick="selectCharter('${companyName}', '${building}')"`;
+                        title = `Industry Charter: Click to ${selectedCharter === building ? 'deselect' : 'select'}`;
+                        style = 'cursor: pointer;';
                     } else if (hasBase) {
                         // Base building only - always present, not selectable
                         cellContent = "&#x25CF;";
                         cellClass = "base-building";
+                        title = 'Base Building: Always available';
+                        style = '';
                         // No onClick for base buildings - they're always available
                     } else if (hasExtension) {
                         if (selectedCharter === building) {
@@ -4139,17 +4174,6 @@ class Victoria3CompanyParserV6Final:
                             cellClass = "extension-building clickable-charter";
                         }
                         onClick = `onclick="selectCharter('${companyName}', '${building}')"`;
-                    }
-                    
-                    let title = '';
-                    let style = '';
-                    
-                    if (hasBase && !hasExtension) {
-                        // Base building only - not selectable
-                        title = 'Base Building: Always available';
-                        style = '';
-                    } else if (hasExtension || (hasBase && hasExtension)) {
-                        // Charter building - selectable
                         title = `Industry Charter: Click to ${selectedCharter === building ? 'deselect' : 'select'}`;
                         style = 'cursor: pointer;';
                     }
@@ -4638,6 +4662,20 @@ class Victoria3CompanyParserV6Final:
         mappings_js = []
         for prestige_good, icon_path in prestige_icon_paths.items():
             mappings_js.append(f'"{prestige_good}": "{icon_path}"')
+        return '{' + ', '.join(mappings_js) + '}'
+    
+    def _get_building_to_goods_js(self):
+        """Generate JavaScript object with building to goods mappings"""
+        mappings_js = []
+        for building, good in self.building_to_goods.items():
+            mappings_js.append(f'"{building}": "{good}"')
+        return '{' + ', '.join(mappings_js) + '}'
+    
+    def _get_prestige_to_base_goods_js(self):
+        """Generate JavaScript object with prestige good to base good mappings"""
+        mappings_js = []
+        for prestige_good, base_good in self.prestige_goods.items():
+            mappings_js.append(f'"{prestige_good}": "{base_good}"')
         return '{' + ', '.join(mappings_js) + '}'
 
     def save_html_report(self, filename="index.html"):
