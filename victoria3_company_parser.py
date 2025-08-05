@@ -3666,7 +3666,7 @@ class Victoria3CompanyParserV6Final:
             // Add country flags for selected companies
             const countries = new Set();
             customCompanies.forEach(companyKey => {
-                const company = allCompanies[companyKey];
+                const company = companyData[companyKey];
                 if (company && company.country) {
                     countries.add(company.country);
                 }
