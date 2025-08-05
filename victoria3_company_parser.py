@@ -2562,6 +2562,12 @@ class Victoria3CompanyParserV6Final:
             border: 1px solid #FF9800;
         }
         
+        /* Hide columns for buildings already covered by selected companies */
+        .building-column-hidden {
+            display: none !important;
+        }
+        
+        
         .prestige-building {
             background: linear-gradient(135deg, #BBDEFB, #90CAF9);
             border: 2px solid #1976D2;
@@ -2673,20 +2679,55 @@ class Victoria3CompanyParserV6Final:
     
     <!-- Custom Company Collection Section -->
     <div id="custom-companies-section">
-        <h2>Selected Companies</h2>
-        <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: flex-end; align-items: center;">
-            <div class="import-export-buttons" style="margin-right: 20px;">
-                <button onclick="generateShareURL()" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🔗 Share Build</button>
-                <button onclick="saveSelection()" class="control-btn save-btn">📁 Export to JSON</button>
-                <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
-                <input type="file" id="import-file-input" accept=".json" onchange="importSelection(event)" style="display: none;">
+        <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 id="selected-companies-title" style="margin: 0;">Selected Companies (0)</h2>
+            <div style="display: flex; align-items: center;">
+                <div class="import-export-buttons" style="margin-right: 20px;">
+                    <button onclick="generateShareURL()" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🔗 Share Build</button>
+                    <button onclick="saveSelection()" class="control-btn save-btn">💾 Export to JSON</button>
+                    <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
+                    <input type="file" id="import-file-input" accept=".json" onchange="importSelection(event)" style="display: none;">
+                </div>
+                <button onclick="clearSelection()" class="control-btn clear-btn">🗑️ Clear Selection</button>
             </div>
-            <button onclick="clearSelection()" class="control-btn clear-btn">🗑️ Clear Selection</button>
         </div>
+        
+        <!-- Tutorial text - shown when no companies selected -->
+        <div id="tutorial-text" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+            <p style="margin: 0 0 12px 0; color: #495057; font-weight: 500;">Getting Started:</p>
+            <ul style="margin: 0; padding-left: 20px; color: #666; line-height: 1.6;">
+                <li>Add companies from the tables below by checking the boxes</li>
+                <li>Once you add companies, you can select which industry charter you want for a company by clicking on the charter you want: <span style="display: inline-flex; align-items: center; width: 16px; height: 16px; background: #FFF3E0; border: 1px solid #FF9800; border-radius: 2px; justify-content: center; font-size: 10px; margin: 0 2px;">○</span></li>
+                <li>You can also drag and drop companies to reorder them</li>
+                <li>The numbers next to companies indicate the number of base buildings and industry charters that don't overlap with your selected companies.
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px;">
+                        <li>For example, 3.1 means a company has 3 base buildings and 1 potential industry charter.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Key/Legend moved here -->
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #dee2e6;">
+                <p style="margin: 0 0 8px 0; color: #495057; font-weight: 500;">Key:</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; color: #666;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <div class="prestige-building" style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 3px;"><img src="icons/24px-Prestige_ford_automobiles.png" width="16" height="16" alt="Prestige Good Example" title="Prestige Good"></div>
+                        <span>Prestige Good</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <div style="width: 20px; height: 20px; background: #E3F2FD; border: 1px solid #2196F3; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 12px;">●</div>
+                        <span>Base Building</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <div style="width: 20px; height: 20px; background: #FFF3E0; border: 1px solid #FF9800; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 12px;">○</div>
+                        <span>Charter Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div id="custom-companies-table">
-            <p style="text-align: left; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>
         </div>
-        <br>
     </div>
     
     <!-- Company tooltip -->
@@ -2764,36 +2805,6 @@ class Victoria3CompanyParserV6Final:
         </div>
     </div>'''
         
-        # Add Legend/Key table
-        html += '''
-    <!-- Legend/Key Table -->
-    <div id="legend" class="building-section">
-        <h2>Key</h2>
-        <div class="table-container">
-            <table class="building-table">
-                <thead>
-                    <tr>
-                        <th class="building-header" style="min-width: 120px;">Example</th>
-                        <th class="company-header">Meaning</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="prestige-building"><img src="icons/24px-Prestige_ford_automobiles.png" width="16" height="16" alt="Prestige Good Example" title="Prestige Good"></td>
-                        <td class="company-name">Prestige Good</td>
-                    </tr>
-                    <tr>
-                        <td class="base-building">&#x25CF;</td>
-                        <td class="company-name">Base Building</td>
-                    </tr>
-                    <tr>
-                        <td class="extension-building">&#x25CB;</td>
-                        <td class="company-name">Industry Charter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>'''
         
         # Generate separate table for each building
         for building in buildings_to_analyze:
@@ -2845,16 +2856,17 @@ class Victoria3CompanyParserV6Final:
                 building_icon_html = '<img src="{}" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;" alt="{} icon">'.format(building_icon_path, display_name)
             
             html += '''
-    <h2 id="{}">{}{} ({}) <a href="#custom-companies-section" class="back-to-top" title="Back to Selected Companies">↑ Back to Top</a></h2>
-    
-    <div class="table-container">
+    <div class="building-section" id="building-{}">
+        <h2 id="{}">{}{} ({}) <a href="#custom-companies-section" class="back-to-top" title="Back to Selected Companies">↑ Back to Top</a></h2>
+        
+        <div class="table-container">
         <table class="building-table sortable">
             <thead>
                 <tr>
                     <th class="select-column" title="Select Company">☐</th>
                     <th class="flag-column" title="Country">🏳️</th>
                     <th class="buildings-column" title="Base Coverage . Available Industry Charters">📊</th>
-                    <th class="company-name">Company Name</th>'''.format(anchor_name, building_icon_html, display_name, len(all_companies_with_building))
+                    <th class="company-name">Company Name</th>'''.format(building, anchor_name, building_icon_html, display_name, len(all_companies_with_building))
             
             # Add columns for all buildings these companies can use (frequency ordered within this company set)
             for avail_building in available_buildings:
@@ -3023,6 +3035,7 @@ class Victoria3CompanyParserV6Final:
             html += '''
             </tbody>
         </table>
+        </div>
     </div>'''
         
         html += '''
@@ -3537,6 +3550,101 @@ class Victoria3CompanyParserV6Final:
             return allBuildings; // Return Set, not array
         }
         
+        // Building coverage tracking for selected companies
+        function getCoveredBuildings() {
+            const customCompanies = getCustomCompanies();
+            const selectedCharters = getSelectedCharters();
+            const coveredBuildings = new Set();
+            
+            customCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (!company) return;
+                
+                // Add base buildings
+                company.base_buildings.forEach(building => coveredBuildings.add(building));
+                
+                // Add selected charter (prioritized) or all charters if none selected
+                const selectedCharter = selectedCharters[companyName];
+                if (selectedCharter && company.industry_charters.includes(selectedCharter)) {
+                    coveredBuildings.add(selectedCharter);
+                } else {
+                    // If no charter selected, add all available charters
+                    company.industry_charters.forEach(building => coveredBuildings.add(building));
+                }
+            });
+            
+            return coveredBuildings;
+        }
+        
+        function updateBuildingCoverage() {
+            const coveredBuildings = getCoveredBuildings();
+            console.log('Covered buildings:', Array.from(coveredBuildings));
+            
+            // Show all previously hidden columns first
+            document.querySelectorAll('.building-column-hidden').forEach(element => {
+                element.classList.remove('building-column-hidden');
+            });
+            
+            // Hide columns for covered buildings ONLY in building section tables (NOT company selection)
+            console.log('🔍 Debugging table selectors:');
+            console.log('All .building-section elements:', document.querySelectorAll('.building-section').length);
+            console.log('All table elements:', document.querySelectorAll('table').length);
+            console.log('All .building-table elements:', document.querySelectorAll('.building-table').length);
+            console.log('All .building-section table:', document.querySelectorAll('.building-section table').length);
+            console.log('Target selector .building-section table.building-table:', document.querySelectorAll('.building-section table.building-table').length);
+            
+            document.querySelectorAll('.building-section table.building-table').forEach(table => {
+                // Skip the legend table and company selection table
+                if (table.closest('#legend') || table.closest('#custom-companies-table')) {
+                    return;
+                }
+                
+                const headers = table.querySelectorAll('th.building-header');
+                console.log('Found', headers.length, 'building headers in building table');
+                console.log('Table parent section:', table.closest('.building-section')?.id);
+                
+                headers.forEach((header, colIndex) => {
+                    const headerBg = header.style.backgroundImage;
+                    console.log(`Header ${colIndex}: backgroundImage = "${headerBg}"`);
+                    
+                    if (!headerBg) {
+                        console.log('No background image for header', colIndex);
+                        return;
+                    }
+                    
+                    // Extract building name from background image path
+                    const match = headerBg.match(/Building_([^.]+)/);
+                    if (!match) {
+                        console.log('No building match for', headerBg);
+                        return;
+                    }
+                    
+                    const buildingName = 'building_' + match[1];
+                    const isCovered = coveredBuildings.has(buildingName);
+                    console.log(`Building: ${buildingName}, Covered: ${isCovered}`);
+                    
+                    if (isCovered) {
+                        // Hide the header column
+                        header.classList.add('building-column-hidden');
+                        console.log('✅ Hiding header for building:', buildingName);
+                        
+                        // Hide all cells in this column
+                        const rows = table.querySelectorAll('tbody tr');
+                        console.log('Hiding', rows.length, 'cells for building', buildingName);
+                        
+                        rows.forEach(row => {
+                            const cell = row.cells[colIndex + 4]; // Fixed offset: checkbox, flag, buildings count, company name = 4
+                            if (cell && !cell.classList.contains('company-name')) {
+                                cell.classList.add('building-column-hidden');
+                                console.log('✅ Hidden cell in column', colIndex + 4);
+                            }
+                        });
+                    }
+                });
+            });
+        }
+        
+        
         // Define building order by categories (global scope for use in multiple functions)
         const buildingOrder = [
             // Extraction
@@ -3755,7 +3863,7 @@ class Victoria3CompanyParserV6Final:
                     titleText += ' (Not covered)';
                 }
                 
-                allBuildingIconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}" onerror="this.style.display='none'">`;
+                allBuildingIconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}; cursor: pointer;" onclick="location.href='#building-${building}'" onerror="this.style.display='none'">`;
             });
             
             // Generate prestige goods icons
@@ -3872,12 +3980,26 @@ class Victoria3CompanyParserV6Final:
             const customCompanies = getCustomCompanies();
             const customTableDiv = document.getElementById('custom-companies-table');
             
+            // Update the title with count
+            const titleElement = document.getElementById('selected-companies-title');
+            if (titleElement) {
+                titleElement.textContent = `Selected Companies (${customCompanies.length})`;
+            }
+            
             // Update button states
             updateControlButtons();
             
+            // Update building coverage indicators
+            setTimeout(() => updateBuildingCoverage(), 0);
+            
+            // Show/hide tutorial text based on whether companies are selected
+            const tutorialText = document.getElementById('tutorial-text');
             if (customCompanies.length === 0) {
-                customTableDiv.innerHTML = '<p style="text-align: left; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>';
+                if (tutorialText) tutorialText.style.display = 'block';
+                customTableDiv.innerHTML = ''; // Clear any existing content
                 return;
+            } else {
+                if (tutorialText) tutorialText.style.display = 'none';
             }
             // Get all buildings used by selected companies, ordered by logical categories
             const allBuildingsRaw = getAllBuildingsForCompanies(customCompanies);
@@ -4247,9 +4369,9 @@ class Victoria3CompanyParserV6Final:
                     const importedCount = validCompanies.length;
                     const totalCount = selectionData.companies.length;
                     
-                    if (importedCount === totalCount) {
-                        alert(`Successfully imported ${importedCount} companies.`);
-                    } else {
+                    // Silent import - no popup needed for successful imports
+                    // Only show alert if there were issues
+                    if (importedCount < totalCount) {
                         alert(`Imported ${importedCount} out of ${totalCount} companies. ${totalCount - importedCount} companies were not found in the current data.`);
                     }
                     
@@ -4386,11 +4508,15 @@ class Victoria3CompanyParserV6Final:
             var tables = document.querySelectorAll('table.sortable');
             tables.forEach(makeSortable);
             
+            
             // Load from URL first, then update UI
             loadFromURL();
             updateCustomTable();
             updateCheckboxes();
             updateControlButtons();
+            
+            // Initialize building coverage indicators
+            setTimeout(() => updateBuildingCoverage(), 100);
         });
     </script>
 </body>
