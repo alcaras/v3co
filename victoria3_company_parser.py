@@ -4261,9 +4261,7 @@ class Victoria3CompanyParserV6Final:
             }
             customTableDiv.innerHTML = tableHTML;
             
-            // Make the custom table sortable
-            const customTable = document.querySelector('#custom-companies-table table');
-            if (customTable) makeSortable(customTable);
+            // Custom table is not sortable - users can drag to reorder companies manually
         }
         
         function updateCheckboxes() {
