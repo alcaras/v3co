@@ -3545,18 +3545,8 @@ class Victoria3CompanyParserV6Final:
             companyNames.forEach(companyName => {
                 const company = companyData[companyName];
                 if (company) {
-                    company.base_buildings.forEach(building => {
-                        allBuildings.add(building);
-                        if (building === 'building_urban_center') {
-                            console.log('🏙️ Urban Center found in company:', companyName, 'as base building');
-                        }
-                    });
-                    company.industry_charters.forEach(building => {
-                        allBuildings.add(building);
-                        if (building === 'building_urban_center') {
-                            console.log('🏙️ Urban Center found in company:', companyName, 'as industry charter');
-                        }
-                    });
+                    company.base_buildings.forEach(building => allBuildings.add(building));
+                    company.industry_charters.forEach(building => allBuildings.add(building));
                 }
             });
             return allBuildings; // Return Set, not array
@@ -3612,43 +3602,27 @@ class Victoria3CompanyParserV6Final:
                 }
                 
                 const headers = table.querySelectorAll('th.building-header');
-                console.log('Found', headers.length, 'building headers in building table');
-                console.log('Table parent section:', table.closest('.building-section')?.id);
-                
                 headers.forEach((header, colIndex) => {
                     const headerBg = header.style.backgroundImage;
-                    console.log(`Header ${colIndex}: backgroundImage = "${headerBg}"`);
-                    
-                    if (!headerBg) {
-                        console.log('No background image for header', colIndex);
-                        return;
-                    }
+                    if (!headerBg) return;
                     
                     // Extract building name from background image path
                     const match = headerBg.match(/Building_([^.]+)/);
-                    if (!match) {
-                        console.log('No building match for', headerBg);
-                        return;
-                    }
+                    if (!match) return;
                     
                     const buildingName = 'building_' + match[1];
                     const isCovered = coveredBuildings.has(buildingName);
-                    console.log(`Building: ${buildingName}, Covered: ${isCovered}`);
                     
                     if (isCovered) {
                         // Hide the header column
                         header.classList.add('building-column-hidden');
-                        console.log('✅ Hiding header for building:', buildingName);
                         
                         // Hide all cells in this column
                         const rows = table.querySelectorAll('tbody tr');
-                        console.log('Hiding', rows.length, 'cells for building', buildingName);
-                        
                         rows.forEach(row => {
                             const cell = row.cells[colIndex + 4]; // Fixed offset: checkbox, flag, buildings count, company name = 4
                             if (cell && !cell.classList.contains('company-name')) {
                                 cell.classList.add('building-column-hidden');
-                                console.log('✅ Hidden cell in column', colIndex + 4);
                             }
                         });
                     }
@@ -3959,7 +3933,7 @@ class Victoria3CompanyParserV6Final:
                 summaryHTML += `${charterBuildings.size} charters`;
             }
             summaryHTML += `, ${totalOverlaps} overlaps`;
-            summaryHTML += `<br><div style="margin-top: 4px;">${allBuildingIconsHTML}</div>`;
+            summaryHTML += `<br><div style="margin-top: 4px; min-width: 600px;">${allBuildingIconsHTML}</div>`;
             
             // Show overlap details if any exist
             if (totalOverlaps > 0) {
@@ -4200,7 +4174,9 @@ class Victoria3CompanyParserV6Final:
                         const tableWidth = tableElement.offsetWidth;
                         // Account for summary padding (12px left + 12px right = 24px) and border (2px)
                         const adjustedWidth = tableWidth - 26;
-                        summarySection.style.width = adjustedWidth + 'px';
+                        // Ensure minimum width is respected (600px min-width)
+                        const finalWidth = Math.max(adjustedWidth, 600);
+                        summarySection.style.width = finalWidth + 'px';
                     }
                 }, 0);
             }
@@ -4546,6 +4522,38 @@ class Victoria3CompanyParserV6Final:
             // Initialize building coverage indicators
             setTimeout(() => updateBuildingCoverage(), 100);
         });
+        
+        // Console helper functions for debugging
+        window.debugSelectAllCompanies = function() {
+            const allCompanies = Object.keys(companyData);
+            console.log(`Selecting all ${allCompanies.length} companies...`);
+            
+            allCompanies.forEach(companyName => {
+                const checkbox = document.querySelector(`input[data-company="${companyName}"]`);
+                if (checkbox && !checkbox.checked) {
+                    checkbox.checked = true;
+                    toggleCompanySelection(companyName);
+                }
+            });
+            
+            console.log('✅ All companies selected');
+        };
+        
+        window.debugShowMissingRequirements = function() {
+            const selectedCompanies = getCustomCompanies();
+            console.log('Checking formation requirements for', selectedCompanies.length, 'selected companies...');
+            
+            selectedCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company && company.requirements) {
+                    company.requirements.forEach(req => {
+                        if (req.includes('Control') && !req.includes('(') && !req.includes('Level')) {
+                            console.log(`❌ Missing short name for: "${req}" (${company.name})`);
+                        }
+                    });
+                }
+            });
+        };
     </script>
 </body>
 </html>'''
