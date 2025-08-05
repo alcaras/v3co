@@ -4109,6 +4109,8 @@ class Victoria3CompanyParserV6Final:
                     let cellContent = "";
                     let cellClass = "";
                     let onClick = "";
+                    let title = "";
+                    let style = "";
                     
                     // Check if company has prestige goods for this building
                     let hasPrestige = false;
