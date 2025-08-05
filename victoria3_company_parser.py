@@ -3669,16 +3669,37 @@ class Victoria3CompanyParserV6Final:
             
             let summaryHTML = '<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px;">';
             
-            // Collect country flags for selected companies
+            // Collect country flags and state requirements for selected companies
             const countries = new Set();
+            const stateRequirements = new Set();
             customCompanies.forEach(companyKey => {
                 const company = companyData[companyKey];
                 if (company && company.country) {
                     countries.add(company.country);
                 }
+                // Extract state names from requirements
+                if (company && company.requirements) {
+                    company.requirements.forEach(req => {
+                        // Look for state names - patterns like "Control state STATE_NAME" or "New York" etc.
+                        const stateMatch = req.match(/(?:STATE_|state )([A-Z_][A-Z_]+)|(?:Control state )([A-Z][A-Za-z\s]+)|([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:incorporated|is an incorporated)/i);
+                        if (stateMatch) {
+                            let stateName = stateMatch[1] || stateMatch[2] || stateMatch[3];
+                            if (stateName) {
+                                // Clean up state name
+                                stateName = stateName.replace(/STATE_/g, '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+                                stateRequirements.add(stateName);
+                            }
+                        }
+                        // Also look for common state patterns
+                        const commonStates = req.match(/\b(New York|Pennsylvania|Michigan|California|Texas|Ohio|Illinois|Connecticut|Arkansas|Bohemia|Saxony|Buenos Aires|Rio de Janeiro|São Paulo|Bombay|Kansai|Home Counties|Île-de-France|French Low Countries|Flanders|Wallonia|Zealand|Mazovia|Warszawa|Piedmont|Lombardy)\b/);
+                        if (commonStates) {
+                            stateRequirements.add(commonStates[1]);
+                        }
+                    });
+                }
             });
             
-            // Build title with flags
+            // Build title with flags and states
             let titleHTML = 'Selected Companies (' + customCompanies.length + ')';
             if (countries.size > 0) {
                 titleHTML += ' ';
@@ -3688,6 +3709,9 @@ class Victoria3CompanyParserV6Final:
                         titleHTML += flag + ' ';
                     }
                 });
+            }
+            if (stateRequirements.size > 0) {
+                titleHTML += '<span style="color: #555; font-weight: normal;">(' + Array.from(stateRequirements).sort().join(', ') + ')</span>';
             }
             summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">' + titleHTML + '</h4>';
             
