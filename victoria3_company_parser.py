@@ -3606,6 +3606,7 @@ class Victoria3CompanyParserV6Final:
                 "Control region in Region North China (level 5+ buildings required)": "Region: North China",
                 "Control region in Region North Germany (level 5+ buildings required)": "Region: North Germany",
                 "Control region in Region Persia (level 5+ buildings required)": "Region: Persia",
+                "Control region in Region The Midwest (level 5+ buildings required)": "Region: The Midwest",
                 "Control region in Region Balkans (level 5+ buildings required)": "Region: Balkans",
                 
                 // Journal requirements would go here when found
@@ -3772,7 +3773,7 @@ class Victoria3CompanyParserV6Final:
             const totalOverlaps = Object.keys(overlaps).length;
             const actualBonuses = Array.from(allPrestigeBonuses);
             
-            let summaryHTML = '<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px; position: relative;">';
+            let summaryHTML = '<div id="summary-section" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px; position: relative;">';
             
             // Collect country flags and state requirements for selected companies
             const countries = new Set();
@@ -3783,8 +3784,8 @@ class Victoria3CompanyParserV6Final:
                     countries.add(company.country);
                 }
                 // Extract territorial requirements using mapping
-                if (company && company.formation_requirements) {
-                    company.formation_requirements.forEach(req => {
+                if (company && company.requirements) {
+                    company.requirements.forEach(req => {
                         const territorialReq = getSimpleTerritorialRequirement(req);
                         if (territorialReq) {
                             stateRequirements.add(territorialReq);
@@ -4039,6 +4040,20 @@ class Victoria3CompanyParserV6Final:
             
             // Add dynamic summary section
             tableHTML += generateSummarySection(customCompanies);
+            
+            // Schedule width adjustment for next frame to ensure table is rendered
+            if (customCompanies.length > 0) {
+                setTimeout(() => {
+                    const summarySection = document.getElementById('summary-section');
+                    const tableElement = document.querySelector('#custom-companies-table .building-table');
+                    if (summarySection && tableElement) {
+                        const tableWidth = tableElement.offsetWidth;
+                        // Account for summary padding (12px left + 12px right = 24px) and border (2px)
+                        const adjustedWidth = tableWidth - 26;
+                        summarySection.style.width = adjustedWidth + 'px';
+                    }
+                }, 0);
+            }
             
             // Only show instructions when no companies are selected
             if (customCompanies.length === 0) {
