@@ -3555,8 +3555,8 @@ class Victoria3CompanyParserV6Final:
                 }
                 
                 // Add actual prestige bonuses from companies
-                if (company.prestige_bonuses) {
-                    company.prestige_bonuses.forEach(bonus => allPrestigeBonuses.add(bonus));
+                if (company.bonuses) {
+                    company.bonuses.forEach(bonus => allPrestigeBonuses.add(bonus));
                 }
             });
             
