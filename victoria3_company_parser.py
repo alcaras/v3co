@@ -2392,7 +2392,8 @@ class Victoria3CompanyParserV6Final:
         }
         
         .control-btn:disabled {
-            background-color: #6c757d;
+            background-color: #6c757d !important;
+            color: #fff !important;
             cursor: not-allowed;
             opacity: 0.6;
         }
@@ -3927,12 +3928,6 @@ class Victoria3CompanyParserV6Final:
             const saveBtn = document.querySelector('.save-btn');
             if (saveBtn) {
                 saveBtn.disabled = isEmpty;
-            }
-            
-            // Update Share button
-            const shareBtn = document.querySelector('.share-btn');
-            if (shareBtn) {
-                shareBtn.disabled = isEmpty;
             }
             
             // Update Share button
