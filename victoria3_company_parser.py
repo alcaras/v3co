@@ -2702,7 +2702,8 @@ class Victoria3CompanyParserV6Final:
                 data = self.companies[company_name]
                 
                 # Priority: companies with prestige > base > extension
-                has_prestige = any(company_name == comp for comp, _ in companies_with_prestige)
+                # Check if company has ANY prestige goods, not just for this specific building
+                has_prestige = bool(data.get('possible_prestige_goods', []))
                 has_base = building in data['building_types']
                 has_extension = building in data['extension_building_types']
                 
