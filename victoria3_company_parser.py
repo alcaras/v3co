@@ -2635,7 +2635,7 @@ class Victoria3CompanyParserV6Final:
             
             # Combine all companies for this building
             all_companies_with_building = set()
-            for company, _ in companies_with_base + companies_with_extension:
+            for company, _ in companies_with_base + companies_with_extension + companies_with_prestige:
                 all_companies_with_building.add(company)
             
             if not all_companies_with_building:
