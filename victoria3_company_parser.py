@@ -3669,25 +3669,43 @@ class Victoria3CompanyParserV6Final:
             
             let summaryHTML = '<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px;">';
             
-            // Add country flags for selected companies
+            // Collect country flags and state requirements for selected companies
             const countries = new Set();
+            const stateRequirements = new Set();
             customCompanies.forEach(companyKey => {
                 const company = companyData[companyKey];
                 if (company && company.country) {
                     countries.add(company.country);
                 }
+                // Collect state requirements from company data
+                if (company && company.requirements) {
+                    company.requirements.forEach(req => {
+                        if (req.includes('state') || req.includes('incorporated') || req.includes('region')) {
+                            stateRequirements.add(req);
+                        }
+                    });
+                }
             });
             
+            // Build title with flags
+            let titleHTML = 'Selected Companies (' + customCompanies.length + ')';
             if (countries.size > 0) {
-                summaryHTML += '<div style="margin-bottom: 8px;"><strong>Countries:</strong> ';
+                titleHTML += ' ';
                 Array.from(countries).forEach(country => {
                     const flag = countryFlags[country] || '';
-                    const name = countryNames[country] || country;
-                    summaryHTML += `<span style="margin-right: 8px;">${flag} ${name}</span>`;
+                    if (flag) {
+                        titleHTML += flag + ' ';
+                    }
                 });
+            }
+            summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">' + titleHTML + '</h4>';
+            
+            // Add state requirements if any
+            if (stateRequirements.size > 0) {
+                summaryHTML += '<div style="margin-bottom: 8px; font-size: 12px; color: #666;"><strong>State Requirements:</strong> ';
+                summaryHTML += Array.from(stateRequirements).join(', ');
                 summaryHTML += '</div>';
             }
-            summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">Selected Companies (' + customCompanies.length + ')</h4>';
             
             // Compact buildings section - showing all buildings with coverage status
             const totalAvailableBuildings = buildingOrder.length;
