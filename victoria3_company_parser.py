@@ -2206,7 +2206,7 @@ class Victoria3CompanyParserV6Final:
         }
         
         .building-table th, .building-table td {
-            padding: 8px;
+            padding: 0px !important;
             text-align: center;
             border-bottom: 1px solid #e0ddd4;
             white-space: nowrap;
@@ -2316,8 +2316,9 @@ class Victoria3CompanyParserV6Final:
         }
         
         .select-column {
-            width: 40px;
+            width: 20px;
             text-align: center;
+            padding: 0px !important;
         }
         
         .company-checkbox {
@@ -2454,12 +2455,12 @@ class Victoria3CompanyParserV6Final:
         .building-table td.flag-column,
         th.flag-column,
         td.flag-column {
-            width: 50px !important;
-            min-width: 50px !important;
-            max-width: 50px !important;
+            width: 24px !important;
+            min-width: 24px !important;
+            max-width: 24px !important;
             text-align: center !important;
-            font-size: 18px !important;
-            padding: 2px !important;
+            font-size: 14px !important;
+            padding: 0px !important;
             overflow: hidden !important;
             white-space: nowrap !important;
         }
@@ -2471,11 +2472,12 @@ class Victoria3CompanyParserV6Final:
         .building-table td.buildings-column,
         th.buildings-column,
         td.buildings-column {
-            width: 60px !important;
-            min-width: 60px !important;
-            max-width: 60px !important;
+            width: 28px !important;
+            min-width: 28px !important;
+            max-width: 28px !important;
             text-align: center !important;
-            padding: 2px !important;
+            padding: 0px !important;
+            font-size: 12px !important;
             overflow: hidden !important;
             white-space: nowrap !important;
         }
@@ -2499,11 +2501,11 @@ class Victoria3CompanyParserV6Final:
         table.building-table td:not(.flag-column):not(.buildings-column):not(.company-name),
         .building-table th:not(.flag-column):not(.buildings-column):not(.company-name),
         .building-table td:not(.flag-column):not(.buildings-column):not(.company-name) {
-            width: 50px !important;
-            min-width: 50px !important;
-            max-width: 50px !important;
+            width: 36px !important;
+            min-width: 36px !important;
+            max-width: 36px !important;
             text-align: center !important;
-            padding: 4px !important;
+            padding: 0px !important;
             overflow: hidden !important;
             white-space: nowrap !important;
         }
@@ -2515,16 +2517,18 @@ class Victoria3CompanyParserV6Final:
         }
         
         .building-header {
-            width: 50px;
-            min-width: 50px;
-            max-width: 50px;
-            height: 50px;
-            background-size: 40px 40px;
+            width: 36px;
+            min-width: 36px;
+            max-width: 36px;
+            height: 36px;
+            background-size: 32px 32px;
             background-repeat: no-repeat;
             background-position: center;
             background-color: #f8f8f8;
             border: 1px solid #ddd;
             position: relative;
+            padding: 0px !important;
+            margin: 0px !important;
         }
         
         .building-header.missing-icon {
@@ -2673,11 +2677,11 @@ class Victoria3CompanyParserV6Final:
         <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: flex-end; align-items: center;">
             <div class="import-export-buttons" style="margin-right: 20px;">
                 <button onclick="generateShareURL()" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🔗 Share Build</button>
-                <button onclick="saveSelection()" class="control-btn save-btn">Export to JSON</button>
-                <button onclick="triggerImportSelection()" class="control-btn import-btn">Import from JSON</button>
+                <button onclick="saveSelection()" class="control-btn save-btn">📁 Export to JSON</button>
+                <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
                 <input type="file" id="import-file-input" accept=".json" onchange="importSelection(event)" style="display: none;">
             </div>
-            <button onclick="clearSelection()" class="control-btn clear-btn">Clear Selection</button>
+            <button onclick="clearSelection()" class="control-btn clear-btn">🗑️ Clear Selection</button>
         </div>
         <div id="custom-companies-table">
             <p style="text-align: left; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>
@@ -2810,10 +2814,21 @@ class Victoria3CompanyParserV6Final:
             if not all_companies_with_building:
                 continue
             
-            # Get all buildings available to these companies (for columns) - frequency ordered by usage within this company set
-            available_buildings = self.get_all_buildings_for_companies(all_companies_with_building)
+            # Get all buildings available to these companies (for columns) - ordered by logical wiki categories
+            available_buildings_raw = self.get_all_buildings_for_companies(all_companies_with_building)
             
-            # Count usage within this specific company set
+            # Use the same logical order as the summary section (wiki_building_order)
+            available_buildings = []
+            for building in wiki_building_order:
+                if building in available_buildings_raw:
+                    available_buildings.append(building)
+            
+            # Add any remaining buildings not in wiki order (safety net)
+            for building in sorted(available_buildings_raw):
+                if building not in available_buildings:
+                    available_buildings.append(building)
+            
+            # Count usage within this specific company set (for tooltips)
             company_specific_counts = Counter()
             for company_name in all_companies_with_building:
                 if company_name in self.companies:
@@ -2822,9 +2837,6 @@ class Victoria3CompanyParserV6Final:
                         company_specific_counts[b] += 1
                     for b in data['extension_building_types']:
                         company_specific_counts[b] += 1
-            
-            # Sort buildings by usage frequency within this company set (most used first)
-            available_buildings = sorted(available_buildings, key=lambda b: (-company_specific_counts.get(b, 0), b))
             
             # Get building icon for header
             building_icon_path = self.get_building_icon_path(building)
@@ -3522,7 +3534,125 @@ class Victoria3CompanyParserV6Final:
                     company.industry_charters.forEach(building => allBuildings.add(building));
                 }
             });
-            return Array.from(allBuildings).sort();
+            return allBuildings; // Return Set, not array
+        }
+        
+        // Define building order by categories (global scope for use in multiple functions)
+        const buildingOrder = [
+            // Extraction
+            'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine', 
+            'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation', 
+            'building_sulfur_mine', 'building_whaling_station',
+            
+            // Manufacturing Industries  
+            'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry', 
+            'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants', 
+            'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks', 
+            'building_military_shipyards', 'building_motor_industry', 'building_munition_plants', 
+            'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants', 
+            'building_textile_mills', 'building_tooling',
+            
+            // Infrastructure + Urban Facilities
+            'building_ports', 'building_railways', 'building_urban_center',
+            
+            // Agriculture + Plantations + Ranches
+            'building_cattle_ranch', 'building_coffee_plantations', 'building_cotton_plantations', 
+            'building_dye_plantations', 'building_maize_farms', 'building_opium_plantations', 
+            'building_rice_farms', 'building_rye_farms', 'building_silk_plantations', 'building_sugar_plantations', 
+            'building_tea_plantations', 'building_tobacco_plantations', 'building_wheat_farms'
+        ];
+        
+        // Formation requirement to simple territorial name mapping
+        function getSimpleTerritorialRequirement(requirement) {
+            const territorialMappings = {
+                // Direct state control
+                "Control state STATE_BOHEMIA": "Bohemia",
+                "Control state STATE_BUENOS_AIRES": "Buenos Aires", 
+                "Control state STATE_SAXONY": "Saxony",
+                "Control state STATE_NANJING": "Nanjing",
+                "Control state STATE_ZHEJIANG": "Zhejiang",
+                "Control state STATE_SUZHOU": "Suzhou",
+                "Control state STATE_ILE_DE_FRANCE": "Île-de-France",
+                "Control state STATE_ARKANSAS": "Arkansas",
+                "Control state STATE_CONNECTICUT": "Connecticut",
+                "Control state STATE_AUSTRIA": "Austria",
+                "Control state STATE_KANSAI": "Kansai",
+                "Control state STATE_HOME_COUNTIES": "Home Counties",
+                "Control state STATE_SICILY": "Sicily",
+                "Control state STATE_MICHIGAN": "Michigan",
+                "Control state STATE_NEW_YORK": "New York",
+                "Control state STATE_PENNSYLVANIA": "Pennsylvania",
+                "Control state STATE_PANAMA": "Panama",
+                "Control state STATE_MASSACHUSETTS": "Massachusetts",
+                
+                // Regional control
+                "Control region in Region La Plata (level 5+ buildings required)": "Region: La Plata",
+                "Control region in Region Pacific Coast (level 5+ buildings required)": "Region: Pacific Coast", 
+                "Control region in Region South China (level 5+ buildings required)": "Region: South China",
+                "Control region in Region Bengal (level 5+ buildings required)": "Region: Bengal",
+                "Control region in Region Bombay (level 5+ buildings required)": "Region: Bombay",
+                "Control region in Region Brazil (level 5+ buildings required)": "Region: Brazil",
+                "Control region in Region Central Asia (level 5+ buildings required)": "Region: Central Asia",
+                "Control region in Region Central India (level 5+ buildings required)": "Region: Central India",
+                "Control region in Region Congo (level 5+ buildings required)": "Region: Congo",
+                "Control region in Region England (level 5+ buildings required)": "Region: England",
+                "Control region in Region Ethiopia (level 5+ buildings required)": "Region: Ethiopia",
+                "Control region in Region Indonesia (level 5+ buildings required)": "Region: Indonesia",
+                "Control region in Region Madras (level 5+ buildings required)": "Region: Madras",
+                "Control region in Region Manchuria (level 5+ buildings required)": "Region: Manchuria",
+                "Control region in Region Mexico (level 5+ buildings required)": "Region: Mexico",
+                "Control region in Region Niger (level 5+ buildings required)": "Region: Niger",
+                "Control region in Region Nile Basin (level 5+ buildings required)": "Region: Nile Basin",
+                "Control region in Region North China (level 5+ buildings required)": "Region: North China",
+                "Control region in Region North Germany (level 5+ buildings required)": "Region: North Germany",
+                "Control region in Region Persia (level 5+ buildings required)": "Region: Persia",
+                "Control region in Region Balkans (level 5+ buildings required)": "Region: Balkans",
+                
+                // Journal requirements would go here when found
+                // "Journal: Honorable Restoration": "Journal: Honorable Restoration",
+                
+                // Technology requirements are ignored (return null)
+                "Technology: Railways": null,
+                "Technology: Chemical Bleaching": null,
+                "Technology: Central Planning": null,
+                "Technology: Pumpjacks": null,
+            };
+            
+            // Check direct mapping first
+            if (territorialMappings.hasOwnProperty(requirement)) {
+                return territorialMappings[requirement];
+            }
+            
+            // Pattern-based fallbacks for common formats
+            const stateMatch = requirement.match(/^Control state STATE_([A-Z_]+)$/);
+            if (stateMatch) {
+                let stateName = stateMatch[1];
+                stateName = stateName.replace(/_/g, ' ').toLowerCase();
+                stateName = stateName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                console.warn(`Missing state mapping for: "${requirement}" -> suggested: "${stateName}"`);
+                return stateName;
+            }
+            
+            const regionMatch = requirement.match(/^Control region in Region ([^(]+) \(level 5\+ buildings required\)$/);
+            if (regionMatch) {
+                const regionName = regionMatch[1].trim();
+                console.warn(`Missing region mapping for: "${requirement}" -> suggested: "Region: ${regionName}"`);
+                return `Region: ${regionName}`;
+            }
+            
+            // Skip technology requirements silently
+            if (requirement.startsWith("Technology:")) {
+                return null;
+            }
+            
+            // Skip building level requirements silently  
+            if (requirement.includes("Level 5+") && !requirement.includes("Control")) {
+                return null;
+            }
+            
+            // For unmapped requirements, log and return the original text as fallback
+            console.warn(`Unmapped formation requirement: "${requirement}"`);
+            return requirement;
         }
         
         function generateSummarySection(customCompanies) {
@@ -3559,31 +3689,6 @@ class Victoria3CompanyParserV6Final:
                     company.bonuses.forEach(bonus => allPrestigeBonuses.add(bonus));
                 }
             });
-            
-            // Define building order by categories (same as table of contents)
-            const buildingOrder = [
-                // Extraction
-                'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine', 
-                'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation', 
-                'building_sulfur_mine', 'building_whaling_station',
-                
-                // Manufacturing Industries  
-                'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry', 
-                'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants', 
-                'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks', 
-                'building_military_shipyards', 'building_motor_industry', 'building_munition_plants', 
-                'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants', 
-                'building_textile_mills', 'building_tooling',
-                
-                // Infrastructure + Urban Facilities
-                'building_ports', 'building_railways', 'building_urban_center',
-                
-                // Agriculture + Plantations + Ranches
-                'building_cattle_ranch', 'building_coffee_plantations', 'building_cotton_plantations', 
-                'building_dye_plantations', 'building_maize_farms', 'building_opium_plantations', 
-                'building_rice_farms', 'building_rye_farms', 'building_silk_plantations', 'building_sugar_plantations', 
-                'building_tea_plantations', 'building_tobacco_plantations', 'building_wheat_farms'
-            ];
             
             const categoryBreaks = [10, 28, 31]; // After extraction, manufacturing, infrastructure
             
@@ -3667,7 +3772,7 @@ class Victoria3CompanyParserV6Final:
             const totalOverlaps = Object.keys(overlaps).length;
             const actualBonuses = Array.from(allPrestigeBonuses);
             
-            let summaryHTML = '<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px;">';
+            let summaryHTML = '<div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px; position: relative;">';
             
             // Collect country flags and state requirements for selected companies
             const countries = new Set();
@@ -3677,23 +3782,12 @@ class Victoria3CompanyParserV6Final:
                 if (company && company.country) {
                     countries.add(company.country);
                 }
-                // Extract state names from requirements
-                if (company && company.requirements) {
-                    company.requirements.forEach(req => {
-                        // Look for state names - patterns like "Control state STATE_NAME" or "New York" etc.
-                        const stateMatch = req.match(/(?:STATE_|state )([A-Z_][A-Z_]+)|(?:Control state )([A-Z][A-Za-z\s]+)|([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:incorporated|is an incorporated)/i);
-                        if (stateMatch) {
-                            let stateName = stateMatch[1] || stateMatch[2] || stateMatch[3];
-                            if (stateName) {
-                                // Clean up state name
-                                stateName = stateName.replace(/STATE_/g, '').replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
-                                stateRequirements.add(stateName);
-                            }
-                        }
-                        // Also look for common state patterns
-                        const commonStates = req.match(/\b(New York|Pennsylvania|Michigan|California|Texas|Ohio|Illinois|Connecticut|Arkansas|Bohemia|Saxony|Buenos Aires|Rio de Janeiro|São Paulo|Bombay|Kansai|Home Counties|Île-de-France|French Low Countries|Flanders|Wallonia|Zealand|Mazovia|Warszawa|Piedmont|Lombardy)\b/);
-                        if (commonStates) {
-                            stateRequirements.add(commonStates[1]);
+                // Extract territorial requirements using mapping
+                if (company && company.formation_requirements) {
+                    company.formation_requirements.forEach(req => {
+                        const territorialReq = getSimpleTerritorialRequirement(req);
+                        if (territorialReq) {
+                            stateRequirements.add(territorialReq);
                         }
                     });
                 }
@@ -3711,7 +3805,7 @@ class Victoria3CompanyParserV6Final:
                 });
             }
             if (stateRequirements.size > 0) {
-                titleHTML += '<span style="color: #555; font-weight: normal;">(' + Array.from(stateRequirements).sort().join(', ') + ')</span>';
+                titleHTML += '<span style="color: #666; font-weight: normal;">(' + Array.from(stateRequirements).sort().join(', ') + ')</span>';
             }
             summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">' + titleHTML + '</h4>';
             
@@ -3766,6 +3860,9 @@ class Victoria3CompanyParserV6Final:
                 summaryHTML += `</div>`;
             }
             
+            // Add URL watermark for Selected Companies section
+            summaryHTML += '<div style="position: absolute; bottom: 8px; right: 12px; font-size: 10px; color: #999; font-family: monospace; background: rgba(255,255,255,0.9); padding: 1px 4px; border-radius: 2px;">https://alcaras.github.io/v3co/</div>';
+            
             summaryHTML += '</div>';
             return summaryHTML;
         }
@@ -3781,7 +3878,23 @@ class Victoria3CompanyParserV6Final:
                 customTableDiv.innerHTML = '<p style="text-align: left; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>';
                 return;
             }
-            const allBuildings = getAllBuildingsForCompanies(customCompanies);
+            // Get all buildings used by selected companies, ordered by logical categories
+            const allBuildingsRaw = getAllBuildingsForCompanies(customCompanies);
+            const allBuildings = [];
+            
+            // Use same logical order as summary section and main tables
+            buildingOrder.forEach(building => {
+                if (allBuildingsRaw.has(building)) {
+                    allBuildings.push(building);
+                }
+            });
+            
+            // Add any remaining buildings not in building order (safety net)
+            Array.from(allBuildingsRaw).sort().forEach(building => {
+                if (!allBuildings.includes(building)) {
+                    allBuildings.push(building);
+                }
+            });
             
             let tableHTML = `
                 <div class="table-container">
@@ -3797,13 +3910,11 @@ class Victoria3CompanyParserV6Final:
                 const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
                 // Get building icon path (this will be generated from Python)
                 const iconPath = getBuildingIconPath(building);
-                let headerContent = '';
                 if (iconPath) {
-                    headerContent = `<div style="background-image: url(${iconPath}); width: 32px; height: 32px; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>`;
+                    tableHTML += `<th class="building-header" style="background-image: url(${iconPath})" title="${displayName}"></th>`;
                 } else {
-                    headerContent = displayName;
+                    tableHTML += `<th class="building-header missing-icon" title="${displayName}"></th>`;
                 }
-                tableHTML += `<th class="building-header" title="${displayName}">${headerContent}</th>`;
             });
             
             tableHTML += `</tr></thead><tbody>`;
@@ -3929,7 +4040,10 @@ class Victoria3CompanyParserV6Final:
             // Add dynamic summary section
             tableHTML += generateSummarySection(customCompanies);
             
-            tableHTML += '<p style="text-align: left; font-style: italic; color: #666; margin-top: 12px; font-size: 12px;">Click charters to select • Drag to reorder</p>';
+            // Only show instructions when no companies are selected
+            if (customCompanies.length === 0) {
+                tableHTML += '<p style="text-align: left; font-style: italic; color: #666; margin-top: 12px; font-size: 12px;">Click charters to select • Drag to reorder</p>';
+            }
             customTableDiv.innerHTML = tableHTML;
             
             // Make the custom table sortable
@@ -4264,11 +4378,6 @@ class Victoria3CompanyParserV6Final:
             updateControlButtons();
         });
     </script>
-    
-    <!-- URL for screenshots -->
-    <div style="position: fixed; bottom: 10px; right: 15px; font-size: 11px; color: #999; font-family: monospace; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px;">
-        https://alcaras.github.io/v3co/
-    </div>
 </body>
 </html>'''
         
