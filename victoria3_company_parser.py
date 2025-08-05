@@ -2680,7 +2680,7 @@ class Victoria3CompanyParserV6Final:
             <button onclick="clearSelection()" class="control-btn clear-btn">Clear Selection</button>
         </div>
         <div id="custom-companies-table">
-            <p style="text-align: center; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>
+            <p style="text-align: left; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>
         </div>
         <br>
     </div>
@@ -3754,7 +3754,7 @@ class Victoria3CompanyParserV6Final:
             updateControlButtons();
             
             if (customCompanies.length === 0) {
-                customTableDiv.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>';
+                customTableDiv.innerHTML = '<p style="text-align: left; color: #666; font-style: italic;">Add companies from the tables below by checking the boxes</p>';
                 return;
             }
             const allBuildings = getAllBuildingsForCompanies(customCompanies);
@@ -3905,7 +3905,7 @@ class Victoria3CompanyParserV6Final:
             // Add dynamic summary section
             tableHTML += generateSummarySection(customCompanies);
             
-            tableHTML += '<p style="text-align: center; font-style: italic; color: #666; margin-top: 12px; font-size: 12px;">Click charters to select • Drag to reorder</p>';
+            tableHTML += '<p style="text-align: left; font-style: italic; color: #666; margin-top: 12px; font-size: 12px;">Click charters to select • Drag to reorder</p>';
             customTableDiv.innerHTML = tableHTML;
             
             // Make the custom table sortable
@@ -4240,6 +4240,11 @@ class Victoria3CompanyParserV6Final:
             updateControlButtons();
         });
     </script>
+    
+    <!-- URL for screenshots -->
+    <div style="position: fixed; bottom: 10px; right: 15px; font-size: 11px; color: #999; font-family: monospace; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px;">
+        https://alcaras.github.io/v3co/
+    </div>
 </body>
 </html>'''
         
