@@ -3660,9 +3660,10 @@ class Victoria3CompanyParserV6Final:
                 prestigeIconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${displayName}" class="prestige-icon" style="width: 24px; height: 24px; margin: 2px;">`;
             });
             
-            // Calculate totals
+            // Calculate totals - unique buildings only (don't double-count overlaps)
+            const allUniqueBuildings = new Set([...baseBuildings, ...charterBuildings]);
             const totalPrestigeGoods = allPrestigeGoods.size;
-            const totalBuildings = baseBuildings.size + charterBuildings.size;
+            const totalBuildings = allUniqueBuildings.size;
             const totalOverlaps = Object.keys(overlaps).length;
             const actualBonuses = Array.from(allPrestigeBonuses);
             
