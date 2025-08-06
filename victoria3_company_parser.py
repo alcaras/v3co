@@ -3100,8 +3100,8 @@ class Victoria3CompanyParserV6Final:
                         
                         prestige_name = self.prestige_good_names.get(prestige_good, prestige_good_base.replace('_', ' ').title())
                         cell_content = '<img src="{}" width="16" height="16" alt="{}" title="{}">'.format(prestige_icon_path, prestige_name, prestige_name)
-                        cell_class = "prestige-building"
-                        html += '<td class="{}">{}</td>'.format(cell_class, cell_content)
+                        cell_class = "prestige-building col-{}".format(avail_building)
+                        html += '<td class="{}" data-building="{}">{}</td>'.format(cell_class, avail_building, cell_content)
                     elif has_base and has_extension:
                         # Company has both base and charter - show charter selection UI
                         cell_content = "&#x25CB;"  # Will be updated by JavaScript based on selection
@@ -4666,7 +4666,7 @@ class Victoria3CompanyParserV6Final:
                         const iconPath = prestigeIconPaths[prestigeGood] || 'icons/40px-Goods_services.png';
                         const prestigeName = prestigeGood.replace('prestige_good_', '').replace(/_/g, ' ');
                         cellContent = `<img src="${iconPath}" width="16" height="16" alt="${prestigeName}" title="${prestigeName}">`;
-                        cellClass = "prestige-building";
+                        cellClass = `prestige-building col-${building}`;
                         title = `Prestige Good: ${prestigeName}`;
                         style = '';
                         // No onClick for prestige buildings - they're always prestige
