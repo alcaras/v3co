@@ -2055,7 +2055,8 @@ class Victoria3CompanyParserV6Final:
         continents = list(countries_by_continent.keys())
         
         for continent_key, continent_data in countries_by_continent.items():
-            html += '<div style="flex: 1; min-width: 0;"><h4><input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleContinentFilter(this)" style="margin-right: 8px;"> {}</h4><ul>'.format(continent_key, continent_key, continent_data['display_name'])
+            total_countries = len(continent_data['countries'])
+            html += '<div style="flex: 1; min-width: 0;"><h4><input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleContinentFilter(this)" style="margin-right: 8px;"> {} (<span id="continent-count-{}">{}</span>/{}) </h4><ul>'.format(continent_key, continent_key, continent_data['display_name'], continent_key, total_countries, total_countries)
             
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
@@ -3951,10 +3952,13 @@ class Victoria3CompanyParserV6Final:
             const continents = ['American', 'Asian_Oceanian', 'European', 'Middle_Eastern'];
             continents.forEach(continent => {
                 const continentCheckbox = document.getElementById(`continent-${continent}`);
+                const continentCountSpan = document.getElementById(`continent-count-${continent}`);
+                
                 if (continentCheckbox) {
                     const countryCheckboxes = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continent}"]`);
                     const checkedCountries = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continent}"]:checked`);
                     
+                    // Update checkbox state
                     if (checkedCountries.length === 0) {
                         continentCheckbox.checked = false;
                         continentCheckbox.indeterminate = false;
@@ -3964,6 +3968,11 @@ class Victoria3CompanyParserV6Final:
                     } else {
                         continentCheckbox.checked = false;
                         continentCheckbox.indeterminate = true;
+                    }
+                    
+                    // Update count display
+                    if (continentCountSpan) {
+                        continentCountSpan.textContent = checkedCountries.length;
                     }
                 }
             });
@@ -3985,6 +3994,8 @@ class Victoria3CompanyParserV6Final:
                 }
             });
             
+            // Update continent checkboxes after global change
+            updateContinentCheckboxes();
             updateCountryCount();
             updateMainBuildingHeaders();
             updateCustomTable();
