@@ -2040,6 +2040,9 @@ class Victoria3CompanyParserV6Final:
             if building not in buildings_to_analyze:
                 buildings_to_analyze.append(building)
         
+        # Generate CSS rules for column hiding
+        column_hiding_css = self._generate_column_hiding_css(buildings_to_analyze)
+        
         html = u"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2566,7 +2569,7 @@ class Victoria3CompanyParserV6Final:
             font-size: 20px;
         }
         
-        /* Green checkbox overlay for covered buildings */
+        /* Green checkbox overlay for covered buildings - show everywhere EXCEPT Selected Companies table */
         .building-header.covered::after {
             content: "✓";
             position: absolute;
@@ -2584,6 +2587,11 @@ class Victoria3CompanyParserV6Final:
             justify-content: center;
             box-shadow: 0 1px 2px rgba(0,0,0,0.3);
             z-index: 10;
+        }
+        
+        /* Hide green checkboxes specifically in Selected Companies table */
+        #custom-companies-table .building-header.covered::after {
+            display: none;
         }
         
         .building-icon {
@@ -2680,12 +2688,21 @@ class Victoria3CompanyParserV6Final:
         /* Category items in table of contents */
         .category-item {
             margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-item .building-filter-checkbox {
+            margin-right: 6px;
+            margin-top: 0;
+            flex-shrink: 0;
         }
         
         .category-item a {
             font-size: 13px;
             display: flex;
             align-items: center;
+            flex: 1;
         }
         
         /* Building icons in table of contents */
@@ -2710,6 +2727,9 @@ class Victoria3CompanyParserV6Final:
             color: #0066cc;
             text-decoration: underline;
         }
+        
+        /* Dynamic column hiding rules for building filters */
+        __COLUMN_HIDING_CSS_PLACEHOLDER__
     </style>
 </head>
 <body>
@@ -2771,7 +2791,24 @@ class Victoria3CompanyParserV6Final:
     
     <div class="toc">
         <a name="buildings"></a>
-        <h3 id="buildings">Buildings</h3>
+        <h3 id="buildings">Buildings (<span id="selected-buildings-count">49</span>)</h3>
+        <div class="building-filter-help" style="margin-bottom: 15px; padding: 10px; background: #f0f8ff; border: 1px solid #ccc; border-radius: 4px; font-size: 13px;">
+            <strong>Building Filter:</strong> Use the checkboxes to show/hide building columns. Unchecked buildings are excluded from tables and dynamic calculations. All buildings start checked by default.
+            <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <strong style="font-size: 11px;">Presets:</strong>
+                    <button onclick="applyBuildingPreset('all_buildings')" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px;">📋 All Buildings (49)</button>
+                    <button onclick="applyBuildingPreset('key_economy')" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px;">🏭 Key Economy (13)</button>
+                    <button onclick="applyBuildingPreset('key_overall')" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px;">🌟 Key Overall (18)</button>
+                    <span style="margin-left: 15px; font-size: 11px; color: #666;">|</span>
+                    <button onclick="exportPreset()" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 8px; background-color: #28a745; color: white;">💾 Export Preset</button>
+                    <button onclick="importPreset()" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px; background-color: #007bff; color: white;">📁 Import Preset</button>
+                </div>
+                <div>
+                    <button onclick="toggleAllBuildingFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #d73027; color: white;">🗑 Clear All</button>
+                </div>
+            </div>
+        </div>
         <div class="toc-columns">"""
         
         # Define three-column layout: Left + Middle + Right
@@ -2831,9 +2868,13 @@ class Victoria3CompanyParserV6Final:
                             # Fallback if icon not found
                             building_key = building.replace('building_', '')
                             icon_path = "buildings/64px-Building_{}.png".format(building_key)
-                        html += '<li class="category-item"><a href="#{}">' \
+                        # Add checkbox for building filter
+                        checkbox_id = "filter-{}".format(building)
+                        html += '<li class="category-item">' \
+                               '<input type="checkbox" id="{}" class="building-filter-checkbox" checked data-building="{}" onchange="toggleBuildingFilter(this)">' \
+                               '<a href="#{}">' \
                                '<img src="{}" class="toc-building-icon" alt="{} icon">{} ({})' \
-                               '</a></li>'.format(anchor_name, icon_path, display_name, display_name, usage_count)
+                               '</a></li>'.format(checkbox_id, building, anchor_name, icon_path, display_name, display_name, usage_count)
             
             html += '</ul></div>'
         
@@ -2913,10 +2954,10 @@ class Victoria3CompanyParserV6Final:
                 
                 if icon_path:
                     header_style = 'style="background-image: url({})"'.format(icon_path)
-                    header_class = 'building-header'
+                    header_class = 'building-header col-{}'.format(avail_building)
                 else:
                     header_style = ''
-                    header_class = 'building-header missing-icon'
+                    header_class = 'building-header missing-icon col-{}'.format(avail_building)
                 
                 html += '''
                     <th class="{}" {} title="{} ({} companies)" data-building="{}">
@@ -3064,24 +3105,24 @@ class Victoria3CompanyParserV6Final:
                     elif has_base and has_extension:
                         # Company has both base and charter - show charter selection UI
                         cell_content = "&#x25CB;"  # Will be updated by JavaScript based on selection
-                        cell_class = "base-building charter-selectable"
+                        cell_class = "base-building charter-selectable col-{}".format(avail_building)
                         onclick_attr = 'onclick="selectCharter(\'{}\', \'{}\')" style="cursor: pointer;"'.format(company_name, avail_building)
                         title_attr = 'title="Industry Charter: Click to select/deselect"'
-                        html += '<td class="{}" {} {}>{}</td>'.format(cell_class, onclick_attr, title_attr, cell_content)
+                        html += '<td class="{}" {} {} data-building="{}">{}</td>'.format(cell_class, onclick_attr, title_attr, avail_building, cell_content)
                     elif has_base:
                         cell_content = "&#x25CF;"
-                        cell_class = "base-building"
-                        html += '<td class="{}">{}</td>'.format(cell_class, cell_content)
+                        cell_class = "base-building col-{}".format(avail_building)
+                        html += '<td class="{}" data-building="{}">{}</td>'.format(cell_class, avail_building, cell_content)
                     elif has_extension:
                         # Extension only - show charter selection UI
                         cell_content = "&#x25CB;"  # Will be updated by JavaScript based on selection
                         cell_class = "extension-building charter-selectable"
                         onclick_attr = 'onclick="selectCharter(\'{}\', \'{}\')" style="cursor: pointer;"'.format(company_name, avail_building)
                         title_attr = 'title="Industry Charter: Click to select/deselect"'
-                        html += '<td class="{}" {} {}>{}</td>'.format(cell_class, onclick_attr, title_attr, cell_content)
+                        html += '<td class="{} col-{}" {} {} data-building="{}">{}</td>'.format(cell_class, avail_building, onclick_attr, title_attr, avail_building, cell_content)
                     else:
                         # No building relationship
-                        html += '<td></td>'
+                        html += '<td class="col-{}" data-building="{}"></td>'.format(avail_building, avail_building)
                 
                 html += '</tr>'
             
@@ -3673,6 +3714,285 @@ class Victoria3CompanyParserV6Final:
             }
         }
         
+        // Building filter functions
+        function toggleBuildingFilter(checkbox) {
+            const building = checkbox.dataset.building;
+            const isChecked = checkbox.checked;
+            
+            console.log(`Toggle ${building}: checked=${isChecked}`);
+            
+            // Add/remove CSS class to control column visibility
+            if (isChecked) {
+                document.body.classList.remove(`hide-building-${building}`);
+                console.log(`Removed class: hide-building-${building}`);
+            } else {
+                document.body.classList.add(`hide-building-${building}`);
+                console.log(`Added class: hide-building-${building}`);
+                console.log(`Body classes:`, document.body.className);
+                console.log(`Elements with .col-${building}:`, document.querySelectorAll(`.col-${building}`).length);
+            }
+            
+            // Hide/show building sections
+            const buildingSection = document.getElementById(`building-${building}`);
+            if (buildingSection) {
+                buildingSection.style.display = isChecked ? '' : 'none';
+            }
+            
+            // Update dynamic coverage calculations
+            updateDynamicCoverage();
+            updateCustomTable();
+            updateBuildingCount();
+        }
+        
+        function toggleAllBuildingFilters(selectAll) {
+            const checkboxes = document.querySelectorAll('.building-filter-checkbox');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked !== selectAll) {
+                    checkbox.checked = selectAll;
+                    
+                    // Update visibility for this building without calling full update functions
+                    const building = checkbox.dataset.building;
+                    
+                    // Add/remove CSS class to control column visibility
+                    if (selectAll) {
+                        document.body.classList.remove(`hide-building-${building}`);
+                    } else {
+                        document.body.classList.add(`hide-building-${building}`);
+                    }
+                    
+                    // Hide/show building sections
+                    const buildingSection = document.getElementById(`building-${building}`);
+                    if (buildingSection) {
+                        buildingSection.style.display = selectAll ? '' : 'none';
+                    }
+                }
+            });
+            
+            // Update calculations once after all checkboxes are processed
+            updateDynamicCoverage();
+            updateCustomTable();
+            updateBuildingCount();
+        }
+        
+        function updateBuildingCount() {
+            const checkboxes = document.querySelectorAll('.building-filter-checkbox:checked');
+            const count = checkboxes.length;
+            const countElement = document.getElementById('selected-buildings-count');
+            if (countElement) {
+                countElement.textContent = count;
+            }
+        }
+        
+        function getEnabledBuildings() {
+            const enabledBuildings = [];
+            const checkboxes = document.querySelectorAll('.building-filter-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                enabledBuildings.push(checkbox.dataset.building);
+            });
+            return enabledBuildings;
+        }
+        
+        // Building filter presets
+        function applyBuildingPreset(presetName) {
+            const presets = {
+                'all_buildings': ''' + str(wiki_building_order).replace("'", '"') + ''',
+                'key_economy': [
+                    'building_coal_mine',
+                    'building_iron_mine', 
+                    'building_logging_camp',
+                    'building_oil_rig',
+                    'building_rubber_plantation',
+                    'building_railway',
+                    'building_power_plant',
+                    'building_automotive_industry',
+                    'building_explosives_factory',
+                    'building_glassworks',
+                    'building_motor_industry',
+                    'building_steel_mills',
+                    'building_tooling_workshops'
+                ],
+                'key_overall': [
+                    'building_coal_mine',
+                    'building_iron_mine', 
+                    'building_logging_camp',
+                    'building_oil_rig',
+                    'building_rubber_plantation',
+                    'building_railway',
+                    'building_power_plant',
+                    'building_automotive_industry',
+                    'building_explosives_factory',
+                    'building_glassworks',
+                    'building_motor_industry',
+                    'building_steel_mills',
+                    'building_tooling_workshops',
+                    'building_port',
+                    'building_trade_center',
+                    'building_textile_mills',
+                    'building_furniture_manufacturies',
+                    'building_food_industry'
+                ]
+            };
+            
+            const selectedBuildings = presets[presetName];
+            if (!selectedBuildings) return;
+            
+            // First uncheck all buildings
+            const allCheckboxes = document.querySelectorAll('.building-filter-checkbox');
+            allCheckboxes.forEach(checkbox => {
+                const building = checkbox.dataset.building;
+                const shouldCheck = selectedBuildings.includes(building);
+                
+                if (checkbox.checked !== shouldCheck) {
+                    checkbox.checked = shouldCheck;
+                    
+                    // Add/remove CSS class to control column visibility
+                    if (shouldCheck) {
+                        document.body.classList.remove(`hide-building-${building}`);
+                    } else {
+                        document.body.classList.add(`hide-building-${building}`);
+                    }
+                    
+                    // Hide/show building sections
+                    const buildingSection = document.getElementById(`building-${building}`);
+                    if (buildingSection) {
+                        buildingSection.style.display = shouldCheck ? '' : 'none';
+                    }
+                }
+            });
+            
+            // Update calculations once after all checkboxes are processed
+            updateDynamicCoverage();
+            updateCustomTable();
+            updateBuildingCount();
+        }
+        
+        // Preset export/import functions
+        function exportPreset() {
+            const customCompanies = getCustomCompanies();
+            const selectedCharters = getSelectedCharters();
+            const enabledBuildings = getEnabledBuildings();
+            
+            const preset = {
+                companies: customCompanies,
+                charters: selectedCharters,
+                buildings: enabledBuildings,
+                exportDate: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            // Generate filename based on building count (for building presets)
+            const buildingCount = enabledBuildings.length;
+            
+            // Add date-time suffix
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const filename = `preset-${buildingCount}-${year}${month}${day}-${hours}${minutes}${seconds}.json`;
+            
+            const blob = new Blob([JSON.stringify(preset, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function importPreset() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.style.display = 'none';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const preset = JSON.parse(e.target.result);
+                        
+                        // Validate preset structure
+                        if (!preset.companies || !Array.isArray(preset.companies)) {
+                            throw new Error('Invalid preset format: missing companies array');
+                        }
+                        
+                        // Apply the preset
+                        // 1. Set companies
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(preset.companies));
+                        
+                        // 2. Set charters if available
+                        if (preset.charters && typeof preset.charters === 'object') {
+                            localStorage.setItem(CHARTER_STORAGE_KEY, JSON.stringify(preset.charters));
+                        }
+                        
+                        // 3. Set building filters if available
+                        if (preset.buildings && Array.isArray(preset.buildings)) {
+                            // First uncheck all buildings
+                            const allCheckboxes = document.querySelectorAll('.building-filter-checkbox');
+                            allCheckboxes.forEach(checkbox => {
+                                checkbox.checked = false;
+                                const building = checkbox.dataset.building;
+                                // Add CSS class to hide columns for this building
+                                document.body.classList.add(`hide-building-${building}`);
+                                const buildingSection = document.getElementById(`building-${building}`);
+                                if (buildingSection) {
+                                    buildingSection.style.display = 'none';
+                                }
+                            });
+                            
+                            // Then check only the buildings from the preset
+                            preset.buildings.forEach(building => {
+                                const checkbox = document.querySelector(`[data-building="${building}"]`);
+                                if (checkbox && checkbox.classList.contains('building-filter-checkbox')) {
+                                    checkbox.checked = true;
+                                    // Remove CSS class to show columns for this building
+                                    document.body.classList.remove(`hide-building-${building}`);
+                                    const buildingSection = document.getElementById(`building-${building}`);
+                                    if (buildingSection) {
+                                        buildingSection.style.display = '';
+                                    }
+                                }
+                            });
+                        }
+                        
+                        // Update UI
+                        updateCustomTable();
+                        updateCheckboxes();
+                        updateControlButtons();
+                        updateDynamicCoverage();
+                        updateMainBuildingHeaders();
+                        updateBuildingTableCharters();
+                        updateBuildingCount();
+                        
+                        const companyCount = preset.companies.length;
+                        const buildingCount = preset.buildings ? preset.buildings.length : 'unknown';
+                        alert(`Preset imported successfully!\\n\\nCompanies: ${companyCount}\\nBuildings: ${buildingCount}\\nExported: ${preset.exportDate ? new Date(preset.exportDate).toLocaleString() : 'unknown'}`);
+                        
+                    } catch (error) {
+                        alert('Error importing preset: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+                
+                // Clean up
+                document.body.removeChild(input);
+            };
+            
+            document.body.appendChild(input);
+            input.click();
+        }
+        
         function getBuildingIconPath(building) {
             // Building icon mappings for special cases (generated from Python)
             const buildingIconMappings = ''' + self._get_building_icon_mappings_js() + ''';
@@ -3843,6 +4163,7 @@ class Victoria3CompanyParserV6Final:
                 "Control state STATE_PROVENCE": "Provence",
                 "Control state STATE_FRENCH_LOW_COUNTRIES": "French Low Countries",
                 "Control state STATE_CHUGOKU": "Chugoku",
+                "Control state STATE_SINAI": "Sinai",
                 
                 // Regional control
                 "Control region in Region La Plata (level 5+ buildings required)": "Region: La Plata",
@@ -3936,17 +4257,24 @@ class Victoria3CompanyParserV6Final:
             const prestige_icon_paths = ''' + self._get_prestige_icon_mappings_js() + ''';
             
             // Collect base buildings, charters, prestige goods and bonuses from selected companies
+            // Only include buildings that are currently enabled by the building filter
+            const enabledBuildings = getEnabledBuildings();
             const allProsperityBonuses = new Set();
+            const prosperityBonusToCompanies = {}; // Track which companies provide which bonuses
             customCompanies.forEach(companyName => {
                 const company = companyData[companyName];
                 if (!company) return;
                 
-                // Add base buildings
-                company.base_buildings.forEach(building => baseBuildings.add(building));
+                // Add base buildings (only if enabled by filter)
+                company.base_buildings.forEach(building => {
+                    if (enabledBuildings.includes(building)) {
+                        baseBuildings.add(building);
+                    }
+                });
                 
-                // Add selected charter if any
+                // Add selected charter if any (only if enabled by filter)
                 const selectedCharter = selectedCharters[companyName];
-                if (selectedCharter && company.industry_charters.includes(selectedCharter)) {
+                if (selectedCharter && company.industry_charters.includes(selectedCharter) && enabledBuildings.includes(selectedCharter)) {
                     charterBuildings.add(selectedCharter);
                 }
                 
@@ -3955,9 +4283,15 @@ class Victoria3CompanyParserV6Final:
                     company.prestige_goods.forEach(good => allPrestigeGoods.add(good));
                 }
                 
-                // Add actual prosperity bonuses from companies
+                // Add actual prosperity bonuses from companies and track source
                 if (company.bonuses) {
-                    company.bonuses.forEach(bonus => allProsperityBonuses.add(bonus));
+                    company.bonuses.forEach(bonus => {
+                        allProsperityBonuses.add(bonus);
+                        if (!prosperityBonusToCompanies[bonus]) {
+                            prosperityBonusToCompanies[bonus] = [];
+                        }
+                        prosperityBonusToCompanies[bonus].push(companyName);
+                    });
                 }
             });
             
@@ -3997,24 +4331,21 @@ class Victoria3CompanyParserV6Final:
                 }
             });
             
-            // Generate ALL building icons with coverage status in three rows
+            // Generate building icons ONLY for enabled buildings with coverage status
             const coveredBuildings = new Set([...baseBuildings, ...charterBuildings]);
             let allBuildingIconsHTML = '';
             
-            // Helper function to generate icons for a range
-            function generateIconsForRange(startIndex, endIndex) {
-                let rowHTML = '';
-                for (let index = startIndex; index < endIndex && index < buildingOrder.length; index++) {
-                    const building = buildingOrder[index];
+            // Filter buildings to only show enabled ones
+            const enabledBuildingsInOrder = buildingOrder.filter(building => enabledBuildings.includes(building));
+            
+            // Helper function to generate icons for enabled buildings only
+            function generateIconsForEnabledBuildings(buildingsArray) {
+                let iconsHTML = '';
+                buildingsArray.forEach(building => {
                     const iconPath = getBuildingIconPath(building);
                     const displayName = getBuildingDisplayName(building);
                     const isCovered = coveredBuildings.has(building);
                     const isCharter = charterBuildings.has(building);
-                    
-                    // Add spacer between extraction and infrastructure in row 1 (after whaling station at index 9)
-                    if (index === 10 && startIndex === 0) {
-                        rowHTML += '<span style="margin-right: 16px;"></span>';
-                    }
                     
                     let iconStyle = 'width: 32px; height: 32px; margin: 2px;';
                     let titleText = displayName;
@@ -4034,15 +4365,13 @@ class Victoria3CompanyParserV6Final:
                         titleText += ' (Not covered)';
                     }
                     
-                    rowHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}; cursor: pointer;" onclick="location.href='#building-${building}'" onerror="this.style.display='none'">`;
-                }
-                return rowHTML;
+                    iconsHTML += `<img src="${iconPath}" alt="${displayName}" title="${titleText}" style="${iconStyle}; cursor: pointer;" onclick="location.href='#building-${building}'" onerror="this.style.display='none'">`;
+                });
+                return iconsHTML;
             }
             
-            // Generate three rows of building icons with min-width and spacing
-            allBuildingIconsHTML += '<div style="margin-bottom: 2px; min-width: 600px;">' + generateIconsForRange(categoryRanges.row1.start, categoryRanges.row1.end) + '</div>';
-            allBuildingIconsHTML += '<div style="margin-bottom: 2px; min-width: 600px;">' + generateIconsForRange(categoryRanges.row2.start, categoryRanges.row2.end) + '</div>';
-            allBuildingIconsHTML += '<div style="min-width: 600px;">' + generateIconsForRange(categoryRanges.row3.start, categoryRanges.row3.end) + '</div>';
+            // Generate single row with only enabled building icons
+            allBuildingIconsHTML = '<div style="min-width: 700px;">' + generateIconsForEnabledBuildings(enabledBuildingsInOrder) + '</div>';
             
             // Generate prestige goods icons
             let prestigeIconsHTML = '';
@@ -4097,7 +4426,8 @@ class Victoria3CompanyParserV6Final:
             summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">' + titleHTML + '</h4>';
             
             // Compact buildings section - showing all buildings with coverage status
-            const totalAvailableBuildings = buildingOrder.length;
+            // Use enabled buildings count instead of total buildings (49)
+            const totalAvailableBuildings = enabledBuildings.length;
             summaryHTML += `<div style="margin-bottom: 8px;">`;
             summaryHTML += `<strong>Buildings (${totalBuildings}/${totalAvailableBuildings}):</strong> `;
             if (baseBuildings.size > 0) {
@@ -4140,10 +4470,28 @@ class Victoria3CompanyParserV6Final:
                 summaryHTML += `</div>`;
             }
             
-            // Actual prosperity bonuses from companies
+            // Actual prosperity bonuses from companies with company icons
             if (actualBonuses.length > 0) {
                 summaryHTML += `<div style="margin-bottom: 8px;">`;
-                summaryHTML += `<strong>Prosperity Bonuses:</strong> ${actualBonuses.join(', ')}`;
+                summaryHTML += `<strong>Prosperity Bonuses:</strong><br>`;
+                
+                // Generate prosperity bonuses with company icons
+                let prosperityBonusHTML = '';
+                actualBonuses.forEach(bonus => {
+                    const companies = prosperityBonusToCompanies[bonus] || [];
+                    let companyIconsHTML = '';
+                    
+                    // Create company icons for this bonus
+                    companies.forEach(companyName => {
+                        const companyIconPath = getCompanyIconPath(companyName);
+                        const companyDisplayName = companyData[companyName]?.name || companyName;
+                        companyIconsHTML += `<img src="${companyIconPath}" alt="${companyDisplayName}" title="${companyDisplayName}" style="width: 16px; height: 16px; margin-left: 4px; vertical-align: middle;" onerror="this.style.display='none'">`;
+                    });
+                    
+                    prosperityBonusHTML += `<div style="margin: 2px 0; font-size: 12px;">${bonus}${companyIconsHTML}</div>`;
+                });
+                
+                summaryHTML += `<div style="margin-top: 4px;">${prosperityBonusHTML}</div>`;
                 summaryHTML += `</div>`;
             }
             
@@ -4182,16 +4530,19 @@ class Victoria3CompanyParserV6Final:
             const allBuildingsRaw = getAllBuildingsForCompanies(customCompanies);
             const allBuildings = [];
             
+            // Get enabled buildings to filter the table
+            const enabledBuildings = getEnabledBuildings();
+            
             // Use same logical order as summary section and main tables
             buildingOrder.forEach(building => {
-                if (allBuildingsRaw.has(building)) {
+                if (allBuildingsRaw.has(building) && enabledBuildings.includes(building)) {
                     allBuildings.push(building);
                 }
             });
             
             // Add any remaining buildings not in building order (safety net)
             Array.from(allBuildingsRaw).sort().forEach(building => {
-                if (!allBuildings.includes(building)) {
+                if (!allBuildings.includes(building) && enabledBuildings.includes(building)) {
                     allBuildings.push(building);
                 }
             });
@@ -4212,9 +4563,9 @@ class Victoria3CompanyParserV6Final:
                 // Get building icon path (this will be generated from Python)
                 const iconPath = getBuildingIconPath(building);
                 if (iconPath) {
-                    tableHTML += `<th class="building-header" style="background-image: url(${iconPath})" title="${displayName}"></th>`;
+                    tableHTML += `<th class="building-header col-${building}" data-building="${building}" style="background-image: url(${iconPath})" title="${displayName}"></th>`;
                 } else {
-                    tableHTML += `<th class="building-header missing-icon" title="${displayName}"></th>`;
+                    tableHTML += `<th class="building-header missing-icon col-${building}" data-building="${building}" title="${displayName}"></th>`;
                 }
             });
             
@@ -4356,7 +4707,7 @@ class Victoria3CompanyParserV6Final:
                         style = 'cursor: pointer;';
                     }
                     
-                    tableHTML += `<td class="${cellClass}" ${onClick} title="${title}" style="${style}">${cellContent}</td>`;
+                    tableHTML += `<td class="${cellClass} col-${building}" data-building="${building}" ${onClick} title="${title}" style="${style}">${cellContent}</td>`;
                 });
                 
                 tableHTML += `</tr>`;
@@ -4448,9 +4799,6 @@ class Victoria3CompanyParserV6Final:
                 }
             });
             
-            console.log('Selected companies:', selectedCompanies);
-            console.log('Selected charters:', selectedCharters);
-            console.log('Covered buildings:', Array.from(coveredBuildings));
             
             // Update all dynamic coverage cells
             const dynamicCells = document.querySelectorAll('.dynamic-coverage-column[data-company]');
@@ -4468,13 +4816,18 @@ class Victoria3CompanyParserV6Final:
                 let companyScore = 0;
                 let hasUsedCharter = false;
                 
+                // Get enabled buildings to filter calculations
+                const enabledBuildings = getEnabledBuildings();
+                
                 // Process base buildings first
                 if (company.building_types) {
                     company.building_types.forEach(building => {
+                        // Only consider buildings that are enabled by user filters
+                        if (!enabledBuildings.includes(building)) return;
+                        
                         // If a base building is NOT covered by any buildings or active charters from selected companies
                         if (!coveredBuildings.has(building)) {
                             companyScore += 1;
-                            console.log(`${companyName}: +1 for uncovered base building: ${building}`);
                         }
                     });
                 }
@@ -4482,17 +4835,18 @@ class Victoria3CompanyParserV6Final:
                 // Process potential charters
                 if (company.extension_building_types && company.extension_building_types.length > 0) {
                     company.extension_building_types.forEach(charter => {
+                        // Only consider buildings that are enabled by user filters
+                        if (!enabledBuildings.includes(charter)) return;
+                        
                         // If a potential charter is NOT covered by any buildings or active charters from selected companies
                         // AND we have not used a charter for this company yet
                         if (!coveredBuildings.has(charter) && !hasUsedCharter) {
                             companyScore += 1;
                             hasUsedCharter = true;
-                            console.log(`${companyName}: +1 for uncovered charter: ${charter}`);
                         }
                     });
                 }
                 
-                console.log(`${companyName}: final score = ${companyScore}`);
                 
                 // Display the score
                 cell.textContent = companyScore.toString();
@@ -4603,7 +4957,57 @@ class Victoria3CompanyParserV6Final:
             
             const link = document.createElement('a');
             link.href = url;
-            link.download = `v3-company-selection-${new Date().toISOString().split('T')[0]}.json`;
+            // Generate smart filename based on most common country
+            // Use the same companyData that's available globally
+            let countryCount = {};
+            let hasNonBasic = false;
+            
+            customCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (!company) return;
+                
+                if (!companyName.startsWith('company_basic_')) {
+                    hasNonBasic = true;
+                    const country = company.country || 'unknown';
+                    countryCount[country] = (countryCount[country] || 0) + 1;
+                }
+            });
+            
+            let baseFilename;
+            if (!hasNonBasic) {
+                baseFilename = 'basic';
+            } else {
+                // Find most common country
+                const sortedCountries = Object.entries(countryCount).sort((a, b) => b[1] - a[1]);
+                if (sortedCountries.length > 0 && sortedCountries[0][1] >= 3) {
+                    // Use country name if 3+ companies from same country
+                    const countryCode = sortedCountries[0][0];
+                    // Convert country code to readable name
+                    const countryNames = ''' + str({
+                        'USA': 'usa', 'GBR': 'britain', 'DEU': 'germany', 'FRA': 'france', 
+                        'RUS': 'russia', 'JAP': 'japan', 'CHI': 'china', 'BIC': 'india',
+                        'AUS': 'austria-hungary', 'ITA': 'italy', 'SPA': 'spain', 'MEX': 'mexico',
+                        'BRZ': 'brazil', 'ARG': 'argentina', 'CAN': 'canada', 'TUR': 'turkey',
+                        'EGY': 'egypt', 'PER': 'persia', 'NET': 'netherlands', 'BEL': 'belgium',
+                        'SWE': 'sweden', 'NOR': 'norway', 'DEN': 'denmark', 'FIN': 'finland',
+                        'POL': 'poland', 'ROM': 'romania', 'SER': 'serbia', 'GRE': 'greece'
+                    }).replace("'", '"') + ''';
+                    baseFilename = countryNames[countryCode] || 'companies';
+                } else {
+                    baseFilename = 'companies';
+                }
+            }
+            
+            // Add date-time suffix
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            link.download = `${baseFilename}-${year}${month}${day}-${hours}${minutes}${seconds}.json`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -4838,6 +5242,7 @@ class Victoria3CompanyParserV6Final:
             updateDynamicCoverage();
             updateMainBuildingHeaders();
             updateBuildingTableCharters();
+            updateBuildingCount();
             
         });
         
@@ -4876,7 +5281,7 @@ class Victoria3CompanyParserV6Final:
 </body>
 </html>'''
         
-        return html
+        return html.replace('__COLUMN_HIDING_CSS_PLACEHOLDER__', column_hiding_css)
 
     def _get_country_flags_js(self):
         """Generate JavaScript object for country flags"""
@@ -4982,6 +5387,16 @@ class Victoria3CompanyParserV6Final:
                 'extension_building_types': data.get('extension_building_types', [])
             }
         return json.dumps(company_data_js)
+    
+    def _generate_column_hiding_css(self, buildings):
+        """Generate CSS rules to hide table columns for filtered buildings"""
+        css_rules = []
+        for building in buildings:
+            # Create CSS rule to hide both header (th) and data (td) cells for building columns
+            # This ensures proper table alignment when columns are filtered
+            css_rule = f"        body.hide-building-{building} table th.col-{building}, body.hide-building-{building} table td.col-{building} {{\n            display: none !important;\n        }}\n"
+            css_rules.append(css_rule)
+        return ''.join(css_rules)
 
     def save_html_report(self, filename="index.html"):
         """Save the HTML report to a file"""
