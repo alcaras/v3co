@@ -1998,12 +1998,8 @@ class Victoria3CompanyParserV6Final:
                 'countries': ['AUS', 'BEL', 'DEN', 'FIN', 'FRA', 'DEU', 'GBR', 'GRE', 'ITA', 'NET', 'NOR', 'POL', 'POR', 'ROM', 'RUS', 'SER', 'SPA', 'SWE']
             },
             'Middle_Eastern': {
-                'display_name': 'Middle East',
-                'countries': ['AFG', 'EGY', 'PER', 'KOK', 'TUR']
-            },
-            'African': {
-                'display_name': 'Africa',
-                'countries': ['ETH', 'SOK', 'SAF']
+                'display_name': 'Middle East & Africa',
+                'countries': ['AFG', 'EGY', 'PER', 'KOK', 'TUR', 'ETH', 'SOK', 'SAF']
             }
         }
         
@@ -2059,7 +2055,7 @@ class Victoria3CompanyParserV6Final:
         continents = list(countries_by_continent.keys())
         
         for continent_key, continent_data in countries_by_continent.items():
-            html += '<div><h4>{}</h4><ul>'.format(continent_data['display_name'])
+            html += '<div><h4>{} <button onclick="selectAllInContinent(\'{}\', true)" class="control-btn" style="font-size: 10px; padding: 1px 4px; margin-left: 8px; background-color: #28a745; color: white;">✓ All</button> <button onclick="selectAllInContinent(\'{}\', false)" class="control-btn" style="font-size: 10px; padding: 1px 4px; background-color: #dc3545; color: white;">✗ None</button></h4><ul>'.format(continent_data['display_name'], continent_key, continent_key)
             
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
@@ -2073,10 +2069,10 @@ class Victoria3CompanyParserV6Final:
                 
                 checkbox_id = "filter-country-{}".format(country_code)
                 html += '<li class="category-item">' \
-                       '<input type="checkbox" id="{}" class="country-filter-checkbox" checked data-country="{}" onchange="toggleCountryFilter(this)">' \
+                       '<input type="checkbox" id="{}" class="country-filter-checkbox" checked data-country="{}" data-continent="{}" onchange="toggleCountryFilter(this)">' \
                        '<span style="margin-left: 6px;">' \
                        '{} {} ({})' \
-                       '</span></li>'.format(checkbox_id, country_code, flag_icon, country_name, company_count)
+                       '</span></li>'.format(checkbox_id, country_code, continent_key, flag_icon, country_name, company_count)
             
             html += '</ul></div>'
         
@@ -3981,6 +3977,27 @@ class Victoria3CompanyParserV6Final:
                 enabledCountries.push(checkbox.dataset.country);
             });
             return enabledCountries;
+        }
+        
+        function selectAllInContinent(continentKey, selectAll) {
+            const checkboxes = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continentKey}"]`);
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked !== selectAll) {
+                    checkbox.checked = selectAll;
+                    
+                    const country = checkbox.dataset.country;
+                    
+                    if (selectAll) {
+                        document.body.classList.remove(`hide-country-${country}`);
+                    } else {
+                        document.body.classList.add(`hide-country-${country}`);
+                    }
+                }
+            });
+            
+            updateCountryCount();
+            updateMainBuildingHeaders();
+            updateCustomTable();
         }
         
         // Building filter presets
