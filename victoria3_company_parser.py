@@ -2055,7 +2055,7 @@ class Victoria3CompanyParserV6Final:
         continents = list(countries_by_continent.keys())
         
         for continent_key, continent_data in countries_by_continent.items():
-            html += '<div><h4>{} <button onclick="selectAllInContinent(\'{}\', true)" class="control-btn" style="font-size: 10px; padding: 1px 4px; margin-left: 8px; background-color: #28a745; color: white;">✓ All</button> <button onclick="selectAllInContinent(\'{}\', false)" class="control-btn" style="font-size: 10px; padding: 1px 4px; background-color: #dc3545; color: white;">✗ None</button></h4><ul>'.format(continent_data['display_name'], continent_key, continent_key)
+            html += '<div style="flex: 1; min-width: 0;"><h4>{} <button onclick="selectAllInContinent(\'{}\', true)" class="control-btn" style="font-size: 10px; padding: 1px 4px; margin-left: 8px; background-color: #28a745; color: white;">✓ All</button> <button onclick="selectAllInContinent(\'{}\', false)" class="control-btn" style="font-size: 10px; padding: 1px 4px; background-color: #dc3545; color: white;">✗ None</button></h4><ul>'.format(continent_data['display_name'], continent_key, continent_key)
             
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
@@ -2759,11 +2759,12 @@ class Victoria3CompanyParserV6Final:
             margin-bottom: 15px;
         }
         
-        /* Three-column flexbox layout */
+        /* Multi-column flexbox layout for filters */
         .toc-columns {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: flex-start;
+            justify-content: space-between;
         }
         
         .toc-column {
