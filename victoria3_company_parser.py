@@ -737,6 +737,11 @@ class Victoria3CompanyParserV6Final:
         
     def get_building_icon_path(self, building_name):
         """Get the icon path for a building, flagging missing building icons"""
+        # Building display name overrides (for UI display)
+        building_display_name_overrides = {
+            'building_chemical_plants': 'Fertilizer Plants'
+        }
+        
         # Building name mappings for icon files that have different names
         building_name_mappings = {
             'building_chemical_plants': 'chemicals_industry',
@@ -1596,7 +1601,7 @@ class Victoria3CompanyParserV6Final:
             'possible_prestige_goods': [],
             'flavored_company': 'flavored_company = yes' in company_content,
             'formation_requirements': [],
-            'prestige_bonuses': [],
+            'prosperity_bonuses': [],
             'country': None,
             'country_confidence': 'none'
         }
@@ -1735,37 +1740,21 @@ class Victoria3CompanyParserV6Final:
                     for tech in tech_reqs:
                         company_data['formation_requirements'].append("Technology: {}".format(tech.replace('_', ' ').title()))
         
-        # Parse prestige bonuses from prosperity_modifier
+        # Parse prosperity bonuses from prosperity_modifier - show raw content
         prosperity_match = re.search(r'prosperity_modifier\s*=\s*\{([^{}]+)\}', company_content)
         if prosperity_match:
-            prosperity_content = prosperity_match.group(1)
+            prosperity_content = prosperity_match.group(1).strip()
+            # Clean up the raw content for display
             bonuses = []
+            for line in prosperity_content.split('\n'):
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    # Clean up the line for display
+                    clean_line = line.replace('_', ' ').replace('\t', ' ')
+                    clean_line = ' '.join(clean_line.split())  # Remove extra whitespace
+                    bonuses.append(clean_line)
             
-            # Various bonus types
-            throughput_matches = re.findall(r'building_(\w+)_throughput_add\s*=\s*([\d.]+)', prosperity_content)
-            for building_name, value in throughput_matches:
-                building_name = building_name.replace('_', ' ').title()
-                bonuses.append("{} +{:.0f}% throughput".format(building_name, float(value)*100))
-            
-            employment_matches = re.findall(r'building_(\w+)_employment_add\s*=\s*([\d.]+)', prosperity_content)
-            for building_name, value in employment_matches:
-                building_name = building_name.replace('_', ' ').title()
-                bonuses.append("{} +{:.0f}% employment".format(building_name, float(value)*100))
-                
-            # Output bonuses  
-            output_matches = re.findall(r'(\w+)_output_add\s*=\s*([\d.]+)', prosperity_content)
-            for good, value in output_matches:
-                good_name = good.replace('_', ' ').title()
-                bonuses.append("{} +{:.0f}% output".format(good_name, float(value)*100))
-            
-            # Input cost bonuses
-            input_matches = re.findall(r'(\w+)_input_mult\s*=\s*([\d.-]+)', prosperity_content)
-            for good, value in input_matches:
-                good_name = good.replace('_', ' ').title()
-                bonus_pct = (1 - float(value)) * 100
-                bonuses.append("{} -{:.0f}% input cost".format(good_name, bonus_pct))
-            
-            company_data['prestige_bonuses'] = bonuses
+            company_data['prosperity_bonuses'] = bonuses
         
         # Apply wiki-based country assignment (takes priority over game-file assignments)
         wiki_match = self.find_wiki_country_for_company(company_name)
@@ -1861,6 +1850,18 @@ class Victoria3CompanyParserV6Final:
                     companies_with_building.append((company_name, 'base' if not as_extension else 'extension'))
                     
         return companies_with_building
+    
+    def get_building_display_name(self, building_name):
+        """Get the display name for a building, with special case overrides"""
+        # Building display name overrides (for UI display)
+        building_display_name_overrides = {
+            'building_chemical_plants': 'Fertilizer Plants'
+        }
+        
+        if building_name in building_display_name_overrides:
+            return building_display_name_overrides[building_name]
+        else:
+            return building_name.replace('building_', '').replace('_', ' ').title()
     
     def get_all_buildings_for_companies(self, company_names):
         """Get all buildings (base + extension) available to a set of companies"""
@@ -2821,7 +2822,7 @@ class Victoria3CompanyParserV6Final:
                 # Add buildings in this category
                 for building in category_buildings:
                     if building in buildings_to_analyze:
-                        display_name = building.replace('building_', '').replace('_', ' ').title()
+                        display_name = self.get_building_display_name(building)
                         usage_count = building_counts.get(building, 0)
                         anchor_name = "building-{}".format(building)
                         # Use the existing building icon path method
@@ -2843,7 +2844,7 @@ class Victoria3CompanyParserV6Final:
         
         # Generate separate table for each building
         for building in buildings_to_analyze:
-            display_name = building.replace('building_', '').replace('_', ' ').title()
+            display_name = self.get_building_display_name(building)
             anchor_name = "building-{}".format(building)
             usage_count = building_counts.get(building, 0)
             
@@ -3101,7 +3102,7 @@ class Victoria3CompanyParserV6Final:
         for company_name, data in self.companies.items():
             display_name = data.get('display_name', self.get_company_display_name(company_name))
             requirements_json = json.dumps(data['formation_requirements'])
-            bonuses_json = json.dumps(data['prestige_bonuses'])
+            bonuses_json = json.dumps(data['prosperity_bonuses'])
             country_info = ""  # Remove confidence display - country is definitive from game files
             
             # Add building information for detailed tooltip
@@ -3347,7 +3348,7 @@ class Victoria3CompanyParserV6Final:
                 }
                 
                 if (data.bonuses && data.bonuses.length > 0) {
-                    html += '<div class="bonuses"><h4>Prestige Bonuses</h4><ul>';
+                    html += '<div class="bonuses"><h4>Prosperity Bonuses</h4><ul>';
                     data.bonuses.forEach(bonus => {
                         html += `<li>${bonus}</li>`;
                     });
@@ -3383,7 +3384,7 @@ class Victoria3CompanyParserV6Final:
                 if (data.base_buildings && data.base_buildings.length > 0) {
                     html += '<div class="base-buildings"><h4>Base Buildings</h4><ul>';
                     data.base_buildings.forEach(building => {
-                        const buildingName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                        const buildingName = getBuildingDisplayName(building);
                         
                         // Building name mappings for icon files that have different names
                         const buildingMappings = {
@@ -3409,7 +3410,7 @@ class Victoria3CompanyParserV6Final:
                 if (data.industry_charters && data.industry_charters.length > 0) {
                     html += '<div class="industry-charters"><h4>Possible Industry Charters</h4><ul>';
                     data.industry_charters.forEach(charter => {
-                        const charterName = charter.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                        const charterName = getBuildingDisplayName(charter);
                         
                         // Building name mappings for icon files that have different names
                         const buildingMappings = {
@@ -3657,6 +3658,19 @@ class Victoria3CompanyParserV6Final:
                     header.setAttribute('title', currentTitle.replace(' (Covered)', ''));
                 }
             });
+        }
+        
+        // Building display name overrides
+        function getBuildingDisplayName(building) {
+            const displayNameOverrides = {
+                'building_chemical_plants': 'Fertilizer Plants'
+            };
+            
+            if (displayNameOverrides[building]) {
+                return displayNameOverrides[building];
+            } else {
+                return building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+            }
         }
         
         function getBuildingIconPath(building) {
@@ -3922,7 +3936,7 @@ class Victoria3CompanyParserV6Final:
             const prestige_icon_paths = ''' + self._get_prestige_icon_mappings_js() + ''';
             
             // Collect base buildings, charters, prestige goods and bonuses from selected companies
-            const allPrestigeBonuses = new Set();
+            const allProsperityBonuses = new Set();
             customCompanies.forEach(companyName => {
                 const company = companyData[companyName];
                 if (!company) return;
@@ -3941,9 +3955,9 @@ class Victoria3CompanyParserV6Final:
                     company.prestige_goods.forEach(good => allPrestigeGoods.add(good));
                 }
                 
-                // Add actual prestige bonuses from companies
+                // Add actual prosperity bonuses from companies
                 if (company.bonuses) {
-                    company.bonuses.forEach(bonus => allPrestigeBonuses.add(bonus));
+                    company.bonuses.forEach(bonus => allProsperityBonuses.add(bonus));
                 }
             });
             
@@ -3993,7 +4007,7 @@ class Victoria3CompanyParserV6Final:
                 for (let index = startIndex; index < endIndex && index < buildingOrder.length; index++) {
                     const building = buildingOrder[index];
                     const iconPath = getBuildingIconPath(building);
-                    const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                    const displayName = getBuildingDisplayName(building);
                     const isCovered = coveredBuildings.has(building);
                     const isCharter = charterBuildings.has(building);
                     
@@ -4043,7 +4057,7 @@ class Victoria3CompanyParserV6Final:
             const totalPrestigeGoods = allPrestigeGoods.size;
             const totalBuildings = allUniqueBuildings.size;
             const totalOverlaps = Object.keys(overlaps).length;
-            const actualBonuses = Array.from(allPrestigeBonuses);
+            const actualBonuses = Array.from(allProsperityBonuses);
             
             let summaryHTML = '<div id="summary-section" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px; margin: 16px 0; font-size: 13px; position: relative; min-width: 700px;">';
             
@@ -4104,7 +4118,7 @@ class Victoria3CompanyParserV6Final:
                 const overlapDetails = [];
                 Object.keys(overlaps).forEach(building => {
                     const iconPath = getBuildingIconPath(building);
-                    const buildingName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                    const buildingName = getBuildingDisplayName(building);
                     const count = overlaps[building].length;
                     const companies = overlaps[building].map(item => {
                         const companyIconPath = getCompanyIconPath(item.company);
@@ -4126,10 +4140,10 @@ class Victoria3CompanyParserV6Final:
                 summaryHTML += `</div>`;
             }
             
-            // Actual prestige bonuses from companies
+            // Actual prosperity bonuses from companies
             if (actualBonuses.length > 0) {
                 summaryHTML += `<div style="margin-bottom: 8px;">`;
-                summaryHTML += `<strong>Prestige Bonuses:</strong> ${actualBonuses.join(', ')}`;
+                summaryHTML += `<strong>Prosperity Bonuses:</strong> ${actualBonuses.join(', ')}`;
                 summaryHTML += `</div>`;
             }
             
@@ -4193,7 +4207,7 @@ class Victoria3CompanyParserV6Final:
                             <th class="company-name">Company Name</th>`;
             
             allBuildings.forEach(building => {
-                const displayName = building.replace('building_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                const displayName = getBuildingDisplayName(building);
                 
                 // Get building icon path (this will be generated from Python)
                 const iconPath = getBuildingIconPath(building);
