@@ -358,6 +358,22 @@ class Victoria3CompanyParserV6Final:
         }
         return country_names.get(country_code, country_code)  # Fallback to country code if not found
     
+    def format_prosperity_bonuses(self, bonuses):
+        """Format prosperity bonuses for inline display"""
+        if not bonuses:
+            return ""
+        
+        # Join all bonuses with commas, clean up formatting
+        formatted_bonuses = []
+        for bonus in bonuses:
+            # Clean up the bonus text - remove extra spaces, underscores
+            clean_bonus = bonus.replace('_', ' ').strip()
+            # Remove redundant 'add = ' and 'mult =' text for cleaner display
+            clean_bonus = clean_bonus.replace(' add = ', ' +').replace(' mult = ', ' ×')
+            formatted_bonuses.append(clean_bonus)
+        
+        return " -- " + "; ".join(formatted_bonuses)
+    
     def get_company_display_name(self, company_name):
         """Get a better display name for the company"""
         # Special company name mappings for better display
@@ -2055,8 +2071,9 @@ class Victoria3CompanyParserV6Final:
         continents = list(countries_by_continent.keys())
         
         for continent_key, continent_data in countries_by_continent.items():
-            total_countries = len(continent_data['countries'])
-            html += '<div style="flex: 1; min-width: 0;"><h4><input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleContinentFilter(this)" style="margin-right: 8px;"> {} (<span id="continent-count-{}">{}</span>/{}) </h4><ul>'.format(continent_key, continent_key, continent_data['display_name'], continent_key, total_countries, total_countries)
+            # Calculate total companies from all countries in this continent
+            total_companies = sum(country_info['count'] for country_info in continent_data['countries'])
+            html += '<div style="flex: 1; min-width: 0;"><h4><input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleContinentFilter(this)" style="margin-right: 8px;"> {} (<span id="continent-count-{}">{}</span>/{}) </h4><ul>'.format(continent_key, continent_key, continent_data['display_name'], continent_key, total_companies, total_companies)
             
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
@@ -2072,8 +2089,8 @@ class Victoria3CompanyParserV6Final:
                 html += '<li class="category-item">' \
                        '<input type="checkbox" id="{}" class="country-filter-checkbox" checked data-country="{}" data-continent="{}" onchange="toggleCountryFilter(this)">' \
                        '<span style="margin-left: 6px;">' \
-                       '{} {} ({})' \
-                       '</span></li>'.format(checkbox_id, country_code, continent_key, flag_icon, country_name, company_count)
+                       '<span title="{}">{}</span> {} ({})' \
+                       '</span></li>'.format(checkbox_id, country_code, continent_key, country_name, flag_icon, country_name, company_count)
             
             html += '</ul></div>'
         
@@ -2083,6 +2100,28 @@ class Victoria3CompanyParserV6Final:
         
         return html
 
+    def _generate_company_id_mappings(self):
+        """Generate JavaScript object mapping company keys to sequential IDs"""
+        companies = sorted(self.companies.keys())
+        mappings = []
+        for i, company_key in enumerate(companies):
+            mappings.append(f"'{company_key}': {i}")
+        return ',\n            '.join(mappings)
+    
+    def _generate_building_id_mappings(self):
+        """Generate JavaScript object mapping building keys to sequential IDs"""
+        # Use all buildings from companies data, sorted for consistent ordering
+        all_buildings = set()
+        for company in self.companies.values():
+            all_buildings.update(company.get('building_types', []))
+            all_buildings.update(company.get('extension_building_types', []))
+        
+        buildings = sorted(all_buildings)
+        mappings = []
+        for i, building_key in enumerate(buildings):
+            mappings.append(f"'{building_key}': {i}")
+        return ',\n            '.join(mappings)
+    
     def generate_html_report(self):
         """Generate HTML analysis report with all bugs fixed"""
         
@@ -2641,6 +2680,14 @@ class Victoria3CompanyParserV6Final:
             margin-right: 4px;
         }
         
+        .prosperity-bonuses {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+            line-height: 1.2;
+            font-style: italic;
+        }
+        
         /* Removed duplicate header rule - handled above */
         
         /* Removed duplicate table rules - handled above with aggressive selectors */
@@ -2866,7 +2913,7 @@ class Victoria3CompanyParserV6Final:
             <h2 id="selected-companies-title" style="margin: 0;">Selected Companies (0)</h2>
             <div style="display: flex; align-items: center;">
                 <div class="import-export-buttons" style="margin-right: 20px;">
-                    <button onclick="generateShareURL()" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🔗 Share Build</button>
+                    <button onclick="generateShareURL(false, event)" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🔗 Share Build</button>
                     <button onclick="saveSelection()" class="control-btn save-btn">💾 Export to JSON</button>
                     <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
                     <input type="file" id="import-file-input" accept=".json" onchange="importSelection(event)" style="display: none;">
@@ -3136,6 +3183,9 @@ class Victoria3CompanyParserV6Final:
                 data = self.companies[company_name]
                 display_name = data.get('display_name', self.get_company_display_name(company_name))
                 
+                # Get prosperity bonuses for inline display  
+                prosperity_bonuses_text = self.format_prosperity_bonuses(data.get('prosperity_bonuses', []))
+                
                 # Abbreviate long company names for display
                 abbreviated_name = self.abbreviate_company_name(display_name, 35)
                 
@@ -3274,6 +3324,11 @@ class Victoria3CompanyParserV6Final:
             display_name = data.get('display_name', self.get_company_display_name(company_name))
             requirements_json = json.dumps(data['formation_requirements'])
             bonuses_json = json.dumps(data['prosperity_bonuses'])
+            
+            # Get formatted prosperity bonuses for inline display
+            prosperity_bonuses_text = self.format_prosperity_bonuses(data.get('prosperity_bonuses', []))
+            prosperity_bonuses_text_json = json.dumps(prosperity_bonuses_text)
+            
             country_info = ""  # Remove confidence display - country is definitive from game files
             
             # Add building information for detailed tooltip
@@ -3288,10 +3343,11 @@ class Victoria3CompanyParserV6Final:
                 "country_info": {},
                 "requirements": {},
                 "bonuses": {},
+                "prosperity_bonuses_text": {},
                 "prestige_goods": {},
                 "base_buildings": {},
                 "industry_charters": {}
-            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prestige_goods_json, base_buildings_json, industry_charters_json)
+            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, base_buildings_json, industry_charters_json)
             company_entries.append(entry)
         
         html += ',\n'.join(company_entries)
@@ -3970,9 +4026,19 @@ class Victoria3CompanyParserV6Final:
                         continentCheckbox.indeterminate = true;
                     }
                     
-                    // Update count display
+                    // Update count display - count companies from checked countries, not countries
                     if (continentCountSpan) {
-                        continentCountSpan.textContent = checkedCountries.length;
+                        let companyCount = 0;
+                        checkedCountries.forEach(countryCheckbox => {
+                            const countryCode = countryCheckbox.dataset.country;
+                            // Count companies from this country
+                            for (const [companyName, company] of Object.entries(companyData)) {
+                                if (company.country === countryCode && !companyName.startsWith('company_basic_')) {
+                                    companyCount++;
+                                }
+                            }
+                        });
+                        continentCountSpan.textContent = companyCount;
                     }
                 }
             });
@@ -4530,6 +4596,64 @@ class Victoria3CompanyParserV6Final:
             const allPrestigeGoods = new Set();
             const prestige_icon_paths = ''' + self._get_prestige_icon_mappings_js() + ''';
             
+            // Building short forms mapping
+            const buildingShortForms = {
+                'building_coal_mine': 'Coal',
+                'building_fishing_wharf': 'Fish',
+                'building_gold_mine': 'Gold',
+                'building_iron_mine': 'Iron',
+                'building_lead_mine': 'Lead',
+                'building_logging_camp': 'Wood',
+                'building_oil_rig': 'Oil',
+                'building_rubber_plantation': 'Rubber',
+                'building_sulfur_mine': 'Sulfur',
+                'building_whaling_station': 'Whaling',
+                'building_arms_industry': 'Arms',
+                'building_artillery_foundries': 'Artillery',
+                'building_automotive_industry': 'Auto',
+                'building_electrics_industry': 'Electric',
+                'building_explosives_factory': 'Explosives',
+                'building_chemical_plants': 'Fertilizer',
+                'building_food_industry': 'Food',
+                'building_furniture_manufacturies': 'Furniture',
+                'building_glassworks': 'Glass',
+                'building_military_shipyards': 'Mil. Shipyards',
+                'building_motor_industry': 'Motors',
+                'building_munition_plants': 'Munitions',
+                'building_paper_mills': 'Paper',
+                'building_shipyards': 'Shipyards',
+                'building_steel_mills': 'Steel',
+                'building_synthetics_plants': 'Synthetics',
+                'building_textile_mills': 'Textiles',
+                'building_tooling_workshops': 'Tools',
+                'building_port': 'Port',
+                'building_railway': 'Railway',
+                'building_trade_center': 'Trade',
+                'building_power_plant': 'Power',
+                'building_arts_academy': 'Arts',
+                'building_maize_farm': 'Maize',
+                'building_millet_farm': 'Millet',
+                'building_rice_farm': 'Rice',
+                'building_rye_farm': 'Rye',
+                'building_wheat_farm': 'Wheat',
+                'building_vineyard_plantation': 'Wine',
+                'building_banana_plantation': 'Banana',
+                'building_coffee_plantation': 'Coffee',
+                'building_cotton_plantation': 'Cotton',
+                'building_dye_plantation': 'Dye',
+                'building_opium_plantation': 'Opium',
+                'building_silk_plantation': 'Silk',
+                'building_sugar_plantation': 'Sugar',
+                'building_tea_plantation': 'Tea',
+                'building_tobacco_plantation': 'Tobacco',
+                'building_livestock_ranch': 'Livestock'
+            };
+            
+            // Function to get building short form
+            const getBuildingShortForm = (building) => {
+                return buildingShortForms[building] || building.replace('building_', '').replace(/_/g, ' ');
+            };
+            
             // Collect base buildings, charters, prestige goods and bonuses from selected companies
             // Only include buildings that are currently enabled by the building filter
             const enabledBuildings = getEnabledBuildings();
@@ -4689,8 +4813,9 @@ class Victoria3CompanyParserV6Final:
                 titleHTML += ' ';
                 Array.from(countries).forEach(country => {
                     const flag = countryFlags[country] || '';
+                    const countryName = countryNames[country] || country;
                     if (flag) {
-                        titleHTML += flag + ' ';
+                        titleHTML += `<span title="${countryName}">${flag}</span> `;
                     }
                 });
             }
@@ -4698,6 +4823,12 @@ class Victoria3CompanyParserV6Final:
                 titleHTML += '<span style="color: #666; font-weight: normal;">(' + Array.from(stateRequirements).sort().join(', ') + ')</span>';
             }
             summaryHTML += '<h4 style="margin: 0 0 8px 0; color: #495057; text-align: left;">' + titleHTML + '</h4>';
+            
+            // Keep the main title element simple (just company count)
+            const mainTitleElement = document.getElementById('selected-companies-title');
+            if (mainTitleElement) {
+                mainTitleElement.textContent = `Selected Companies (${customCompanies.length})`;
+            }
             
             // Compact buildings section - showing all buildings with coverage status
             // Use enabled buildings count instead of total buildings (49)
@@ -4744,29 +4875,25 @@ class Victoria3CompanyParserV6Final:
                 summaryHTML += `</div>`;
             }
             
-            // Actual prosperity bonuses from companies with company icons
-            if (actualBonuses.length > 0) {
+            // Generate summary section with companies and optional prosperity bonuses
+            if (customCompanies.length > 0) {
                 summaryHTML += `<div style="margin-bottom: 8px;">`;
-                summaryHTML += `<strong>Prosperity Bonuses:</strong><br>`;
-                
-                // Generate prosperity bonuses with company icons
-                let prosperityBonusHTML = '';
-                actualBonuses.forEach(bonus => {
-                    const companies = prosperityBonusToCompanies[bonus] || [];
-                    let companyIconsHTML = '';
-                    
-                    // Create company icons for this bonus
-                    companies.forEach(companyName => {
-                        const companyIconPath = getCompanyIconPath(companyName);
-                        const companyDisplayName = companyData[companyName]?.name || companyName;
-                        companyIconsHTML += `<img src="${companyIconPath}" alt="${companyDisplayName}" title="${companyDisplayName}" style="width: 16px; height: 16px; margin-left: 4px; vertical-align: middle;" onerror="this.style.display='none'">`;
-                    });
-                    
-                    prosperityBonusHTML += `<div style="margin: 2px 0; font-size: 12px;">${bonus}${companyIconsHTML}</div>`;
-                });
-                
-                summaryHTML += `<div style="margin-top: 4px;">${prosperityBonusHTML}</div>`;
+                summaryHTML += `<div style="display: flex; align-items: center; margin-bottom: 4px;">`;
+                summaryHTML += `<strong>Summary:</strong>`;
+                summaryHTML += `<label style="margin-left: 10px; font-size: 11px; cursor: pointer;">`;
+                summaryHTML += `<input type="checkbox" id="show-prosperity-bonuses" onchange="regenerateSummaryContent()" style="margin-right: 4px;"> Show prosperity`;
+                summaryHTML += `</label>`;
+                summaryHTML += `<button onclick="copySummaryToClipboard(event)" style="margin-left: 10px; font-size: 10px; padding: 2px 6px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 3px;">📋 Copy</button>`;
                 summaryHTML += `</div>`;
+                
+                // Initial summary content will be generated by regenerateSummaryContent() after DOM is ready
+                // This avoids the timing issue where checkbox state isn't available during initial generation
+                
+                summaryHTML += `<div id="summary-content" style="margin-top: 4px;"></div>`;
+                summaryHTML += `</div>`;
+                
+                // Note: regenerateSummaryContent will be called from updateCustomTable() when needed
+                // This ensures it runs after companies are loaded from any source (file, URL, localStorage)
             }
             
             
@@ -4781,11 +4908,7 @@ class Victoria3CompanyParserV6Final:
             const customCompanies = getCustomCompanies();
             const customTableDiv = document.getElementById('custom-companies-table');
             
-            // Update the title with count
-            const titleElement = document.getElementById('selected-companies-title');
-            if (titleElement) {
-                titleElement.textContent = `Selected Companies (${customCompanies.length})`;
-            }
+            // Note: Title is updated with flags in generateSummarySection, so we don't update it here to avoid overriding HTML
             
             // Update button states
             updateControlButtons();
@@ -5013,6 +5136,12 @@ class Victoria3CompanyParserV6Final:
                 tableHTML += '<p style="text-align: left; font-style: italic; color: #666; margin-top: 12px; font-size: 12px;">Click charters to select • Drag to reorder</p>';
             }
             customTableDiv.innerHTML = tableHTML;
+            
+            // Regenerate summary content whenever the custom table is updated
+            // This ensures the summary shows current companies and charter selections
+            if (typeof regenerateSummaryContent === 'function') {
+                setTimeout(() => regenerateSummaryContent(), 10);
+            }
             
             // Custom table is not sortable - users can drag to reorder companies manually
         }
@@ -5388,32 +5517,41 @@ class Victoria3CompanyParserV6Final:
         // Load companies and charters from URL parameters
         function loadFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
-            const companiesParam = urlParams.get('companies');
-            const chartersParam = urlParams.get('charters');
+            // Support both short (c, ch) and long (companies, charters) parameter names for backwards compatibility
+            const companiesParam = urlParams.get('c') || urlParams.get('companies');
+            const chartersParam = urlParams.get('ch') || urlParams.get('charters');
             
             if (companiesParam) {
-                const companyNames = companiesParam.split(',').map(name => name.trim());
+                const companyItems = companiesParam.split(',').map(item => item.trim());
                 const validCompanies = [];
                 
-                // Find companies by name or key
-                companyNames.forEach(nameOrKey => {
-                    // Try exact match first
+                // Find companies by ID (new format) or legacy name/key (old format)
+                companyItems.forEach(nameOrKeyOrId => {
                     let foundCompany = null;
                     
-                    // Check if it's a company key (clean name)
-                    for (const [companyKey, company] of Object.entries(companyData)) {
-                        const cleanKey = companyKey.replace('company_', '').toLowerCase();
-                        if (cleanKey === nameOrKey.toLowerCase() || 
-                            company.name.toLowerCase() === nameOrKey.toLowerCase()) {
+                    // First try to parse as ID (numeric)
+                    if (/^\d+$/.test(nameOrKeyOrId)) {
+                        const id = parseInt(nameOrKeyOrId);
+                        const companyKey = idToCompany[id];
+                        if (companyKey && companyData[companyKey]) {
                             foundCompany = companyKey;
-                            break;
+                        }
+                    } else {
+                        // Fallback to legacy name/key lookup
+                        for (const [companyKey, company] of Object.entries(companyData)) {
+                            const cleanKey = companyKey.replace('company_', '').toLowerCase();
+                            if (cleanKey === nameOrKeyOrId.toLowerCase() || 
+                                company.name.toLowerCase() === nameOrKeyOrId.toLowerCase()) {
+                                foundCompany = companyKey;
+                                break;
+                            }
                         }
                     }
                     
                     if (foundCompany) {
                         validCompanies.push(foundCompany);
                     } else {
-                        console.warn(`Company not found: ${nameOrKey}`);
+                        console.warn(`Company not found: ${nameOrKeyOrId}`);
                     }
                 });
                 
@@ -5427,25 +5565,51 @@ class Victoria3CompanyParserV6Final:
                         const validCharters = {};
                         
                         charterEntries.forEach(entry => {
-                            const [companyName, buildingName] = entry.split(':');
-                            if (companyName && buildingName) {
-                                // Find the company
+                            const [companyItem, buildingItem] = entry.split(':');
+                            if (companyItem && buildingItem) {
+                                // Find the company by ID (new) or name (legacy)
                                 let foundCompany = null;
-                                for (const [companyKey, company] of Object.entries(companyData)) {
-                                    const cleanKey = companyKey.replace('company_', '').toLowerCase();
-                                    if (cleanKey === companyName.toLowerCase() || 
-                                        company.name.toLowerCase() === companyName.toLowerCase()) {
-                                        foundCompany = companyKey;
-                                        break;
+                                if (/^\d+$/.test(companyItem)) {
+                                    // Parse as company ID
+                                    const companyId = parseInt(companyItem);
+                                    foundCompany = idToCompany[companyId];
+                                } else {
+                                    // Legacy name/key lookup
+                                    for (const [companyKey, company] of Object.entries(companyData)) {
+                                        const cleanKey = companyKey.replace('company_', '').toLowerCase();
+                                        if (cleanKey === companyItem.toLowerCase() || 
+                                            company.name.toLowerCase() === companyItem.toLowerCase()) {
+                                            foundCompany = companyKey;
+                                            break;
+                                        }
                                     }
+                                }
+                                
+                                // Find the building by ID (new) or name (legacy)
+                                let foundBuilding = null;
+                                if (/^\d+$/.test(buildingItem)) {
+                                    // Parse as building ID
+                                    const buildingId = parseInt(buildingItem);
+                                    foundBuilding = idToBuilding[buildingId];
+                                } else {
+                                    // Legacy building name lookup (handled below)
                                 }
                                 
                                 if (foundCompany && validCompanies.includes(foundCompany)) {
                                     const company = companyData[foundCompany];
-                                    // Find building (try with and without building_ prefix)
-                                    const buildingKey = buildingName.startsWith('building_') ? buildingName : `building_${buildingName}`;
-                                    if (company.industry_charters.includes(buildingKey)) {
-                                        validCharters[foundCompany] = buildingKey;
+                                    
+                                    // Handle building lookup - foundBuilding is already set for ID format
+                                    if (!foundBuilding) {
+                                        // Legacy building name lookup
+                                        const buildingKey = buildingItem.startsWith('building_') ? buildingItem : `building_${buildingItem}`;
+                                        if (company.industry_charters.includes(buildingKey)) {
+                                            foundBuilding = buildingKey;
+                                        }
+                                    }
+                                    
+                                    // Verify the building is valid for this company
+                                    if (foundBuilding && company.industry_charters.includes(foundBuilding)) {
+                                        validCharters[foundCompany] = foundBuilding;
                                     }
                                 }
                             }
@@ -5461,46 +5625,80 @@ class Victoria3CompanyParserV6Final:
             }
         }
         
+        // Company and building ID mappings for shorter URLs
+        const companyIdMap = {
+            {company_mappings}
+        };
+        
+        const buildingIdMap = {
+            {building_mappings}
+        };
+        
+        // Reverse mappings for URL parsing
+        const idToCompany = Object.fromEntries(Object.entries(companyIdMap).map(([k, v]) => [v, k]));
+        const idToBuilding = Object.fromEntries(Object.entries(buildingIdMap).map(([k, v]) => [v, k]));
+        
         // Generate shareable URL with current selection
-        function generateShareURL() {
+        function generateShareURL(silent = false, event = null) {
             const customCompanies = getCustomCompanies();
             const selectedCharters = getSelectedCharters();
             
             if (customCompanies.length === 0) {
-                alert('No companies selected to share');
-                return;
+                if (!silent) {
+                    alert('No companies selected to share');
+                }
+                return null;
             }
             
             const baseURL = 'https://alcaras.github.io/v3co/';
-            const params = new URLSearchParams();
+            const urlParams = [];
             
-            // Add companies (use clean names for readability)
-            const companyNames = customCompanies.map(companyKey => {
-                return companyKey.replace('company_', '');
-            });
-            params.set('companies', companyNames.join(','));
+            // Add companies using IDs for shorter URLs
+            const companyIds = customCompanies.map(companyKey => companyIdMap[companyKey]).filter(id => id !== undefined);
+            urlParams.push(`c=${companyIds.join(',')}`);
             
-            // Add charters if any are selected
+            // Add charters using IDs for shorter URLs
             const charterEntries = [];
             Object.entries(selectedCharters).forEach(([companyKey, buildingKey]) => {
-                const companyName = companyKey.replace('company_', '');
-                const buildingName = buildingKey.replace('building_', '');
-                charterEntries.push(`${companyName}:${buildingName}`);
+                const companyId = companyIdMap[companyKey];
+                const buildingId = buildingIdMap[buildingKey];
+                if (companyId !== undefined && buildingId !== undefined) {
+                    charterEntries.push(`${companyId}:${buildingId}`);
+                }
             });
             
             if (charterEntries.length > 0) {
-                params.set('charters', charterEntries.join(','));
+                urlParams.push(`ch=${charterEntries.join(',')}`);
             }
             
-            const shareURL = `${baseURL}?${params.toString()}`;
+            const shareURL = `${baseURL}?${urlParams.join('&')}`;
             
-            // Copy to clipboard
+            // If silent mode, just return the URL
+            if (silent) {
+                return shareURL;
+            }
+            
+            // Copy to clipboard and show button feedback
             navigator.clipboard.writeText(shareURL).then(() => {
-                alert('Share URL copied to clipboard!');
+                // Show button feedback similar to copy button
+                const button = event && event.target ? event.target : document.querySelector('.share-btn');
+                if (button) {
+                    const originalText = button.innerHTML;
+                    const originalBackground = button.style.background;
+                    button.innerHTML = '✓ Link Copied!';
+                    button.style.background = '#28a745';
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.style.background = originalBackground;
+                    }, 2000);
+                }
             }).catch(() => {
                 // Fallback - show the URL
                 prompt('Share URL (copy this):', shareURL);
             });
+            
+            return shareURL;
         }
         
         document.addEventListener('DOMContentLoaded', function() {
@@ -5537,6 +5735,286 @@ class Victoria3CompanyParserV6Final:
             });
             
             console.log('✅ All companies selected');
+        };
+        
+        // Building short forms mapping (global scope for use in summary functions)
+        const buildingShortForms = {
+            'building_coal_mine': 'Coal',
+            'building_fishing_wharf': 'Fish',
+            'building_gold_mine': 'Gold',
+            'building_iron_mine': 'Iron',
+            'building_lead_mine': 'Lead',
+            'building_logging_camp': 'Wood',
+            'building_oil_rig': 'Oil',
+            'building_rubber_plantation': 'Rubber',
+            'building_sulfur_mine': 'Sulfur',
+            'building_whaling_station': 'Whaling',
+            'building_arms_industry': 'Arms',
+            'building_artillery_foundries': 'Artillery',
+            'building_automotive_industry': 'Auto',
+            'building_electrics_industry': 'Electric',
+            'building_explosives_factory': 'Explosives',
+            'building_chemical_plants': 'Fertilizer',
+            'building_food_industry': 'Food',
+            'building_furniture_manufacturies': 'Furniture',
+            'building_glassworks': 'Glass',
+            'building_military_shipyards': 'Mil. Shipyards',
+            'building_motor_industry': 'Motors',
+            'building_munition_plants': 'Munitions',
+            'building_paper_mills': 'Paper',
+            'building_shipyards': 'Shipyards',
+            'building_steel_mills': 'Steel',
+            'building_synthetics_plants': 'Synthetics',
+            'building_textile_mills': 'Textiles',
+            'building_tooling_workshops': 'Tools',
+            'building_port': 'Port',
+            'building_railway': 'Railway',
+            'building_trade_center': 'Trade',
+            'building_power_plant': 'Power',
+            'building_arts_academy': 'Arts',
+            'building_maize_farm': 'Maize',
+            'building_millet_farm': 'Millet',
+            'building_rice_farm': 'Rice',
+            'building_rye_farm': 'Rye',
+            'building_wheat_farm': 'Wheat',
+            'building_vineyard_plantation': 'Wine',
+            'building_banana_plantation': 'Banana',
+            'building_coffee_plantation': 'Coffee',
+            'building_cotton_plantation': 'Cotton',
+            'building_dye_plantation': 'Dye',
+            'building_opium_plantation': 'Opium',
+            'building_silk_plantation': 'Silk',
+            'building_sugar_plantation': 'Sugar',
+            'building_tea_plantation': 'Tea',
+            'building_tobacco_plantation': 'Tobacco',
+            'building_livestock_ranch': 'Livestock'
+        };
+        
+        // Function to get building short form (global scope)
+        const getBuildingShortForm = (building) => {
+            return buildingShortForms[building] || building.replace('building_', '').replace(/_/g, ' ');
+        };
+        
+        window.regenerateSummaryContent = function() {
+            console.log('regenerateSummaryContent called');
+            // Only update the summary content, not the entire section with checkbox
+            const summaryContentDiv = document.getElementById('summary-content');
+            const checkbox = document.getElementById('show-prosperity-bonuses');
+            
+            console.log('summaryContentDiv:', summaryContentDiv);
+            console.log('checkbox:', checkbox);
+            
+            if (!summaryContentDiv) {
+                console.error('summary-content div not found');
+                return;
+            }
+            if (!checkbox) {
+                console.error('show-prosperity-bonuses checkbox not found');
+                return;
+            }
+            
+            const customCompanies = getCustomCompanies();
+            const showBonuses = checkbox.checked;
+            
+            // Regenerate just the company list part
+            let summaryContent = '';
+            
+            customCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    const companyIconPath = getCompanyIconPath(companyName);
+                    const companyDisplayName = company?.name || companyName;
+                    
+                    summaryContent += `<div style="margin: 2px 0; font-size: 12px; line-height: 1.4;">`;
+                    
+                    // Company icon and name
+                    summaryContent += `<img src="${companyIconPath}" alt="${companyDisplayName}" title="${companyDisplayName}" style="width: 16px; height: 16px; margin-right: 4px; vertical-align: middle;" onerror="this.style.display='none'">`;
+                    summaryContent += `<strong>${companyDisplayName}</strong>`;
+                    
+                    // Add building details (list base buildings, selected charter)
+                    const buildingParts = [];
+                    
+                    // List base buildings by short form
+                    if (company.base_buildings && company.base_buildings.length > 0) {
+                        const baseNames = company.base_buildings.map(building => getBuildingShortForm(building));
+                        buildingParts.push(baseNames.join(', '));
+                    }
+                    
+                    // Add selected charter if any (with + prefix)
+                    const selectedCharters = getSelectedCharters();
+                    const selectedCharter = selectedCharters[companyName];
+                    if (selectedCharter) {
+                        const charterName = '+' + getBuildingShortForm(selectedCharter);
+                        buildingParts.push(charterName);
+                    }
+                    
+                    if (buildingParts.length > 0) {
+                        summaryContent += ` (${buildingParts.join(', ')})`;
+                    }
+                    
+                    // Add prestige goods with icons [formatted like company card]
+                    if (company.prestige_goods && company.prestige_goods.length > 0) {
+                        summaryContent += ` [`;
+                        company.prestige_goods.forEach((prestigeGood, index) => {
+                            if (index > 0) summaryContent += ', ';
+                            
+                            // Get prestige good icon path with proper base name processing
+                            const prestigeGoodBase = prestigeGood.replace('prestige_good_generic_', '').replace('prestige_good_', '');
+                            
+                            // Icon mappings for prestige goods that don't have exact matches
+                            const iconMappings = {
+                                'burmese_teak': 'teak',
+                                'swedish_bar_iron': 'oregrounds_iron'
+                            };
+                            
+                            const mappedBase = iconMappings[prestigeGoodBase] || prestigeGoodBase;
+                            const iconPath = `icons/24px-Prestige_${mappedBase}.png`;
+                            const fallbackIcon = `icons/40px-Goods_${mappedBase}.png`;
+                            
+                            summaryContent += `<img src="${iconPath}" alt="${prestigeGood}" title="${prestigeGood}" style="width: 16px; height: 16px; margin: 0 2px; vertical-align: middle;" onerror="this.src='${fallbackIcon}'; this.onerror=null;">`;
+                            
+                            // Use the same format as in tooltips - just the base name with proper capitalization
+                            const prestigeGoodDisplayName = prestigeGood.replace('prestige_good_generic_', '').replace('prestige_good_', '').replace(/_/g, ' ').replace(/\\b\\w/g, l => l.toUpperCase());
+                            
+                            summaryContent += prestigeGoodDisplayName;
+                        });
+                        summaryContent += `]`;
+                    }
+                    
+                    // Add prosperity bonuses if checkbox is checked and company has bonuses
+                    if (showBonuses && company.bonuses && company.bonuses.length > 0) {
+                        const formattedBonuses = company.bonuses.map(bonus => {
+                            return bonus.replace(/_/g, ' ').replace(' add = ', ' +').replace(' mult = ', ' ×');
+                        }).join('; ');
+                        summaryContent += ` <span style="color: #666; font-style: italic;">(${formattedBonuses})</span>`;
+                    }
+                    
+                    summaryContent += `</div>`;
+                }
+            });
+            
+            summaryContentDiv.innerHTML = summaryContent;
+        };
+        
+        window.copySummaryToClipboard = function(event) {
+            const summaryContent = document.getElementById('summary-content');
+            if (!summaryContent) {
+                console.error('No summary content found');
+                return;
+            }
+            
+            // Extract text content from the summary, removing HTML and creating clean text
+            let textContent = '';
+            const summaryDivs = summaryContent.querySelectorAll('div');
+            
+            if (summaryDivs.length === 0) {
+                // Fallback: get all text content
+                textContent = summaryContent.textContent || summaryContent.innerText || '';
+            } else {
+                summaryDivs.forEach(div => {
+                    // Get text content but remove image alt text and clean it up
+                    let lineText = div.textContent || div.innerText || '';
+                    lineText = lineText.trim();
+                    if (lineText) {
+                        textContent += lineText + '\\n';
+                    }
+                });
+            }
+            
+            if (!textContent.trim()) {
+                console.error('No text content extracted');
+                console.error('No content to copy');
+                return;
+            }
+            
+            // Add share link at the bottom
+            const shareURL = generateShareURL(true); // Get URL without showing alert
+            if (shareURL) {
+                textContent += '\\nEdit at: ' + shareURL;
+            }
+            
+            console.log('Copying text:', textContent); // Debug log
+            
+            // Copy to clipboard
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textContent).then(() => {
+                    // Show 'Copied!' message next to button that fades out
+                    const button = event.target || event.currentTarget;
+                    
+                    // Remove any existing feedback message
+                    const existingFeedback = document.getElementById('copy-feedback');
+                    if (existingFeedback) {
+                        existingFeedback.remove();
+                    }
+                    
+                    // Create and show feedback message
+                    const feedback = document.createElement('span');
+                    feedback.id = 'copy-feedback';
+                    feedback.textContent = 'Copied!';
+                    feedback.style.cssText = `
+                        margin-left: 8px;
+                        color: #28a745;
+                        font-size: 10px;
+                        font-weight: bold;
+                        opacity: 1;
+                        transition: opacity 0.5s ease;
+                    `;
+                    
+                    // Insert after the button
+                    button.parentNode.insertBefore(feedback, button.nextSibling);
+                    
+                    // Fade out and remove after 2 seconds
+                    setTimeout(() => {
+                        feedback.style.opacity = '0';
+                        setTimeout(() => {
+                            if (feedback.parentNode) {
+                                feedback.parentNode.removeChild(feedback);
+                            }
+                        }, 500); // Wait for fade transition
+                    }, 1500);
+                }).catch(err => {
+                    console.error('Failed to copy to clipboard:', err);
+                    // Remove alert popup - just log the error
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = textContent;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const button = event.target;
+                    const originalText = button.textContent;
+                    button.textContent = '✓ Copied!';
+                    button.style.background = '#28a745';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = '#007bff';
+                    }, 1500);
+                } catch (err) {
+                    console.error('Fallback copy failed:', err);
+                    // Create a more user-friendly fallback
+                    const modal = document.createElement('div');
+                    modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 10000; max-width: 400px;';
+                    modal.innerHTML = `
+                        <h4>Copy Build Summary</h4>
+                        <textarea readonly style="width: 100%; height: 150px; margin: 10px 0;">${textContent}</textarea>
+                        <div style="text-align: right;">
+                            <button onclick="this.parentElement.parentElement.remove()" style="padding: 5px 10px; cursor: pointer;">Close</button>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                } finally {
+                    if (document.body.contains(textArea)) {
+                        document.body.removeChild(textArea);
+                    }
+                }
+            }
         };
         
         window.debugShowMissingRequirements = function() {
@@ -5692,6 +6170,10 @@ class Victoria3CompanyParserV6Final:
     def save_html_report(self, filename="index.html"):
         """Save the HTML report to a file"""
         html_content = self.generate_html_report()
+        
+        # Apply ID mappings to the HTML template (manual replacement to avoid format issues)
+        html_content = html_content.replace('{company_mappings}', self._generate_company_id_mappings())
+        html_content = html_content.replace('{building_mappings}', self._generate_building_id_mappings())
         
         output_path = os.path.join(os.path.dirname(__file__), filename)
         import codecs

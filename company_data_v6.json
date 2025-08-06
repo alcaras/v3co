@@ -14,8 +14,10 @@
       "Control state STATE_BOHEMIA",
       "Level 5+ Glassworks required"
     ],
-    "prestige_bonuses": [
-      "Arts Academy +5% throughput"
+    "prosperity_bonuses": [
+      "country influence mult = 0.05",
+      "building arts academy throughput add = 0.05",
+      "country leverage generation mult = 0.1"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -39,8 +41,9 @@
       "Level 5+ Food Industry required",
       "Level 5+ Livestock Ranch required"
     ],
-    "prestige_bonuses": [
-      "Port +10% throughput"
+    "prosperity_bonuses": [
+      "state trade advantage mult = 0.1",
+      "building port throughput add = 0.1"
     ],
     "country": "ARG",
     "country_confidence": "wiki_assignment",
@@ -62,9 +65,10 @@
       "Level 5+ Glassworks required",
       "Technology: Chemical Bleaching"
     ],
-    "prestige_bonuses": [
-      "Arts Academy +5% throughput",
-      "Synthetics Plants +5% throughput"
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1",
+      "building arts academy throughput add = 0.05",
+      "building synthetics plants throughput add = 0.05"
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
@@ -84,11 +88,14 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_ZHEJIANG",
-      "Control state STATE_SUZHOU",
       "Control state STATE_NANJING",
+      "Control state STATE_SUZHOU",
       "Level 5+ Silk Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country authority mult = 0.10",
+      "country influence mult = 0.10"
+    ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
     "display_name": "Jiangnan Weaving Bureaus"
@@ -111,8 +118,10 @@
       "Control region in Region Pacific Coast (level 5+ buildings required)",
       "Level 5+ Port required"
     ],
-    "prestige_bonuses": [
-      "Textile Mills +5% throughput"
+    "prosperity_bonuses": [
+      "state colony growth speed mult = 0.1",
+      "state conversion mult = 0.05",
+      "building textile mills throughput add = 0.05"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -134,7 +143,11 @@
       "Control state STATE_ILE_DE_FRANCE",
       "Level 5+ Textile Mills required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country influence mult = 0.05",
+      "country leverage generation mult = 0.05",
+      "state assimilation mult = 0.05"
+    ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
     "display_name": "Maison Worth"
@@ -156,9 +169,9 @@
       "Control state STATE_ARKANSAS",
       "Level 5+ Cotton Plantation required"
     ],
-    "prestige_bonuses": [
-      "Power Plant +5% throughput",
-      "Textile Mills +10% throughput"
+    "prosperity_bonuses": [
+      "building power plant throughput add = 0.05",
+      "building textile mills throughput add = 0.1"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -179,8 +192,9 @@
       "Control state STATE_CONNECTICUT",
       "Level 5+ Arms Industry required"
     ],
-    "prestige_bonuses": [
-      "Arms Industry +10% throughput"
+    "prosperity_bonuses": [
+      "building arms industry throughput add = 0.1",
+      "unit army offense mult = 0.1"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -201,8 +215,10 @@
       "Control state STATE_AUSTRIA",
       "Level 5+ Furniture Manufacturies required"
     ],
-    "prestige_bonuses": [
-      "Furniture Manufacturies +10% throughput"
+    "prosperity_bonuses": [
+      "interest group ig petty bourgeoisie pop attraction mult = 0.05",
+      "state radicals from political movements mult = -0.05",
+      "building furniture manufacturies throughput add = 0.1"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -223,7 +239,11 @@
       "Control state STATE_KANSAI",
       "Level 5+ Glassworks required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country influence mult = 0.05",
+      "country infamy decay mult = 0.1",
+      "country leverage generation mult = 0.05"
+    ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
     "display_name": "Kinkozan Sobei"
@@ -243,8 +263,9 @@
       "Control state STATE_HOME_COUNTIES",
       "Level 5+ Furniture Manufacturies required"
     ],
-    "prestige_bonuses": [
-      "Group Bg Government +10% throughput"
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "building group bg government throughput add = 0.1"
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
@@ -265,7 +286,10 @@
       "Control region in Region South China (level 5+ buildings required)",
       "Level 5+ Tea Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country bureaucracy mult = 0.05",
+      "country loyalists from legitimacy mult = 0.05"
+    ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
     "display_name": "Ong Lung Sheng Tea Company"
@@ -285,10 +309,10 @@
       "Control state STATE_SICILY",
       "Level 5+ Sulfur Mine required"
     ],
-    "prestige_bonuses": [
-      "Munition Plants +10% throughput",
-      "Group Bg Plantations +5% throughput",
-      "Group Bg Agriculture +5% throughput"
+    "prosperity_bonuses": [
+      "building munition plants throughput add = 0.1",
+      "building group bg plantations throughput add = 0.05",
+      "building group bg agriculture throughput add = 0.05"
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
@@ -310,8 +334,9 @@
       "Control state STATE_LOMBARDY",
       "Level 5+ Silk Plantation required"
     ],
-    "prestige_bonuses": [
-      "Synthetics Plants +10% throughput"
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "building synthetics plants throughput add = 0.1"
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
@@ -332,8 +357,9 @@
       "Level 5+ Chemical Plants required",
       "Technology: Electrical Generation"
     ],
-    "prestige_bonuses": [
-      "Group Bg Agriculture +10% throughput"
+    "prosperity_bonuses": [
+      "building group bg agriculture throughput add = 0.1",
+      "country production tech spread mult = 0.05"
     ],
     "country": "NOR",
     "country_confidence": "wiki_assignment",
@@ -356,8 +382,8 @@
       "Level 5+ Motor Industry required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Group Bg Agriculture +15% throughput"
+    "prosperity_bonuses": [
+      "building group bg agriculture throughput add = 0.15"
     ],
     "country": "CAN",
     "country_confidence": "wiki_assignment",
@@ -376,7 +402,11 @@
       "Control region in Region Southern Africa (level 5+ buildings required)",
       "Level 5+ Gold Mine required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1",
+      "country leverage generation mult = 0.05",
+      "state colony growth speed mult = 0.05"
+    ],
     "country": "SAF",
     "country_confidence": "wiki_assignment",
     "display_name": "De Beers Consolidated Mines Ltd."
@@ -397,8 +427,9 @@
       "Level 5+ Rubber Plantation required",
       "Technology: Rubber Mastication"
     ],
-    "prestige_bonuses": [
-      "Group Bg Plantations +10% throughput"
+    "prosperity_bonuses": [
+      "building group bg plantations throughput add = 0.1",
+      "country bureaucracy investment cost factor mult = -0.05"
     ],
     "country": "SOK",
     "country_confidence": "wiki_assignment",
@@ -419,9 +450,9 @@
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Group Bg Coffee Plantations +10% throughput",
-      "Livestock Ranch +5% throughput"
+    "prosperity_bonuses": [
+      "building group bg coffee plantations throughput add = 0.1",
+      "building livestock ranch throughput add = 0.05"
     ],
     "country": "ETH",
     "country_confidence": "wiki_assignment",
@@ -440,12 +471,13 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_EAST_BORNEO",
-      "Control state STATE_WEST_BORNEO",
       "Control state STATE_NORTH_BORNEO",
+      "Control state STATE_WEST_BORNEO",
       "Level 5+ Gold Mine required"
     ],
-    "prestige_bonuses": [
-      "Group Bg Agriculture +5% throughput"
+    "prosperity_bonuses": [
+      "building group bg agriculture throughput add = 0.05",
+      "battle defense owned province mult = 0.1"
     ],
     "country": "LAN",
     "country_confidence": "definitive",
@@ -463,7 +495,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.25",
+      "country leverage generation mult = 0.25"
+    ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
     "display_name": "John Paradox & Company"
@@ -480,13 +515,15 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_ZHILI",
       "Control state STATE_BEIJING",
+      "Control state STATE_ZHILI",
       "Level 5+ Coal Mine required",
       "Technology: Steam Donkey",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country tech spread mult = 0.1"
+    ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
     "display_name": "Kaiping Mining Company"
@@ -509,7 +546,10 @@
       "Level 5+ Arms Industry required",
       "Technology: Breech Loading Artillery"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit combat unit type shrapnel artillery offense mult = 0.2",
+      "unit morale recovery mult = 0.15"
+    ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
     "display_name": "Hanyang Arsenal"
@@ -531,8 +571,9 @@
       "Technology: Ironclad Tech",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [
-      "Port +10% throughput"
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.05",
+      "building port throughput add = 0.10"
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
@@ -554,8 +595,9 @@
       "Level 5+ Glassworks required",
       "Technology: Chemical Bleaching"
     ],
-    "prestige_bonuses": [
-      "Lead Mine +5% throughput"
+    "prosperity_bonuses": [
+      "country prestige mult = 0.15",
+      "building lead mine throughput add = 0.05"
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
@@ -578,7 +620,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Corporate Charters"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state loyalists from political movements mult = 0.1"
+    ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
     "display_name": "Misr Spinning and Weaving Company"
@@ -598,7 +642,10 @@
       "Primary culture: Misri",
       "Technology: Corporate Charters"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure from population max add = 20",
+      "state trade capacity mult = 0.1"
+    ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
     "display_name": "Egyptian State Railways"
@@ -619,7 +666,11 @@
       "Control state STATE_SINAI",
       "Level 5+ Suez Canal required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state trade advantage mult = 0.25",
+      "country tax income add = 50000",
+      "country max companies add = 1"
+    ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
     "display_name": "Suez Canal Company"
@@ -637,8 +688,9 @@
       "Control state STATE_WEST_BENGAL",
       "Level 5+ Coal Mine required"
     ],
-    "prestige_bonuses": [
-      "Iron Mine +10% throughput"
+    "prosperity_bonuses": [
+      "interest group ig industrialists pol str mult = 0.2",
+      "building iron mine throughput add = 0.1"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -660,9 +712,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Cotton Gin"
     ],
-    "prestige_bonuses": [
-      "Dye Plantation +20% throughput",
-      "Cotton Plantation +5% throughput"
+    "prosperity_bonuses": [
+      "building dye plantation throughput add = 0.2",
+      "building cotton plantation throughput add = 0.05"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -682,15 +734,17 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Control region in Region Bengal (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state trade advantage mult = 0.05"
+    ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
     "display_name": "David Sassoon & Co., Ltd"
@@ -714,9 +768,9 @@
       "States with Burmese Teak trait",
       "Level 5+ Logging Camp required"
     ],
-    "prestige_bonuses": [
-      "Group Bg Tea Plantations +10% throughput",
-      "Group Bg Coffee Plantations +10% throughput"
+    "prosperity_bonuses": [
+      "building group bg tea plantations throughput add = 0.1",
+      "building group bg coffee plantations throughput add = 0.1"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -739,8 +793,10 @@
       "Level 5+ Textile Mills required",
       "Technology: Cotton Gin"
     ],
-    "prestige_bonuses": [
-      "Textile Mills +10% throughput"
+    "prosperity_bonuses": [
+      "interest group ig petty bourgeoisie pop attraction mult = 0.1",
+      "building textile mills throughput add = 0.1",
+      "country state religion wages mult = 0.05"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -761,8 +817,9 @@
       "Control state STATE_ASSAM",
       "Level 5+ Tea Plantation required"
     ],
-    "prestige_bonuses": [
-      "Group Bg Tea Plantations +20% throughput"
+    "prosperity_bonuses": [
+      "building group bg tea plantations throughput add = 0.2",
+      "state radicals from political movements mult = -0.05"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -783,7 +840,13 @@
       "Level 5+ Shipyards required",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "interest group ig petty bourgeoisie pop attraction mult = 0.1",
+      "country convoys capacity mult = 0.1",
+      "state radicalism increases violent hostility mult = -0.05",
+      "state radicalism increases cultural erasure mult = -0.05",
+      "state radicalism increases open prejudice mult = -0.05"
+    ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
     "display_name": "Wadia Shipbuilders"
@@ -806,8 +869,8 @@
       "Level 5+ Rice Farm required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Group Bg Logging +20% throughput"
+    "prosperity_bonuses": [
+      "building group bg logging throughput add = 0.2"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -828,19 +891,20 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_BOMBAY",
       "Control state STATE_WEST_BENGAL",
-      "Control region in Region Bengal (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
+      "Control state STATE_BOMBAY",
       "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
     ],
-    "prestige_bonuses": [
-      "Sulfur Mine +10% throughput",
-      "Textile Mills +10% throughput"
+    "prosperity_bonuses": [
+      "building sulfur mine throughput add = 0.1",
+      "building textile mills throughput add = 0.1",
+      "state trade advantage mult = 0.05"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -860,7 +924,10 @@
       "Level 5+ Power Plant required",
       "Technology: Electrical Generation"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure from population add = 6",
+      "state infrastructure from population max add = 12"
+    ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
     "display_name": "Calcutta Electric Supply Corporation Limited"
@@ -882,7 +949,10 @@
       "Level 5+ Rubber Plantation required",
       "Primary culture: Wallonian"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.15",
+      "building group bg rubber mortality mult = 0.2"
+    ],
     "country": "BEL",
     "country_confidence": "wiki_assignment",
     "display_name": "Compagnie du Congo"
@@ -898,11 +968,13 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WALLONIA",
       "Control state STATE_FLANDERS",
+      "Control state STATE_WALLONIA",
       "Level 5+ Motor Industry required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure mult = 0.05"
+    ],
     "country": "BEL",
     "country_confidence": "wiki_assignment",
     "display_name": "Société Franco-Belge"
@@ -921,12 +993,12 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WALLONIA",
       "Control state STATE_FLANDERS",
+      "Control state STATE_WALLONIA",
       "Level 5+ Steel Mills required"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1"
     ],
     "country": "BEL",
     "country_confidence": "wiki_assignment",
@@ -947,7 +1019,9 @@
       "Primary culture: Dutch",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state colony growth speed mult = 0.1"
+    ],
     "country": "NET",
     "country_confidence": "wiki_assignment",
     "display_name": "Nederlandse Petroleum Maatschappij"
@@ -965,12 +1039,15 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GELRE",
       "Control state STATE_HOLLAND",
+      "Control state STATE_GELRE",
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country weekly innovation mult = 0.05",
+      "country weekly innovation max add = 15"
+    ],
     "country": "NET",
     "country_confidence": "wiki_assignment",
     "display_name": "Philips"
@@ -990,7 +1067,10 @@
       "Level 5+ Motor Industry required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.2",
+      "state infrastructure mult = 0.05"
+    ],
     "country": "GRE",
     "country_confidence": "wiki_assignment",
     "display_name": "Basileiades"
@@ -1012,9 +1092,9 @@
       "Level 5+ Motor Industry required",
       "Technology: Mechanical Tools"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput",
-      "Steel Mills +5% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1",
+      "building steel mills throughput add = 0.05"
     ],
     "country": "GRE",
     "country_confidence": "wiki_assignment",
@@ -1036,7 +1116,10 @@
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country weekly innovation mult = 0.1",
+      "state education access wealth add = 0.005"
+    ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
     "display_name": "Ericsson"
@@ -1057,8 +1140,8 @@
       "Level 5+ Iron Mine required",
       "Technology: Open Hearth Process"
     ],
-    "prestige_bonuses": [
-      "Iron Mine +20% throughput"
+    "prosperity_bonuses": [
+      "building iron mine throughput add = 0.2"
     ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
@@ -1080,7 +1163,10 @@
       "Level 5+ Shipyards required",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy defense mult = 0.05",
+      "unit navy offense mult = 0.05"
+    ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
     "display_name": "Götaverken"
@@ -1100,8 +1186,9 @@
       "Level 5+ Shipyards required",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [
-      "Fishing Wharf +5% throughput"
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.15",
+      "building fishing wharf throughput add = 0.05"
     ],
     "country": "NOR",
     "country_confidence": "wiki_assignment",
@@ -1125,9 +1212,9 @@
       "Level 5+ Paper Mills required",
       "Technology: Atmospheric Engine"
     ],
-    "prestige_bonuses": [
-      "Electrics Industry +10% throughput",
-      "Synthetics Plants +5% throughput"
+    "prosperity_bonuses": [
+      "building electrics industry throughput add = 0.1",
+      "building synthetics plants throughput add = 0.05"
     ],
     "country": "FIN",
     "country_confidence": "definitive",
@@ -1148,8 +1235,8 @@
       "Level 5+ Motor Industry required",
       "Technology: Combustion Engine"
     ],
-    "prestige_bonuses": [
-      "Wheat Farm +20% throughput"
+    "prosperity_bonuses": [
+      "building wheat farm throughput add = 0.2"
     ],
     "country": "POL",
     "country_confidence": "wiki_assignment",
@@ -1169,13 +1256,13 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GREATER_POLAND",
       "Control state STATE_MAZOVIA",
+      "Control state STATE_GREATER_POLAND",
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
-    "prestige_bonuses": [
-      "Motor Industry +10% throughput"
+    "prosperity_bonuses": [
+      "building motor industry throughput add = 0.1"
     ],
     "country": "POL",
     "country_confidence": "wiki_assignment",
@@ -1195,14 +1282,17 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MOCAMBIQUE",
-      "Control state STATE_ZAMBEZIA",
       "Control state STATE_LOURENCO_MARQUES",
+      "Control state STATE_ZAMBEZIA",
+      "Control state STATE_MOCAMBIQUE",
       "Level 5+ Cotton Plantation required",
       "Primary culture: Portuguese",
       "Technology: Mutual Funds"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state colony growth speed mult = 0.1",
+      "state colony growth creation factor = 0.1"
+    ],
     "country": "POR",
     "country_confidence": "wiki_assignment",
     "display_name": "Companhia de Moçambique"
@@ -1224,7 +1314,9 @@
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure mult = 0.1"
+    ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
     "display_name": "Altos Hornos de Vizcaya"
@@ -1247,9 +1339,9 @@
       "Level 5+ Coal Mine required",
       "Technology: Steelworking"
     ],
-    "prestige_bonuses": [
-      "Arms Industry +10% throughput",
-      "Artillery Foundries +10% throughput"
+    "prosperity_bonuses": [
+      "building arms industry throughput add = 0.1",
+      "building artillery foundries throughput add = 0.1"
     ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
@@ -1272,7 +1364,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Cotton Gin"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country weekly innovation mult = 0.15"
+    ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
     "display_name": "La España Industrial"
@@ -1295,7 +1389,10 @@
       "Level 5+ Arms Industry required",
       "Technology: Gunsmithing"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit offense mult = 0.05",
+      "country military goods cost mult = -0.05"
+    ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
     "display_name": "Fábrica de Armas de Trubia"
@@ -1317,7 +1414,10 @@
       "Level 5+ Arms Industry required",
       "Technology: Gunsmithing"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit defense mult = 0.05",
+      "unit recovery rate add = 0.05"
+    ],
     "country": "SER",
     "country_confidence": "wiki_assignment",
     "display_name": "Zastava"
@@ -1338,9 +1438,9 @@
       "Control state STATE_ZEALAND",
       "Level 5+ Food Industry required"
     ],
-    "prestige_bonuses": [
-      "Livestock Ranch +10% throughput",
-      "Fishing Wharf +10% throughput"
+    "prosperity_bonuses": [
+      "building livestock ranch throughput add = 0.1",
+      "building fishing wharf throughput add = 0.1"
     ],
     "country": "DEN",
     "country_confidence": "wiki_assignment",
@@ -1362,7 +1462,10 @@
       "Control state STATE_ZEALAND",
       "Level 5+ Shipyards required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.2",
+      "interest group ig industrialists pop attraction mult = 0.1"
+    ],
     "country": "DEN",
     "country_confidence": "wiki_assignment",
     "display_name": "A.P. Møller"
@@ -1381,7 +1484,10 @@
       "Primary culture: Romanian",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure mult = 0.05",
+      "state trade capacity mult = 0.15"
+    ],
     "country": "ROM",
     "country_confidence": "wiki_assignment",
     "display_name": "Căile Ferate Române"
@@ -1400,8 +1506,8 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Group Bg Oil Extraction +20% throughput"
+    "prosperity_bonuses": [
+      "building group bg oil extraction throughput add = 0.2"
     ],
     "country": "ROM",
     "country_confidence": "wiki_assignment",
@@ -1423,9 +1529,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Cotton Gin"
     ],
-    "prestige_bonuses": [
-      "Textile Mills +15% throughput",
-      "Cotton Plantation +5% throughput"
+    "prosperity_bonuses": [
+      "building textile mills throughput add = 0.15",
+      "building cotton plantation throughput add = 0.05"
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
@@ -1450,7 +1556,10 @@
       "Technology: Ironclad Tech",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit combat unit type carrier offense mult = 0.15",
+      "unit navy defense mult = 0.1"
+    ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
     "display_name": "Sir W. G. Armstrong Whitworth & Co."
@@ -1474,7 +1583,10 @@
       "Technology: Steelworking",
       "Technology: Hydraulic Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "country convoys capacity mult = 0.1"
+    ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
     "display_name": "John Brown & Company"
@@ -1493,7 +1605,10 @@
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "state radicals from political movements mult = -0.05"
+    ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
     "display_name": "Great Western Railway"
@@ -1516,9 +1631,9 @@
       "Level 5+ Coal Mine required",
       "Technology: Bessemer Process"
     ],
-    "prestige_bonuses": [
-      "Shipyards +10% throughput",
-      "Military Shipyards +10% throughput"
+    "prosperity_bonuses": [
+      "building shipyards throughput add = 0.1",
+      "building military shipyards throughput add = 0.1"
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
@@ -1542,8 +1657,9 @@
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1",
+      "unit kill rate add = 0.1"
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
@@ -1569,7 +1685,11 @@
       "Level 5+ Arms Industry required",
       "Technology: Automatic Machine Guns"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit combat unit type siege artillery offense mult = 0.1",
+      "unit combat unit type shrapnel artillery offense mult = 0.1",
+      "unit army defense mult = 0.05"
+    ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
     "display_name": "Rheinmetall"
@@ -1593,7 +1713,10 @@
       "Level 5+ Motor Industry required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.05",
+      "unit combat unit type submarine offense mult = 0.1"
+    ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
     "display_name": "F. Schichau"
@@ -1613,8 +1736,8 @@
       "Level 5+ Electrics Industry required",
       "Technology: Electric Telegraph"
     ],
-    "prestige_bonuses": [
-      "Power Plant +15% throughput"
+    "prosperity_bonuses": [
+      "building power plant throughput add = 0.15"
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
@@ -1630,14 +1753,16 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Poland (level 5+ buildings required)",
-      "Control region in Region North Germany (level 5+ buildings required)",
-      "Control region in Region Rhine (level 5+ buildings required)",
       "Control region in Region South Germany (level 5+ buildings required)",
+      "Control region in Region North Germany (level 5+ buildings required)",
+      "Control region in Region Poland (level 5+ buildings required)",
+      "Control region in Region Rhine (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "military formation movement speed mult = 0.1"
+    ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
     "display_name": "Preußische Staatseisenbahnen"
@@ -1660,8 +1785,9 @@
       "Level 5+ Synthetics Plants required",
       "Technology: Aniline"
     ],
-    "prestige_bonuses": [
-      "Group Bg Oil Extraction +5% throughput"
+    "prosperity_bonuses": [
+      "country weekly innovation mult = 0.1",
+      "building group bg oil extraction throughput add = 0.05"
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
@@ -1684,9 +1810,9 @@
       "Level 5+ Steel Mills required",
       "Technology: Bessemer Process"
     ],
-    "prestige_bonuses": [
-      "Railway +5% throughput",
-      "Iron Mine +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.05",
+      "building iron mine throughput add = 0.1"
     ],
     "country": "MEX",
     "country_confidence": "wiki_assignment",
@@ -1706,7 +1832,10 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.15",
+      "interest group ig industrialists approval add = 3"
+    ],
     "country": "MEX",
     "country_confidence": "wiki_assignment",
     "display_name": "El Águila"
@@ -1726,7 +1855,10 @@
       "Level 5+ Sulfur Mine required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure mult = 0.05",
+      "interest group ig industrialists approval add = 3"
+    ],
     "country": "BOL",
     "country_confidence": "wiki_assignment",
     "display_name": "Compañía de Salitres y Ferrocarril de Antofagasta"
@@ -1746,7 +1878,10 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.1",
+      "interest group ig industrialists approval add = 3"
+    ],
     "country": "VNZ",
     "country_confidence": "wiki_assignment",
     "display_name": "Caribbean Petroleum Company"
@@ -1768,8 +1903,9 @@
       "Control region in Region La Plata (level 5+ buildings required)",
       "Level 5+ Wheat Farm required"
     ],
-    "prestige_bonuses": [
-      "Tooling Workshops +10% throughput"
+    "prosperity_bonuses": [
+      "interest group ig rural folk pop attraction mult = 0.2",
+      "building tooling workshops throughput add = 0.1"
     ],
     "country": "ARG",
     "country_confidence": "wiki_assignment",
@@ -1793,8 +1929,9 @@
       "Level 5+ Arms Industry required",
       "Technology: Shell Gun"
     ],
-    "prestige_bonuses": [
-      "Iron Mine +10% throughput"
+    "prosperity_bonuses": [
+      "unit defense mult = 0.05",
+      "building iron mine throughput add = 0.1"
     ],
     "country": "PRG",
     "country_confidence": "wiki_assignment",
@@ -1818,8 +1955,9 @@
       "Level 5+ Arms Industry required",
       "Technology: Gunsmithing"
     ],
-    "prestige_bonuses": [
-      "Steel Mills +5% throughput"
+    "prosperity_bonuses": [
+      "unit offense mult = 0.1",
+      "building steel mills throughput add = 0.05"
     ],
     "country": "CHL",
     "country_confidence": "wiki_assignment",
@@ -1839,7 +1977,10 @@
       "Level 5+ Rubber Plantation required",
       "Technology: Rubber Mastication"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state loyalists from political movements mult = 0.1",
+      "building group bg rubber mortality mult = 0.1"
+    ],
     "country": "PEU",
     "country_confidence": "wiki_assignment",
     "display_name": "Peruvian Amazon Company"
@@ -1861,8 +2002,9 @@
       "Level 5+ Paper Mills required",
       "Technology: Mechanical Tools"
     ],
-    "prestige_bonuses": [
-      "Tooling Workshops +10% throughput"
+    "prosperity_bonuses": [
+      "building tooling workshops throughput add = 0.1",
+      "state infrastructure from population max add = 15"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -1885,8 +2027,9 @@
       "Control state STATE_MANITOBA",
       "Level 5+ Food Industry required"
     ],
-    "prestige_bonuses": [
-      "Textile Mills +5% throughput"
+    "prosperity_bonuses": [
+      "state colony growth creation factor = 0.1",
+      "building textile mills throughput add = 0.05"
     ],
     "country": "CAN",
     "country_confidence": "wiki_assignment",
@@ -1908,7 +2051,11 @@
       "Control state STATE_PANAMA",
       "Level 5+ Panama Canal required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state trade advantage mult = 0.25",
+      "country tax income add = 50000",
+      "country max companies add = 1"
+    ],
     "country": "CLM",
     "country_confidence": "wiki_assignment",
     "display_name": "Panama Canal Company"
@@ -1930,7 +2077,9 @@
       "Level 5+ Food Industry required",
       "Primary culture: Russian"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state radicals from political movements mult = -0.15"
+    ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
     "display_name": "Vodka Monopoly"
@@ -1953,8 +2102,9 @@
       "Level 5+ Motor Industry required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1",
+      "state infrastructure mult = 0.05"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -1976,8 +2126,9 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Railway +5% throughput"
+    "prosperity_bonuses": [
+      "state migration pull mult = 0.1",
+      "building railway throughput add = 0.05"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -2001,9 +2152,9 @@
       "Level 5+ Arms Industry required",
       "Technology: Rifling"
     ],
-    "prestige_bonuses": [
-      "Arms Industry +10% throughput",
-      "Artillery Foundries +10% throughput"
+    "prosperity_bonuses": [
+      "building arms industry throughput add = 0.1",
+      "building artillery foundries throughput add = 0.1"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -2025,7 +2176,10 @@
       "Level 5+ Textile Mills required",
       "Technology: Joint Stock Companies"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1",
+      "interest group ig industrialists pop attraction mult = 0.1"
+    ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
     "display_name": "Savva Morozov & Sons"
@@ -2049,8 +2203,9 @@
       "Level 5+ Steel Mills required",
       "Technology: Bessemer Process"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1",
+      "interest group ig industrialists approval add = 2"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -2071,14 +2226,16 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Bengal (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Level 5+ Tea Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.2"
+    ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
     "display_name": "East India Company"
@@ -2097,7 +2254,9 @@
       "Level 5+ Military Shipyards required",
       "Technology: Hydraulic Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy defense mult = 0.10"
+    ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
     "display_name": "Tersâne-i Âmire"
@@ -2117,7 +2276,9 @@
       "Level 5+ Tobacco Plantation required",
       "Primary culture: Turkish"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country production tech spread mult = 0.1"
+    ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
     "display_name": "Ottoman Tobacco Company"
@@ -2138,8 +2299,11 @@
       "Control state STATE_MACEDONIA",
       "Level 5+ Wheat Farm required"
     ],
-    "prestige_bonuses": [
-      "Food Industry +10% throughput"
+    "prosperity_bonuses": [
+      "building food industry throughput add = 0.1",
+      "state radicalism increases violent hostility mult = -0.05",
+      "state radicalism increases cultural erasure mult = -0.05",
+      "state radicalism increases open prejudice mult = -0.05"
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
@@ -2158,7 +2322,9 @@
       "Control region in Region Balkans (level 5+ buildings required)",
       "Level 5+ Railway required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1"
+    ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
     "display_name": "Chemins de fer Orientaux"
@@ -2173,15 +2339,18 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Bengal (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure from population add = 0.5",
+      "state infrastructure from population max add = 20"
+    ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
     "display_name": "Great Indian Peninsula Railway"
@@ -2203,8 +2372,9 @@
       "Control state STATE_BOMBAY",
       "Level 5+ Textile Mills required"
     ],
-    "prestige_bonuses": [
-      "Construction Sector +5% throughput"
+    "prosperity_bonuses": [
+      "building construction sector throughput add = 0.05",
+      "country max weekly construction progress add = 10"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -2227,7 +2397,9 @@
       "Level 5+ Tobacco Plantation required",
       "Technology: Central Planning"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country tech spread mult = 0.1"
+    ],
     "country": "KOR",
     "country_confidence": "wiki_assignment",
     "display_name": "Sunhwaguk"
@@ -2249,7 +2421,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Corporate Charters"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country tech spread mult = 0.1"
+    ],
     "country": "DAI",
     "country_confidence": "wiki_assignment",
     "display_name": "Nam Định Textile Factory"
@@ -2268,7 +2442,10 @@
       "Level 5+ Tobacco Plantation required",
       "Technology: Corporate Charters"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country tech spread mult = 0.2",
+      "interest group ig rural folk approval add = -2"
+    ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
     "display_name": "Imperial Tobacco Corporation of Persia"
@@ -2291,7 +2468,9 @@
       "Level 5+ Food Industry required",
       "Technology: Corporate Charters"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state radicals from political movements mult = -0.1"
+    ],
     "country": "PHI",
     "country_confidence": "manual_assignment",
     "display_name": "San Miguel"
@@ -2313,8 +2492,8 @@
       "Level 5+ Steel Mills required",
       "Technology: Bessemer Process"
     ],
-    "prestige_bonuses": [
-      "Railway +15% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.15"
     ],
     "country": "AST",
     "country_confidence": "wiki_assignment",
@@ -2335,8 +2514,9 @@
       "Control state STATE_BANGKOK",
       "Level 5+ Rice Farm required"
     ],
-    "prestige_bonuses": [
-      "Food Industry +10% throughput"
+    "prosperity_bonuses": [
+      "state infrastructure from population mult = 0.1",
+      "building food industry throughput add = 0.1"
     ],
     "country": "SIA",
     "country_confidence": "wiki_assignment",
@@ -2360,7 +2540,10 @@
       "Level 5+ Steel Mills required",
       "Technology: Shell Gun"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "character advancement speed add = 1",
+      "unit combat unit type siege artillery offense mult = 0.15"
+    ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
     "display_name": "Škoda Works"
@@ -2382,8 +2565,8 @@
       "Level 5+ Motor Industry required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -2407,7 +2590,10 @@
       "Level 5+ Steel Mills required",
       "Technology: Open Hearth Process"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit offense mult = 0.05",
+      "country military tech spread mult = 0.05"
+    ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
     "display_name": "Manfréd Weiss Steel and Metal Works"
@@ -2428,9 +2614,9 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Railway +5% throughput",
-      "Tooling Workshops +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.05",
+      "building tooling workshops throughput add = 0.1"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -2455,8 +2641,9 @@
       "Level 5+ Arms Industry required",
       "Technology: Percussion Cap"
     ],
-    "prestige_bonuses": [
-      "Munition Plants +10% throughput"
+    "prosperity_bonuses": [
+      "building munition plants throughput add = 0.1",
+      "unit defense mult = 0.05"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -2479,8 +2666,9 @@
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Group Bg Coffee Plantations +15% throughput"
+    "prosperity_bonuses": [
+      "building group bg coffee plantations throughput add = 0.15",
+      "state trade capacity mult = 0.1"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -2500,8 +2688,9 @@
       "Control state STATE_RIO_DE_JANEIRO",
       "Level 5+ Shipyards required"
     ],
-    "prestige_bonuses": [
-      "Steel Mills +10% throughput"
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.1",
+      "building steel mills throughput add = 0.1"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -2523,9 +2712,9 @@
       "Control state STATE_PERNAMBUCO",
       "Level 5+ Textile Mills required"
     ],
-    "prestige_bonuses": [
-      "Cotton Plantation +10% throughput",
-      "Rubber Plantation +5% throughput"
+    "prosperity_bonuses": [
+      "building cotton plantation throughput add = 0.1",
+      "building rubber plantation throughput add = 0.05"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -2547,9 +2736,9 @@
       "Control state STATE_SAO_PAULO",
       "Level 5+ Steel Mills required"
     ],
-    "prestige_bonuses": [
-      "Munition Plants +5% throughput",
-      "Arms Industry +10% throughput"
+    "prosperity_bonuses": [
+      "building munition plants throughput add = 0.05",
+      "building arms industry throughput add = 0.1"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -2571,9 +2760,9 @@
       "Control state STATE_RIO_GRANDE_DO_SUL",
       "Level 5+ Arms Industry required"
     ],
-    "prestige_bonuses": [
-      "Livestock Ranch +10% throughput",
-      "Chemical Plants +5% throughput"
+    "prosperity_bonuses": [
+      "building livestock ranch throughput add = 0.1",
+      "building chemical plants throughput add = 0.05"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -2593,8 +2782,9 @@
       "Control state STATE_POTOSI",
       "Level 5+ Lead Mine required"
     ],
-    "prestige_bonuses": [
-      "Lead Mine +10% throughput"
+    "prosperity_bonuses": [
+      "building lead mine throughput add = 0.1",
+      "interest group ig industrialists pol str mult = 0.15"
     ],
     "country": "BOL",
     "country_confidence": "wiki_assignment",
@@ -2614,7 +2804,9 @@
       "Level 5+ Vineyard Plantation required",
       "Technology: Central Planning"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.2"
+    ],
     "country": "ARG",
     "country_confidence": "definitive",
     "display_name": "Centro Vitivinícola Nacional"
@@ -2634,7 +2826,10 @@
       "Level 5+ Shipyards required",
       "Technology: Screw Frigate"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state colony growth speed mult = 0.1",
+      "country convoys capacity mult = 0.1"
+    ],
     "country": "CHL",
     "country_confidence": "wiki_assignment",
     "display_name": "Compañía Sudamericana de Vapores"
@@ -2654,7 +2849,10 @@
       "Level 5+ Power Plant required",
       "Technology: Electrical Generation"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure from population add = 5",
+      "state infrastructure from population max add = 10"
+    ],
     "country": "VNZ",
     "country_confidence": "wiki_assignment",
     "display_name": "C.A. La Electricidad de Caracas"
@@ -2675,9 +2873,9 @@
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Wheat Farm +10% throughput",
-      "Livestock Ranch +5% throughput"
+    "prosperity_bonuses": [
+      "building wheat farm throughput add = 0.1",
+      "building livestock ranch throughput add = 0.05"
     ],
     "country": "ARG",
     "country_confidence": "definitive",
@@ -2697,7 +2895,10 @@
       "Level 5+ Power Plant required",
       "Technology: Electrical Generation"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure from population mult = 0.05",
+      "state construction mult = 0.05"
+    ],
     "country": "PEU",
     "country_confidence": "wiki_assignment",
     "display_name": "Empresas Eléctricas Asociadas"
@@ -2717,8 +2918,8 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Railway +20% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.2"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -2742,8 +2943,9 @@
       "Primary culture: Yankee",
       "Primary culture: Dixie"
     ],
-    "prestige_bonuses": [
-      "Group Bg Plantations +20% throughput"
+    "prosperity_bonuses": [
+      "building group bg plantations throughput add = 0.2",
+      "country infamy decay mult = -0.25"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -2767,9 +2969,9 @@
       "Level 5+ Steel Mills required",
       "Technology: Open Hearth Process"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput",
-      "Shipyards +10% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1",
+      "building shipyards throughput add = 0.1"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -2793,8 +2995,9 @@
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
-    "prestige_bonuses": [
-      "Motor Industry +10% throughput"
+    "prosperity_bonuses": [
+      "building motor industry throughput add = 0.1",
+      "country weekly innovation mult = 0.05"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -2812,13 +3015,16 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NEW_JERSEY",
       "Control state STATE_MARYLAND",
       "Control state STATE_DELAWARE",
+      "Control state STATE_NEW_JERSEY",
       "Level 5+ Military Shipyards required",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.05",
+      "unit navy defense mult = 0.05"
+    ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
     "display_name": "William Cramp & Sons"
@@ -2841,9 +3047,9 @@
       "Level 5+ Motor Industry required",
       "Technology: Combustion Engine"
     ],
-    "prestige_bonuses": [
-      "Motor Industry +15% throughput",
-      "Automotive Industry +5% throughput"
+    "prosperity_bonuses": [
+      "building motor industry throughput add = 0.15",
+      "building automotive industry throughput add = 0.05"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -2864,8 +3070,9 @@
       "Control state STATE_BALKH",
       "Level 5+ Textile Mills required"
     ],
-    "prestige_bonuses": [
-      "Cotton Plantation +10% throughput"
+    "prosperity_bonuses": [
+      "state trade capacity mult = 0.05",
+      "building cotton plantation throughput add = 0.1"
     ],
     "country": "AFG",
     "country_confidence": "wiki_assignment",
@@ -2886,7 +3093,9 @@
       "Primary culture: Persian",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state assimilation mult = 0.1"
+    ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
     "display_name": "Iranian State Railway"
@@ -2906,8 +3115,8 @@
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Cotton Plantation +10% throughput"
+    "prosperity_bonuses": [
+      "building cotton plantation throughput add = 0.1"
     ],
     "country": "KOK",
     "country_confidence": "wiki_assignment",
@@ -2928,8 +3137,9 @@
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Power Plant +5% throughput"
+    "prosperity_bonuses": [
+      "state colony growth speed mult = 0.1",
+      "building power plant throughput add = 0.05"
     ],
     "country": "KOK",
     "country_confidence": "wiki_assignment",
@@ -2948,8 +3158,8 @@
       "Control state STATE_BALKH",
       "Level 5+ Cotton Plantation required"
     ],
-    "prestige_bonuses": [
-      "Opium Plantation +20% throughput"
+    "prosperity_bonuses": [
+      "building opium plantation throughput add = 0.2"
     ],
     "country": "AFG",
     "country_confidence": "wiki_assignment",
@@ -2970,7 +3180,10 @@
       "Control region in Region Persia (level 5+ buildings required)",
       "Level 5+ Opium Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state radicals from political movements mult = -0.1",
+      "unit morale recovery mult = 0.1"
+    ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
     "display_name": "Bongāh-e Enḥeṣār-e Ṣāderāt-e Taryāk"
@@ -2990,7 +3203,9 @@
       "Control state STATE_ISFAHAN",
       "Level 5+ Textile Mills required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country state religion wages mult = 0.2"
+    ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
     "display_name": "Šerkat-e Eslāmiya"
@@ -3008,7 +3223,12 @@
       "Control state STATE_LEBANON",
       "Level 5+ Silk Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1",
+      "state radicalism increases violent hostility mult = -0.05",
+      "state radicalism increases cultural erasure mult = -0.05",
+      "state radicalism increases open prejudice mult = -0.05"
+    ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
     "display_name": "MM. Nicolas Portalis et Cie."
@@ -3027,9 +3247,9 @@
       "Level 5+ Power Plant required",
       "Technology: Electrical Generation"
     ],
-    "prestige_bonuses": [
-      "Arts Academy +5% throughput",
-      "Railway +5% throughput"
+    "prosperity_bonuses": [
+      "building arts academy throughput add = 0.05",
+      "building railway throughput add = 0.05"
     ],
     "country": "KOR",
     "country_confidence": "wiki_assignment",
@@ -3050,8 +3270,8 @@
       "Technology: Steam Donkey",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Power Plant +10% throughput"
+    "prosperity_bonuses": [
+      "building power plant throughput add = 0.1"
     ],
     "country": "KOK",
     "country_confidence": "wiki_assignment",
@@ -3070,7 +3290,10 @@
       "Control region in Region Persia (level 5+ buildings required)",
       "Level 5+ Silk Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "interest group ig petty bourgeoisie pop attraction mult = 0.1"
+    ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
     "display_name": "Persshelk"
@@ -3088,8 +3311,9 @@
       "Control region in Region Persia (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required"
     ],
-    "prestige_bonuses": [
-      "Textile Mills +5% throughput"
+    "prosperity_bonuses": [
+      "building textile mills throughput add = 0.05",
+      "interest group ig rural folk approval add = 2"
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
@@ -3113,8 +3337,9 @@
       "Control state STATE_MOSCOW",
       "Level 5+ Cotton Plantation required"
     ],
-    "prestige_bonuses": [
-      "Cotton Plantation +20% throughput"
+    "prosperity_bonuses": [
+      "building cotton plantation throughput add = 0.2",
+      "interest group ig industrialists pop attraction mult = 0.05"
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
@@ -3137,7 +3362,12 @@
       "Level 5+ Food Industry required",
       "Technology: Corporate Charters"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state radicals from political movements mult = -0.1",
+      "state radicalism increases violent hostility mult = -0.05",
+      "state radicalism increases cultural erasure mult = -0.05",
+      "state radicalism increases open prejudice mult = -0.05"
+    ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
     "display_name": "Arthur Guinness Son & Co. Ltd"
@@ -3160,8 +3390,9 @@
       "Level 5+ Rice Farm required",
       "Technology: Civilizing Mission"
     ],
-    "prestige_bonuses": [
-      "Railway +5% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.05",
+      "state migration pull mult = 0.1"
     ],
     "country": "KOR",
     "country_confidence": "wiki_assignment",
@@ -3177,14 +3408,15 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_BAGHDAD",
       "Control state STATE_BASRA",
+      "Control state STATE_BAGHDAD",
       "Control state STATE_MOSUL",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Railway +5% throughput"
+    "prosperity_bonuses": [
+      "state trade capacity mult = 0.05",
+      "building railway throughput add = 0.05"
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
@@ -3206,8 +3438,8 @@
       "Primary culture: Persian",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [
-      "Group Bg Oil Extraction +30% throughput"
+    "prosperity_bonuses": [
+      "building group bg oil extraction throughput add = 0.3"
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
@@ -3228,7 +3460,10 @@
       "Primary culture: Persian",
       "Technology: Pumpjacks"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "interest group ig industrialists pop attraction mult = 0.1",
+      "country loyalists from legitimacy mult = 0.1"
+    ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
     "display_name": "National Iranian Oil Company"
@@ -3250,9 +3485,9 @@
       "Level 5+ Steel Mills required",
       "Technology: Arc Welding"
     ],
-    "prestige_bonuses": [
-      "Railway +10% throughput",
-      "Artillery Foundries +5% throughput"
+    "prosperity_bonuses": [
+      "building railway throughput add = 0.1",
+      "building artillery foundries throughput add = 0.05"
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
@@ -3276,7 +3511,10 @@
       "Level 5+ Motor Industry required",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.05",
+      "unit army offense mult = 0.05"
+    ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
     "display_name": "Gio. Ansaldo & C."
@@ -3294,7 +3532,10 @@
       "Control state STATE_LOMBARDY",
       "Level 5+ Arts Academy required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.15",
+      "state loyalists from political movements mult = 0.05"
+    ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
     "display_name": "G. Ricordi & C."
@@ -3317,7 +3558,10 @@
       "Technology: Railways",
       "Technology: Combustion Engine"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "military formation movement speed mult = 0.1",
+      "unit army offense mult = 0.05"
+    ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
     "display_name": "FIAT"
@@ -3338,7 +3582,10 @@
       "Level 5+ Shipyards required",
       "Technology: Gantry Cranes"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy defense mult = 0.05",
+      "country convoys capacity mult = 0.05"
+    ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
     "display_name": "Stabilimento Tecnico Triestino"
@@ -3358,7 +3605,9 @@
       "Level 5+ Iron Mine required",
       "Technology: Bessemer Process"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state non homeland colony growth speed mult = 0.1"
+    ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
     "display_name": "Société Mokta El Hadid"
@@ -3382,7 +3631,10 @@
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit morale loss mult = -0.1",
+      "unit morale recovery mult = 0.1"
+    ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
     "display_name": "Schneider et Cie"
@@ -3405,7 +3657,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Cotton Gin"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state assimilation mult = 0.1"
+    ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
     "display_name": "Dollfus-Mieg et Compagnie"
@@ -3428,8 +3682,9 @@
       "Primary culture: Occitan",
       "Technology: Joint Stock Companies"
     ],
-    "prestige_bonuses": [
-      "Vineyard Plantation +10% throughput"
+    "prosperity_bonuses": [
+      "country prestige mult = 0.15",
+      "building vineyard plantation throughput add = 0.1"
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
@@ -3453,7 +3708,10 @@
       "Level 5+ Arms Industry required",
       "Technology: Bolt Action Rifles"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit offense mult = 0.05",
+      "unit defense mult = 0.05"
+    ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
     "display_name": "Manufacture d'armes de Saint-Étienne"
@@ -3474,7 +3732,10 @@
       "Level 5+ Shipyards required",
       "Technology: Ironclad Tech"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.05",
+      "unit combat unit type heavy tank offense mult = 0.1"
+    ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
     "display_name": "Forges et Chantiers de la Méditerranée"
@@ -3492,9 +3753,9 @@
       "Control state STATE_FRENCH_LOW_COUNTRIES",
       "Level 5+ Coal Mine required"
     ],
-    "prestige_bonuses": [
-      "Steel Mills +5% throughput",
-      "Railway +10% throughput"
+    "prosperity_bonuses": [
+      "building steel mills throughput add = 0.05",
+      "building railway throughput add = 0.1"
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
@@ -3521,8 +3782,9 @@
       "Level 5+ Textile Mills required",
       "Technology: Cotton Gin"
     ],
-    "prestige_bonuses": [
-      "Iron Mine +10% throughput"
+    "prosperity_bonuses": [
+      "interest group ig industrialists pol str mult = 0.2",
+      "building iron mine throughput add = 0.1"
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
@@ -3547,8 +3809,9 @@
       "Primary culture: Japanese",
       "Technology: Railways"
     ],
-    "prestige_bonuses": [
-      "Wheat Farm +15% throughput"
+    "prosperity_bonuses": [
+      "state non homeland colony growth speed mult = 0.1",
+      "building wheat farm throughput add = 0.15"
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
@@ -3576,8 +3839,9 @@
       "Primary culture: Japanese",
       "Technology: Ironclad Tech"
     ],
-    "prestige_bonuses": [
-      "Automotive Industry +10% throughput"
+    "prosperity_bonuses": [
+      "building automotive industry throughput add = 0.1",
+      "interest group ig industrialists approval add = 2"
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
@@ -3598,8 +3862,8 @@
     "formation_requirements": [
       "Level 5+ Wheat Farm required"
     ],
-    "prestige_bonuses": [
-      "Livestock Ranch +10% throughput"
+    "prosperity_bonuses": [
+      "building livestock ranch throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3611,7 +3875,7 @@
     "possible_prestige_goods": [],
     "flavored_company": false,
     "formation_requirements": [],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [],
     "country": null,
     "country_confidence": "none",
     "display_name": "Type Names"
@@ -3632,8 +3896,8 @@
     "formation_requirements": [
       "Level 5+ Millet Farm required"
     ],
-    "prestige_bonuses": [
-      "Livestock Ranch +10% throughput"
+    "prosperity_bonuses": [
+      "building livestock ranch throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3654,8 +3918,8 @@
     "formation_requirements": [
       "Level 5+ Cotton Plantation required"
     ],
-    "prestige_bonuses": [
-      "Textile Mills +10% throughput"
+    "prosperity_bonuses": [
+      "building textile mills throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3676,7 +3940,9 @@
     "formation_requirements": [
       "Level 5+ Opium Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state radicals from political movements mult = -0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Colonial Plantations 1"
@@ -3697,7 +3963,9 @@
     "formation_requirements": [
       "Level 5+ Coffee Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state colony growth speed mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Colonial Plantations 2"
@@ -3715,7 +3983,9 @@
     "formation_requirements": [
       "Level 5+ Silk Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country influence mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Silk And Dye"
@@ -3733,7 +4003,9 @@
     "formation_requirements": [
       "Level 5+ Vineyard Plantation required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Wine And Fruit"
@@ -3753,8 +4025,9 @@
     "formation_requirements": [
       "Level 5+ Fishing Wharf required"
     ],
-    "prestige_bonuses": [
-      "Shipyards +5% throughput"
+    "prosperity_bonuses": [
+      "country convoys capacity mult = 0.1",
+      "building shipyards throughput add = 0.05"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3773,7 +4046,10 @@
     "formation_requirements": [
       "Level 5+ Logging Camp required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state infrastructure from population add = 1",
+      "state infrastructure from population max add = 20"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Forestry"
@@ -3790,7 +4066,9 @@
     "formation_requirements": [
       "Level 5+ Oil Rig required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state migration pull mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Oil"
@@ -3807,7 +4085,10 @@
     "formation_requirements": [
       "Level 5+ Gold Mine required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country minting mult = 0.05",
+      "state loyalists from political movements mult = 0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Gold Mining"
@@ -3825,8 +4106,8 @@
     "formation_requirements": [
       "Level 5+ Iron Mine required"
     ],
-    "prestige_bonuses": [
-      "Steel Mills +10% throughput"
+    "prosperity_bonuses": [
+      "building steel mills throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3845,8 +4126,8 @@
     "formation_requirements": [
       "Level 5+ Sulfur Mine required"
     ],
-    "prestige_bonuses": [
-      "Chemical Plants +10% throughput"
+    "prosperity_bonuses": [
+      "building chemical plants throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3867,7 +4148,9 @@
     "formation_requirements": [
       "Level 5+ Food Industry required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state birth rate mult = 0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Food"
@@ -3886,7 +4169,9 @@
     "formation_requirements": [
       "Level 5+ Paper Mills required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country bureaucracy mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Paper"
@@ -3907,7 +4192,9 @@
     "formation_requirements": [
       "Level 5+ Glassworks required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state loyalists from political movements mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Home Goods"
@@ -3927,7 +4214,9 @@
     "formation_requirements": [
       "Level 5+ Textile Mills required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state radicals from political movements mult = -0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Textiles"
@@ -3947,7 +4236,9 @@
     "formation_requirements": [
       "Level 5+ Steel Mills required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "state construction mult = 0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Steel"
@@ -3967,8 +4258,8 @@
     "formation_requirements": [
       "Level 5+ Tooling Workshops required"
     ],
-    "prestige_bonuses": [
-      "Group Bg Manufacturing +5% throughput"
+    "prosperity_bonuses": [
+      "building group bg manufacturing throughput add = 0.05"
     ],
     "country": null,
     "country_confidence": "none",
@@ -3987,7 +4278,9 @@
     "formation_requirements": [
       "Level 5+ Shipyards required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Shipyards"
@@ -4007,7 +4300,9 @@
     "formation_requirements": [
       "Level 5+ Chemical Plants required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit supply consumption mult = -0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Chemicals"
@@ -4025,7 +4320,9 @@
     "formation_requirements": [
       "Level 5+ Motor Industry required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "military formation movement speed mult = 0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Motors"
@@ -4046,7 +4343,9 @@
     "formation_requirements": [
       "Level 5+ Munition Plants required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "country military goods cost mult = -0.1"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Munitions"
@@ -4064,8 +4363,8 @@
     "formation_requirements": [
       "Level 5+ Electrics Industry required"
     ],
-    "prestige_bonuses": [
-      "Power Plant +10% throughput"
+    "prosperity_bonuses": [
+      "building power plant throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -4087,7 +4386,9 @@
     "formation_requirements": [
       "Level 5+ Arms Industry required"
     ],
-    "prestige_bonuses": [],
+    "prosperity_bonuses": [
+      "unit army offense mult = 0.05"
+    ],
     "country": null,
     "country_confidence": "none",
     "display_name": "Basic Weapons"
@@ -4106,8 +4407,8 @@
     "formation_requirements": [
       "Level 10+ Steel Mills required"
     ],
-    "prestige_bonuses": [
-      "Construction Sector +20% throughput"
+    "prosperity_bonuses": [
+      "building construction sector throughput add = 0.2"
     ],
     "country": null,
     "country_confidence": "none",
