@@ -2055,7 +2055,7 @@ class Victoria3CompanyParserV6Final:
         continents = list(countries_by_continent.keys())
         
         for continent_key, continent_data in countries_by_continent.items():
-            html += '<div style="flex: 1; min-width: 0;"><h4>{} <button onclick="selectAllInContinent(\'{}\', true)" class="control-btn" style="font-size: 10px; padding: 1px 4px; margin-left: 8px; background-color: #28a745; color: white;">✓ All</button> <button onclick="selectAllInContinent(\'{}\', false)" class="control-btn" style="font-size: 10px; padding: 1px 4px; background-color: #dc3545; color: white;">✗ None</button></h4><ul>'.format(continent_data['display_name'], continent_key, continent_key)
+            html += '<div style="flex: 1; min-width: 0;"><h4><input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleContinentFilter(this)" style="margin-right: 8px;"> {}</h4><ul>'.format(continent_key, continent_key, continent_data['display_name'])
             
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
@@ -3809,6 +3809,9 @@ class Victoria3CompanyParserV6Final:
                 }
             });
             
+            // Update building section headers with filtered company counts
+            updateBuildingSectionCounts();
+            
             // Update all building headers in main tables
             document.querySelectorAll('th[data-building].building-header').forEach(header => {
                 const building = header.getAttribute('data-building');
@@ -3935,10 +3938,35 @@ class Victoria3CompanyParserV6Final:
                 document.body.classList.add(`hide-country-${country}`);
             }
             
+            // Update continent checkbox based on country selections
+            updateContinentCheckboxes();
+            
             // Update count and refresh tables
             updateCountryCount();
             updateMainBuildingHeaders();
             updateCustomTable();
+        }
+        
+        function updateContinentCheckboxes() {
+            const continents = ['American', 'Asian_Oceanian', 'European', 'Middle_Eastern'];
+            continents.forEach(continent => {
+                const continentCheckbox = document.getElementById(`continent-${continent}`);
+                if (continentCheckbox) {
+                    const countryCheckboxes = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continent}"]`);
+                    const checkedCountries = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continent}"]:checked`);
+                    
+                    if (checkedCountries.length === 0) {
+                        continentCheckbox.checked = false;
+                        continentCheckbox.indeterminate = false;
+                    } else if (checkedCountries.length === countryCheckboxes.length) {
+                        continentCheckbox.checked = true;
+                        continentCheckbox.indeterminate = false;
+                    } else {
+                        continentCheckbox.checked = false;
+                        continentCheckbox.indeterminate = true;
+                    }
+                }
+            });
         }
         
         function toggleAllCountryFilters(selectAll) {
@@ -3980,7 +4008,10 @@ class Victoria3CompanyParserV6Final:
             return enabledCountries;
         }
         
-        function selectAllInContinent(continentKey, selectAll) {
+        function toggleContinentFilter(continentCheckbox) {
+            const continentKey = continentCheckbox.dataset.continent;
+            const selectAll = continentCheckbox.checked;
+            
             const checkboxes = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continentKey}"]`);
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked !== selectAll) {
@@ -3999,6 +4030,29 @@ class Victoria3CompanyParserV6Final:
             updateCountryCount();
             updateMainBuildingHeaders();
             updateCustomTable();
+        }
+        
+        function updateBuildingSectionCounts() {
+            // Update the company counts in building section headers based on country filters
+            document.querySelectorAll('.building-section').forEach(section => {
+                const buildingId = section.id;
+                if (buildingId && buildingId.startsWith('building-')) {
+                    const building = buildingId.replace('building-', '');
+                    const header = section.querySelector('h2');
+                    const table = section.querySelector('table');
+                    
+                    if (header && table) {
+                        // Count visible (non-filtered) companies in this building's table
+                        const visibleRows = table.querySelectorAll('tbody tr:not([style*="display: none"])');
+                        const visibleCount = visibleRows.length;
+                        
+                        // Update the header text with the new count
+                        const headerText = header.textContent;
+                        const newHeaderText = headerText.replace(/\(\d+\)/, `(${visibleCount})`);
+                        header.innerHTML = header.innerHTML.replace(/\(\d+\)/, `(${visibleCount})`);
+                    }
+                }
+            });
         }
         
         // Building filter presets
@@ -5442,8 +5496,9 @@ class Victoria3CompanyParserV6Final:
             var tables = document.querySelectorAll('table.sortable');
             tables.forEach(makeSortable);
             
-            // Initialize country count
+            // Initialize country count and continent checkboxes
             updateCountryCount();
+            updateContinentCheckboxes();
             
             // Load from URL first, then update UI
             loadFromURL();
