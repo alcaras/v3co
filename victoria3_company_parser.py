@@ -35,6 +35,7 @@ class Victoria3CompanyParserV6Final:
         
         self.setup_building_to_goods()
         self.setup_country_flags()
+        self.setup_country_names()
         self.setup_prestige_good_names()
         self.setup_company_icon_mapping()
         
@@ -115,6 +116,24 @@ class Victoria3CompanyParserV6Final:
             'building_textile_mills': 'clothes',  # Override fabric  
             'building_logging_camp': 'hardwood',  # Override wood
             'building_port': 'merchant_marine'  # Override transportation
+        }
+        
+    def setup_country_names(self):
+        """Map country codes to display names"""
+        self.country_names = {
+            'USA': 'United States', 'GBR': 'Great Britain', 'FRA': 'France', 'DEU': 'Germany',
+            'PRU': 'Prussia', 'AUS': 'Austria-Hungary', 'RUS': 'Russia', 'JAP': 'Japan',
+            'CHI': 'China', 'ITA': 'Italy', 'SAR': 'Sardinia-Piedmont', 'SPA': 'Spain',
+            'POR': 'Portugal', 'NET': 'Netherlands', 'BEL': 'Belgium', 'SWI': 'Switzerland',
+            'DEN': 'Denmark', 'SWE': 'Sweden', 'NOR': 'Norway', 'FIN': 'Finland',
+            'ARG': 'Argentina', 'BRZ': 'Brazil', 'CHL': 'Chile', 'BOL': 'Bolivia', 'PEU': 'Peru',
+            'COL': 'Colombia', 'CLM': 'Colombia', 'VNZ': 'Venezuela', 'ECU': 'Ecuador', 'URU': 'Uruguay', 'PRG': 'Paraguay',
+            'MEX': 'Mexico', 'CUB': 'Cuba', 'HAI': 'Haiti', 'CAN': 'Canada', 'TUR': 'Turkey',
+            'EGY': 'Egypt', 'PER': 'Persia', 'AFG': 'Afghanistan', 'ETH': 'Ethiopia', 'MAD': 'Madagascar',
+            'SAF': 'South Africa', 'MOR': 'Morocco', 'TUN': 'Tunisia', 'GRE': 'Greece', 'SER': 'Serbia',
+            'BUL': 'Bulgaria', 'ROM': 'Romania', 'HUN': 'Hungary', 'POL': 'Poland',
+            'KOR': 'Korea', 'SIA': 'Siam', 'BUR': 'Burma', 'BIC': 'British India', 'AST': 'Australia',
+            'PHI': 'Philippines', 'DAI': 'Vietnam', 'LAN': 'Lanfang', 'KOK': 'Turkestan', 'SOK': 'Niger'
         }
 
     def setup_country_flags(self):
@@ -1962,12 +1981,119 @@ class Victoria3CompanyParserV6Final:
                 missing_from_extraction += 1
                 
         print("\nSummary: {} matches, {} mismatches, {} missing from extraction".format(matches, mismatches, missing_from_extraction))
+    
+    def get_countries_by_continent(self):
+        """Get countries organized by continent following wiki structure"""
+        continents = {
+            'American': {
+                'display_name': 'Americas', 
+                'countries': ['ARG', 'BOL', 'BRZ', 'CAN', 'CLM', 'CHL', 'MEX', 'PRG', 'PEU', 'USA', 'VNZ']
+            },
+            'Asian_Oceanian': {
+                'display_name': 'Asia & Oceania',
+                'countries': ['AST', 'CHI', 'BIC', 'JAP', 'KOR', 'LAN', 'PHI', 'SIA', 'DAI']
+            },
+            'European': {
+                'display_name': 'Europe', 
+                'countries': ['AUS', 'BEL', 'DEN', 'FIN', 'FRA', 'DEU', 'GBR', 'GRE', 'ITA', 'NET', 'NOR', 'POL', 'POR', 'ROM', 'RUS', 'SER', 'SPA', 'SWE']
+            },
+            'Middle_Eastern': {
+                'display_name': 'Middle East',
+                'countries': ['AFG', 'EGY', 'PER', 'KOK', 'TUR']
+            },
+            'African': {
+                'display_name': 'Africa',
+                'countries': ['ETH', 'SOK', 'SAF']
+            }
+        }
+        
+        # Count companies per country
+        country_counts = {}
+        for company_name, data in self.companies.items():
+            country = data.get('country')
+            if country and not company_name.startswith('company_basic_'):
+                country_counts[country] = country_counts.get(country, 0) + 1
+        
+        # Filter continents to only include countries with companies
+        filtered_continents = {}
+        for continent_key, continent_data in continents.items():
+            countries_with_companies = []
+            for country in continent_data['countries']:
+                if country in country_counts:
+                    countries_with_companies.append({
+                        'code': country,
+                        'count': country_counts[country]
+                    })
+            
+            if countries_with_companies:
+                filtered_continents[continent_key] = {
+                    'display_name': continent_data['display_name'],
+                    'countries': sorted(countries_with_companies, key=lambda x: x['code'])
+                }
+        
+        return filtered_continents
+    
+    def _generate_country_filter_section(self, countries_by_continent):
+        """Generate HTML for the country filter section"""
+        if not countries_by_continent:
+            return ""
+            
+        html = '''
+    
+    <div class="toc">
+        <a name="countries"></a>
+        <h3 id="countries">Countries (<span id="selected-countries-count">0</span>)</h3>
+        <div class="building-filter-help" style="margin-bottom: 15px; padding: 10px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 4px; font-size: 13px;">
+            <strong>Country Filter:</strong> Use the checkboxes to show/hide companies from specific countries. Unchecked countries are excluded from all tables. All countries start checked by default.
+            <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <strong style="font-size: 11px;">Quick Actions:</strong>
+                    <button onclick="toggleAllCountryFilters(true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px; background-color: #28a745; color: white;">✓ Select All</button>
+                    <button onclick="toggleAllCountryFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px; background-color: #d73027; color: white;">🗑 Clear All</button>
+                </div>
+            </div>
+        </div>
+        <div class="toc-columns">'''
+        
+        # Organize countries by continent in columns
+        continents = list(countries_by_continent.keys())
+        
+        for continent_key, continent_data in countries_by_continent.items():
+            html += '<div><h4>{}</h4><ul>'.format(continent_data['display_name'])
+            
+            for country_info in continent_data['countries']:
+                country_code = country_info['code']
+                company_count = country_info['count']
+                
+                # Get country display name
+                country_name = self.country_names.get(country_code, country_code)
+                
+                # Get country flag
+                flag_icon = self.country_flags.get(country_code, '🏳️')
+                
+                checkbox_id = "filter-country-{}".format(country_code)
+                html += '<li class="category-item">' \
+                       '<input type="checkbox" id="{}" class="country-filter-checkbox" checked data-country="{}" onchange="toggleCountryFilter(this)">' \
+                       '<span style="margin-left: 6px;">' \
+                       '{} {} ({})' \
+                       '</span></li>'.format(checkbox_id, country_code, flag_icon, country_name, company_count)
+            
+            html += '</ul></div>'
+        
+        html += '''
+        </div>
+    </div>'''
+        
+        return html
 
     def generate_html_report(self):
         """Generate HTML analysis report with all bugs fixed"""
         
         # Get building frequencies and order buildings logically based on Victoria 3 wiki
         building_counts = self.get_building_frequency(self.companies)
+        
+        # Get country data organized by continent
+        countries_by_continent = self.get_countries_by_continent()
         
         # Define building order in user's preferred categorization
         wiki_building_order = [
@@ -2040,8 +2166,9 @@ class Victoria3CompanyParserV6Final:
             if building not in buildings_to_analyze:
                 buildings_to_analyze.append(building)
         
-        # Generate CSS rules for column hiding
+        # Generate CSS rules for column hiding and country hiding
         column_hiding_css = self._generate_column_hiding_css(buildings_to_analyze)
+        country_hiding_css = self._generate_country_hiding_css(countries_by_continent)
         
         html = u"""<!DOCTYPE html>
 <html lang="en">
@@ -2882,6 +3009,8 @@ class Victoria3CompanyParserV6Final:
         </div>
     </div>'''
         
+        # Generate country filter section
+        html += self._generate_country_filter_section(countries_by_continent)
         
         # Generate separate table for each building
         for building in buildings_to_analyze:
@@ -3038,8 +3167,11 @@ class Victoria3CompanyParserV6Final:
                 else:
                     flag_cell_html = ''
                 
+                # Get company country for filtering
+                company_country = data.get('country', '')
+                
                 html += '''
-            <tr>
+            <tr data-country="{}">
                 <td class="select-column">
                     <input type="checkbox" class="company-checkbox" data-company="{}" onchange="toggleCompanySelection('{}')">
                 </td>
@@ -3051,7 +3183,7 @@ class Victoria3CompanyParserV6Final:
                     onmouseout="hideCompanyTooltip()" 
                     data-company="{}">
                     {}{}{}
-                </td>'''.format(company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
+                </td>'''.format(company_country, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
                 
                 # Add columns for all available buildings
                 for avail_building in available_buildings:
@@ -3790,6 +3922,65 @@ class Victoria3CompanyParserV6Final:
                 enabledBuildings.push(checkbox.dataset.building);
             });
             return enabledBuildings;
+        }
+        
+        // Country filter functions
+        function toggleCountryFilter(checkbox) {
+            const country = checkbox.dataset.country;
+            const isChecked = checkbox.checked;
+            
+            console.log(`Toggle country ${country}: checked=${isChecked}`);
+            
+            // Add/remove CSS class to control company visibility
+            if (isChecked) {
+                document.body.classList.remove(`hide-country-${country}`);
+            } else {
+                document.body.classList.add(`hide-country-${country}`);
+            }
+            
+            // Update count and refresh tables
+            updateCountryCount();
+            updateMainBuildingHeaders();
+            updateCustomTable();
+        }
+        
+        function toggleAllCountryFilters(selectAll) {
+            const checkboxes = document.querySelectorAll('.country-filter-checkbox');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked !== selectAll) {
+                    checkbox.checked = selectAll;
+                    
+                    const country = checkbox.dataset.country;
+                    
+                    if (selectAll) {
+                        document.body.classList.remove(`hide-country-${country}`);
+                    } else {
+                        document.body.classList.add(`hide-country-${country}`);
+                    }
+                }
+            });
+            
+            updateCountryCount();
+            updateMainBuildingHeaders();
+            updateCustomTable();
+        }
+        
+        function updateCountryCount() {
+            const checkboxes = document.querySelectorAll('.country-filter-checkbox:checked');
+            const count = checkboxes.length;
+            const countElement = document.getElementById('selected-countries-count');
+            if (countElement) {
+                countElement.textContent = count;
+            }
+        }
+        
+        function getEnabledCountries() {
+            const enabledCountries = [];
+            const checkboxes = document.querySelectorAll('.country-filter-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                enabledCountries.push(checkbox.dataset.country);
+            });
+            return enabledCountries;
         }
         
         // Building filter presets
@@ -4597,7 +4788,7 @@ class Victoria3CompanyParserV6Final:
                     });
                 }
                 
-                tableHTML += `<tr data-company="${companyName}">
+                tableHTML += `<tr data-company="${companyName}" data-country="${company.country || ''}">
                     <td class="select-column">
                         <input type="checkbox" class="company-checkbox" data-company="${companyName}" onchange="toggleCompanySelection('${companyName}')" checked>
                     </td>`;
@@ -5233,6 +5424,8 @@ class Victoria3CompanyParserV6Final:
             var tables = document.querySelectorAll('table.sortable');
             tables.forEach(makeSortable);
             
+            // Initialize country count
+            updateCountryCount();
             
             // Load from URL first, then update UI
             loadFromURL();
@@ -5281,7 +5474,8 @@ class Victoria3CompanyParserV6Final:
 </body>
 </html>'''
         
-        return html.replace('__COLUMN_HIDING_CSS_PLACEHOLDER__', column_hiding_css)
+        all_dynamic_css = column_hiding_css + '\n        /* Dynamic company hiding rules for country filters */\n' + country_hiding_css
+        return html.replace('__COLUMN_HIDING_CSS_PLACEHOLDER__', all_dynamic_css)
 
     def _get_country_flags_js(self):
         """Generate JavaScript object for country flags"""
@@ -5396,6 +5590,19 @@ class Victoria3CompanyParserV6Final:
             # This ensures proper table alignment when columns are filtered
             css_rule = f"        body.hide-building-{building} table th.col-{building}, body.hide-building-{building} table td.col-{building} {{\n            display: none !important;\n        }}\n"
             css_rules.append(css_rule)
+        return ''.join(css_rules)
+    
+    def _generate_country_hiding_css(self, countries_by_continent):
+        """Generate CSS rules to hide company rows for filtered countries"""
+        css_rules = []
+        
+        for continent_data in countries_by_continent.values():
+            for country_info in continent_data['countries']:
+                country_code = country_info['code']
+                # Create CSS rule to hide table rows for companies from this country
+                css_rule = f"        body.hide-country-{country_code} tr[data-country=\"{country_code}\"] {{\n            display: none !important;\n        }}\n"
+                css_rules.append(css_rule)
+        
         return ''.join(css_rules)
 
     def save_html_report(self, filename="index.html"):
