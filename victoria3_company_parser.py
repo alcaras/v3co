@@ -2957,9 +2957,6 @@ class Victoria3CompanyParserV6Final:
         
         <div id="custom-companies-table">
         </div>
-        
-        <!-- URL watermark for custom companies section -->
-        <div style="position: absolute; bottom: 8px; right: 12px; font-size: 10px; color: #999; font-family: monospace; background: rgba(255,255,255,0.9); padding: 1px 4px; border-radius: 2px;">https://alcaras.github.io/v3co/</div>
     </div>
     
     <!-- Company tooltip -->
@@ -4900,6 +4897,8 @@ class Victoria3CompanyParserV6Final:
             }
             
             
+            // Add URL watermark for summary section
+            summaryHTML += '<div style="position: absolute; bottom: 8px; right: 12px; font-size: 10px; color: #999; font-family: monospace; background: rgba(255,255,255,0.9); padding: 1px 4px; border-radius: 2px;">https://alcaras.github.io/v3co/</div>';
             
             summaryHTML += '</div>';
             return summaryHTML;
