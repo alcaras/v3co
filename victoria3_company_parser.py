@@ -2363,6 +2363,12 @@ class Victoria3CompanyParserV6Final:
             max-width: 100%;
         }
         
+        /* Specific styling for custom companies table to prevent stretching */
+        #custom-companies-table .table-container {
+            width: fit-content;
+            max-width: none;
+        }
+        
         .building-table {
             border-collapse: collapse !important;
             background-color: white;
@@ -2444,7 +2450,6 @@ class Victoria3CompanyParserV6Final:
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
-            position: relative;
         }
         
         #custom-companies-section h2 {
@@ -4897,7 +4902,7 @@ class Victoria3CompanyParserV6Final:
             }
             
             
-            // Add URL watermark for summary section
+            // Add URL watermark for Selected Companies section
             summaryHTML += '<div style="position: absolute; bottom: 8px; right: 12px; font-size: 10px; color: #999; font-family: monospace; background: rgba(255,255,255,0.9); padding: 1px 4px; border-radius: 2px;">https://alcaras.github.io/v3co/</div>';
             
             summaryHTML += '</div>';
