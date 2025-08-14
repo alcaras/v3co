@@ -2566,6 +2566,78 @@ class Victoria3CompanyParserV6Final:
             color: white;
         }
         
+        /* Optimization Modal */
+        .optimization-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .optimization-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .optimization-results {
+            margin-top: 20px;
+        }
+        
+        .optimization-company-item {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .optimization-company-new {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .optimization-company-existing {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+        
+        .optimization-stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        
+        .optimization-stat {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .optimization-stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .optimization-stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
         .clear-btn:hover:not(:disabled) {
             background-color: #c82333;
         }
@@ -2913,12 +2985,27 @@ class Victoria3CompanyParserV6Final:
 <body>
     <h1 id="top">Victoria 3 Company Analysis Tool</h1>
     
+    <!-- Optimization Modal -->
+    <div id="optimizationModal" class="optimization-modal">
+        <div class="optimization-modal-content">
+            <span onclick="closeOptimizationModal()" style="float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2>Company Optimization Results</h2>
+            <div id="optimizationStatus" style="margin: 10px 0; font-style: italic;"></div>
+            <div id="optimizationResults"></div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button onclick="applyOptimizationResults()" class="control-btn" style="background: #28a745; color: white; padding: 10px 20px; margin-right: 10px;">✅ Apply Selection</button>
+                <button onclick="closeOptimizationModal()" class="control-btn" style="background: #6c757d; color: white; padding: 10px 20px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Custom Company Collection Section -->
     <div id="custom-companies-section">
         <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
             <h2 id="selected-companies-title" style="margin: 0;">Selected Companies (0)</h2>
             <div style="display: flex; align-items: center;">
                 <div class="import-export-buttons" style="margin-right: 20px;">
+                    <button onclick="optimizeSelection()" class="control-btn optimize-btn" style="background: #17a2b8; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🎯 Optimize</button>
                     <button onclick="copyRedditMarkdown(event)" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">📋 Share Build</button>
                     <button onclick="saveSelection()" class="control-btn save-btn">💾 Export to JSON</button>
                     <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
@@ -5794,6 +5881,617 @@ class Victoria3CompanyParserV6Final:
             'building_tobacco_plantation': 'Tobacco',
             'building_livestock_ranch': 'Livestock'
         };
+        
+        // Optimization Feature Functions
+        let optimizationResults = null;
+        
+        function optimizeSelection() {
+            const enabledBuildings = getEnabledBuildings();
+            const selectedCompanies = getCustomCompanies();
+            const selectedCharters = getSelectedCharters();
+            const enabledCountries = getEnabledCountries();
+            
+            // Check if any buildings are selected
+            if (enabledBuildings.length === 0) {
+                alert('Please select at least one building to optimize for.');
+                return;
+            }
+            
+            // Show modal with loading status
+            document.getElementById('optimizationModal').style.display = 'block';
+            document.getElementById('optimizationStatus').textContent = 'Calculating optimal company selection...';
+            document.getElementById('optimizationResults').innerHTML = '';
+            
+            // Run optimization with a small delay to let UI update
+            setTimeout(() => {
+                const results = runOptimization(enabledBuildings, selectedCompanies, selectedCharters, enabledCountries);
+                displayOptimizationResults(results);
+            }, 100);
+        }
+        
+        function runOptimization(targetBuildings, existingCompanies, existingCharters, enabledCountries) {
+            const MAX_COMPANIES = 7;
+            const companyData = ''' + self._get_company_data_js() + ''';
+            
+            // Special companies that don't count against the limit
+            const specialCompanies = ['company_panama_canal', 'company_suez_canal'];
+            
+            // Filter out special companies from existing selection
+            const regularExisting = existingCompanies.filter(c => !specialCompanies.includes(c));
+            const specialExisting = existingCompanies.filter(c => specialCompanies.includes(c));
+            
+            // Calculate remaining slots
+            const remainingSlots = MAX_COMPANIES - regularExisting.length;
+            
+            if (remainingSlots <= 0) {
+                return {
+                    success: false,
+                    message: 'You already have 7 companies selected. Remove some to optimize.',
+                    existingCompanies: regularExisting,
+                    newCompanies: [],
+                    coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
+                };
+            }
+            
+            // Use Linear Programming to find optimal selection
+            try {
+                const lpResult = solveLinearProgram(targetBuildings, regularExisting, existingCharters, enabledCountries, remainingSlots);
+                
+                if (!lpResult.success) {
+                    return {
+                        success: false,
+                        message: lpResult.message || 'Optimization failed',
+                        existingCompanies: regularExisting,
+                        newCompanies: [],
+                        coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
+                    };
+                }
+                
+                // Check if we should add Panama or Suez
+                const finalRecommendations = [];
+                const allSelectedBuildings = new Set();
+                regularExisting.forEach(name => {
+                    const company = companyData[name];
+                    if (company) {
+                        company.base_buildings.forEach(b => allSelectedBuildings.add(b));
+                        if (existingCharters[name]) allSelectedBuildings.add(existingCharters[name]);
+                    }
+                });
+                lpResult.newCompanies.forEach(rec => {
+                    rec.coverage.forEach(b => allSelectedBuildings.add(b));
+                });
+                
+                specialCompanies.forEach(specialName => {
+                    if (!specialExisting.includes(specialName)) {
+                        const special = companyData[specialName];
+                        if (special) {
+                            const newCoverage = special.base_buildings.filter(b => 
+                                targetBuildings.includes(b) && !allSelectedBuildings.has(b)
+                            );
+                            if (newCoverage.length > 0) {
+                                finalRecommendations.push({
+                                    name: specialName,
+                                    isSpecial: true,
+                                    coverage: special.base_buildings
+                                });
+                            }
+                        }
+                    }
+                });
+                
+                return {
+                    success: true,
+                    existingCompanies: regularExisting,
+                    existingCharters: existingCharters,
+                    newCompanies: lpResult.newCompanies,
+                    specialRecommendations: finalRecommendations,
+                    coverage: calculateDetailedCoverage(targetBuildings, 
+                        [...regularExisting, ...lpResult.newCompanies.map(c => c.name)],
+                        {...existingCharters, ...Object.fromEntries(
+                            lpResult.newCompanies.filter(c => c.charter).map(c => [c.name, c.charter])
+                        )})
+                };
+            } catch (error) {
+                console.error('Optimization error:', error);
+                return {
+                    success: false,
+                    message: 'Optimization failed: ' + error.message,
+                    existingCompanies: regularExisting,
+                    newCompanies: [],
+                    coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
+                };
+            }
+        }
+        
+        function solveLinearProgram(targetBuildings, existingCompanies, existingCharters, enabledCountries, remainingSlots) {
+            const companyData = ''' + self._get_company_data_js() + ''';
+            const specialCompanies = ['company_panama_canal', 'company_suez_canal'];
+            
+            // Get buildings covered by existing selection
+            const existingCoverage = new Set();
+            existingCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(b => existingCoverage.add(b));
+                    if (existingCharters[companyName]) {
+                        existingCoverage.add(existingCharters[companyName]);
+                    }
+                }
+            });
+            
+            // Buildings we still need to cover
+            const uncoveredBuildings = targetBuildings.filter(b => !existingCoverage.has(b));
+            
+            if (uncoveredBuildings.length === 0) {
+                return {
+                    success: true,
+                    newCompanies: [],
+                    message: 'All buildings already covered!'
+                };
+            }
+            
+            // Get candidate companies and their variants (with/without charters)
+            const candidates = [];
+            
+            Object.keys(companyData).forEach(companyName => {
+                // Skip if already selected or special company
+                if (existingCompanies.includes(companyName) || specialCompanies.includes(companyName)) return;
+                
+                const company = companyData[companyName];
+                
+                // Apply country filter
+                if (company.country && enabledCountries.length > 0) {
+                    if (!enabledCountries.includes(company.country)) return;
+                }
+                
+                // Check if company covers any uncovered buildings
+                const allBuildings = new Set([...company.base_buildings, ...company.industry_charters]);
+                if (!uncoveredBuildings.some(b => allBuildings.has(b))) return;
+                
+                // Add base company variant
+                const baseBuildings = company.base_buildings.filter(b => uncoveredBuildings.includes(b));
+                if (baseBuildings.length > 0) {
+                    candidates.push({
+                        id: companyName + '_base',
+                        name: companyName,
+                        charter: null,
+                        buildings: baseBuildings,
+                        cost: 1,
+                        isBasic: companyName.startsWith('company_basic_')
+                    });
+                }
+                
+                // Add charter variants
+                company.industry_charters.forEach(charter => {
+                    const charterBuildings = [...company.base_buildings];
+                    if (uncoveredBuildings.includes(charter)) {
+                        charterBuildings.push(charter);
+                    }
+                    const relevantBuildings = charterBuildings.filter(b => uncoveredBuildings.includes(b));
+                    
+                    if (relevantBuildings.length > 0) {
+                        candidates.push({
+                            id: companyName + '_charter_' + charter,
+                            name: companyName,
+                            charter: charter,
+                            buildings: relevantBuildings,
+                            cost: 1,
+                            isBasic: companyName.startsWith('company_basic_')
+                        });
+                    }
+                });
+            });
+            
+            if (candidates.length === 0) {
+                return {
+                    success: false,
+                    message: 'No companies available that cover the selected buildings.'
+                };
+            }
+            
+            // Set up Linear Programming problem
+            const lpProblem = {
+                optimize: 'coverage',
+                opType: 'max',
+                constraints: {},
+                variables: {},
+                binaries: {}
+            };
+            
+            // Decision variables for each candidate
+            candidates.forEach(candidate => {
+                // Coefficient = number of uncovered buildings this candidate covers
+                lpProblem.variables[candidate.id] = candidate.buildings.length;
+                lpProblem.binaries[candidate.id] = 1; // Binary variable
+            });
+            
+            // Constraint 1: Maximum number of companies
+            lpProblem.constraints.maxCompanies = { max: remainingSlots };
+            candidates.forEach(candidate => {
+                lpProblem.constraints.maxCompanies[candidate.id] = candidate.cost;
+            });
+            
+            // Constraint 2: Each company can only be selected once (across all its variants)
+            const companyGroups = {};
+            candidates.forEach(candidate => {
+                if (!companyGroups[candidate.name]) {
+                    companyGroups[candidate.name] = [];
+                }
+                companyGroups[candidate.name].push(candidate.id);
+            });
+            
+            Object.keys(companyGroups).forEach(companyName => {
+                const constraintName = 'company_' + companyName;
+                lpProblem.constraints[constraintName] = { max: 1 };
+                companyGroups[companyName].forEach(varId => {
+                    lpProblem.constraints[constraintName][varId] = 1;
+                });
+            });
+            
+            // Solve using our embedded solver
+            const solution = solveBinaryLP(lpProblem);
+            
+            if (!solution.feasible) {
+                return {
+                    success: false,
+                    message: 'No feasible solution found.'
+                };
+            }
+            
+            // Convert solution back to company recommendations
+            const selectedCandidates = [];
+            Object.keys(solution.variables || {}).forEach(varId => {
+                if (solution.variables[varId] > 0.5) { // Binary variable selected
+                    const candidate = candidates.find(c => c.id === varId);
+                    if (candidate) {
+                        selectedCandidates.push({
+                            name: candidate.name,
+                            charter: candidate.charter,
+                            coverage: candidate.buildings,
+                            score: candidate.buildings.length
+                        });
+                    }
+                }
+            });
+            
+            return {
+                success: true,
+                newCompanies: selectedCandidates,
+                optimalValue: solution.result
+            };
+        }
+        
+        // Embedded Binary Linear Programming Solver
+        function solveBinaryLP(problem) {
+            // Simple branch-and-bound solver for binary integer programming
+            const variables = Object.keys(problem.variables);
+            const numVars = variables.length;
+            
+            if (numVars === 0) {
+                return { feasible: false };
+            }
+            
+            let bestSolution = null;
+            let bestValue = -Infinity;
+            
+            // Branch and bound with depth limit for performance
+            const maxDepth = Math.min(20, numVars);
+            
+            function branchAndBound(assignment, depth) {
+                if (depth >= maxDepth || assignment.length >= numVars) {
+                    // Evaluate complete assignment
+                    const evaluation = evaluateAssignment(assignment);
+                    if (evaluation.feasible && evaluation.value > bestValue) {
+                        bestValue = evaluation.value;
+                        bestSolution = {...evaluation.assignment};
+                    }
+                    return;
+                }
+                
+                const currentVar = variables[assignment.length];
+                
+                // Try 0 first (not selecting this company)
+                branchAndBound([...assignment, 0], depth + 1);
+                
+                // Try 1 (selecting this company) - with pruning
+                const testAssignment = [...assignment, 1];
+                const partialEval = evaluatePartialAssignment(testAssignment);
+                if (partialEval.feasible) {
+                    branchAndBound(testAssignment, depth + 1);
+                }
+            }
+            
+            function evaluateAssignment(assignment) {
+                const solution = {};
+                let value = 0;
+                
+                // Calculate objective value
+                for (let i = 0; i < assignment.length && i < variables.length; i++) {
+                    const varName = variables[i];
+                    solution[varName] = assignment[i];
+                    if (assignment[i] > 0) {
+                        value += (problem.variables[varName] || 0);
+                    }
+                }
+                
+                // Check constraints
+                for (const [constraintName, constraint] of Object.entries(problem.constraints)) {
+                    let sum = 0;
+                    for (let i = 0; i < assignment.length && i < variables.length; i++) {
+                        const varName = variables[i];
+                        if (constraint[varName]) {
+                            sum += constraint[varName] * assignment[i];
+                        }
+                    }
+                    
+                    if (constraint.max !== undefined && sum > constraint.max) {
+                        return { feasible: false };
+                    }
+                    if (constraint.min !== undefined && sum < constraint.min) {
+                        return { feasible: false };
+                    }
+                    if (constraint.equal !== undefined && sum !== constraint.equal) {
+                        return { feasible: false };
+                    }
+                }
+                
+                return {
+                    feasible: true,
+                    value: value,
+                    assignment: solution
+                };
+            }
+            
+            function evaluatePartialAssignment(assignment) {
+                // Quick feasibility check for pruning
+                for (const [constraintName, constraint] of Object.entries(problem.constraints)) {
+                    let sum = 0;
+                    for (let i = 0; i < assignment.length && i < variables.length; i++) {
+                        const varName = variables[i];
+                        if (constraint[varName]) {
+                            sum += constraint[varName] * assignment[i];
+                        }
+                    }
+                    
+                    // Early pruning if already infeasible
+                    if (constraint.max !== undefined && sum > constraint.max) {
+                        return { feasible: false };
+                    }
+                }
+                
+                return { feasible: true };
+            }
+            
+            // Start branch and bound
+            branchAndBound([], 0);
+            
+            if (bestSolution === null) {
+                return { feasible: false };
+            }
+            
+            return {
+                feasible: true,
+                result: bestValue,
+                variables: bestSolution
+            };
+        }
+        
+        function calculateCompanyScore(companyBuildings, targetBuildings, companyName) {
+            let score = 0;
+            
+            // Count new buildings covered
+            const newBuildings = Array.from(companyBuildings).filter(b => targetBuildings.includes(b));
+            score += newBuildings.length * 100;
+            
+            // Penalty for basic companies (prefer named companies)
+            if (companyName.startsWith('company_basic_')) {
+                score -= 10;
+            }
+            
+            // Bonus for companies with many charter options (flexibility)
+            const company = companyData[companyName];
+            if (company && company.industry_charters) {
+                score += Math.min(company.industry_charters.length, 5) * 2;
+            }
+            
+            return score;
+        }
+        
+        function calculateCoverage(targetBuildings, companies, charters) {
+            const covered = new Set();
+            companies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(b => covered.add(b));
+                    if (charters[companyName]) {
+                        covered.add(charters[companyName]);
+                    }
+                }
+            });
+            
+            const coveredTarget = targetBuildings.filter(b => covered.has(b));
+            return {
+                covered: coveredTarget.length,
+                total: targetBuildings.length,
+                percentage: Math.round((coveredTarget.length / targetBuildings.length) * 100)
+            };
+        }
+        
+        function calculateDetailedCoverage(targetBuildings, companies, charters) {
+            const covered = new Set();
+            companies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(b => covered.add(b));
+                    if (charters[companyName]) {
+                        covered.add(charters[companyName]);
+                    }
+                }
+            });
+            
+            const coveredBuildings = targetBuildings.filter(b => covered.has(b));
+            const uncoveredBuildings = targetBuildings.filter(b => !covered.has(b));
+            
+            return {
+                covered: coveredBuildings.length,
+                total: targetBuildings.length,
+                percentage: Math.round((coveredBuildings.length / targetBuildings.length) * 100),
+                coveredBuildings: coveredBuildings,
+                uncoveredBuildings: uncoveredBuildings
+            };
+        }
+        
+        function displayOptimizationResults(results) {
+            optimizationResults = results;
+            
+            const statusEl = document.getElementById('optimizationStatus');
+            const resultsEl = document.getElementById('optimizationResults');
+            
+            if (!results.success) {
+                statusEl.textContent = results.message;
+                statusEl.style.color = '#dc3545';
+                resultsEl.innerHTML = '';
+                return;
+            }
+            
+            statusEl.textContent = 'Optimization complete!';
+            statusEl.style.color = '#28a745';
+            
+            let html = '<div class="optimization-stats">';
+            html += '<div class="optimization-stat">';
+            html += '<div class="optimization-stat-value">' + results.coverage.percentage + '%</div>';
+            html += '<div class="optimization-stat-label">Building Coverage</div>';
+            html += '</div>';
+            html += '<div class="optimization-stat">';
+            html += '<div class="optimization-stat-value">' + results.coverage.covered + '/' + results.coverage.total + '</div>';
+            html += '<div class="optimization-stat-label">Buildings Covered</div>';
+            html += '</div>';
+            html += '<div class="optimization-stat">';
+            const totalCompanies = results.existingCompanies.length + results.newCompanies.length;
+            html += '<div class="optimization-stat-value">' + totalCompanies + '/7</div>';
+            html += '<div class="optimization-stat-label">Companies Used</div>';
+            html += '</div>';
+            html += '</div>';
+            
+            // Show existing companies
+            if (results.existingCompanies.length > 0) {
+                html += '<h3>Your Selected Companies (Kept)</h3>';
+                html += '<div class="optimization-results">';
+                results.existingCompanies.forEach(companyName => {
+                    const company = companyData[companyName];
+                    const charter = results.existingCharters[companyName];
+                    html += '<div class="optimization-company-item optimization-company-existing">';
+                    html += '<strong>' + getCompanyDisplayName(companyName) + '</strong>';
+                    if (charter) {
+                        html += ' + Charter: ' + getBuildingDisplayName(charter);
+                    }
+                    html += '<br><small>Buildings: ' + company.base_buildings.length;
+                    if (charter) html += ' + 1 charter';
+                    html += '</small>';
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Show new recommendations
+            if (results.newCompanies.length > 0) {
+                html += '<h3>Recommended Additions</h3>';
+                html += '<div class="optimization-results">';
+                results.newCompanies.forEach(rec => {
+                    const company = companyData[rec.name];
+                    html += '<div class="optimization-company-item optimization-company-new">';
+                    html += '<strong>' + getCompanyDisplayName(rec.name) + '</strong>';
+                    if (rec.charter) {
+                        html += ' + Charter: ' + getBuildingDisplayName(rec.charter);
+                    }
+                    html += '<br><small>Adds ' + rec.coverage.length + ' buildings to coverage</small>';
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Show special recommendations
+            if (results.specialRecommendations && results.specialRecommendations.length > 0) {
+                html += '<h3>Special Companies (Free Slots)</h3>';
+                html += '<div class="optimization-results">';
+                results.specialRecommendations.forEach(rec => {
+                    html += '<div class="optimization-company-item optimization-company-new">';
+                    html += '<strong>' + getCompanyDisplayName(rec.name) + '</strong>';
+                    html += '<br><small>Adds coverage without using a company slot</small>';
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Show uncovered buildings
+            if (results.coverage.uncoveredBuildings && results.coverage.uncoveredBuildings.length > 0) {
+                html += '<h3>Uncovered Buildings</h3>';
+                html += '<div style="color: #666; font-size: 14px;">';
+                results.coverage.uncoveredBuildings.forEach(building => {
+                    html += getBuildingDisplayName(building) + ', ';
+                });
+                html = html.slice(0, -2); // Remove trailing comma
+                html += '</div>';
+            }
+            
+            resultsEl.innerHTML = html;
+        }
+        
+        function closeOptimizationModal() {
+            document.getElementById('optimizationModal').style.display = 'none';
+            optimizationResults = null;
+        }
+        
+        function applyOptimizationResults() {
+            if (!optimizationResults || !optimizationResults.success) return;
+            
+            // Clear existing selection if needed
+            if (confirm('This will replace your current selection. Continue?')) {
+                // Clear all
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(CHARTER_STORAGE_KEY);
+                
+                // Add existing companies back
+                const newSelection = [...optimizationResults.existingCompanies];
+                const newCharters = {...optimizationResults.existingCharters};
+                
+                // Add new companies
+                optimizationResults.newCompanies.forEach(rec => {
+                    newSelection.push(rec.name);
+                    if (rec.charter) {
+                        newCharters[rec.name] = rec.charter;
+                    }
+                });
+                
+                // Add special companies
+                if (optimizationResults.specialRecommendations) {
+                    optimizationResults.specialRecommendations.forEach(rec => {
+                        newSelection.push(rec.name);
+                    });
+                }
+                
+                // Save
+                saveCustomCompanies(newSelection);
+                saveSelectedCharters(newCharters);
+                
+                // Update UI
+                updateCustomTable();
+                updateCheckboxes();
+                updateControlButtons();
+                updateDynamicCoverage();
+                updateMainBuildingHeaders();
+                updateBuildingTableCharters();
+                
+                // Close modal
+                closeOptimizationModal();
+            }
+        }
+        
+        function getCompanyDisplayName(companyName) {
+            // Convert internal name to display name
+            return companyName.replace('company_', '').replace(/_/g, ' ')
+                .split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
         
         // Function to get building short form (global scope)
         const getBuildingShortForm = (building) => {

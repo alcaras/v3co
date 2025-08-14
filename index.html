@@ -358,6 +358,78 @@
             color: white;
         }
         
+        /* Optimization Modal */
+        .optimization-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .optimization-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .optimization-results {
+            margin-top: 20px;
+        }
+        
+        .optimization-company-item {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .optimization-company-new {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .optimization-company-existing {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+        
+        .optimization-stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+        
+        .optimization-stat {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .optimization-stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .optimization-stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
         .clear-btn:hover:not(:disabled) {
             background-color: #c82333;
         }
@@ -992,12 +1064,27 @@
 <body>
     <h1 id="top">Victoria 3 Company Analysis Tool</h1>
     
+    <!-- Optimization Modal -->
+    <div id="optimizationModal" class="optimization-modal">
+        <div class="optimization-modal-content">
+            <span onclick="closeOptimizationModal()" style="float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2>Company Optimization Results</h2>
+            <div id="optimizationStatus" style="margin: 10px 0; font-style: italic;"></div>
+            <div id="optimizationResults"></div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button onclick="applyOptimizationResults()" class="control-btn" style="background: #28a745; color: white; padding: 10px 20px; margin-right: 10px;">✅ Apply Selection</button>
+                <button onclick="closeOptimizationModal()" class="control-btn" style="background: #6c757d; color: white; padding: 10px 20px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Custom Company Collection Section -->
     <div id="custom-companies-section">
         <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
             <h2 id="selected-companies-title" style="margin: 0;">Selected Companies (0)</h2>
             <div style="display: flex; align-items: center;">
                 <div class="import-export-buttons" style="margin-right: 20px;">
+                    <button onclick="optimizeSelection()" class="control-btn optimize-btn" style="background: #17a2b8; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🎯 Optimize</button>
                     <button onclick="copyRedditMarkdown(event)" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">📋 Share Build</button>
                     <button onclick="saveSelection()" class="control-btn save-btn">💾 Export to JSON</button>
                     <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
@@ -10727,7 +10814,7 @@
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_SUZHOU", "Control state STATE_NANJING", "Control state STATE_ZHEJIANG", "Level 5+ Silk Plantation required"],
+                "requirements": ["Control state STATE_SUZHOU", "Control state STATE_ZHEJIANG", "Control state STATE_NANJING", "Level 5+ Silk Plantation required"],
                 "bonuses": ["country authority mult = 0.10", "country influence mult = 0.10"],
                 "prosperity_bonuses_text": " -- country authority \u00d70.10; country influence \u00d70.10",
                 "prestige_goods": ["prestige_good_suzhou_silk"],
@@ -10919,7 +11006,7 @@
                 "country": "LAN",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_NORTH_BORNEO", "Control state STATE_WEST_BORNEO", "Control state STATE_EAST_BORNEO", "Level 5+ Gold Mine required"],
+                "requirements": ["Control state STATE_EAST_BORNEO", "Control state STATE_NORTH_BORNEO", "Control state STATE_WEST_BORNEO", "Level 5+ Gold Mine required"],
                 "bonuses": ["building group bg agriculture throughput add = 0.05", "battle defense owned province mult = 0.1"],
                 "prosperity_bonuses_text": " -- building group bg agriculture throughput +0.05; battle defense owned province \u00d70.1",
                 "prestige_goods": [],
@@ -10943,7 +11030,7 @@
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BEIJING", "Control state STATE_ZHILI", "Level 5+ Coal Mine required", "Technology: Steam Donkey", "Technology: Railways"],
+                "requirements": ["Control state STATE_ZHILI", "Control state STATE_BEIJING", "Level 5+ Coal Mine required", "Technology: Steam Donkey", "Technology: Railways"],
                 "bonuses": ["country tech spread mult = 0.1"],
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.1",
                 "prestige_goods": [],
@@ -11051,7 +11138,7 @@
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
+                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
                 "bonuses": ["state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_opium"],
@@ -11123,7 +11210,7 @@
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WEST_BENGAL", "Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
+                "requirements": ["Control state STATE_BOMBAY", "Control state STATE_WEST_BENGAL", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
                 "bonuses": ["building sulfur mine throughput add = 0.1", "building textile mills throughput add = 0.1", "state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- building sulfur mine throughput +0.1; building textile mills throughput +0.1; state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -11159,7 +11246,7 @@
                 "country": "BEL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WALLONIA", "Control state STATE_FLANDERS", "Level 5+ Motor Industry required"],
+                "requirements": ["Control state STATE_FLANDERS", "Control state STATE_WALLONIA", "Level 5+ Motor Industry required"],
                 "bonuses": ["state infrastructure mult = 0.05"],
                 "prosperity_bonuses_text": " -- state infrastructure \u00d70.05",
                 "prestige_goods": [],
@@ -11171,7 +11258,7 @@
                 "country": "BEL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WALLONIA", "Control state STATE_FLANDERS", "Level 5+ Steel Mills required"],
+                "requirements": ["Control state STATE_FLANDERS", "Control state STATE_WALLONIA", "Level 5+ Steel Mills required"],
                 "bonuses": ["building railway throughput add = 0.1"],
                 "prosperity_bonuses_text": " -- building railway throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_tools"],
@@ -11195,7 +11282,7 @@
                 "country": "NET",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_GELRE", "Control state STATE_HOLLAND", "Level 5+ Electrics Industry required", "Technology: Telephone"],
+                "requirements": ["Control state STATE_HOLLAND", "Control state STATE_GELRE", "Level 5+ Electrics Industry required", "Technology: Telephone"],
                 "bonuses": ["country weekly innovation mult = 0.05", "country weekly innovation max add = 15"],
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.05; country weekly innovation max +15",
                 "prestige_goods": ["prestige_good_philips_chapel_radio"],
@@ -11315,7 +11402,7 @@
                 "country": "POR",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_ZAMBEZIA", "Control state STATE_MOCAMBIQUE", "Control state STATE_LOURENCO_MARQUES", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
+                "requirements": ["Control state STATE_LOURENCO_MARQUES", "Control state STATE_ZAMBEZIA", "Control state STATE_MOCAMBIQUE", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
                 "bonuses": ["state colony growth speed mult = 0.1", "state colony growth creation factor = 0.1"],
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; state colony growth creation factor = 0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -11543,7 +11630,7 @@
                 "country": "DEU",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region North Germany (level 5+ buildings required)", "Control region in Region Poland (level 5+ buildings required)", "Control region in Region South Germany (level 5+ buildings required)", "Control region in Region Rhine (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region North Germany (level 5+ buildings required)", "Control region in Region Poland (level 5+ buildings required)", "Control region in Region Rhine (level 5+ buildings required)", "Control region in Region South Germany (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["military formation movement speed mult = 0.1"],
                 "prosperity_bonuses_text": " -- military formation movement speed \u00d70.1",
                 "prestige_goods": [],
@@ -11603,7 +11690,7 @@
                 "country": "VNZ",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_ZULIA", "Control state STATE_MIRANDA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
+                "requirements": ["Control state STATE_MIRANDA", "Control state STATE_ZULIA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
                 "bonuses": ["country convoys capacity mult = 0.1", "interest group ig industrialists approval add = 3"],
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.1; interest group ig industrialists approval +3",
                 "prestige_goods": [],
@@ -11759,7 +11846,7 @@
                 "country": "RUS",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_KHARKOV", "Control state STATE_TAURIDA", "Level 5+ Steel Mills required", "Technology: Bessemer Process"],
+                "requirements": ["Control state STATE_TAURIDA", "Control state STATE_KHARKOV", "Level 5+ Steel Mills required", "Technology: Bessemer Process"],
                 "bonuses": ["building railway throughput add = 0.1", "interest group ig industrialists approval add = 2"],
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; interest group ig industrialists approval +2",
                 "prestige_goods": ["prestige_good_russia_iron"],
@@ -11771,7 +11858,7 @@
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Level 5+ Tea Plantation required"],
+                "requirements": ["Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Tea Plantation required"],
                 "bonuses": ["country convoys capacity mult = 0.2"],
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.2",
                 "prestige_goods": ["prestige_good_bengal_opium"],
@@ -11831,7 +11918,7 @@
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["state infrastructure from population add = 0.5", "state infrastructure from population max add = 20"],
                 "prosperity_bonuses_text": " -- state infrastructure from population +0.5; state infrastructure from population max +20",
                 "prestige_goods": [],
@@ -12167,7 +12254,7 @@
                 "country": "USA",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_NEW_JERSEY", "Control state STATE_MARYLAND", "Control state STATE_DELAWARE", "Level 5+ Military Shipyards required", "Technology: Gantry Cranes"],
+                "requirements": ["Control state STATE_MARYLAND", "Control state STATE_DELAWARE", "Control state STATE_NEW_JERSEY", "Level 5+ Military Shipyards required", "Technology: Gantry Cranes"],
                 "bonuses": ["unit navy offense mult = 0.05", "unit navy defense mult = 0.05"],
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; unit navy defense \u00d70.05",
                 "prestige_goods": [],
@@ -12335,7 +12422,7 @@
                 "country": "PER",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MOSCOW", "Control state STATE_FERGANA", "Level 5+ Cotton Plantation required"],
+                "requirements": ["Control state STATE_FERGANA", "Control state STATE_MOSCOW", "Level 5+ Cotton Plantation required"],
                 "bonuses": ["building cotton plantation throughput add = 0.2", "interest group ig industrialists pop attraction mult = 0.05"],
                 "prosperity_bonuses_text": " -- building cotton plantation throughput +0.2; interest group ig industrialists pop attraction \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -15718,6 +15805,617 @@
             'building_tobacco_plantation': 'Tobacco',
             'building_livestock_ranch': 'Livestock'
         };
+        
+        // Optimization Feature Functions
+        let optimizationResults = null;
+        
+        function optimizeSelection() {
+            const enabledBuildings = getEnabledBuildings();
+            const selectedCompanies = getCustomCompanies();
+            const selectedCharters = getSelectedCharters();
+            const enabledCountries = getEnabledCountries();
+            
+            // Check if any buildings are selected
+            if (enabledBuildings.length === 0) {
+                alert('Please select at least one building to optimize for.');
+                return;
+            }
+            
+            // Show modal with loading status
+            document.getElementById('optimizationModal').style.display = 'block';
+            document.getElementById('optimizationStatus').textContent = 'Calculating optimal company selection...';
+            document.getElementById('optimizationResults').innerHTML = '';
+            
+            // Run optimization with a small delay to let UI update
+            setTimeout(() => {
+                const results = runOptimization(enabledBuildings, selectedCompanies, selectedCharters, enabledCountries);
+                displayOptimizationResults(results);
+            }, 100);
+        }
+        
+        function runOptimization(targetBuildings, existingCompanies, existingCharters, enabledCountries) {
+            const MAX_COMPANIES = 7;
+            const companyData = {"company_ludwig_moser_and_sons": {"building_types": ["building_glassworks"], "extension_building_types": ["building_lead_mine"]}, "company_compania_sansinena_de_carnes_congeladas": {"building_types": ["building_livestock_ranch", "building_food_industry"], "extension_building_types": ["building_port"]}, "company_konigliche_porzellan_manufaktur_meissen": {"building_types": ["building_glassworks"], "extension_building_types": ["building_lead_mine"]}, "company_jiangnan_weaving_bureaus": {"building_types": ["building_silk_plantation", "building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_russian_american_company": {"building_types": ["building_logging_camp", "building_whaling_station", "building_port"], "extension_building_types": ["building_coal_mine", "building_fishing_wharf"]}, "company_maison_worth": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_arts_academy"]}, "company_lee_wilson": {"building_types": ["building_cotton_plantation", "building_logging_camp", "building_wheat_farm"], "extension_building_types": ["building_railway"]}, "company_colt_firearms": {"building_types": ["building_arms_industry"], "extension_building_types": ["building_munition_plants"]}, "company_gebruder_thonet": {"building_types": ["building_furniture_manufacturies"], "extension_building_types": ["building_logging_camp"]}, "company_kinkozan_sobei": {"building_types": ["building_glassworks"], "extension_building_types": ["building_logging_camp"]}, "company_maple_and_co": {"building_types": ["building_furniture_manufacturies"], "extension_building_types": ["building_logging_camp"]}, "company_ong_lung_sheng_tea_company": {"building_types": ["building_tea_plantation"], "extension_building_types": ["building_food_industry"]}, "company_anglo_sicilian_sulphur_company": {"building_types": ["building_sulfur_mine"], "extension_building_types": ["building_port"]}, "company_mantero_seta": {"building_types": ["building_silk_plantation", "building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_norsk_hydro": {"building_types": ["building_chemical_plants", "building_power_plant"], "extension_building_types": ["building_sulfur_mine"]}, "company_massey_harris": {"building_types": ["building_motor_industry", "building_tooling_workshops"], "extension_building_types": ["building_iron_mine"]}, "company_de_beers": {"building_types": ["building_gold_mine"], "extension_building_types": ["building_iron_mine"]}, "company_john_holt": {"building_types": ["building_rubber_plantation", "building_logging_camp", "building_port"], "extension_building_types": ["building_shipyards"]}, "company_imperial_ethiopian_railways": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_lanfang_kongsi": {"building_types": ["building_gold_mine", "building_port"], "extension_building_types": ["building_rice_farm", "building_iron_mine"]}, "company_paradox": {"building_types": ["building_arts_academy", "building_electrics_industry"], "extension_building_types": ["building_coal_mine", "building_paper_mills"]}, "company_kaiping_mining": {"building_types": ["building_coal_mine", "building_railway"], "extension_building_types": ["building_iron_mine", "building_lead_mine"]}, "company_hanyang_arsenal": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_foochow_arsenal": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_steel_mills", "building_logging_camp"]}, "company_jingdezhen": {"building_types": ["building_glassworks"], "extension_building_types": ["building_lead_mine"]}, "company_misr": {"building_types": ["building_textile_mills", "building_cotton_plantation"], "extension_building_types": ["building_silk_plantation"]}, "company_egyptian_rail": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_suez_company": {"building_types": ["building_trade_center", "building_port"], "extension_building_types": ["building_shipyards"]}, "company_bengal_coal_company": {"building_types": ["building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_bombay_dyeing_company": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_david_sassoon": {"building_types": ["building_opium_plantation", "building_cotton_plantation"], "extension_building_types": ["building_port"]}, "company_bombay_burmah_trading_corporation": {"building_types": ["building_logging_camp", "building_rubber_plantation"], "extension_building_types": ["building_tea_plantation", "building_cotton_plantation", "building_oil_rig"]}, "company_madura_mills": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_rubber_plantation", "building_cotton_plantation"]}, "company_assam_company": {"building_types": ["building_tea_plantation"], "extension_building_types": ["building_logging_camp"]}, "company_wadia_shipbuilders": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_motor_industry"]}, "company_steel_brothers": {"building_types": ["building_oil_rig", "building_rice_farm"], "extension_building_types": ["building_logging_camp"]}, "company_ralli_brothers": {"building_types": ["building_rice_farm", "building_wheat_farm"], "extension_building_types": ["building_port", "building_cotton_plantation", "building_textile_mills"]}, "company_calcutta_electric": {"building_types": ["building_power_plant"], "extension_building_types": ["building_coal_mine"]}, "company_ccci": {"building_types": ["building_rubber_plantation", "building_logging_camp", "building_iron_mine"], "extension_building_types": ["building_railway", "building_livestock_ranch"]}, "company_franco_belge": {"building_types": ["building_motor_industry", "building_railway"], "extension_building_types": ["building_steel_mills"]}, "company_john_cockerill": {"building_types": ["building_steel_mills", "building_tooling_workshops", "building_motor_industry"], "extension_building_types": ["building_iron_mine"]}, "company_nederlandse_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_philips": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_power_plant", "building_motor_industry"]}, "company_basileiades": {"building_types": ["building_motor_industry", "building_shipyards"], "extension_building_types": ["building_military_shipyards"]}, "company_kouppas": {"building_types": ["building_motor_industry", "building_tooling_workshops"], "extension_building_types": ["building_automotive_industry"]}, "company_ericsson": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_iron_mine"]}, "company_lkab": {"building_types": ["building_iron_mine"], "extension_building_types": ["building_steel_mills"]}, "company_gotaverken": {"building_types": ["building_shipyards", "building_military_shipyards", "building_motor_industry"], "extension_building_types": ["building_logging_camp"]}, "company_aker_mek": {"building_types": ["building_shipyards", "building_motor_industry"], "extension_building_types": ["building_military_shipyards"]}, "company_nokia": {"building_types": ["building_paper_mills", "building_logging_camp", "building_power_plant"], "extension_building_types": ["building_electrics_industry"]}, "company_ursus": {"building_types": ["building_motor_industry"], "extension_building_types": ["building_automotive_industry", "building_steel_mills"]}, "company_lilpop": {"building_types": ["building_steel_mills", "building_iron_mine", "building_tooling_workshops"], "extension_building_types": ["building_motor_industry"]}, "company_mozambique_company": {"building_types": ["building_cotton_plantation", "building_tea_plantation", "building_rice_farm"], "extension_building_types": ["building_logging_camp"]}, "company_altos_hornos_de_vizcaya": {"building_types": ["building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_coal_mine"]}, "company_duro_y_compania": {"building_types": ["building_coal_mine", "building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_logging_camp"]}, "company_espana_industrial": {"building_types": ["building_textile_mills", "building_cotton_plantation"], "extension_building_types": ["building_silk_plantation"]}, "company_trubia": {"building_types": ["building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_munition_plants", "building_explosives_factory"]}, "company_zastava": {"building_types": ["building_arms_industry", "building_munition_plants"], "extension_building_types": ["building_artillery_foundries"]}, "company_chr_hansens": {"building_types": ["building_food_industry", "building_chemical_plants"], "extension_building_types": ["building_synthetics_plants"]}, "company_ap_moller": {"building_types": ["building_port"], "extension_building_types": ["building_shipyards", "building_logging_camp"]}, "company_cfr": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_romanian_star": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_j_p_coats": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_armstrong_whitworth": {"building_types": ["building_military_shipyards", "building_motor_industry", "building_munition_plants"], "extension_building_types": ["building_automotive_industry"]}, "company_john_brown": {"building_types": ["building_military_shipyards", "building_shipyards", "building_steel_mills"], "extension_building_types": ["building_iron_mine"]}, "company_gwr": {"building_types": ["building_railway"], "extension_building_types": ["building_coal_mine"]}, "company_bolckow_vaughan": {"building_types": ["building_coal_mine", "building_iron_mine", "building_steel_mills"], "extension_building_types": ["building_lead_mine"]}, "company_krupp": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_steel_mills"], "extension_building_types": ["building_iron_mine"]}, "company_rheinmetall": {"building_types": ["building_artillery_foundries", "building_munition_plants", "building_explosives_factory"], "extension_building_types": ["building_motor_industry", "building_steel_mills"]}, "company_schichau": {"building_types": ["building_motor_industry", "building_military_shipyards", "building_shipyards"], "extension_building_types": ["building_railway", "building_steel_mills"]}, "company_siemens_and_halske": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_motor_industry", "building_railway"]}, "company_prussian_state_railways": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_basf": {"building_types": ["building_synthetics_plants", "building_chemical_plants"], "extension_building_types": ["building_dye_plantation", "building_sulfur_mine"]}, "company_fundidora_monterrey": {"building_types": ["building_steel_mills", "building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_el_aguila": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_csfa": {"building_types": ["building_sulfur_mine", "building_railway"], "extension_building_types": ["building_iron_mine"]}, "company_caribbean_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_bunge_born": {"building_types": ["building_wheat_farm", "building_maize_farm", "building_food_industry"], "extension_building_types": ["building_chemical_plants"]}, "company_la_rosada": {"building_types": ["building_steel_mills", "building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_iron_mine"]}, "company_famae": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_peruvian_amazon": {"building_types": ["building_rubber_plantation"], "extension_building_types": ["building_logging_camp"]}, "company_kablin": {"building_types": ["building_paper_mills", "building_logging_camp"], "extension_building_types": ["building_sulfur_mine"]}, "company_hbc": {"building_types": ["building_fishing_wharf", "building_logging_camp"], "extension_building_types": ["building_port", "building_food_industry"]}, "company_panama_company": {"building_types": ["building_trade_center", "building_port"], "extension_building_types": ["building_shipyards"]}, "company_vodka_monopoly": {"building_types": ["building_food_industry", "building_vineyard_plantation"], "extension_building_types": ["building_wheat_farm", "building_rye_farm"]}, "company_putilov_company": {"building_types": ["building_motor_industry", "building_military_shipyards", "building_artillery_foundries"], "extension_building_types": ["building_munition_plants"]}, "company_branobel": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_izhevsk_arms_plant": {"building_types": ["building_arms_industry", "building_munition_plants"], "extension_building_types": ["building_artillery_foundries", "building_steel_mills"]}, "company_savva_morozov": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_john_hughes": {"building_types": ["building_steel_mills", "building_coal_mine", "building_iron_mine"], "extension_building_types": ["building_railway"]}, "company_east_india_company": {"building_types": ["building_tea_plantation", "building_tobacco_plantation", "building_opium_plantation"], "extension_building_types": ["building_silk_plantation", "building_sugar_plantation"]}, "company_imperial_arsenal": {"building_types": ["building_military_shipyards"], "extension_building_types": ["building_shipyards"]}, "company_ottoman_tobacco_regie": {"building_types": ["building_tobacco_plantation"], "extension_building_types": ["building_opium_plantation"]}, "company_allatini_mills": {"building_types": ["building_wheat_farm", "building_rye_farm"], "extension_building_types": ["building_food_industry"]}, "company_orient_express": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_great_indian_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_iron_mine"]}, "company_tata": {"building_types": ["building_textile_mills", "building_steel_mills"], "extension_building_types": ["building_iron_mine", "building_motor_industry"]}, "company_sunhwaguk": {"building_types": ["building_tobacco_plantation", "building_rice_farm"], "extension_building_types": ["building_food_industry", "building_chemical_plants"]}, "company_nam_dinh": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_silk_plantation"]}, "company_imperial_tobacco": {"building_types": ["building_tobacco_plantation"], "extension_building_types": ["building_opium_plantation"]}, "company_san_miguel": {"building_types": ["building_food_industry"], "extension_building_types": ["building_wheat_farm", "building_maize_farm", "building_rye_farm"]}, "company_william_sandford": {"building_types": ["building_steel_mills"], "extension_building_types": ["building_iron_mine", "building_coal_mine"]}, "company_b_grimm": {"building_types": ["building_rice_farm"], "extension_building_types": ["building_chemical_plants"]}, "company_skoda": {"building_types": ["building_steel_mills", "building_motor_industry", "building_artillery_foundries"], "extension_building_types": ["building_automotive_industry"]}, "company_mav": {"building_types": ["building_motor_industry", "building_tooling_workshops"], "extension_building_types": ["building_automotive_industry"]}, "company_manfred_weiss": {"building_types": ["building_steel_mills", "building_munition_plants", "building_automotive_industry"], "extension_building_types": ["building_iron_mine"]}, "company_galician_carpathian_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant", "building_coal_mine"]}, "company_oevg": {"building_types": ["building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_steel_mills", "building_munition_plants", "building_electrics_industry"]}, "company_sao_paulo_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_logging_camp", "building_motor_industry"]}, "company_estaleiro_maua": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_logging_camp"]}, "company_pernambuco_textiles": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_livestock_ranch"]}, "company_fundicao_ipanema": {"building_types": ["building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_coal_mine"]}, "company_rossi": {"building_types": ["building_arms_industry", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_estanifera_llallagua": {"building_types": ["building_lead_mine"], "extension_building_types": ["building_iron_mine", "building_sulfur_mine"]}, "company_argentinian_wine": {"building_types": ["building_vineyard_plantation"], "extension_building_types": ["building_livestock_ranch"]}, "company_sudamericana_de_vapores": {"building_types": ["building_port"], "extension_building_types": ["building_shipyards", "building_logging_camp"]}, "company_electricidad_de_caracas": {"building_types": ["building_power_plant"], "extension_building_types": ["building_motor_industry", "building_coal_mine"]}, "company_cordoba_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_coal_mine", "building_motor_industry"]}, "company_eea": {"building_types": ["building_power_plant"], "extension_building_types": ["building_coal_mine"]}, "company_standard_oil": {"building_types": ["building_oil_rig", "building_railway"], "extension_building_types": ["building_port"]}, "company_united_fruit": {"building_types": ["building_sugar_plantation", "building_banana_plantation"], "extension_building_types": ["building_railway"]}, "company_us_steel": {"building_types": ["building_steel_mills", "building_iron_mine", "building_coal_mine"], "extension_building_types": ["building_arts_academy"]}, "company_general_electric": {"building_types": ["building_electrics_industry", "building_power_plant"], "extension_building_types": ["building_motor_industry"]}, "company_william_cramp": {"building_types": ["building_military_shipyards", "building_shipyards", "building_motor_industry"], "extension_building_types": ["building_artillery_foundries"]}, "company_ford_motor": {"building_types": ["building_motor_industry", "building_automotive_industry"], "extension_building_types": ["building_steel_mills", "building_rubber_plantation"]}, "company_da_afghan_nassaji_sherkat": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_iranian_state_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_tashkent_railroad": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_west_ural_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant", "building_railway"]}, "company_sherkat_shemali": {"building_types": ["building_cotton_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_opium_export_monopoly": {"building_types": ["building_opium_plantation"], "extension_building_types": ["building_tobacco_plantation"]}, "company_sherkate_eslamiya": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_nicolas_portalis": {"building_types": ["building_silk_plantation"], "extension_building_types": ["building_cotton_plantation"]}, "company_hanseong_jeongi_hoesa": {"building_types": ["building_power_plant"], "extension_building_types": ["building_railway"]}, "company_kirgizian_mining_company": {"building_types": ["building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_persshelk": {"building_types": ["building_silk_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_perskhlopok": {"building_types": ["building_cotton_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_moscow_irrigation_company": {"building_types": ["building_cotton_plantation", "building_rice_farm"], "extension_building_types": ["building_wheat_farm", "building_opium_plantation"]}, "company_guinness": {"building_types": ["building_food_industry"], "extension_building_types": ["building_wheat_farm", "building_rye_farm"]}, "company_oriental_development_company": {"building_types": ["building_rice_farm", "building_millet_farm", "building_wheat_farm"], "extension_building_types": ["building_maize_farm", "building_food_industry"]}, "company_turkish_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_anglo_persian_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_national_iranian_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_ilva": {"building_types": ["building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_coal_mine"]}, "company_ansaldo": {"building_types": ["building_artillery_foundries", "building_steel_mills", "building_military_shipyards"], "extension_building_types": ["building_power_plant"]}, "company_ricordi": {"building_types": ["building_arts_academy"], "extension_building_types": ["building_vineyard_plantation"]}, "company_fiat": {"building_types": ["building_motor_industry", "building_automotive_industry"], "extension_building_types": ["building_steel_mills"]}, "company_stt": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_motor_industry", "building_steel_mills"]}, "company_societe_mokta_el_hadid": {"building_types": ["building_iron_mine", "building_sulfur_mine"], "extension_building_types": ["building_lead_mine"]}, "company_schneider_creusot": {"building_types": ["building_steel_mills", "building_artillery_foundries", "building_motor_industry"], "extension_building_types": ["building_railway", "building_military_shipyards"]}, "company_dmc": {"building_types": ["building_textile_mills", "building_coal_mine"], "extension_building_types": ["building_dye_plantation", "building_cotton_plantation"]}, "company_cgv": {"building_types": ["building_vineyard_plantation"], "extension_building_types": ["building_food_industry"]}, "company_saint_etienne": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_fcm": {"building_types": ["building_shipyards", "building_military_shipyards", "building_automotive_industry"], "extension_building_types": ["building_steel_mills"]}, "company_mines_anzin": {"building_types": ["building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_mitsui": {"building_types": ["building_textile_mills", "building_silk_plantation", "building_lead_mine"], "extension_building_types": ["building_shipyards", "building_port", "building_chemical_plants", "building_iron_mine"]}, "company_mantetsu": {"building_types": ["building_railway", "building_coal_mine", "building_glassworks"], "extension_building_types": ["building_food_industry", "building_chemical_plants"]}, "company_mitsubishi": {"building_types": ["building_military_shipyards", "building_coal_mine", "building_paper_mills"], "extension_building_types": ["building_shipyards", "building_motor_industry", "building_port", "building_iron_mine"]}, "company_basic_agriculture_1": {"building_types": ["building_wheat_farm", "building_rye_farm"], "extension_building_types": ["building_maize_farm"]}, "company_type_names": {"building_types": [], "extension_building_types": []}, "company_basic_agriculture_2": {"building_types": ["building_rice_farm", "building_millet_farm", "building_maize_farm"], "extension_building_types": ["building_rye_farm"]}, "company_basic_fabrics": {"building_types": ["building_cotton_plantation", "building_livestock_ranch"], "extension_building_types": ["building_textile_mills"]}, "company_basic_colonial_plantations_1": {"building_types": ["building_opium_plantation", "building_tea_plantation"], "extension_building_types": ["building_tobacco_plantation"]}, "company_basic_colonial_plantations_2": {"building_types": ["building_coffee_plantation", "building_sugar_plantation", "building_tobacco_plantation"], "extension_building_types": ["building_tea_plantation"]}, "company_basic_silk_and_dye": {"building_types": ["building_silk_plantation", "building_dye_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_basic_wine_and_fruit": {"building_types": ["building_vineyard_plantation", "building_banana_plantation"], "extension_building_types": ["building_sugar_plantation"]}, "company_basic_fishing": {"building_types": ["building_fishing_wharf", "building_whaling_station"], "extension_building_types": ["building_shipyards"]}, "company_basic_forestry": {"building_types": ["building_logging_camp", "building_rubber_plantation"], "extension_building_types": ["building_tooling_workshops"]}, "company_basic_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_coal_mine"]}, "company_basic_gold_mining": {"building_types": ["building_gold_mine"], "extension_building_types": ["building_lead_mine"]}, "company_basic_metal_mining": {"building_types": ["building_iron_mine", "building_lead_mine"], "extension_building_types": ["building_coal_mine"]}, "company_basic_mineral_mining": {"building_types": ["building_sulfur_mine", "building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_basic_food": {"building_types": ["building_food_industry"], "extension_building_types": ["building_livestock_ranch", "building_wheat_farm"]}, "company_basic_paper": {"building_types": ["building_paper_mills"], "extension_building_types": ["building_logging_camp"]}, "company_basic_home_goods": {"building_types": ["building_glassworks", "building_furniture_manufacturies"], "extension_building_types": ["building_logging_camp", "building_lead_mine"]}, "company_basic_textiles": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_silk_plantation"]}, "company_basic_steel": {"building_types": ["building_steel_mills"], "extension_building_types": ["building_iron_mine", "building_coal_mine"]}, "company_basic_metalworks": {"building_types": ["building_tooling_workshops"], "extension_building_types": ["building_steel_mills", "building_iron_mine"]}, "company_basic_shipyards": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_logging_camp"]}, "company_basic_chemicals": {"building_types": ["building_chemical_plants", "building_synthetics_plants"], "extension_building_types": ["building_sulfur_mine"]}, "company_basic_motors": {"building_types": ["building_motor_industry", "building_automotive_industry"], "extension_building_types": ["building_steel_mills"]}, "company_basic_munitions": {"building_types": ["building_munition_plants", "building_explosives_factory"], "extension_building_types": ["building_sulfur_mine", "building_steel_mills"]}, "company_basic_electrics": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_iron_mine", "building_rubber_plantation"]}, "company_basic_weapons": {"building_types": ["building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_automotive_industry", "building_steel_mills"]}, "company_construction_power_bloc": {"building_types": ["building_steel_mills", "building_tooling_workshops", "building_glassworks"], "extension_building_types": ["building_lead_mine"]}};
+            
+            // Special companies that don't count against the limit
+            const specialCompanies = ['company_panama_canal', 'company_suez_canal'];
+            
+            // Filter out special companies from existing selection
+            const regularExisting = existingCompanies.filter(c => !specialCompanies.includes(c));
+            const specialExisting = existingCompanies.filter(c => specialCompanies.includes(c));
+            
+            // Calculate remaining slots
+            const remainingSlots = MAX_COMPANIES - regularExisting.length;
+            
+            if (remainingSlots <= 0) {
+                return {
+                    success: false,
+                    message: 'You already have 7 companies selected. Remove some to optimize.',
+                    existingCompanies: regularExisting,
+                    newCompanies: [],
+                    coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
+                };
+            }
+            
+            // Use Linear Programming to find optimal selection
+            try {
+                const lpResult = solveLinearProgram(targetBuildings, regularExisting, existingCharters, enabledCountries, remainingSlots);
+                
+                if (!lpResult.success) {
+                    return {
+                        success: false,
+                        message: lpResult.message || 'Optimization failed',
+                        existingCompanies: regularExisting,
+                        newCompanies: [],
+                        coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
+                    };
+                }
+                
+                // Check if we should add Panama or Suez
+                const finalRecommendations = [];
+                const allSelectedBuildings = new Set();
+                regularExisting.forEach(name => {
+                    const company = companyData[name];
+                    if (company) {
+                        company.base_buildings.forEach(b => allSelectedBuildings.add(b));
+                        if (existingCharters[name]) allSelectedBuildings.add(existingCharters[name]);
+                    }
+                });
+                lpResult.newCompanies.forEach(rec => {
+                    rec.coverage.forEach(b => allSelectedBuildings.add(b));
+                });
+                
+                specialCompanies.forEach(specialName => {
+                    if (!specialExisting.includes(specialName)) {
+                        const special = companyData[specialName];
+                        if (special) {
+                            const newCoverage = special.base_buildings.filter(b => 
+                                targetBuildings.includes(b) && !allSelectedBuildings.has(b)
+                            );
+                            if (newCoverage.length > 0) {
+                                finalRecommendations.push({
+                                    name: specialName,
+                                    isSpecial: true,
+                                    coverage: special.base_buildings
+                                });
+                            }
+                        }
+                    }
+                });
+                
+                return {
+                    success: true,
+                    existingCompanies: regularExisting,
+                    existingCharters: existingCharters,
+                    newCompanies: lpResult.newCompanies,
+                    specialRecommendations: finalRecommendations,
+                    coverage: calculateDetailedCoverage(targetBuildings, 
+                        [...regularExisting, ...lpResult.newCompanies.map(c => c.name)],
+                        {...existingCharters, ...Object.fromEntries(
+                            lpResult.newCompanies.filter(c => c.charter).map(c => [c.name, c.charter])
+                        )})
+                };
+            } catch (error) {
+                console.error('Optimization error:', error);
+                return {
+                    success: false,
+                    message: 'Optimization failed: ' + error.message,
+                    existingCompanies: regularExisting,
+                    newCompanies: [],
+                    coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
+                };
+            }
+        }
+        
+        function solveLinearProgram(targetBuildings, existingCompanies, existingCharters, enabledCountries, remainingSlots) {
+            const companyData = {"company_ludwig_moser_and_sons": {"building_types": ["building_glassworks"], "extension_building_types": ["building_lead_mine"]}, "company_compania_sansinena_de_carnes_congeladas": {"building_types": ["building_livestock_ranch", "building_food_industry"], "extension_building_types": ["building_port"]}, "company_konigliche_porzellan_manufaktur_meissen": {"building_types": ["building_glassworks"], "extension_building_types": ["building_lead_mine"]}, "company_jiangnan_weaving_bureaus": {"building_types": ["building_silk_plantation", "building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_russian_american_company": {"building_types": ["building_logging_camp", "building_whaling_station", "building_port"], "extension_building_types": ["building_coal_mine", "building_fishing_wharf"]}, "company_maison_worth": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_arts_academy"]}, "company_lee_wilson": {"building_types": ["building_cotton_plantation", "building_logging_camp", "building_wheat_farm"], "extension_building_types": ["building_railway"]}, "company_colt_firearms": {"building_types": ["building_arms_industry"], "extension_building_types": ["building_munition_plants"]}, "company_gebruder_thonet": {"building_types": ["building_furniture_manufacturies"], "extension_building_types": ["building_logging_camp"]}, "company_kinkozan_sobei": {"building_types": ["building_glassworks"], "extension_building_types": ["building_logging_camp"]}, "company_maple_and_co": {"building_types": ["building_furniture_manufacturies"], "extension_building_types": ["building_logging_camp"]}, "company_ong_lung_sheng_tea_company": {"building_types": ["building_tea_plantation"], "extension_building_types": ["building_food_industry"]}, "company_anglo_sicilian_sulphur_company": {"building_types": ["building_sulfur_mine"], "extension_building_types": ["building_port"]}, "company_mantero_seta": {"building_types": ["building_silk_plantation", "building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_norsk_hydro": {"building_types": ["building_chemical_plants", "building_power_plant"], "extension_building_types": ["building_sulfur_mine"]}, "company_massey_harris": {"building_types": ["building_motor_industry", "building_tooling_workshops"], "extension_building_types": ["building_iron_mine"]}, "company_de_beers": {"building_types": ["building_gold_mine"], "extension_building_types": ["building_iron_mine"]}, "company_john_holt": {"building_types": ["building_rubber_plantation", "building_logging_camp", "building_port"], "extension_building_types": ["building_shipyards"]}, "company_imperial_ethiopian_railways": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_lanfang_kongsi": {"building_types": ["building_gold_mine", "building_port"], "extension_building_types": ["building_rice_farm", "building_iron_mine"]}, "company_paradox": {"building_types": ["building_arts_academy", "building_electrics_industry"], "extension_building_types": ["building_coal_mine", "building_paper_mills"]}, "company_kaiping_mining": {"building_types": ["building_coal_mine", "building_railway"], "extension_building_types": ["building_iron_mine", "building_lead_mine"]}, "company_hanyang_arsenal": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_foochow_arsenal": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_steel_mills", "building_logging_camp"]}, "company_jingdezhen": {"building_types": ["building_glassworks"], "extension_building_types": ["building_lead_mine"]}, "company_misr": {"building_types": ["building_textile_mills", "building_cotton_plantation"], "extension_building_types": ["building_silk_plantation"]}, "company_egyptian_rail": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_suez_company": {"building_types": ["building_trade_center", "building_port"], "extension_building_types": ["building_shipyards"]}, "company_bengal_coal_company": {"building_types": ["building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_bombay_dyeing_company": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_david_sassoon": {"building_types": ["building_opium_plantation", "building_cotton_plantation"], "extension_building_types": ["building_port"]}, "company_bombay_burmah_trading_corporation": {"building_types": ["building_logging_camp", "building_rubber_plantation"], "extension_building_types": ["building_tea_plantation", "building_cotton_plantation", "building_oil_rig"]}, "company_madura_mills": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_rubber_plantation", "building_cotton_plantation"]}, "company_assam_company": {"building_types": ["building_tea_plantation"], "extension_building_types": ["building_logging_camp"]}, "company_wadia_shipbuilders": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_motor_industry"]}, "company_steel_brothers": {"building_types": ["building_oil_rig", "building_rice_farm"], "extension_building_types": ["building_logging_camp"]}, "company_ralli_brothers": {"building_types": ["building_rice_farm", "building_wheat_farm"], "extension_building_types": ["building_port", "building_cotton_plantation", "building_textile_mills"]}, "company_calcutta_electric": {"building_types": ["building_power_plant"], "extension_building_types": ["building_coal_mine"]}, "company_ccci": {"building_types": ["building_rubber_plantation", "building_logging_camp", "building_iron_mine"], "extension_building_types": ["building_railway", "building_livestock_ranch"]}, "company_franco_belge": {"building_types": ["building_motor_industry", "building_railway"], "extension_building_types": ["building_steel_mills"]}, "company_john_cockerill": {"building_types": ["building_steel_mills", "building_tooling_workshops", "building_motor_industry"], "extension_building_types": ["building_iron_mine"]}, "company_nederlandse_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_philips": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_power_plant", "building_motor_industry"]}, "company_basileiades": {"building_types": ["building_motor_industry", "building_shipyards"], "extension_building_types": ["building_military_shipyards"]}, "company_kouppas": {"building_types": ["building_motor_industry", "building_tooling_workshops"], "extension_building_types": ["building_automotive_industry"]}, "company_ericsson": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_iron_mine"]}, "company_lkab": {"building_types": ["building_iron_mine"], "extension_building_types": ["building_steel_mills"]}, "company_gotaverken": {"building_types": ["building_shipyards", "building_military_shipyards", "building_motor_industry"], "extension_building_types": ["building_logging_camp"]}, "company_aker_mek": {"building_types": ["building_shipyards", "building_motor_industry"], "extension_building_types": ["building_military_shipyards"]}, "company_nokia": {"building_types": ["building_paper_mills", "building_logging_camp", "building_power_plant"], "extension_building_types": ["building_electrics_industry"]}, "company_ursus": {"building_types": ["building_motor_industry"], "extension_building_types": ["building_automotive_industry", "building_steel_mills"]}, "company_lilpop": {"building_types": ["building_steel_mills", "building_iron_mine", "building_tooling_workshops"], "extension_building_types": ["building_motor_industry"]}, "company_mozambique_company": {"building_types": ["building_cotton_plantation", "building_tea_plantation", "building_rice_farm"], "extension_building_types": ["building_logging_camp"]}, "company_altos_hornos_de_vizcaya": {"building_types": ["building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_coal_mine"]}, "company_duro_y_compania": {"building_types": ["building_coal_mine", "building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_logging_camp"]}, "company_espana_industrial": {"building_types": ["building_textile_mills", "building_cotton_plantation"], "extension_building_types": ["building_silk_plantation"]}, "company_trubia": {"building_types": ["building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_munition_plants", "building_explosives_factory"]}, "company_zastava": {"building_types": ["building_arms_industry", "building_munition_plants"], "extension_building_types": ["building_artillery_foundries"]}, "company_chr_hansens": {"building_types": ["building_food_industry", "building_chemical_plants"], "extension_building_types": ["building_synthetics_plants"]}, "company_ap_moller": {"building_types": ["building_port"], "extension_building_types": ["building_shipyards", "building_logging_camp"]}, "company_cfr": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_romanian_star": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_j_p_coats": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_armstrong_whitworth": {"building_types": ["building_military_shipyards", "building_motor_industry", "building_munition_plants"], "extension_building_types": ["building_automotive_industry"]}, "company_john_brown": {"building_types": ["building_military_shipyards", "building_shipyards", "building_steel_mills"], "extension_building_types": ["building_iron_mine"]}, "company_gwr": {"building_types": ["building_railway"], "extension_building_types": ["building_coal_mine"]}, "company_bolckow_vaughan": {"building_types": ["building_coal_mine", "building_iron_mine", "building_steel_mills"], "extension_building_types": ["building_lead_mine"]}, "company_krupp": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_steel_mills"], "extension_building_types": ["building_iron_mine"]}, "company_rheinmetall": {"building_types": ["building_artillery_foundries", "building_munition_plants", "building_explosives_factory"], "extension_building_types": ["building_motor_industry", "building_steel_mills"]}, "company_schichau": {"building_types": ["building_motor_industry", "building_military_shipyards", "building_shipyards"], "extension_building_types": ["building_railway", "building_steel_mills"]}, "company_siemens_and_halske": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_motor_industry", "building_railway"]}, "company_prussian_state_railways": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_basf": {"building_types": ["building_synthetics_plants", "building_chemical_plants"], "extension_building_types": ["building_dye_plantation", "building_sulfur_mine"]}, "company_fundidora_monterrey": {"building_types": ["building_steel_mills", "building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_el_aguila": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_csfa": {"building_types": ["building_sulfur_mine", "building_railway"], "extension_building_types": ["building_iron_mine"]}, "company_caribbean_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_bunge_born": {"building_types": ["building_wheat_farm", "building_maize_farm", "building_food_industry"], "extension_building_types": ["building_chemical_plants"]}, "company_la_rosada": {"building_types": ["building_steel_mills", "building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_iron_mine"]}, "company_famae": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_peruvian_amazon": {"building_types": ["building_rubber_plantation"], "extension_building_types": ["building_logging_camp"]}, "company_kablin": {"building_types": ["building_paper_mills", "building_logging_camp"], "extension_building_types": ["building_sulfur_mine"]}, "company_hbc": {"building_types": ["building_fishing_wharf", "building_logging_camp"], "extension_building_types": ["building_port", "building_food_industry"]}, "company_panama_company": {"building_types": ["building_trade_center", "building_port"], "extension_building_types": ["building_shipyards"]}, "company_vodka_monopoly": {"building_types": ["building_food_industry", "building_vineyard_plantation"], "extension_building_types": ["building_wheat_farm", "building_rye_farm"]}, "company_putilov_company": {"building_types": ["building_motor_industry", "building_military_shipyards", "building_artillery_foundries"], "extension_building_types": ["building_munition_plants"]}, "company_branobel": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_izhevsk_arms_plant": {"building_types": ["building_arms_industry", "building_munition_plants"], "extension_building_types": ["building_artillery_foundries", "building_steel_mills"]}, "company_savva_morozov": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_john_hughes": {"building_types": ["building_steel_mills", "building_coal_mine", "building_iron_mine"], "extension_building_types": ["building_railway"]}, "company_east_india_company": {"building_types": ["building_tea_plantation", "building_tobacco_plantation", "building_opium_plantation"], "extension_building_types": ["building_silk_plantation", "building_sugar_plantation"]}, "company_imperial_arsenal": {"building_types": ["building_military_shipyards"], "extension_building_types": ["building_shipyards"]}, "company_ottoman_tobacco_regie": {"building_types": ["building_tobacco_plantation"], "extension_building_types": ["building_opium_plantation"]}, "company_allatini_mills": {"building_types": ["building_wheat_farm", "building_rye_farm"], "extension_building_types": ["building_food_industry"]}, "company_orient_express": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_great_indian_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_iron_mine"]}, "company_tata": {"building_types": ["building_textile_mills", "building_steel_mills"], "extension_building_types": ["building_iron_mine", "building_motor_industry"]}, "company_sunhwaguk": {"building_types": ["building_tobacco_plantation", "building_rice_farm"], "extension_building_types": ["building_food_industry", "building_chemical_plants"]}, "company_nam_dinh": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_silk_plantation"]}, "company_imperial_tobacco": {"building_types": ["building_tobacco_plantation"], "extension_building_types": ["building_opium_plantation"]}, "company_san_miguel": {"building_types": ["building_food_industry"], "extension_building_types": ["building_wheat_farm", "building_maize_farm", "building_rye_farm"]}, "company_william_sandford": {"building_types": ["building_steel_mills"], "extension_building_types": ["building_iron_mine", "building_coal_mine"]}, "company_b_grimm": {"building_types": ["building_rice_farm"], "extension_building_types": ["building_chemical_plants"]}, "company_skoda": {"building_types": ["building_steel_mills", "building_motor_industry", "building_artillery_foundries"], "extension_building_types": ["building_automotive_industry"]}, "company_mav": {"building_types": ["building_motor_industry", "building_tooling_workshops"], "extension_building_types": ["building_automotive_industry"]}, "company_manfred_weiss": {"building_types": ["building_steel_mills", "building_munition_plants", "building_automotive_industry"], "extension_building_types": ["building_iron_mine"]}, "company_galician_carpathian_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant", "building_coal_mine"]}, "company_oevg": {"building_types": ["building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_steel_mills", "building_munition_plants", "building_electrics_industry"]}, "company_sao_paulo_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_logging_camp", "building_motor_industry"]}, "company_estaleiro_maua": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_logging_camp"]}, "company_pernambuco_textiles": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_livestock_ranch"]}, "company_fundicao_ipanema": {"building_types": ["building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_coal_mine"]}, "company_rossi": {"building_types": ["building_arms_industry", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_estanifera_llallagua": {"building_types": ["building_lead_mine"], "extension_building_types": ["building_iron_mine", "building_sulfur_mine"]}, "company_argentinian_wine": {"building_types": ["building_vineyard_plantation"], "extension_building_types": ["building_livestock_ranch"]}, "company_sudamericana_de_vapores": {"building_types": ["building_port"], "extension_building_types": ["building_shipyards", "building_logging_camp"]}, "company_electricidad_de_caracas": {"building_types": ["building_power_plant"], "extension_building_types": ["building_motor_industry", "building_coal_mine"]}, "company_cordoba_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_coal_mine", "building_motor_industry"]}, "company_eea": {"building_types": ["building_power_plant"], "extension_building_types": ["building_coal_mine"]}, "company_standard_oil": {"building_types": ["building_oil_rig", "building_railway"], "extension_building_types": ["building_port"]}, "company_united_fruit": {"building_types": ["building_sugar_plantation", "building_banana_plantation"], "extension_building_types": ["building_railway"]}, "company_us_steel": {"building_types": ["building_steel_mills", "building_iron_mine", "building_coal_mine"], "extension_building_types": ["building_arts_academy"]}, "company_general_electric": {"building_types": ["building_electrics_industry", "building_power_plant"], "extension_building_types": ["building_motor_industry"]}, "company_william_cramp": {"building_types": ["building_military_shipyards", "building_shipyards", "building_motor_industry"], "extension_building_types": ["building_artillery_foundries"]}, "company_ford_motor": {"building_types": ["building_motor_industry", "building_automotive_industry"], "extension_building_types": ["building_steel_mills", "building_rubber_plantation"]}, "company_da_afghan_nassaji_sherkat": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_iranian_state_railway": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_tashkent_railroad": {"building_types": ["building_railway"], "extension_building_types": ["building_motor_industry"]}, "company_west_ural_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant", "building_railway"]}, "company_sherkat_shemali": {"building_types": ["building_cotton_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_opium_export_monopoly": {"building_types": ["building_opium_plantation"], "extension_building_types": ["building_tobacco_plantation"]}, "company_sherkate_eslamiya": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation"]}, "company_nicolas_portalis": {"building_types": ["building_silk_plantation"], "extension_building_types": ["building_cotton_plantation"]}, "company_hanseong_jeongi_hoesa": {"building_types": ["building_power_plant"], "extension_building_types": ["building_railway"]}, "company_kirgizian_mining_company": {"building_types": ["building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_persshelk": {"building_types": ["building_silk_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_perskhlopok": {"building_types": ["building_cotton_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_moscow_irrigation_company": {"building_types": ["building_cotton_plantation", "building_rice_farm"], "extension_building_types": ["building_wheat_farm", "building_opium_plantation"]}, "company_guinness": {"building_types": ["building_food_industry"], "extension_building_types": ["building_wheat_farm", "building_rye_farm"]}, "company_oriental_development_company": {"building_types": ["building_rice_farm", "building_millet_farm", "building_wheat_farm"], "extension_building_types": ["building_maize_farm", "building_food_industry"]}, "company_turkish_petroleum": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_anglo_persian_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_national_iranian_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_power_plant"]}, "company_ilva": {"building_types": ["building_steel_mills", "building_iron_mine"], "extension_building_types": ["building_coal_mine"]}, "company_ansaldo": {"building_types": ["building_artillery_foundries", "building_steel_mills", "building_military_shipyards"], "extension_building_types": ["building_power_plant"]}, "company_ricordi": {"building_types": ["building_arts_academy"], "extension_building_types": ["building_vineyard_plantation"]}, "company_fiat": {"building_types": ["building_motor_industry", "building_automotive_industry"], "extension_building_types": ["building_steel_mills"]}, "company_stt": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_motor_industry", "building_steel_mills"]}, "company_societe_mokta_el_hadid": {"building_types": ["building_iron_mine", "building_sulfur_mine"], "extension_building_types": ["building_lead_mine"]}, "company_schneider_creusot": {"building_types": ["building_steel_mills", "building_artillery_foundries", "building_motor_industry"], "extension_building_types": ["building_railway", "building_military_shipyards"]}, "company_dmc": {"building_types": ["building_textile_mills", "building_coal_mine"], "extension_building_types": ["building_dye_plantation", "building_cotton_plantation"]}, "company_cgv": {"building_types": ["building_vineyard_plantation"], "extension_building_types": ["building_food_industry"]}, "company_saint_etienne": {"building_types": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"], "extension_building_types": ["building_explosives_factory"]}, "company_fcm": {"building_types": ["building_shipyards", "building_military_shipyards", "building_automotive_industry"], "extension_building_types": ["building_steel_mills"]}, "company_mines_anzin": {"building_types": ["building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_mitsui": {"building_types": ["building_textile_mills", "building_silk_plantation", "building_lead_mine"], "extension_building_types": ["building_shipyards", "building_port", "building_chemical_plants", "building_iron_mine"]}, "company_mantetsu": {"building_types": ["building_railway", "building_coal_mine", "building_glassworks"], "extension_building_types": ["building_food_industry", "building_chemical_plants"]}, "company_mitsubishi": {"building_types": ["building_military_shipyards", "building_coal_mine", "building_paper_mills"], "extension_building_types": ["building_shipyards", "building_motor_industry", "building_port", "building_iron_mine"]}, "company_basic_agriculture_1": {"building_types": ["building_wheat_farm", "building_rye_farm"], "extension_building_types": ["building_maize_farm"]}, "company_type_names": {"building_types": [], "extension_building_types": []}, "company_basic_agriculture_2": {"building_types": ["building_rice_farm", "building_millet_farm", "building_maize_farm"], "extension_building_types": ["building_rye_farm"]}, "company_basic_fabrics": {"building_types": ["building_cotton_plantation", "building_livestock_ranch"], "extension_building_types": ["building_textile_mills"]}, "company_basic_colonial_plantations_1": {"building_types": ["building_opium_plantation", "building_tea_plantation"], "extension_building_types": ["building_tobacco_plantation"]}, "company_basic_colonial_plantations_2": {"building_types": ["building_coffee_plantation", "building_sugar_plantation", "building_tobacco_plantation"], "extension_building_types": ["building_tea_plantation"]}, "company_basic_silk_and_dye": {"building_types": ["building_silk_plantation", "building_dye_plantation"], "extension_building_types": ["building_textile_mills"]}, "company_basic_wine_and_fruit": {"building_types": ["building_vineyard_plantation", "building_banana_plantation"], "extension_building_types": ["building_sugar_plantation"]}, "company_basic_fishing": {"building_types": ["building_fishing_wharf", "building_whaling_station"], "extension_building_types": ["building_shipyards"]}, "company_basic_forestry": {"building_types": ["building_logging_camp", "building_rubber_plantation"], "extension_building_types": ["building_tooling_workshops"]}, "company_basic_oil": {"building_types": ["building_oil_rig"], "extension_building_types": ["building_coal_mine"]}, "company_basic_gold_mining": {"building_types": ["building_gold_mine"], "extension_building_types": ["building_lead_mine"]}, "company_basic_metal_mining": {"building_types": ["building_iron_mine", "building_lead_mine"], "extension_building_types": ["building_coal_mine"]}, "company_basic_mineral_mining": {"building_types": ["building_sulfur_mine", "building_coal_mine"], "extension_building_types": ["building_iron_mine"]}, "company_basic_food": {"building_types": ["building_food_industry"], "extension_building_types": ["building_livestock_ranch", "building_wheat_farm"]}, "company_basic_paper": {"building_types": ["building_paper_mills"], "extension_building_types": ["building_logging_camp"]}, "company_basic_home_goods": {"building_types": ["building_glassworks", "building_furniture_manufacturies"], "extension_building_types": ["building_logging_camp", "building_lead_mine"]}, "company_basic_textiles": {"building_types": ["building_textile_mills"], "extension_building_types": ["building_cotton_plantation", "building_silk_plantation"]}, "company_basic_steel": {"building_types": ["building_steel_mills"], "extension_building_types": ["building_iron_mine", "building_coal_mine"]}, "company_basic_metalworks": {"building_types": ["building_tooling_workshops"], "extension_building_types": ["building_steel_mills", "building_iron_mine"]}, "company_basic_shipyards": {"building_types": ["building_shipyards", "building_military_shipyards"], "extension_building_types": ["building_logging_camp"]}, "company_basic_chemicals": {"building_types": ["building_chemical_plants", "building_synthetics_plants"], "extension_building_types": ["building_sulfur_mine"]}, "company_basic_motors": {"building_types": ["building_motor_industry", "building_automotive_industry"], "extension_building_types": ["building_steel_mills"]}, "company_basic_munitions": {"building_types": ["building_munition_plants", "building_explosives_factory"], "extension_building_types": ["building_sulfur_mine", "building_steel_mills"]}, "company_basic_electrics": {"building_types": ["building_electrics_industry"], "extension_building_types": ["building_iron_mine", "building_rubber_plantation"]}, "company_basic_weapons": {"building_types": ["building_arms_industry", "building_artillery_foundries"], "extension_building_types": ["building_automotive_industry", "building_steel_mills"]}, "company_construction_power_bloc": {"building_types": ["building_steel_mills", "building_tooling_workshops", "building_glassworks"], "extension_building_types": ["building_lead_mine"]}};
+            const specialCompanies = ['company_panama_canal', 'company_suez_canal'];
+            
+            // Get buildings covered by existing selection
+            const existingCoverage = new Set();
+            existingCompanies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(b => existingCoverage.add(b));
+                    if (existingCharters[companyName]) {
+                        existingCoverage.add(existingCharters[companyName]);
+                    }
+                }
+            });
+            
+            // Buildings we still need to cover
+            const uncoveredBuildings = targetBuildings.filter(b => !existingCoverage.has(b));
+            
+            if (uncoveredBuildings.length === 0) {
+                return {
+                    success: true,
+                    newCompanies: [],
+                    message: 'All buildings already covered!'
+                };
+            }
+            
+            // Get candidate companies and their variants (with/without charters)
+            const candidates = [];
+            
+            Object.keys(companyData).forEach(companyName => {
+                // Skip if already selected or special company
+                if (existingCompanies.includes(companyName) || specialCompanies.includes(companyName)) return;
+                
+                const company = companyData[companyName];
+                
+                // Apply country filter
+                if (company.country && enabledCountries.length > 0) {
+                    if (!enabledCountries.includes(company.country)) return;
+                }
+                
+                // Check if company covers any uncovered buildings
+                const allBuildings = new Set([...company.base_buildings, ...company.industry_charters]);
+                if (!uncoveredBuildings.some(b => allBuildings.has(b))) return;
+                
+                // Add base company variant
+                const baseBuildings = company.base_buildings.filter(b => uncoveredBuildings.includes(b));
+                if (baseBuildings.length > 0) {
+                    candidates.push({
+                        id: companyName + '_base',
+                        name: companyName,
+                        charter: null,
+                        buildings: baseBuildings,
+                        cost: 1,
+                        isBasic: companyName.startsWith('company_basic_')
+                    });
+                }
+                
+                // Add charter variants
+                company.industry_charters.forEach(charter => {
+                    const charterBuildings = [...company.base_buildings];
+                    if (uncoveredBuildings.includes(charter)) {
+                        charterBuildings.push(charter);
+                    }
+                    const relevantBuildings = charterBuildings.filter(b => uncoveredBuildings.includes(b));
+                    
+                    if (relevantBuildings.length > 0) {
+                        candidates.push({
+                            id: companyName + '_charter_' + charter,
+                            name: companyName,
+                            charter: charter,
+                            buildings: relevantBuildings,
+                            cost: 1,
+                            isBasic: companyName.startsWith('company_basic_')
+                        });
+                    }
+                });
+            });
+            
+            if (candidates.length === 0) {
+                return {
+                    success: false,
+                    message: 'No companies available that cover the selected buildings.'
+                };
+            }
+            
+            // Set up Linear Programming problem
+            const lpProblem = {
+                optimize: 'coverage',
+                opType: 'max',
+                constraints: {},
+                variables: {},
+                binaries: {}
+            };
+            
+            // Decision variables for each candidate
+            candidates.forEach(candidate => {
+                // Coefficient = number of uncovered buildings this candidate covers
+                lpProblem.variables[candidate.id] = candidate.buildings.length;
+                lpProblem.binaries[candidate.id] = 1; // Binary variable
+            });
+            
+            // Constraint 1: Maximum number of companies
+            lpProblem.constraints.maxCompanies = { max: remainingSlots };
+            candidates.forEach(candidate => {
+                lpProblem.constraints.maxCompanies[candidate.id] = candidate.cost;
+            });
+            
+            // Constraint 2: Each company can only be selected once (across all its variants)
+            const companyGroups = {};
+            candidates.forEach(candidate => {
+                if (!companyGroups[candidate.name]) {
+                    companyGroups[candidate.name] = [];
+                }
+                companyGroups[candidate.name].push(candidate.id);
+            });
+            
+            Object.keys(companyGroups).forEach(companyName => {
+                const constraintName = 'company_' + companyName;
+                lpProblem.constraints[constraintName] = { max: 1 };
+                companyGroups[companyName].forEach(varId => {
+                    lpProblem.constraints[constraintName][varId] = 1;
+                });
+            });
+            
+            // Solve using our embedded solver
+            const solution = solveBinaryLP(lpProblem);
+            
+            if (!solution.feasible) {
+                return {
+                    success: false,
+                    message: 'No feasible solution found.'
+                };
+            }
+            
+            // Convert solution back to company recommendations
+            const selectedCandidates = [];
+            Object.keys(solution.variables || {}).forEach(varId => {
+                if (solution.variables[varId] > 0.5) { // Binary variable selected
+                    const candidate = candidates.find(c => c.id === varId);
+                    if (candidate) {
+                        selectedCandidates.push({
+                            name: candidate.name,
+                            charter: candidate.charter,
+                            coverage: candidate.buildings,
+                            score: candidate.buildings.length
+                        });
+                    }
+                }
+            });
+            
+            return {
+                success: true,
+                newCompanies: selectedCandidates,
+                optimalValue: solution.result
+            };
+        }
+        
+        // Embedded Binary Linear Programming Solver
+        function solveBinaryLP(problem) {
+            // Simple branch-and-bound solver for binary integer programming
+            const variables = Object.keys(problem.variables);
+            const numVars = variables.length;
+            
+            if (numVars === 0) {
+                return { feasible: false };
+            }
+            
+            let bestSolution = null;
+            let bestValue = -Infinity;
+            
+            // Branch and bound with depth limit for performance
+            const maxDepth = Math.min(20, numVars);
+            
+            function branchAndBound(assignment, depth) {
+                if (depth >= maxDepth || assignment.length >= numVars) {
+                    // Evaluate complete assignment
+                    const evaluation = evaluateAssignment(assignment);
+                    if (evaluation.feasible && evaluation.value > bestValue) {
+                        bestValue = evaluation.value;
+                        bestSolution = {...evaluation.assignment};
+                    }
+                    return;
+                }
+                
+                const currentVar = variables[assignment.length];
+                
+                // Try 0 first (not selecting this company)
+                branchAndBound([...assignment, 0], depth + 1);
+                
+                // Try 1 (selecting this company) - with pruning
+                const testAssignment = [...assignment, 1];
+                const partialEval = evaluatePartialAssignment(testAssignment);
+                if (partialEval.feasible) {
+                    branchAndBound(testAssignment, depth + 1);
+                }
+            }
+            
+            function evaluateAssignment(assignment) {
+                const solution = {};
+                let value = 0;
+                
+                // Calculate objective value
+                for (let i = 0; i < assignment.length && i < variables.length; i++) {
+                    const varName = variables[i];
+                    solution[varName] = assignment[i];
+                    if (assignment[i] > 0) {
+                        value += (problem.variables[varName] || 0);
+                    }
+                }
+                
+                // Check constraints
+                for (const [constraintName, constraint] of Object.entries(problem.constraints)) {
+                    let sum = 0;
+                    for (let i = 0; i < assignment.length && i < variables.length; i++) {
+                        const varName = variables[i];
+                        if (constraint[varName]) {
+                            sum += constraint[varName] * assignment[i];
+                        }
+                    }
+                    
+                    if (constraint.max !== undefined && sum > constraint.max) {
+                        return { feasible: false };
+                    }
+                    if (constraint.min !== undefined && sum < constraint.min) {
+                        return { feasible: false };
+                    }
+                    if (constraint.equal !== undefined && sum !== constraint.equal) {
+                        return { feasible: false };
+                    }
+                }
+                
+                return {
+                    feasible: true,
+                    value: value,
+                    assignment: solution
+                };
+            }
+            
+            function evaluatePartialAssignment(assignment) {
+                // Quick feasibility check for pruning
+                for (const [constraintName, constraint] of Object.entries(problem.constraints)) {
+                    let sum = 0;
+                    for (let i = 0; i < assignment.length && i < variables.length; i++) {
+                        const varName = variables[i];
+                        if (constraint[varName]) {
+                            sum += constraint[varName] * assignment[i];
+                        }
+                    }
+                    
+                    // Early pruning if already infeasible
+                    if (constraint.max !== undefined && sum > constraint.max) {
+                        return { feasible: false };
+                    }
+                }
+                
+                return { feasible: true };
+            }
+            
+            // Start branch and bound
+            branchAndBound([], 0);
+            
+            if (bestSolution === null) {
+                return { feasible: false };
+            }
+            
+            return {
+                feasible: true,
+                result: bestValue,
+                variables: bestSolution
+            };
+        }
+        
+        function calculateCompanyScore(companyBuildings, targetBuildings, companyName) {
+            let score = 0;
+            
+            // Count new buildings covered
+            const newBuildings = Array.from(companyBuildings).filter(b => targetBuildings.includes(b));
+            score += newBuildings.length * 100;
+            
+            // Penalty for basic companies (prefer named companies)
+            if (companyName.startsWith('company_basic_')) {
+                score -= 10;
+            }
+            
+            // Bonus for companies with many charter options (flexibility)
+            const company = companyData[companyName];
+            if (company && company.industry_charters) {
+                score += Math.min(company.industry_charters.length, 5) * 2;
+            }
+            
+            return score;
+        }
+        
+        function calculateCoverage(targetBuildings, companies, charters) {
+            const covered = new Set();
+            companies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(b => covered.add(b));
+                    if (charters[companyName]) {
+                        covered.add(charters[companyName]);
+                    }
+                }
+            });
+            
+            const coveredTarget = targetBuildings.filter(b => covered.has(b));
+            return {
+                covered: coveredTarget.length,
+                total: targetBuildings.length,
+                percentage: Math.round((coveredTarget.length / targetBuildings.length) * 100)
+            };
+        }
+        
+        function calculateDetailedCoverage(targetBuildings, companies, charters) {
+            const covered = new Set();
+            companies.forEach(companyName => {
+                const company = companyData[companyName];
+                if (company) {
+                    company.base_buildings.forEach(b => covered.add(b));
+                    if (charters[companyName]) {
+                        covered.add(charters[companyName]);
+                    }
+                }
+            });
+            
+            const coveredBuildings = targetBuildings.filter(b => covered.has(b));
+            const uncoveredBuildings = targetBuildings.filter(b => !covered.has(b));
+            
+            return {
+                covered: coveredBuildings.length,
+                total: targetBuildings.length,
+                percentage: Math.round((coveredBuildings.length / targetBuildings.length) * 100),
+                coveredBuildings: coveredBuildings,
+                uncoveredBuildings: uncoveredBuildings
+            };
+        }
+        
+        function displayOptimizationResults(results) {
+            optimizationResults = results;
+            
+            const statusEl = document.getElementById('optimizationStatus');
+            const resultsEl = document.getElementById('optimizationResults');
+            
+            if (!results.success) {
+                statusEl.textContent = results.message;
+                statusEl.style.color = '#dc3545';
+                resultsEl.innerHTML = '';
+                return;
+            }
+            
+            statusEl.textContent = 'Optimization complete!';
+            statusEl.style.color = '#28a745';
+            
+            let html = '<div class="optimization-stats">';
+            html += '<div class="optimization-stat">';
+            html += '<div class="optimization-stat-value">' + results.coverage.percentage + '%</div>';
+            html += '<div class="optimization-stat-label">Building Coverage</div>';
+            html += '</div>';
+            html += '<div class="optimization-stat">';
+            html += '<div class="optimization-stat-value">' + results.coverage.covered + '/' + results.coverage.total + '</div>';
+            html += '<div class="optimization-stat-label">Buildings Covered</div>';
+            html += '</div>';
+            html += '<div class="optimization-stat">';
+            const totalCompanies = results.existingCompanies.length + results.newCompanies.length;
+            html += '<div class="optimization-stat-value">' + totalCompanies + '/7</div>';
+            html += '<div class="optimization-stat-label">Companies Used</div>';
+            html += '</div>';
+            html += '</div>';
+            
+            // Show existing companies
+            if (results.existingCompanies.length > 0) {
+                html += '<h3>Your Selected Companies (Kept)</h3>';
+                html += '<div class="optimization-results">';
+                results.existingCompanies.forEach(companyName => {
+                    const company = companyData[companyName];
+                    const charter = results.existingCharters[companyName];
+                    html += '<div class="optimization-company-item optimization-company-existing">';
+                    html += '<strong>' + getCompanyDisplayName(companyName) + '</strong>';
+                    if (charter) {
+                        html += ' + Charter: ' + getBuildingDisplayName(charter);
+                    }
+                    html += '<br><small>Buildings: ' + company.base_buildings.length;
+                    if (charter) html += ' + 1 charter';
+                    html += '</small>';
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Show new recommendations
+            if (results.newCompanies.length > 0) {
+                html += '<h3>Recommended Additions</h3>';
+                html += '<div class="optimization-results">';
+                results.newCompanies.forEach(rec => {
+                    const company = companyData[rec.name];
+                    html += '<div class="optimization-company-item optimization-company-new">';
+                    html += '<strong>' + getCompanyDisplayName(rec.name) + '</strong>';
+                    if (rec.charter) {
+                        html += ' + Charter: ' + getBuildingDisplayName(rec.charter);
+                    }
+                    html += '<br><small>Adds ' + rec.coverage.length + ' buildings to coverage</small>';
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Show special recommendations
+            if (results.specialRecommendations && results.specialRecommendations.length > 0) {
+                html += '<h3>Special Companies (Free Slots)</h3>';
+                html += '<div class="optimization-results">';
+                results.specialRecommendations.forEach(rec => {
+                    html += '<div class="optimization-company-item optimization-company-new">';
+                    html += '<strong>' + getCompanyDisplayName(rec.name) + '</strong>';
+                    html += '<br><small>Adds coverage without using a company slot</small>';
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Show uncovered buildings
+            if (results.coverage.uncoveredBuildings && results.coverage.uncoveredBuildings.length > 0) {
+                html += '<h3>Uncovered Buildings</h3>';
+                html += '<div style="color: #666; font-size: 14px;">';
+                results.coverage.uncoveredBuildings.forEach(building => {
+                    html += getBuildingDisplayName(building) + ', ';
+                });
+                html = html.slice(0, -2); // Remove trailing comma
+                html += '</div>';
+            }
+            
+            resultsEl.innerHTML = html;
+        }
+        
+        function closeOptimizationModal() {
+            document.getElementById('optimizationModal').style.display = 'none';
+            optimizationResults = null;
+        }
+        
+        function applyOptimizationResults() {
+            if (!optimizationResults || !optimizationResults.success) return;
+            
+            // Clear existing selection if needed
+            if (confirm('This will replace your current selection. Continue?')) {
+                // Clear all
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(CHARTER_STORAGE_KEY);
+                
+                // Add existing companies back
+                const newSelection = [...optimizationResults.existingCompanies];
+                const newCharters = {...optimizationResults.existingCharters};
+                
+                // Add new companies
+                optimizationResults.newCompanies.forEach(rec => {
+                    newSelection.push(rec.name);
+                    if (rec.charter) {
+                        newCharters[rec.name] = rec.charter;
+                    }
+                });
+                
+                // Add special companies
+                if (optimizationResults.specialRecommendations) {
+                    optimizationResults.specialRecommendations.forEach(rec => {
+                        newSelection.push(rec.name);
+                    });
+                }
+                
+                // Save
+                saveCustomCompanies(newSelection);
+                saveSelectedCharters(newCharters);
+                
+                // Update UI
+                updateCustomTable();
+                updateCheckboxes();
+                updateControlButtons();
+                updateDynamicCoverage();
+                updateMainBuildingHeaders();
+                updateBuildingTableCharters();
+                
+                // Close modal
+                closeOptimizationModal();
+            }
+        }
+        
+        function getCompanyDisplayName(companyName) {
+            // Convert internal name to display name
+            return companyName.replace('company_', '').replace(/_/g, ' ')
+                .split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
         
         // Function to get building short form (global scope)
         const getBuildingShortForm = (building) => {
