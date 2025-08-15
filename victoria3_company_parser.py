@@ -1754,8 +1754,12 @@ class Victoria3CompanyParserV6Final:
                                 # Detect special requirement types for filtering
                                 special_requirements = []
                                 
-                                # Check for journal entry requirements
-                                if 'journal_entry' in potential_content.lower() or 'complete_journal' in potential_content.lower():
+                                # Check for journal entry requirements (in both potential and possible sections)
+                                all_content = potential_content + ' ' + possible_content
+                                if ('journal_entry' in all_content.lower() or 
+                                    'complete_journal' in all_content.lower() or
+                                    'is_meiji_japan' in all_content or
+                                    'meiji_restoration' in all_content.lower()):
                                     special_requirements.append('journal_entry')
                                     
                                 # Check for primary culture requirements (country-specific)
@@ -1778,6 +1782,12 @@ class Victoria3CompanyParserV6Final:
                                 if 'at_war' in potential_content or 'in_diplomatic_play' in potential_content:
                                     special_requirements.append('diplomatic')
                                     
+                                # Check for regional requirements
+                                if ('has_interest_marker_in_region' in potential_content or 
+                                    'region_' in potential_content or
+                                    'in_region' in potential_content):
+                                    special_requirements.append('regional')
+                                    
                                 company_data['special_requirements'] = special_requirements
                     else:
                         # No potential block found - this is a basic company
@@ -1796,7 +1806,7 @@ class Victoria3CompanyParserV6Final:
                     
                     # Additional check: hardcode known pre-enacted companies from wiki
                     pre_enacted_companies = {
-                        'hudson_bay_company', 'massey_harris', 'william_cramp', 
+                        'hbc', 'massey_harris', 'william_cramp', 
                         'east_india_company', 'john_cockerill', 'confédération_générale_des_vignerons',
                         'rheinmetall', 'russian_american_company'
                     }
@@ -2096,7 +2106,7 @@ class Victoria3CompanyParserV6Final:
         return filtered_continents
     
     def _generate_country_filter_section(self, countries_by_continent):
-        """Generate HTML for the country filter section"""
+        """Generate HTML for hierarchical country/company filter section"""
         if not countries_by_continent:
             return ""
             
@@ -2104,45 +2114,249 @@ class Victoria3CompanyParserV6Final:
     
     <div class="toc">
         <a name="countries"></a>
-        <h3 id="countries">Countries (<span id="selected-countries-count">0</span>)</h3>
+        <h3 id="countries">Countries and Companies</h3>
         <div class="building-filter-help" style="margin-bottom: 15px; padding: 10px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 4px; font-size: 13px;">
-            <strong>Country Filter:</strong> Use the checkboxes to show/hide companies from specific countries. Unchecked countries are excluded from all tables. All countries start checked by default.
+            <strong>Company Filter:</strong> Enable/disable specific companies or entire countries. Disabled companies are excluded from optimization and tables.
             <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between;">
-                <div>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
                     <strong style="font-size: 11px;">Quick Actions:</strong>
-                    <button onclick="toggleAllCountryFilters(true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px; background-color: #28a745; color: white;">✓ Select All</button>
-                    <button onclick="toggleAllCountryFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; margin-left: 5px; background-color: #d73027; color: white;">🗑 Clear All</button>
+                    <button onclick="toggleAllCompanyFilters(true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #28a745; color: white;">✓ Enable All</button>
+                    <button onclick="toggleAllCompanyFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #d73027; color: white;">🗑 Disable All</button>
+                    <button onclick="toggleCompanyCategory('pre_enacted', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #6c757d; color: white;">🚫 No Pre-Enacted</button>
+                    <button onclick="toggleCompanyCategory('special', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #fd7e14; color: white;">🚫 No Special Req.</button>
                 </div>
             </div>
         </div>
         <div class="toc-columns">'''
         
-        # Organize countries by continent in columns
-        continents = list(countries_by_continent.keys())
+        # Add basic companies section first
+        basic_companies = []
+        for company_key, company_data in self.companies.items():
+            if company_key.startswith('company_basic_'):
+                company_name = company_data.get('display_name', company_key.replace('company_', '').replace('_', ' ').title())
+                
+                # Create tooltip
+                buildings = company_data.get('building_types', [])
+                charters = company_data.get('extension_building_types', [])
+                tooltip_parts = []
+                
+                if buildings:
+                    building_names = [b.replace('building_', '').replace('_', ' ').title() for b in buildings]
+                    tooltip_parts.append(f"Buildings: {', '.join(building_names)}")
+                
+                if charters:
+                    charter_names = [c.replace('building_', '').replace('_', ' ').title() for c in charters]
+                    tooltip_parts.append(f"Charters: {', '.join(charter_names)}")
+                    
+                tooltip = ' | '.join(tooltip_parts)
+                
+                # Get company icon
+                clean_name = company_key.replace('company_', '')
+                icon_path = self.get_company_icon_path(clean_name)
+                icon_display = f'<img src="{icon_path}" class="company-icon" alt="Company Icon" style="width: 16px; height: 16px; margin-right: 4px;">' if icon_path else ''
+                
+                basic_companies.append({
+                    'key': company_key,
+                    'name': company_name,
+                    'tooltip': tooltip,
+                    'icon': icon_display
+                })
         
+        if basic_companies:
+            html += '''
+            <div style="margin-bottom: 20px;">
+                <div style="background: #f8f9fa; padding: 8px 12px; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center;">
+                        <input type="checkbox" id="all-basic-companies" class="basic-companies-checkbox" checked onchange="toggleAllBasicCompanies(this)" style="margin-right: 8px;">
+                        <h4 style="margin: 0; font-size: 14px; color: #495057;">Basic Companies</h4>
+                    </div>
+                </div>'''
+            
+            for company in basic_companies:
+                html += '''
+                <div style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px;">
+                    <input type="checkbox" id="company-{}" class="company-checkbox" checked data-company="{}" data-country="basic" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                    <span title="{}" style="display: flex; align-items: center; cursor: pointer;" 
+                          onmouseover="showCompanyTooltip(event, '{}')" 
+                          onmouseout="hideCompanyTooltip()">{}{}</span>
+                </div>'''.format(
+                company['key'], company['key'], company['tooltip'], company['key'], company['icon'], company['name']
+            )
+            
+            # Add Mandate Companies section within the same container
+            construction_company = self.companies.get('company_construction_power_bloc')
+            if construction_company:
+                html += '''
+                <div style="background: #fff3cd; padding: 8px 12px; border: 1px solid #ffeaa7; border-radius: 4px; margin-bottom: 10px;">
+                    <h4 style="margin: 0; font-size: 14px; color: #856404;">Mandate Companies</h4>
+                </div>
+                <div style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px;">
+                    <input type="checkbox" id="company-company_construction_power_bloc" class="company-checkbox" checked data-company="company_construction_power_bloc" data-country="mandate" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                    <span style="display: flex; align-items: center; cursor: pointer;" 
+                          onmouseover="showCompanyTooltip(event, 'company_construction_power_bloc')" 
+                          onmouseout="hideCompanyTooltip()">United Construction Conglomerate</span>
+                </div>
+                '''
+            
+            html += '''
+            </div>'''
+        
+        # Build companies by country first
+        companies_by_country = {}
+        for company_key, company_data in self.companies.items():
+            country = company_data.get('country', 'unknown')
+            if country == 'unknown' or country not in [info['code'] for continent in countries_by_continent.values() for info in continent['countries']]:
+                continue  # Skip companies without valid countries
+                
+            if country not in companies_by_country:
+                companies_by_country[country] = []
+            
+            # Get company display name and categorize
+            company_name = company_data.get('display_name', company_key.replace('company_', '').replace('_', ' ').title())
+            special_reqs = company_data.get('special_requirements', [])
+            starts_enacted = company_data.get('starts_enacted', False)
+            
+            # Create tooltip with company details
+            buildings = company_data.get('building_types', [])
+            charters = company_data.get('extension_building_types', [])
+            tooltip_parts = []
+            
+            if buildings:
+                building_names = [b.replace('building_', '').replace('_', ' ').title() for b in buildings]
+                tooltip_parts.append(f"Buildings: {', '.join(building_names)}")
+            
+            if charters:
+                charter_names = [c.replace('building_', '').replace('_', ' ').title() for c in charters]
+                tooltip_parts.append(f"Charters: {', '.join(charter_names)}")
+                
+            if starts_enacted:
+                tooltip_parts.append("⚠️ Starts enacted at game start")
+                
+            # Categorize special requirements for different icons
+            has_culture_req = 'primary_culture' in special_reqs
+            has_journal_req = 'journal_entry' in special_reqs
+            has_tech_req = 'technology' in special_reqs
+            has_other_restrictive = any(req in special_reqs for req in ['law', 'ideology', 'diplomatic'])
+            
+            if special_reqs:
+                req_names = {
+                    'primary_culture': 'Primary Culture Required',
+                    'journal_entry': 'Journal Entry Required', 
+                    'technology': 'Technology Required',
+                    'law': 'Law Required',
+                    'ideology': 'Ideology Required',
+                    'diplomatic': 'Diplomatic Status Required',
+                    'regional': 'Regional Interest Required'
+                }
+                req_details = [req_names.get(req, req.title()) for req in special_reqs]
+                
+                # Use specific icons for different requirement types
+                if has_culture_req and has_journal_req:
+                    tooltip_parts.append(f"🛑📚 Special: {', '.join(req_details)}")
+                elif has_culture_req:
+                    tooltip_parts.append(f"🛑 Primary Culture Required")
+                elif has_journal_req:
+                    tooltip_parts.append(f"📚 Journal Entry Required")
+                elif has_tech_req:
+                    tooltip_parts.append(f"Technology Required")
+                elif has_other_restrictive:
+                    tooltip_parts.append(f"🔒 Special: {', '.join(req_details)}")
+                elif len(special_reqs) == 1 and 'regional' in special_reqs:
+                    # Don't show icon for regional-only requirements (too common)
+                    tooltip_parts.append(f"Regional Interest Required")
+                else:
+                    # Show other requirements without prominent icon
+                    tooltip_parts.append(f"Special: {', '.join(req_details)}")
+            
+            tooltip = ' | '.join(tooltip_parts)
+                
+            companies_by_country[country].append({
+                'key': company_key,
+                'name': company_name,
+                'special_reqs': special_reqs,
+                'has_culture_req': has_culture_req,
+                'has_journal_req': has_journal_req,
+                'has_tech_req': has_tech_req,
+                'has_other_restrictive': has_other_restrictive,
+                'starts_enacted': starts_enacted,
+                'tooltip': tooltip,
+                'buildings_count': len(buildings) + len(charters)
+            })
+        
+        # Sort companies within each country by name
+        for country in companies_by_country:
+            companies_by_country[country].sort(key=lambda x: x['name'])
+        
+        # Generate HTML by continent
         for continent_key, continent_data in countries_by_continent.items():
-            # Calculate total companies from all countries in this continent
-            total_companies = sum(country_info['count'] for country_info in continent_data['countries'])
-            html += '<div style="flex: 1; min-width: 0;"><h4><input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleContinentFilter(this)" style="margin-right: 8px;"> {} (<span id="continent-count-{}">{}</span>/{}) </h4><ul>'.format(continent_key, continent_key, continent_data['display_name'], continent_key, total_companies, total_companies)
+            html += '''<div style="flex: 1; min-width: 0;">
+                <h4 style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <input type="checkbox" id="continent-{}" class="continent-checkbox" checked data-continent="{}" onchange="toggleAllCompaniesInContinent(this)" style="margin-right: 8px;">
+                    {}
+                </h4>'''.format(continent_key, continent_key, continent_data['display_name'])
             
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
-                company_count = country_info['count']
+                companies = companies_by_country.get(country_code, [])
                 
-                # Get country display name
+                if not companies:  # Skip countries with no companies
+                    continue
+                    
+                # Get country display name and flag
                 country_name = self.country_names.get(country_code, country_code)
-                
-                # Get country flag
                 flag_icon = self.country_flags.get(country_code, '🏳️')
                 
-                checkbox_id = "filter-country-{}".format(country_code)
-                html += '<li class="category-item">' \
-                       '<input type="checkbox" id="{}" class="country-filter-checkbox" checked data-country="{}" data-continent="{}" onchange="toggleCountryFilter(this)">' \
-                       '<span style="margin-left: 6px;">' \
-                       '<span title="{}">{}</span> {} ({})' \
-                       '</span></li>'.format(checkbox_id, country_code, continent_key, country_name, flag_icon, country_name, company_count)
+                # Simple country header with checkbox - indented under continent
+                html += '''
+                <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
+                    <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
+                        <input type="checkbox" id="country-{}" class="country-checkbox" checked data-country="{}" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
+                        <span title="{}">{}</span> {} ({})
+                    </div>'''.format(
+                    country_code, country_code, country_name, flag_icon, country_name, len(companies)
+                )
+                
+                # List all companies for this country with simple indented checkboxes  
+                for company in companies:
+                    # Get company icon or use default
+                    company_icon = self.get_company_icon_path(company['key'])
+                    icon_display = f'<img src="{company_icon}" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">' if company_icon != 'default_icon.png' else '🏢 '
+                    
+                    # Add special requirement indicators with specific icons
+                    indicators = []
+                    if company['starts_enacted']:
+                        indicators.append('⚠️')
+                    
+                    # Use specific requirement icons
+                    if company['has_culture_req'] and company['has_journal_req']:
+                        indicators.append('🛑📚')
+                    elif company['has_culture_req']:
+                        indicators.append('🛑')
+                    elif company['has_journal_req']:
+                        indicators.append('📚')
+                    elif company['has_tech_req']:
+                        pass  # No icon for tech requirements
+                    elif company['has_other_restrictive']:
+                        indicators.append('🔒')
+                    # Don't show any icon for regional-only requirements (77% of companies have this)
+                    
+                    indicator_text = ''.join(indicators) + (' ' if indicators else '')
+                    
+                    html += '''
+                        <div style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px;">
+                            <input type="checkbox" id="company-{}" class="company-checkbox" checked data-company="{}" data-country="{}" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="{}" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, '{}')" 
+                                  onmouseout="hideCompanyTooltip()">{}{}{}</span>
+                        </div>'''.format(
+                        company['key'], company['key'], country_code,
+                        company['tooltip'], company['key'], icon_display, indicator_text, company['name']
+                    )
+                
+                html += '''
+                </div>'''
             
-            html += '</ul></div>'
+            html += '</div>'
         
         html += '''
         </div>
@@ -3058,14 +3272,19 @@ class Victoria3CompanyParserV6Final:
     
     <!-- Custom Company Collection Section -->
     <div id="custom-companies-section">
-        <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
-            <h2 id="selected-companies-title" style="margin: 0;">Selected Companies (0)</h2>
-            <div style="display: flex; align-items: center;">
-                <div class="import-export-buttons" style="margin-right: 20px;">
-                    <button onclick="optimizeSelection()" class="control-btn optimize-btn" style="background: #17a2b8; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">🎯 Optimize</button>
-                    <button onclick="copyRedditMarkdown(event)" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px; margin-right: 12px;">📋 Share Build</button>
-                    <button onclick="saveSelection()" class="control-btn save-btn">💾 Export to JSON</button>
-                    <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
+        <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap;">
+            <h2 id="selected-companies-title" style="margin: 0; flex-shrink: 0;">Selected Companies (0)</h2>
+            <div style="display: flex; align-items: center; flex-wrap: nowrap; gap: 8px;">
+                <button onclick="optimizeSelection()" class="control-btn optimize-btn" style="background: #17a2b8; color: white; font-weight: bold; padding: 8px 16px;">🎯 Optimize</button>
+                <select id="company-limit-dropdown" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; min-width: 120px;">
+                    <option value="7" selected>7 companies</option>
+                    <option value="6">6 companies</option>
+                    <option value="5">5 companies</option>
+                    <option value="4">4 companies</option>
+                </select>
+                <button onclick="copyRedditMarkdown(event)" class="control-btn share-btn" style="background: #6f42c1; color: white; font-weight: bold; padding: 8px 16px;">📋 Share Build</button>
+                <button onclick="saveSelection()" class="control-btn save-btn">💾 Export to JSON</button>
+                <button onclick="triggerImportSelection()" class="control-btn import-btn">📂 Import from JSON</button>
                     <input type="file" id="import-file-input" accept=".json" onchange="importSelection(event)" style="display: none;">
                 </div>
                 <button onclick="clearSelection()" class="control-btn clear-btn">🗑️ Clear Selection</button>
@@ -3204,7 +3423,7 @@ class Victoria3CompanyParserV6Final:
         </div>
     </div>'''
         
-        # Generate country filter section
+        # Generate hierarchical country/company filter section
         html += self._generate_country_filter_section(countries_by_continent)
         
         # Generate separate table for each building
@@ -3284,7 +3503,7 @@ class Victoria3CompanyParserV6Final:
                     header_class = 'building-header missing-icon col-{}'.format(avail_building)
                 
                 html += '''
-                    <th class="{}" {} title="{} ({} companies)" data-building="{}">
+                    <th class="{}" {} title="{} ({})" data-building="{}">
                     </th>'''.format(header_class, header_style, avail_display, usage_in_set, avail_building)
             
             
@@ -3369,7 +3588,7 @@ class Victoria3CompanyParserV6Final:
                 company_country = data.get('country', '')
                 
                 html += '''
-            <tr data-country="{}">
+            <tr data-country="{}" data-company="{}">
                 <td class="select-column">
                     <input type="checkbox" class="company-checkbox" data-company="{}" onchange="toggleCompanySelection('{}')">
                 </td>
@@ -3381,7 +3600,7 @@ class Victoria3CompanyParserV6Final:
                     onmouseout="hideCompanyTooltip()" 
                     data-company="{}">
                     {}{}{}
-                </td>'''.format(company_country, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
+                </td>'''.format(company_country, company_name, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
                 
                 # Add columns for all available buildings
                 for avail_building in available_buildings:
@@ -3716,11 +3935,26 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     }
                 }
                 
+                // Generate special requirement icons for header
+                let specialIcons = '';
+                if (data.special_requirements && data.special_requirements.length > 0) {
+                    data.special_requirements.forEach(req => {
+                        if (req === 'journal_entry') specialIcons += '📚 ';
+                        else if (req === 'primary_culture') specialIcons += '🛑 ';
+                        else if (req === 'law' || req === 'ideology' || req === 'diplomatic') specialIcons += '🔒 ';
+                    });
+                }
+                
+                // Add pre-enacted icon
+                if (data.starts_enacted) {
+                    specialIcons += '⚠️ ';
+                }
+                
                 html = `
                     <h3>
                         ${iconElement}
                         <div class="company-details">
-                            ${data.name}
+                            ${specialIcons}${data.name}
                             ${countryDisplay}
                         </div>
                     </h3>
@@ -3739,6 +3973,42 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     data.bonuses.forEach(bonus => {
                         html += `<li>${bonus}</li>`;
                     });
+                    html += '</ul></div>';
+                }
+                
+                // Add special requirements section
+                if (data.special_requirements && data.special_requirements.length > 0) {
+                    const reqIcons = {
+                        'journal_entry': '📚',
+                        'primary_culture': '🛑',
+                        'law': '🔒',
+                        'ideology': '🔒',
+                        'diplomatic': '🔒'
+                    };
+                    
+                    const reqNames = {
+                        'journal_entry': 'Journal Entry Required',
+                        'primary_culture': 'Primary Culture Required',
+                        'technology': 'Technology Required',
+                        'law': 'Law Required',
+                        'ideology': 'Ideology Required',
+                        'diplomatic': 'Diplomatic Status Required',
+                        'regional': 'Regional Interest Required'
+                    };
+                    
+                    html += '<div class="special-requirements"><h4>Special Requirements</h4><ul>';
+                    data.special_requirements.forEach(req => {
+                        const icon = reqIcons[req] || '';
+                        const name = reqNames[req] || req;
+                        html += `<li>${icon} ${name}</li>`;
+                    });
+                    html += '</ul></div>';
+                }
+                
+                // Add pre-enacted status
+                if (data.starts_enacted) {
+                    html += '<div class="pre-enacted"><h4>Status</h4><ul>';
+                    html += '<li>⚠️ Established at Game Start</li>';
                     html += '</ul></div>';
                 }
                 
@@ -4171,8 +4441,9 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 const continentCountSpan = document.getElementById(`continent-count-${continent}`);
                 
                 if (continentCheckbox) {
-                    const countryCheckboxes = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continent}"]`);
-                    const checkedCountries = document.querySelectorAll(`.country-filter-checkbox[data-continent="${continent}"]:checked`);
+                    // Use correct selector for Countries & Companies section
+                    const countryCheckboxes = document.querySelectorAll(`.country-checkbox`);
+                    const checkedCountries = document.querySelectorAll(`.country-checkbox:checked`);
                     
                     // Update checkbox state
                     if (checkedCountries.length === 0) {
@@ -4234,6 +4505,221 @@ __YALPS_BUNDLE_PLACEHOLDER__
             if (countElement) {
                 countElement.textContent = count;
             }
+        }
+        
+        // Hierarchical Company Filter Functions
+        function toggleCountryExpansion(countryCode) {
+            const companiesList = document.getElementById(`companies-${countryCode}`);
+            const expandIcon = document.getElementById(`expand-${countryCode}`);
+            
+            if (companiesList.style.display === 'none') {
+                companiesList.style.display = 'block';
+                expandIcon.textContent = '▼';
+            } else {
+                companiesList.style.display = 'none';
+                expandIcon.textContent = '▶';
+            }
+        }
+        
+        function toggleAllCompaniesInCountry(countryCheckbox) {
+            const countryCode = countryCheckbox.dataset.country;
+            const isChecked = countryCheckbox.checked;
+            
+            // Toggle all company checkboxes in this country
+            const companyCheckboxes = document.querySelectorAll(`input[data-country="${countryCode}"].company-checkbox`);
+            companyCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+                updateCompanyVisibility(checkbox);
+            });
+            
+            updateCountryStatus(countryCode);
+            updateContinentStatus();
+        }
+        
+        function updateCompanyFilter(companyCheckbox) {
+            updateCompanyVisibility(companyCheckbox);
+            
+            const countryCode = companyCheckbox.dataset.country;
+            if (countryCode === 'basic') {
+                updateBasicCompaniesStatus();
+            } else if (countryCode !== 'mandate') {
+                updateCountryStatus(countryCode);
+                updateCountryCheckbox(countryCode);
+                updateContinentStatus();
+            }
+        }
+        
+        function updateBasicCompaniesStatus() {
+            const basicCheckboxes = document.querySelectorAll('.company-checkbox[data-country="basic"]');
+            const checkedBasic = document.querySelectorAll('.company-checkbox[data-country="basic"]:checked');
+            const masterCheckbox = document.getElementById('all-basic-companies');
+            
+            if (masterCheckbox) {
+                if (checkedBasic.length === 0) {
+                    masterCheckbox.checked = false;
+                    masterCheckbox.indeterminate = false;
+                } else if (checkedBasic.length === basicCheckboxes.length) {
+                    masterCheckbox.checked = true;
+                    masterCheckbox.indeterminate = false;
+                } else {
+                    masterCheckbox.checked = false;
+                    masterCheckbox.indeterminate = true;
+                }
+            }
+        }
+        
+        function updateContinentStatus() {
+            const continents = ['American', 'Asian_Oceanian', 'European', 'Middle_Eastern'];
+            
+            continents.forEach(continentCode => {
+                const continentCheckbox = document.getElementById(`continent-${continentCode}`);
+                if (!continentCheckbox) return;
+                
+                // Find all countries in this continent
+                const continentDiv = continentCheckbox.closest('div[style*="flex: 1"]');
+                const countryCheckboxes = continentDiv.querySelectorAll('.country-checkbox');
+                const checkedCountries = continentDiv.querySelectorAll('.country-checkbox:checked');
+                
+                if (checkedCountries.length === 0) {
+                    continentCheckbox.checked = false;
+                    continentCheckbox.indeterminate = false;
+                } else if (checkedCountries.length === countryCheckboxes.length) {
+                    continentCheckbox.checked = true;
+                    continentCheckbox.indeterminate = false;
+                } else {
+                    continentCheckbox.checked = false;
+                    continentCheckbox.indeterminate = true;
+                }
+            });
+        }
+        
+        function updateCompanyVisibility(companyCheckbox) {
+            const companyKey = companyCheckbox.dataset.company;
+            const isEnabled = companyCheckbox.checked;
+            
+            // Add/remove CSS class to hide company rows
+            if (isEnabled) {
+                document.body.classList.remove(`hide-company-${companyKey}`);
+            } else {
+                document.body.classList.add(`hide-company-${companyKey}`);
+            }
+        }
+        
+        function updateCountryStatus(countryCode) {
+            const companyCheckboxes = document.querySelectorAll(`input[data-country="${countryCode}"].company-checkbox`);
+            const enabledCompanies = document.querySelectorAll(`input[data-country="${countryCode}"].company-checkbox:checked`);
+            
+            const statusElement = document.getElementById(`country-status-${countryCode}`);
+            if (statusElement) {
+                statusElement.textContent = `${enabledCompanies.length}/${companyCheckboxes.length} companies`;
+            }
+        }
+        
+        function updateCountryCheckbox(countryCode) {
+            const countryCheckbox = document.getElementById(`country-${countryCode}`);
+            const companyCheckboxes = document.querySelectorAll(`input[data-country="${countryCode}"].company-checkbox`);
+            const enabledCompanies = document.querySelectorAll(`input[data-country="${countryCode}"].company-checkbox:checked`);
+            
+            if (countryCheckbox) {
+                if (enabledCompanies.length === 0) {
+                    countryCheckbox.checked = false;
+                    countryCheckbox.indeterminate = false;
+                } else if (enabledCompanies.length === companyCheckboxes.length) {
+                    countryCheckbox.checked = true;
+                    countryCheckbox.indeterminate = false;
+                } else {
+                    countryCheckbox.checked = false;
+                    countryCheckbox.indeterminate = true;
+                }
+            }
+        }
+        
+        function toggleAllCompanyFilters(enable) {
+            const companyCheckboxes = document.querySelectorAll('.company-checkbox');
+            companyCheckboxes.forEach(checkbox => {
+                checkbox.checked = enable;
+                updateCompanyVisibility(checkbox);
+            });
+            
+            // Update all country statuses and checkboxes
+            const countries = new Set();
+            companyCheckboxes.forEach(checkbox => countries.add(checkbox.dataset.country));
+            countries.forEach(countryCode => {
+                updateCountryStatus(countryCode);
+                updateCountryCheckbox(countryCode);
+            });
+            
+            // Update all continent checkboxes
+            const continentCheckboxes = document.querySelectorAll('.continent-checkbox');
+            continentCheckboxes.forEach(checkbox => {
+                checkbox.checked = enable;
+            });
+        }
+        
+        function toggleAllBasicCompanies(checkbox) {
+            const isChecked = checkbox.checked;
+            const basicCheckboxes = document.querySelectorAll('.company-checkbox[data-country="basic"]');
+            basicCheckboxes.forEach(companyCheckbox => {
+                companyCheckbox.checked = isChecked;
+                updateCompanyVisibility(companyCheckbox);
+            });
+        }
+        
+        function toggleAllCompaniesInContinent(continentCheckbox) {
+            const continentCode = continentCheckbox.dataset.continent;
+            const isChecked = continentCheckbox.checked;
+            
+            // Find all countries in this continent by looking for country checkboxes within the continent's div
+            const continentDiv = continentCheckbox.closest('div[style*="flex: 1"]');
+            const countryCheckboxes = continentDiv.querySelectorAll('.country-checkbox');
+            
+            countryCheckboxes.forEach(countryCheckbox => {
+                countryCheckbox.checked = isChecked;
+                toggleAllCompaniesInCountry(countryCheckbox);
+            });
+        }
+        
+        function toggleCompanyCategory(category, enable) {
+            let companyCheckboxes;
+            
+            if (category === 'pre_enacted') {
+                // Find companies with ⚠️ indicator (pre-enacted)
+                companyCheckboxes = Array.from(document.querySelectorAll('.company-checkbox')).filter(checkbox => {
+                    const span = checkbox.nextElementSibling;
+                    return span && span.textContent.includes('⚠️');
+                });
+            } else if (category === 'special') {
+                // Find companies with special requirement indicators (🛑, 📚, 🔒)
+                companyCheckboxes = Array.from(document.querySelectorAll('.company-checkbox')).filter(checkbox => {
+                    const span = checkbox.nextElementSibling;
+                    return span && (span.textContent.includes('🛑') || span.textContent.includes('📚') || 
+                                   span.textContent.includes('🔒'));
+                });
+            } else {
+                companyCheckboxes = document.querySelectorAll(`.company-checkbox[data-category="${category}"]`);
+            }
+            
+            companyCheckboxes.forEach(checkbox => {
+                checkbox.checked = enable;
+                updateCompanyVisibility(checkbox);
+            });
+            
+            // Update all country statuses and checkboxes
+            const countries = new Set();
+            companyCheckboxes.forEach(checkbox => countries.add(checkbox.dataset.country));
+            countries.forEach(countryCode => {
+                updateCountryStatus(countryCode);
+                updateCountryCheckbox(countryCode);
+            });
+        }
+        
+        function getEnabledCompanies() {
+            const enabledCompanies = [];
+            const checkboxes = document.querySelectorAll('.company-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                enabledCompanies.push(checkbox.dataset.company);
+            });
+            return enabledCompanies;
         }
         
         function getEnabledCountries() {
@@ -5308,7 +5794,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
         
         function updateCheckboxes() {
             const customCompanies = getCustomCompanies();
-            document.querySelectorAll('.company-checkbox').forEach(checkbox => {
+            // Only update main table checkboxes, not Countries & Companies filter checkboxes
+            document.querySelectorAll('table .company-checkbox').forEach(checkbox => {
                 const companyName = checkbox.dataset.company;
                 checkbox.checked = customCompanies.includes(companyName);
             });
@@ -5865,9 +6352,9 @@ __YALPS_BUNDLE_PLACEHOLDER__
             var tables = document.querySelectorAll('table.sortable');
             tables.forEach(makeSortable);
             
-            // Initialize country count and continent checkboxes
+            // Initialize country count but NOT continent checkboxes (let them start checked)
             updateCountryCount();
-            updateContinentCheckboxes();
+            // updateContinentCheckboxes(); // Disabled to let checkboxes start checked
             
             // Load from URL first, then update UI
             loadFromURL();
@@ -6013,7 +6500,10 @@ __YALPS_BUNDLE_PLACEHOLDER__
             const enabledBuildings = getEnabledBuildings();
             const selectedCompanies = getCustomCompanies();
             const selectedCharters = getSelectedCharters();
-            const enabledCountries = getEnabledCountries();
+            const enabledCompanies = getEnabledCompanies();
+            
+            // Get company limit from dropdown
+            const companyLimit = parseInt(document.getElementById('company-limit-dropdown').value);
             
             // Check if any buildings are selected
             if (enabledBuildings.length === 0) {
@@ -6023,18 +6513,18 @@ __YALPS_BUNDLE_PLACEHOLDER__
             
             // Show modal with loading status
             document.getElementById('optimizationModal').style.display = 'block';
-            document.getElementById('optimizationStatus').textContent = 'Calculating optimal company selection...';
+            document.getElementById('optimizationStatus').textContent = `Calculating optimal company selection (max ${companyLimit} companies)...`;
             document.getElementById('optimizationResults').innerHTML = '';
             
             // Run optimization with a small delay to let UI update
             setTimeout(() => {
-                const results = runOptimization(enabledBuildings, selectedCompanies, selectedCharters, enabledCountries);
+                const results = runOptimization(enabledBuildings, selectedCompanies, selectedCharters, enabledCompanies, companyLimit);
                 displayOptimizationResults(results);
             }, 100);
         }
         
-        function runOptimization(targetBuildings, existingCompanies, existingCharters, enabledCountries) {
-            const MAX_COMPANIES = 7;
+        function runOptimization(targetBuildings, existingCompanies, existingCharters, enabledCompanies, companyLimit = 7) {
+            const MAX_COMPANIES = companyLimit;
             // USE LIVE GLOBAL companyData instead of embedded data
             // The global companyData has complete building information with building_types and extension_building_types
             
@@ -6051,7 +6541,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
             if (remainingSlots <= 0) {
                 return {
                     success: false,
-                    message: 'You already have 7 companies selected. Remove some to optimize.',
+                    message: `You already have ${MAX_COMPANIES} companies selected. Remove some to optimize.`,
                     existingCompanies: regularExisting,
                     newCompanies: [],
                     coverage: calculateCoverage(targetBuildings, existingCompanies, existingCharters)
@@ -6060,7 +6550,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
             
             // Use Linear Programming to find optimal selection
             try {
-                const lpResult = solveLinearProgram(targetBuildings, regularExisting, existingCharters, enabledCountries, remainingSlots);
+                const lpResult = solveLinearProgram(targetBuildings, regularExisting, existingCharters, enabledCompanies, remainingSlots);
                 
                 if (!lpResult.success) {
                     return {
@@ -6431,7 +6921,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
             };
         }
 
-        function solveLinearProgram(targetBuildings, existingCompanies, existingCharters, enabledCountries, remainingSlots) {
+        function solveLinearProgram(targetBuildings, existingCompanies, existingCharters, enabledCompanies, remainingSlots) {
             const companyData = ''' + self._get_company_data_js() + ''';
             const specialCompanies = ['company_panama_company', 'company_suez_company'];
             
@@ -6465,7 +6955,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
             console.log('- Target buildings:', uncoveredBuildings.length, uncoveredBuildings.slice(0, 5));
             console.log('- Existing companies:', existingCompanies);
             console.log('- Special companies:', specialCompanies);
-            console.log('- Enabled countries:', enabledCountries.length);
+            console.log('- Enabled companies:', enabledCompanies.length);
             console.log('🔍 DEBUG: What companyData is runOptimization seeing?');
             console.log('- companyData type:', typeof companyData);
             console.log('- companyData keys count:', Object.keys(companyData).length);
@@ -6493,9 +6983,9 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 
                 const company = companyData[companyName];
                 
-                // Apply country filter
-                if (company.country && enabledCountries.length > 0) {
-                    if (!enabledCountries.includes(company.country)) {
+                // Apply company filter
+                if (enabledCompanies.length > 0) {
+                    if (!enabledCompanies.includes(companyName)) {
                         debugStats.skippedCountry++;
                         if (debugStats.total <= 5) console.log(`❌ Skipping ${companyName}: country ${company.country} not enabled`);
                         return;
@@ -7242,15 +7732,20 @@ __YALPS_BUNDLE_PLACEHOLDER__
         return ''.join(css_rules)
     
     def _generate_country_hiding_css(self, countries_by_continent):
-        """Generate CSS rules to hide company rows for filtered countries"""
+        """Generate CSS rules to hide company rows for filtered countries and individual companies"""
         css_rules = []
         
+        # CSS for country-based hiding (legacy)
         for continent_data in countries_by_continent.values():
             for country_info in continent_data['countries']:
                 country_code = country_info['code']
-                # Create CSS rule to hide table rows for companies from this country
                 css_rule = f"        body.hide-country-{country_code} tr[data-country=\"{country_code}\"] {{\n            display: none !important;\n        }}\n"
                 css_rules.append(css_rule)
+        
+        # CSS for individual company hiding
+        for company_key in self.companies.keys():
+            css_rule = f"        body.hide-company-{company_key} tr[data-company=\"{company_key}\"] {{\n            display: none !important;\n        }}\n"
+            css_rules.append(css_rule)
         
         return ''.join(css_rules)
 
