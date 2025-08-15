@@ -1842,6 +1842,10 @@ class Victoria3CompanyParserV6Final:
                         'is_meiji_japan' in possible_content or
                         'meiji_restoration' in possible_content.lower()):
                         company_data['formation_requirements'].append("Journal Entry Required")
+                    
+                    # Extract pre-enacted status
+                    if company_data.get('starts_enacted', False):
+                        company_data['formation_requirements'].append("Starts Enacted at Game Start")
         
         # Parse prosperity bonuses from prosperity_modifier - show raw content
         prosperity_match = re.search(r'prosperity_modifier\s*=\s*\{([^{}]+)\}', company_content)
@@ -3741,6 +3745,10 @@ __YALPS_BUNDLE_PLACEHOLDER__
             base_buildings_json = json.dumps(data.get('building_types', []))
             industry_charters_json = json.dumps(data.get('extension_building_types', []))
             
+            # Add special requirements and starts enacted for JavaScript access
+            special_requirements_json = json.dumps(data.get('special_requirements', []))
+            starts_enacted_json = json.dumps(data.get('starts_enacted', False))
+            
             entry = '''            {}: {{
                 "name": {},
                 "country": {},
@@ -3751,8 +3759,10 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 "prosperity_bonuses_text": {},
                 "prestige_goods": {},
                 "base_buildings": {},
-                "industry_charters": {}
-            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, base_buildings_json, industry_charters_json)
+                "industry_charters": {},
+                "special_requirements": {},
+                "starts_enacted": {}
+            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, base_buildings_json, industry_charters_json, special_requirements_json, starts_enacted_json)
             company_entries.append(entry)
         
         html += ',\n'.join(company_entries)
@@ -3997,6 +4007,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
                             icon = '💡 ';
                         } else if (req.includes('journal entry') || req.includes('Journal Entry')) {
                             icon = '📚 ';
+                        } else if (req.includes('Starts Enacted') || req.includes('game start')) {
+                            icon = '⚠️ ';
                         }
                         html += `<li>${icon}${req}</li>`;
                     });

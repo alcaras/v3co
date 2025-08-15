@@ -13709,7 +13709,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country influence \u00d70.05; building arts academy throughput +0.05; country leverage generation \u00d70.1",
                 "prestige_goods": ["prestige_good_bohemian_crystal"],
                 "base_buildings": ["building_glassworks"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_compania_sansinena_de_carnes_congeladas": {
                 "name": "Compa\u00f1\u00eda Sansinena de Carnes Congeladas",
@@ -13721,7 +13723,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.1; building port throughput +0.1",
                 "prestige_goods": ["prestige_good_river_plate_beef"],
                 "base_buildings": ["building_livestock_ranch", "building_food_industry"],
-                "industry_charters": ["building_port"]
+                "industry_charters": ["building_port"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_konigliche_porzellan_manufaktur_meissen": {
                 "name": "K\u00f6nigliche Porzellan-Manufaktur Meissen",
@@ -13733,31 +13737,37 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.1; building arts academy throughput +0.05; building synthetics plants throughput +0.05",
                 "prestige_goods": ["prestige_good_meissen_porcelain"],
                 "base_buildings": ["building_glassworks"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_jiangnan_weaving_bureaus": {
                 "name": "Jiangnan Weaving Bureaus",
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_NANJING", "Control state STATE_SUZHOU", "Control state STATE_ZHEJIANG", "Level 5+ Silk Plantation required"],
+                "requirements": ["Control state STATE_SUZHOU", "Control state STATE_NANJING", "Control state STATE_ZHEJIANG", "Level 5+ Silk Plantation required"],
                 "bonuses": ["country authority mult = 0.10", "country influence mult = 0.10"],
                 "prosperity_bonuses_text": " -- country authority \u00d70.10; country influence \u00d70.10",
                 "prestige_goods": ["prestige_good_suzhou_silk"],
                 "base_buildings": ["building_silk_plantation", "building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_russian_american_company": {
                 "name": "Russian-American Company",
                 "country": "RUS",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Pacific Coast (level 5+ buildings required)", "Level 5+ Port required"],
+                "requirements": ["Control region in Region Pacific Coast (level 5+ buildings required)", "Level 5+ Port required", "Starts Enacted at Game Start"],
                 "bonuses": ["state colony growth speed mult = 0.1", "state conversion mult = 0.05", "building textile mills throughput add = 0.05"],
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; state conversion \u00d70.05; building textile mills throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_meat"],
                 "base_buildings": ["building_logging_camp", "building_whaling_station", "building_port"],
-                "industry_charters": ["building_coal_mine", "building_fishing_wharf"]
+                "industry_charters": ["building_coal_mine", "building_fishing_wharf"],
+                "special_requirements": ["regional"],
+                "starts_enacted": true
             },
             "company_maison_worth": {
                 "name": "Maison Worth",
@@ -13769,7 +13779,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country influence \u00d70.05; country leverage generation \u00d70.05; state assimilation \u00d70.05",
                 "prestige_goods": ["prestige_good_haute_couture"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation", "building_arts_academy"]
+                "industry_charters": ["building_cotton_plantation", "building_arts_academy"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_lee_wilson": {
                 "name": "Lee Wilson & Company",
@@ -13781,7 +13793,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building power plant throughput +0.05; building textile mills throughput +0.1",
                 "prestige_goods": ["prestige_good_sea_island_cotton"],
                 "base_buildings": ["building_cotton_plantation", "building_logging_camp", "building_wheat_farm"],
-                "industry_charters": ["building_railway"]
+                "industry_charters": ["building_railway"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_colt_firearms": {
                 "name": "Colt's Patent Firearms Manufacturing Company",
@@ -13793,7 +13807,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building arms industry throughput +0.1; unit army offense \u00d70.1",
                 "prestige_goods": ["prestige_good_colt_revolvers"],
                 "base_buildings": ["building_arms_industry"],
-                "industry_charters": ["building_munition_plants"]
+                "industry_charters": ["building_munition_plants"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_gebruder_thonet": {
                 "name": "Gebr\u00fcder Thonet",
@@ -13805,7 +13821,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig petty bourgeoisie pop attraction \u00d70.05; state radicals from political movements \u00d7-0.05; building furniture manufacturies throughput +0.1",
                 "prestige_goods": ["prestige_good_bentwood_furniture"],
                 "base_buildings": ["building_furniture_manufacturies"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_kinkozan_sobei": {
                 "name": "Kinkozan Sobei",
@@ -13817,7 +13835,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country influence \u00d70.05; country infamy decay \u00d70.1; country leverage generation \u00d70.05",
                 "prestige_goods": ["prestige_good_satsuma_ware"],
                 "base_buildings": ["building_glassworks"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_maple_and_co": {
                 "name": "Maple & Co.",
@@ -13829,7 +13849,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.05; building group bg government throughput +0.1",
                 "prestige_goods": ["prestige_good_english_upholstery"],
                 "base_buildings": ["building_furniture_manufacturies"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ong_lung_sheng_tea_company": {
                 "name": "Ong Lung Sheng Tea Company",
@@ -13841,7 +13863,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country bureaucracy \u00d70.05; country loyalists from legitimacy \u00d70.05",
                 "prestige_goods": ["prestige_good_china_tea"],
                 "base_buildings": ["building_tea_plantation"],
-                "industry_charters": ["building_food_industry"]
+                "industry_charters": ["building_food_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_anglo_sicilian_sulphur_company": {
                 "name": "Anglo-Sicilian Sulphur Company",
@@ -13853,7 +13877,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building munition plants throughput +0.1; building group bg plantations throughput +0.05; building group bg agriculture throughput +0.05",
                 "prestige_goods": ["prestige_good_sicilian_sulfur"],
                 "base_buildings": ["building_sulfur_mine"],
-                "industry_charters": ["building_port"]
+                "industry_charters": ["building_port"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_mantero_seta": {
                 "name": "Mantero Sera",
@@ -13865,7 +13891,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.05; building synthetics plants throughput +0.1",
                 "prestige_goods": ["prestige_good_como_silk"],
                 "base_buildings": ["building_silk_plantation", "building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_norsk_hydro": {
                 "name": "Norsk Hydroelektrisk Kv\u00e6lstofaktieselskap",
@@ -13877,19 +13905,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg agriculture throughput +0.1; country production tech spread \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_chemical_plants", "building_power_plant"],
-                "industry_charters": ["building_sulfur_mine"]
+                "industry_charters": ["building_sulfur_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_massey_harris": {
                 "name": "Massey-Harris Limited",
                 "country": "CAN",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_ONTARIO", "Level 5+ Motor Industry required", "Technology: Railways"],
+                "requirements": ["Control state STATE_ONTARIO", "Level 5+ Motor Industry required", "Technology: Railways", "Starts Enacted at Game Start"],
                 "bonuses": ["building group bg agriculture throughput add = 0.15"],
                 "prosperity_bonuses_text": " -- building group bg agriculture throughput +0.15",
                 "prestige_goods": ["prestige_good_generic_tools"],
                 "base_buildings": ["building_motor_industry", "building_tooling_workshops"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": true
             },
             "company_de_beers": {
                 "name": "De Beers Consolidated Mines Ltd.",
@@ -13901,7 +13933,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.1; country leverage generation \u00d70.05; state colony growth speed \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_gold_mine"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_john_holt": {
                 "name": "John Holt and Company",
@@ -13913,7 +13947,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg plantations throughput +0.1; country bureaucracy investment cost factor \u00d7-0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_rubber_plantation", "building_logging_camp", "building_port"],
-                "industry_charters": ["building_shipyards"]
+                "industry_charters": ["building_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_imperial_ethiopian_railways": {
                 "name": "Imperial Ethiopian Railway Company",
@@ -13925,19 +13961,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg coffee plantations throughput +0.1; building livestock ranch throughput +0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_lanfang_kongsi": {
                 "name": "Lanfang Kongsi",
                 "country": "LAN",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_NORTH_BORNEO", "Control state STATE_WEST_BORNEO", "Control state STATE_EAST_BORNEO", "Level 5+ Gold Mine required"],
+                "requirements": ["Control state STATE_NORTH_BORNEO", "Control state STATE_EAST_BORNEO", "Control state STATE_WEST_BORNEO", "Level 5+ Gold Mine required"],
                 "bonuses": ["building group bg agriculture throughput add = 0.05", "battle defense owned province mult = 0.1"],
                 "prosperity_bonuses_text": " -- building group bg agriculture throughput +0.05; battle defense owned province \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_gold_mine", "building_port"],
-                "industry_charters": ["building_rice_farm", "building_iron_mine"]
+                "industry_charters": ["building_rice_farm", "building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_paradox": {
                 "name": "John Paradox & Company",
@@ -13949,7 +13989,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.25; country leverage generation \u00d70.25",
                 "prestige_goods": [],
                 "base_buildings": ["building_arts_academy", "building_electrics_industry"],
-                "industry_charters": ["building_coal_mine", "building_paper_mills"]
+                "industry_charters": ["building_coal_mine", "building_paper_mills"],
+                "special_requirements": ["technology"],
+                "starts_enacted": false
             },
             "company_kaiping_mining": {
                 "name": "Kaiping Mining Company",
@@ -13961,7 +14003,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_coal_mine", "building_railway"],
-                "industry_charters": ["building_iron_mine", "building_lead_mine"]
+                "industry_charters": ["building_iron_mine", "building_lead_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_hanyang_arsenal": {
                 "name": "Hanyang Arsenal",
@@ -13973,7 +14017,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit combat unit type shrapnel artillery offense \u00d70.2; unit morale recovery \u00d70.15",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"],
-                "industry_charters": ["building_explosives_factory"]
+                "industry_charters": ["building_explosives_factory"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_foochow_arsenal": {
                 "name": "Foochow Shipyards",
@@ -13985,7 +14031,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; building port throughput +0.10",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards"],
-                "industry_charters": ["building_steel_mills", "building_logging_camp"]
+                "industry_charters": ["building_steel_mills", "building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_jingdezhen": {
                 "name": "Jingdezhen Kilns",
@@ -13997,7 +14045,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.15; building lead mine throughput +0.05",
                 "prestige_goods": ["prestige_good_canton_porcelain"],
                 "base_buildings": ["building_glassworks"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_misr": {
                 "name": "Misr Spinning and Weaving Company",
@@ -14009,7 +14059,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state loyalists from political movements \u00d70.1",
                 "prestige_goods": ["prestige_good_mit_afifi"],
                 "base_buildings": ["building_textile_mills", "building_cotton_plantation"],
-                "industry_charters": ["building_silk_plantation"]
+                "industry_charters": ["building_silk_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_egyptian_rail": {
                 "name": "Egyptian State Railways",
@@ -14021,7 +14073,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure from population max +20; state trade capacity \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_suez_company": {
                 "name": "Suez Canal Company",
@@ -14033,7 +14087,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.25; country tax income +50000; country max companies +1",
                 "prestige_goods": ["prestige_good_generic_merchant_marine"],
                 "base_buildings": ["building_trade_center", "building_port"],
-                "industry_charters": ["building_shipyards"]
+                "industry_charters": ["building_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_bengal_coal_company": {
                 "name": "Bengal Coal Company",
@@ -14045,7 +14101,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig industrialists pol str \u00d70.2; building iron mine throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_coal_mine"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_bombay_dyeing_company": {
                 "name": "Bombay Dyeing and Manufacturing Company Limited",
@@ -14057,19 +14115,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building dye plantation throughput +0.2; building cotton plantation throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_david_sassoon": {
                 "name": "David Sassoon & Co., Ltd",
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
+                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
                 "bonuses": ["state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_opium"],
                 "base_buildings": ["building_opium_plantation", "building_cotton_plantation"],
-                "industry_charters": ["building_port"]
+                "industry_charters": ["building_port"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_bombay_burmah_trading_corporation": {
                 "name": "Bombay Burmah Trading Corporation",
@@ -14081,7 +14143,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg tea plantations throughput +0.1; building group bg coffee plantations throughput +0.1",
                 "prestige_goods": ["prestige_good_burmese_teak"],
                 "base_buildings": ["building_logging_camp", "building_rubber_plantation"],
-                "industry_charters": ["building_tea_plantation", "building_cotton_plantation", "building_oil_rig"]
+                "industry_charters": ["building_tea_plantation", "building_cotton_plantation", "building_oil_rig"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_madura_mills": {
                 "name": "Madura Mills Co. Ltd",
@@ -14093,7 +14157,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig petty bourgeoisie pop attraction \u00d70.1; building textile mills throughput +0.1; country state religion wages \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_rubber_plantation", "building_cotton_plantation"]
+                "industry_charters": ["building_rubber_plantation", "building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_assam_company": {
                 "name": "Assam Company",
@@ -14105,7 +14171,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg tea plantations throughput +0.2; state radicals from political movements \u00d7-0.05",
                 "prestige_goods": ["prestige_good_assam_tea"],
                 "base_buildings": ["building_tea_plantation"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_wadia_shipbuilders": {
                 "name": "Wadia Shipbuilders",
@@ -14117,7 +14185,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig petty bourgeoisie pop attraction \u00d70.1; country convoys capacity \u00d70.1; state radicalism increases violent hostility \u00d7-0.05; state radicalism increases cultural erasure \u00d7-0.05; state radicalism increases open prejudice \u00d7-0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_steel_brothers": {
                 "name": "Steel Brothers & Co. Ltd",
@@ -14129,19 +14199,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg logging throughput +0.2",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_oil_rig", "building_rice_farm"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ralli_brothers": {
                 "name": "Ralli Brothers",
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WEST_BENGAL", "Control state STATE_BOMBAY", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
+                "requirements": ["Control state STATE_WEST_BENGAL", "Control state STATE_BOMBAY", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
                 "bonuses": ["building sulfur mine throughput add = 0.1", "building textile mills throughput add = 0.1", "state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- building sulfur mine throughput +0.1; building textile mills throughput +0.1; state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_rice_farm", "building_wheat_farm"],
-                "industry_charters": ["building_port", "building_cotton_plantation", "building_textile_mills"]
+                "industry_charters": ["building_port", "building_cotton_plantation", "building_textile_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_calcutta_electric": {
                 "name": "Calcutta Electric Supply Corporation Limited",
@@ -14153,7 +14227,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure from population +6; state infrastructure from population max +12",
                 "prestige_goods": [],
                 "base_buildings": ["building_power_plant"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ccci": {
                 "name": "Compagnie du Congo",
@@ -14165,31 +14241,37 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.15; building group bg rubber mortality \u00d70.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_rubber_plantation", "building_logging_camp", "building_iron_mine"],
-                "industry_charters": ["building_railway", "building_livestock_ranch"]
+                "industry_charters": ["building_railway", "building_livestock_ranch"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_franco_belge": {
                 "name": "Soci\u00e9t\u00e9 Franco-Belge",
                 "country": "BEL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_FLANDERS", "Control state STATE_WALLONIA", "Level 5+ Motor Industry required"],
+                "requirements": ["Control state STATE_WALLONIA", "Control state STATE_FLANDERS", "Level 5+ Motor Industry required"],
                 "bonuses": ["state infrastructure mult = 0.05"],
                 "prosperity_bonuses_text": " -- state infrastructure \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_motor_industry", "building_railway"],
-                "industry_charters": ["building_steel_mills"]
+                "industry_charters": ["building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_john_cockerill": {
                 "name": "Soci\u00e9t\u00e9 anonyme John Cockerill",
                 "country": "BEL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_FLANDERS", "Control state STATE_WALLONIA", "Level 5+ Steel Mills required"],
+                "requirements": ["Control state STATE_WALLONIA", "Control state STATE_FLANDERS", "Level 5+ Steel Mills required", "Starts Enacted at Game Start"],
                 "bonuses": ["building railway throughput add = 0.1"],
                 "prosperity_bonuses_text": " -- building railway throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_tools"],
                 "base_buildings": ["building_steel_mills", "building_tooling_workshops", "building_motor_industry"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": true
             },
             "company_nederlandse_petroleum": {
                 "name": "Nederlandse Petroleum Maatschappij",
@@ -14201,7 +14283,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_philips": {
                 "name": "Philips",
@@ -14213,7 +14297,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.05; country weekly innovation max +15",
                 "prestige_goods": ["prestige_good_philips_chapel_radio"],
                 "base_buildings": ["building_electrics_industry"],
-                "industry_charters": ["building_power_plant", "building_motor_industry"]
+                "industry_charters": ["building_power_plant", "building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_basileiades": {
                 "name": "Basileiades",
@@ -14225,7 +14311,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.2; state infrastructure \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_motor_industry", "building_shipyards"],
-                "industry_charters": ["building_military_shipyards"]
+                "industry_charters": ["building_military_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_kouppas": {
                 "name": "Kouppas",
@@ -14237,7 +14325,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; building steel mills throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_tools"],
                 "base_buildings": ["building_motor_industry", "building_tooling_workshops"],
-                "industry_charters": ["building_automotive_industry"]
+                "industry_charters": ["building_automotive_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ericsson": {
                 "name": "Ericsson",
@@ -14249,7 +14339,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.1; state education access wealth +0.005",
                 "prestige_goods": ["prestige_good_ericsson_apparatus"],
                 "base_buildings": ["building_electrics_industry"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_lkab": {
                 "name": "LKAB",
@@ -14261,7 +14353,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building iron mine throughput +0.2",
                 "prestige_goods": ["prestige_good_swedish_bar_iron"],
                 "base_buildings": ["building_iron_mine"],
-                "industry_charters": ["building_steel_mills"]
+                "industry_charters": ["building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_gotaverken": {
                 "name": "G\u00f6taverken",
@@ -14273,7 +14367,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy defense \u00d70.05; unit navy offense \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards", "building_motor_industry"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_aker_mek": {
                 "name": "Aker Mek",
@@ -14285,7 +14381,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.15; building fishing wharf throughput +0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_motor_industry"],
-                "industry_charters": ["building_military_shipyards"]
+                "industry_charters": ["building_military_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_nokia": {
                 "name": "Nokia",
@@ -14297,7 +14395,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building electrics industry throughput +0.1; building synthetics plants throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_paper"],
                 "base_buildings": ["building_paper_mills", "building_logging_camp", "building_power_plant"],
-                "industry_charters": ["building_electrics_industry"]
+                "industry_charters": ["building_electrics_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ursus": {
                 "name": "Ursus",
@@ -14309,31 +14409,37 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building wheat farm throughput +0.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_motor_industry"],
-                "industry_charters": ["building_automotive_industry", "building_steel_mills"]
+                "industry_charters": ["building_automotive_industry", "building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_lilpop": {
                 "name": "Lilpop, Rau i Loewenstein",
                 "country": "POL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_GREATER_POLAND", "Control state STATE_MAZOVIA", "Level 5+ Steel Mills required", "Technology: Steelworking"],
+                "requirements": ["Control state STATE_MAZOVIA", "Control state STATE_GREATER_POLAND", "Level 5+ Steel Mills required", "Technology: Steelworking"],
                 "bonuses": ["building motor industry throughput add = 0.1"],
                 "prosperity_bonuses_text": " -- building motor industry throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_iron_mine", "building_tooling_workshops"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_mozambique_company": {
                 "name": "Companhia de Mo\u00e7ambique",
                 "country": "POR",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_LOURENCO_MARQUES", "Control state STATE_MOCAMBIQUE", "Control state STATE_ZAMBEZIA", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
+                "requirements": ["Control state STATE_MOCAMBIQUE", "Control state STATE_ZAMBEZIA", "Control state STATE_LOURENCO_MARQUES", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
                 "bonuses": ["state colony growth speed mult = 0.1", "state colony growth creation factor = 0.1"],
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; state colony growth creation factor = 0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_cotton_plantation", "building_tea_plantation", "building_rice_farm"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_altos_hornos_de_vizcaya": {
                 "name": "Altos Hornos de Vizcaya",
@@ -14345,7 +14451,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_iron_mine"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_duro_y_compania": {
                 "name": "Duro y Compa\u00f1\u00eda",
@@ -14357,7 +14465,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building arms industry throughput +0.1; building artillery foundries throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_coal_mine", "building_steel_mills", "building_iron_mine"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_espana_industrial": {
                 "name": "La Espa\u00f1a Industrial",
@@ -14369,7 +14479,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.15",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills", "building_cotton_plantation"],
-                "industry_charters": ["building_silk_plantation"]
+                "industry_charters": ["building_silk_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_trubia": {
                 "name": "F\u00e1brica de Armas de Trubia",
@@ -14381,7 +14493,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit offense \u00d70.05; country military goods cost \u00d7-0.05",
                 "prestige_goods": ["prestige_good_generic_artillery"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries"],
-                "industry_charters": ["building_munition_plants", "building_explosives_factory"]
+                "industry_charters": ["building_munition_plants", "building_explosives_factory"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_zastava": {
                 "name": "Zastava",
@@ -14393,7 +14507,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit defense \u00d70.05; unit recovery rate +0.05",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_munition_plants"],
-                "industry_charters": ["building_artillery_foundries"]
+                "industry_charters": ["building_artillery_foundries"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_chr_hansens": {
                 "name": "Chr. Hansen",
@@ -14405,7 +14521,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building livestock ranch throughput +0.1; building fishing wharf throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_groceries"],
                 "base_buildings": ["building_food_industry", "building_chemical_plants"],
-                "industry_charters": ["building_synthetics_plants"]
+                "industry_charters": ["building_synthetics_plants"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ap_moller": {
                 "name": "A.P. M\u00f8ller",
@@ -14417,7 +14535,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.2; interest group ig industrialists pop attraction \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_merchant_marine"],
                 "base_buildings": ["building_port"],
-                "industry_charters": ["building_shipyards", "building_logging_camp"]
+                "industry_charters": ["building_shipyards", "building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_cfr": {
                 "name": "C\u0103ile Ferate Rom\u00e2ne",
@@ -14429,7 +14549,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure \u00d70.05; state trade capacity \u00d70.15",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_romanian_star": {
                 "name": "Steaua Rom\u00e2n\u0103",
@@ -14441,7 +14563,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg oil extraction throughput +0.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_j_p_coats": {
                 "name": "J. & P. Coats",
@@ -14453,7 +14577,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building textile mills throughput +0.15; building cotton plantation throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_armstrong_whitworth": {
                 "name": "Sir W. G. Armstrong Whitworth & Co.",
@@ -14465,7 +14591,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit combat unit type carrier offense \u00d70.15; unit navy defense \u00d70.1",
                 "prestige_goods": ["prestige_good_armstrong_ships"],
                 "base_buildings": ["building_military_shipyards", "building_motor_industry", "building_munition_plants"],
-                "industry_charters": ["building_automotive_industry"]
+                "industry_charters": ["building_automotive_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_john_brown": {
                 "name": "John Brown & Company",
@@ -14477,7 +14605,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.05; country convoys capacity \u00d70.1",
                 "prestige_goods": ["prestige_good_clyde_built_liners"],
                 "base_buildings": ["building_military_shipyards", "building_shipyards", "building_steel_mills"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_gwr": {
                 "name": "Great Western Railway",
@@ -14489,7 +14619,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.05; state radicals from political movements \u00d7-0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_bolckow_vaughan": {
                 "name": "Bolckow, Vaughan & Co.",
@@ -14501,7 +14633,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building shipyards throughput +0.1; building military shipyards throughput +0.1",
                 "prestige_goods": ["prestige_good_sheffield_steel"],
                 "base_buildings": ["building_coal_mine", "building_iron_mine", "building_steel_mills"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_krupp": {
                 "name": "Friedrich Krupp",
@@ -14513,19 +14647,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; unit kill rate +0.1",
                 "prestige_goods": ["prestige_good_krupp_guns"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries", "building_steel_mills"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_rheinmetall": {
                 "name": "Rheinmetall",
                 "country": "DEU",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_NORTH_RHINE", "Control state STATE_RUHR", "Level 5+ Arms Industry required", "Technology: Automatic Machine Guns"],
+                "requirements": ["Control state STATE_NORTH_RHINE", "Control state STATE_RUHR", "Level 5+ Arms Industry required", "Technology: Automatic Machine Guns", "Starts Enacted at Game Start"],
                 "bonuses": ["unit combat unit type siege artillery offense mult = 0.1", "unit combat unit type shrapnel artillery offense mult = 0.1", "unit army defense mult = 0.05"],
                 "prosperity_bonuses_text": " -- unit combat unit type siege artillery offense \u00d70.1; unit combat unit type shrapnel artillery offense \u00d70.1; unit army defense \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_artillery"],
                 "base_buildings": ["building_artillery_foundries", "building_munition_plants", "building_explosives_factory"],
-                "industry_charters": ["building_motor_industry", "building_steel_mills"]
+                "industry_charters": ["building_motor_industry", "building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": true
             },
             "company_schichau": {
                 "name": "F. Schichau",
@@ -14537,7 +14675,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; unit combat unit type submarine offense \u00d70.1",
                 "prestige_goods": ["prestige_good_schichau_engines"],
                 "base_buildings": ["building_motor_industry", "building_military_shipyards", "building_shipyards"],
-                "industry_charters": ["building_railway", "building_steel_mills"]
+                "industry_charters": ["building_railway", "building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_siemens_and_halske": {
                 "name": "Siemens & Halske",
@@ -14549,7 +14689,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building power plant throughput +0.15",
                 "prestige_goods": [],
                 "base_buildings": ["building_electrics_industry"],
-                "industry_charters": ["building_motor_industry", "building_railway"]
+                "industry_charters": ["building_motor_industry", "building_railway"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_prussian_state_railways": {
                 "name": "Preu\u00dfische Staatseisenbahnen",
@@ -14561,7 +14703,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- military formation movement speed \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basf": {
                 "name": "BASF",
@@ -14573,7 +14717,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.1; building group bg oil extraction throughput +0.05",
                 "prestige_goods": ["prestige_good_german_aniline"],
                 "base_buildings": ["building_synthetics_plants", "building_chemical_plants"],
-                "industry_charters": ["building_dye_plantation", "building_sulfur_mine"]
+                "industry_charters": ["building_dye_plantation", "building_sulfur_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_fundidora_monterrey": {
                 "name": "Fundidora de Fierro y Acero de Monterrey",
@@ -14585,7 +14731,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.05; building iron mine throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_coal_mine"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_el_aguila": {
                 "name": "El \u00c1guila",
@@ -14597,7 +14745,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.15; interest group ig industrialists approval +3",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_csfa": {
                 "name": "Compa\u00f1\u00eda de Salitres y Ferrocarril de Antofagasta",
@@ -14609,19 +14759,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure \u00d70.05; interest group ig industrialists approval +3",
                 "prestige_goods": [],
                 "base_buildings": ["building_sulfur_mine", "building_railway"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_caribbean_petroleum": {
                 "name": "Caribbean Petroleum Company",
                 "country": "VNZ",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MIRANDA", "Control state STATE_ZULIA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
+                "requirements": ["Control state STATE_ZULIA", "Control state STATE_MIRANDA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
                 "bonuses": ["country convoys capacity mult = 0.1", "interest group ig industrialists approval add = 3"],
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.1; interest group ig industrialists approval +3",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_bunge_born": {
                 "name": "Bunge & Born",
@@ -14633,7 +14787,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig rural folk pop attraction \u00d70.2; building tooling workshops throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_groceries"],
                 "base_buildings": ["building_wheat_farm", "building_maize_farm", "building_food_industry"],
-                "industry_charters": ["building_chemical_plants"]
+                "industry_charters": ["building_chemical_plants"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_la_rosada": {
                 "name": "La Rosada",
@@ -14645,7 +14801,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit defense \u00d70.05; building iron mine throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_arms_industry", "building_artillery_foundries"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_famae": {
                 "name": "F\u00e1brica de Armas de la Naci\u00f3n",
@@ -14657,7 +14815,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit offense \u00d70.1; building steel mills throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"],
-                "industry_charters": ["building_explosives_factory"]
+                "industry_charters": ["building_explosives_factory"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_peruvian_amazon": {
                 "name": "Peruvian Amazon Company",
@@ -14669,7 +14829,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state loyalists from political movements \u00d70.1; building group bg rubber mortality \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_rubber_plantation"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_kablin": {
                 "name": "Klabin Irm\u00e3os & Cia.",
@@ -14681,19 +14843,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building tooling workshops throughput +0.1; state infrastructure from population max +15",
                 "prestige_goods": ["prestige_good_rosewood"],
                 "base_buildings": ["building_paper_mills", "building_logging_camp"],
-                "industry_charters": ["building_sulfur_mine"]
+                "industry_charters": ["building_sulfur_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_hbc": {
                 "name": "Hudson's Bay Company",
                 "country": "CAN",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MANITOBA", "Level 5+ Food Industry required"],
+                "requirements": ["Control state STATE_MANITOBA", "Level 5+ Food Industry required", "Starts Enacted at Game Start"],
                 "bonuses": ["state colony growth creation factor = 0.1", "building textile mills throughput add = 0.05"],
                 "prosperity_bonuses_text": " -- state colony growth creation factor = 0.1; building textile mills throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_fish"],
                 "base_buildings": ["building_fishing_wharf", "building_logging_camp"],
-                "industry_charters": ["building_port", "building_food_industry"]
+                "industry_charters": ["building_port", "building_food_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": true
             },
             "company_panama_company": {
                 "name": "Panama Canal Company",
@@ -14705,7 +14871,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.25; country tax income +50000; country max companies +1",
                 "prestige_goods": ["prestige_good_generic_merchant_marine"],
                 "base_buildings": ["building_trade_center", "building_port"],
-                "industry_charters": ["building_shipyards"]
+                "industry_charters": ["building_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_vodka_monopoly": {
                 "name": "Vodka Monopoly",
@@ -14717,7 +14885,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state radicals from political movements \u00d7-0.15",
                 "prestige_goods": ["prestige_good_smirnoff_vodka"],
                 "base_buildings": ["building_food_industry", "building_vineyard_plantation"],
-                "industry_charters": ["building_wheat_farm", "building_rye_farm"]
+                "industry_charters": ["building_wheat_farm", "building_rye_farm"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_putilov_company": {
                 "name": "Society of Putilov Factories",
@@ -14729,7 +14899,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; state infrastructure \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_artillery"],
                 "base_buildings": ["building_motor_industry", "building_military_shipyards", "building_artillery_foundries"],
-                "industry_charters": ["building_munition_plants"]
+                "industry_charters": ["building_munition_plants"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_branobel": {
                 "name": "Branobel",
@@ -14741,7 +14913,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state migration pull \u00d70.1; building railway throughput +0.05",
                 "prestige_goods": ["prestige_good_baku_oil"],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_izhevsk_arms_plant": {
                 "name": "Izhevsk Arms Plant",
@@ -14753,7 +14927,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building arms industry throughput +0.1; building artillery foundries throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_munition_plants"],
-                "industry_charters": ["building_artillery_foundries", "building_steel_mills"]
+                "industry_charters": ["building_artillery_foundries", "building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_savva_morozov": {
                 "name": "Savva Morozov & Sons",
@@ -14765,31 +14941,37 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.1; interest group ig industrialists pop attraction \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_john_hughes": {
                 "name": "New Russia Company Ltd.",
                 "country": "RUS",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_TAURIDA", "Control state STATE_KHARKOV", "Level 5+ Steel Mills required", "Technology: Bessemer Process"],
+                "requirements": ["Control state STATE_KHARKOV", "Control state STATE_TAURIDA", "Level 5+ Steel Mills required", "Technology: Bessemer Process"],
                 "bonuses": ["building railway throughput add = 0.1", "interest group ig industrialists approval add = 2"],
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; interest group ig industrialists approval +2",
                 "prestige_goods": ["prestige_good_russia_iron"],
                 "base_buildings": ["building_steel_mills", "building_coal_mine", "building_iron_mine"],
-                "industry_charters": ["building_railway"]
+                "industry_charters": ["building_railway"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_east_india_company": {
                 "name": "East India Company",
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Tea Plantation required"],
+                "requirements": ["Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Tea Plantation required", "Starts Enacted at Game Start"],
                 "bonuses": ["country convoys capacity mult = 0.2"],
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.2",
                 "prestige_goods": ["prestige_good_bengal_opium"],
                 "base_buildings": ["building_tea_plantation", "building_tobacco_plantation", "building_opium_plantation"],
-                "industry_charters": ["building_silk_plantation", "building_sugar_plantation"]
+                "industry_charters": ["building_silk_plantation", "building_sugar_plantation"],
+                "special_requirements": [],
+                "starts_enacted": true
             },
             "company_imperial_arsenal": {
                 "name": "Ters\u00e2ne-i \u00c2mire",
@@ -14801,7 +14983,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy defense \u00d70.10",
                 "prestige_goods": [],
                 "base_buildings": ["building_military_shipyards"],
-                "industry_charters": ["building_shipyards"]
+                "industry_charters": ["building_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ottoman_tobacco_regie": {
                 "name": "Ottoman Tobacco Company",
@@ -14813,7 +14997,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country production tech spread \u00d70.1",
                 "prestige_goods": ["prestige_good_turkish_tobacco"],
                 "base_buildings": ["building_tobacco_plantation"],
-                "industry_charters": ["building_opium_plantation"]
+                "industry_charters": ["building_opium_plantation"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_allatini_mills": {
                 "name": "Allatini Mills",
@@ -14825,7 +15011,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building food industry throughput +0.1; state radicalism increases violent hostility \u00d7-0.05; state radicalism increases cultural erasure \u00d7-0.05; state radicalism increases open prejudice \u00d7-0.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_wheat_farm", "building_rye_farm"],
-                "industry_charters": ["building_food_industry"]
+                "industry_charters": ["building_food_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_orient_express": {
                 "name": "Chemins de fer Orientaux",
@@ -14837,19 +15025,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_great_indian_railway": {
                 "name": "Great Indian Peninsula Railway",
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["state infrastructure from population add = 0.5", "state infrastructure from population max add = 20"],
                 "prosperity_bonuses_text": " -- state infrastructure from population +0.5; state infrastructure from population max +20",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_tata": {
                 "name": "Tata",
@@ -14861,7 +15053,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building construction sector throughput +0.05; country max weekly construction progress +10",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills", "building_steel_mills"],
-                "industry_charters": ["building_iron_mine", "building_motor_industry"]
+                "industry_charters": ["building_iron_mine", "building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_sunhwaguk": {
                 "name": "Sunhwaguk",
@@ -14873,7 +15067,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_tobacco_plantation", "building_rice_farm"],
-                "industry_charters": ["building_food_industry", "building_chemical_plants"]
+                "industry_charters": ["building_food_industry", "building_chemical_plants"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_nam_dinh": {
                 "name": "Nam \u0110\u1ecbnh Textile Factory",
@@ -14885,7 +15081,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation", "building_silk_plantation"]
+                "industry_charters": ["building_cotton_plantation", "building_silk_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_imperial_tobacco": {
                 "name": "Imperial Tobacco Corporation of Persia",
@@ -14897,7 +15095,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.2; interest group ig rural folk approval +-2",
                 "prestige_goods": [],
                 "base_buildings": ["building_tobacco_plantation"],
-                "industry_charters": ["building_opium_plantation"]
+                "industry_charters": ["building_opium_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_san_miguel": {
                 "name": "San Miguel",
@@ -14909,7 +15109,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state radicals from political movements \u00d7-0.1",
                 "prestige_goods": ["prestige_good_generic_groceries"],
                 "base_buildings": ["building_food_industry"],
-                "industry_charters": ["building_wheat_farm", "building_maize_farm", "building_rye_farm"]
+                "industry_charters": ["building_wheat_farm", "building_maize_farm", "building_rye_farm"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_william_sandford": {
                 "name": "William Sandford Limited",
@@ -14921,7 +15123,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.15",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills"],
-                "industry_charters": ["building_iron_mine", "building_coal_mine"]
+                "industry_charters": ["building_iron_mine", "building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_b_grimm": {
                 "name": "B. Grimm",
@@ -14933,7 +15137,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure from population \u00d70.1; building food industry throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_rice_farm"],
-                "industry_charters": ["building_chemical_plants"]
+                "industry_charters": ["building_chemical_plants"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_skoda": {
                 "name": "\u0160koda Works",
@@ -14945,7 +15151,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- character advancement speed +1; unit combat unit type siege artillery offense \u00d70.15",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_motor_industry", "building_artillery_foundries"],
-                "industry_charters": ["building_automotive_industry"]
+                "industry_charters": ["building_automotive_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_mav": {
                 "name": "M\u00c1VAG",
@@ -14957,7 +15165,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_tools"],
                 "base_buildings": ["building_motor_industry", "building_tooling_workshops"],
-                "industry_charters": ["building_automotive_industry"]
+                "industry_charters": ["building_automotive_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_manfred_weiss": {
                 "name": "Manfr\u00e9d Weiss Steel and Metal Works",
@@ -14969,7 +15179,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit offense \u00d70.05; country military tech spread \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_munition_plants", "building_automotive_industry"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_galician_carpathian_oil": {
                 "name": "Galician Carpathian Petroleum Company",
@@ -14981,7 +15193,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.05; building tooling workshops throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant", "building_coal_mine"]
+                "industry_charters": ["building_power_plant", "building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_oevg": {
                 "name": "\u00d6sterreichische Waffenfabriks-Gesellschaft",
@@ -14993,7 +15207,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building munition plants throughput +0.1; unit defense \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries"],
-                "industry_charters": ["building_steel_mills", "building_munition_plants", "building_electrics_industry"]
+                "industry_charters": ["building_steel_mills", "building_munition_plants", "building_electrics_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_sao_paulo_railway": {
                 "name": "S\u00e3o Paulo Railway Co. Ltd.",
@@ -15005,7 +15221,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg coffee plantations throughput +0.15; state trade capacity \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_logging_camp", "building_motor_industry"]
+                "industry_charters": ["building_logging_camp", "building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_estaleiro_maua": {
                 "name": "Estaleiro Mau\u00e1",
@@ -15017,7 +15235,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.1; building steel mills throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_pernambuco_textiles": {
                 "name": "Companhia Fia\u00e7\u00e3o e Tecidos de Pernambuco",
@@ -15029,7 +15249,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building cotton plantation throughput +0.1; building rubber plantation throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation", "building_livestock_ranch"]
+                "industry_charters": ["building_cotton_plantation", "building_livestock_ranch"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_fundicao_ipanema": {
                 "name": "Fundi\u00e7\u00e3o Ipanema",
@@ -15041,7 +15263,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building munition plants throughput +0.05; building arms industry throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_iron_mine"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_rossi": {
                 "name": "Amadeo Rossi & Cia.",
@@ -15053,7 +15277,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building livestock ranch throughput +0.1; building chemical plants throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_munition_plants"],
-                "industry_charters": ["building_explosives_factory"]
+                "industry_charters": ["building_explosives_factory"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_estanifera_llallagua": {
                 "name": "Compa\u00f1\u00eda Esta\u00f1\u00edfera de Llallagua",
@@ -15065,7 +15291,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building lead mine throughput +0.1; interest group ig industrialists pol str \u00d70.15",
                 "prestige_goods": [],
                 "base_buildings": ["building_lead_mine"],
-                "industry_charters": ["building_iron_mine", "building_sulfur_mine"]
+                "industry_charters": ["building_iron_mine", "building_sulfur_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_argentinian_wine": {
                 "name": "Centro Vitivin\u00edcola Nacional",
@@ -15077,7 +15305,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_vineyard_plantation"],
-                "industry_charters": ["building_livestock_ranch"]
+                "industry_charters": ["building_livestock_ranch"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_sudamericana_de_vapores": {
                 "name": "Compa\u00f1\u00eda Sudamericana de Vapores",
@@ -15089,7 +15319,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; country convoys capacity \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_port"],
-                "industry_charters": ["building_shipyards", "building_logging_camp"]
+                "industry_charters": ["building_shipyards", "building_logging_camp"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_electricidad_de_caracas": {
                 "name": "C.A. La Electricidad de Caracas",
@@ -15101,7 +15333,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure from population +5; state infrastructure from population max +10",
                 "prestige_goods": [],
                 "base_buildings": ["building_power_plant"],
-                "industry_charters": ["building_motor_industry", "building_coal_mine"]
+                "industry_charters": ["building_motor_industry", "building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_cordoba_railway": {
                 "name": "Ferrocarril Central C\u00f3rdoba",
@@ -15113,7 +15347,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building wheat farm throughput +0.1; building livestock ranch throughput +0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_coal_mine", "building_motor_industry"]
+                "industry_charters": ["building_coal_mine", "building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_eea": {
                 "name": "Empresas El\u00e9ctricas Asociadas",
@@ -15125,7 +15361,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure from population \u00d70.05; state construction \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_power_plant"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_standard_oil": {
                 "name": "Standard Oil",
@@ -15137,7 +15375,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig", "building_railway"],
-                "industry_charters": ["building_port"]
+                "industry_charters": ["building_port"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_united_fruit": {
                 "name": "United Fruit Company",
@@ -15149,7 +15389,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg plantations throughput +0.2; country infamy decay \u00d7-0.25",
                 "prestige_goods": ["prestige_good_gros_michel_banana"],
                 "base_buildings": ["building_sugar_plantation", "building_banana_plantation"],
-                "industry_charters": ["building_railway"]
+                "industry_charters": ["building_railway"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_us_steel": {
                 "name": "Carnegie Steel Co.",
@@ -15161,7 +15403,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; building shipyards throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_iron_mine", "building_coal_mine"],
-                "industry_charters": ["building_arts_academy"]
+                "industry_charters": ["building_arts_academy"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_general_electric": {
                 "name": "General Electric",
@@ -15173,19 +15417,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building motor industry throughput +0.1; country weekly innovation \u00d70.05",
                 "prestige_goods": ["prestige_good_radiola_radios"],
                 "base_buildings": ["building_electrics_industry", "building_power_plant"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_william_cramp": {
                 "name": "William Cramp & Sons",
                 "country": "USA",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_DELAWARE", "Control state STATE_NEW_JERSEY", "Control state STATE_MARYLAND", "Level 5+ Military Shipyards required", "Technology: Gantry Cranes"],
+                "requirements": ["Control state STATE_DELAWARE", "Control state STATE_MARYLAND", "Control state STATE_NEW_JERSEY", "Level 5+ Military Shipyards required", "Technology: Gantry Cranes", "Starts Enacted at Game Start"],
                 "bonuses": ["unit navy offense mult = 0.05", "unit navy defense mult = 0.05"],
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; unit navy defense \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_military_shipyards", "building_shipyards", "building_motor_industry"],
-                "industry_charters": ["building_artillery_foundries"]
+                "industry_charters": ["building_artillery_foundries"],
+                "special_requirements": ["regional"],
+                "starts_enacted": true
             },
             "company_ford_motor": {
                 "name": "Ford Motor Company",
@@ -15197,7 +15445,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building motor industry throughput +0.15; building automotive industry throughput +0.05",
                 "prestige_goods": ["prestige_good_ford_automobiles"],
                 "base_buildings": ["building_motor_industry", "building_automotive_industry"],
-                "industry_charters": ["building_steel_mills", "building_rubber_plantation"]
+                "industry_charters": ["building_steel_mills", "building_rubber_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_da_afghan_nassaji_sherkat": {
                 "name": "D\u0259 Af\u1e21\u0101n Nas\u0101j\u012b \u0160erkat",
@@ -15209,7 +15459,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state trade capacity \u00d70.05; building cotton plantation throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_iranian_state_railway": {
                 "name": "Iranian State Railway",
@@ -15221,7 +15473,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state assimilation \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["primary_culture", "regional"],
+                "starts_enacted": false
             },
             "company_tashkent_railroad": {
                 "name": "Tashkent Railroad",
@@ -15233,7 +15487,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building cotton plantation throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway"],
-                "industry_charters": ["building_motor_industry"]
+                "industry_charters": ["building_motor_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_west_ural_petroleum": {
                 "name": "West Ural Petroleum Company, Limited",
@@ -15245,7 +15501,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; building power plant throughput +0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant", "building_railway"]
+                "industry_charters": ["building_power_plant", "building_railway"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_sherkat_shemali": {
                 "name": "\u0160erkat-e Ette\u1e25\u0101d\u012bya-ye Wel\u0101yat-e \u0160em\u0101l\u012b",
@@ -15257,7 +15515,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building opium plantation throughput +0.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_cotton_plantation"],
-                "industry_charters": ["building_textile_mills"]
+                "industry_charters": ["building_textile_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_opium_export_monopoly": {
                 "name": "Bong\u0101h-e En\u1e25e\u1e63\u0101r-e \u1e62\u0101der\u0101t-e Tary\u0101k",
@@ -15269,7 +15529,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state radicals from political movements \u00d7-0.1; unit morale recovery \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_opium"],
                 "base_buildings": ["building_opium_plantation"],
-                "industry_charters": ["building_tobacco_plantation"]
+                "industry_charters": ["building_tobacco_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_sherkate_eslamiya": {
                 "name": "\u0160erkat-e Esl\u0101miya",
@@ -15281,7 +15543,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country state religion wages \u00d70.2",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_nicolas_portalis": {
                 "name": "MM. Nicolas Portalis et Cie.",
@@ -15293,7 +15557,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.1; state radicalism increases violent hostility \u00d7-0.05; state radicalism increases cultural erasure \u00d7-0.05; state radicalism increases open prejudice \u00d7-0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_silk_plantation"],
-                "industry_charters": ["building_cotton_plantation"]
+                "industry_charters": ["building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_hanseong_jeongi_hoesa": {
                 "name": "Hanseong Jeongi Hoesa",
@@ -15305,7 +15571,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building arts academy throughput +0.05; building railway throughput +0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_power_plant"],
-                "industry_charters": ["building_railway"]
+                "industry_charters": ["building_railway"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_kirgizian_mining_company": {
                 "name": "Kirgizian Mining Joint Stock Company",
@@ -15317,7 +15585,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building power plant throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_coal_mine"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_persshelk": {
                 "name": "Persshelk",
@@ -15329,7 +15599,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.05; interest group ig petty bourgeoisie pop attraction \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_silk_plantation"],
-                "industry_charters": ["building_textile_mills"]
+                "industry_charters": ["building_textile_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_perskhlopok": {
                 "name": "Perskhlopok",
@@ -15341,7 +15613,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building textile mills throughput +0.05; interest group ig rural folk approval +2",
                 "prestige_goods": [],
                 "base_buildings": ["building_cotton_plantation"],
-                "industry_charters": ["building_textile_mills"]
+                "industry_charters": ["building_textile_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_moscow_irrigation_company": {
                 "name": "Moscow Irrigation Company",
@@ -15353,7 +15627,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building cotton plantation throughput +0.2; interest group ig industrialists pop attraction \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_cotton_plantation", "building_rice_farm"],
-                "industry_charters": ["building_wheat_farm", "building_opium_plantation"]
+                "industry_charters": ["building_wheat_farm", "building_opium_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_guinness": {
                 "name": "Arthur Guinness Son & Co. Ltd",
@@ -15365,7 +15641,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state radicals from political movements \u00d7-0.1; state radicalism increases violent hostility \u00d7-0.05; state radicalism increases cultural erasure \u00d7-0.05; state radicalism increases open prejudice \u00d7-0.05",
                 "prestige_goods": ["prestige_good_generic_groceries"],
                 "base_buildings": ["building_food_industry"],
-                "industry_charters": ["building_wheat_farm", "building_rye_farm"]
+                "industry_charters": ["building_wheat_farm", "building_rye_farm"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_oriental_development_company": {
                 "name": "Oriental Development Company",
@@ -15377,19 +15655,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.05; state migration pull \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_rice_farm", "building_millet_farm", "building_wheat_farm"],
-                "industry_charters": ["building_maize_farm", "building_food_industry"]
+                "industry_charters": ["building_maize_farm", "building_food_industry"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_turkish_petroleum": {
                 "name": "Turkish Petroleum Company",
                 "country": "TUR",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BASRA", "Control state STATE_MOSUL", "Control state STATE_BAGHDAD", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
+                "requirements": ["Control state STATE_MOSUL", "Control state STATE_BASRA", "Control state STATE_BAGHDAD", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
                 "bonuses": ["state trade capacity mult = 0.05", "building railway throughput add = 0.05"],
                 "prosperity_bonuses_text": " -- state trade capacity \u00d70.05; building railway throughput +0.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_anglo_persian_oil": {
                 "name": "Anglo-Persian Oil Company",
@@ -15401,7 +15683,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg oil extraction throughput +0.3",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["primary_culture", "regional"],
+                "starts_enacted": false
             },
             "company_national_iranian_oil": {
                 "name": "National Iranian Oil Company",
@@ -15413,7 +15697,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig industrialists pop attraction \u00d70.1; country loyalists from legitimacy \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["primary_culture", "regional"],
+                "starts_enacted": false
             },
             "company_ilva": {
                 "name": "Ilva",
@@ -15425,7 +15711,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building railway throughput +0.1; building artillery foundries throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills", "building_iron_mine"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ansaldo": {
                 "name": "Gio. Ansaldo & C.",
@@ -15437,7 +15725,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; unit army offense \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_artillery_foundries", "building_steel_mills", "building_military_shipyards"],
-                "industry_charters": ["building_power_plant"]
+                "industry_charters": ["building_power_plant"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_ricordi": {
                 "name": "G. Ricordi & C.",
@@ -15449,7 +15739,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.15; state loyalists from political movements \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_arts_academy"],
-                "industry_charters": ["building_vineyard_plantation"]
+                "industry_charters": ["building_vineyard_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_fiat": {
                 "name": "FIAT",
@@ -15461,7 +15753,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- military formation movement speed \u00d70.1; unit army offense \u00d70.05",
                 "prestige_goods": ["prestige_good_turin_automobiles"],
                 "base_buildings": ["building_motor_industry", "building_automotive_industry"],
-                "industry_charters": ["building_steel_mills"]
+                "industry_charters": ["building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_stt": {
                 "name": "Stabilimento Tecnico Triestino",
@@ -15473,7 +15767,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy defense \u00d70.05; country convoys capacity \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards"],
-                "industry_charters": ["building_motor_industry", "building_steel_mills"]
+                "industry_charters": ["building_motor_industry", "building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_societe_mokta_el_hadid": {
                 "name": "Soci\u00e9t\u00e9 Mokta El Hadid",
@@ -15485,7 +15781,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state non homeland colony growth speed \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_iron_mine", "building_sulfur_mine"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_schneider_creusot": {
                 "name": "Schneider et Cie",
@@ -15497,7 +15795,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit morale loss \u00d7-0.1; unit morale recovery \u00d70.1",
                 "prestige_goods": ["prestige_good_schneider_guns"],
                 "base_buildings": ["building_steel_mills", "building_artillery_foundries", "building_motor_industry"],
-                "industry_charters": ["building_railway", "building_military_shipyards"]
+                "industry_charters": ["building_railway", "building_military_shipyards"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_dmc": {
                 "name": "Dollfus-Mieg et Compagnie",
@@ -15509,7 +15809,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state assimilation \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills", "building_coal_mine"],
-                "industry_charters": ["building_dye_plantation", "building_cotton_plantation"]
+                "industry_charters": ["building_dye_plantation", "building_cotton_plantation"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_cgv": {
                 "name": "Conf\u00e9d\u00e9ration g\u00e9n\u00e9rale des vignerons",
@@ -15521,7 +15823,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.15; building vineyard plantation throughput +0.1",
                 "prestige_goods": ["prestige_good_champagne"],
                 "base_buildings": ["building_vineyard_plantation"],
-                "industry_charters": ["building_food_industry"]
+                "industry_charters": ["building_food_industry"],
+                "special_requirements": ["primary_culture"],
+                "starts_enacted": false
             },
             "company_saint_etienne": {
                 "name": "Manufacture d'armes de Saint-\u00c9tienne",
@@ -15533,7 +15837,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit offense \u00d70.05; unit defense \u00d70.05",
                 "prestige_goods": ["prestige_good_saint_etienne_rifles"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries", "building_munition_plants"],
-                "industry_charters": ["building_explosives_factory"]
+                "industry_charters": ["building_explosives_factory"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_fcm": {
                 "name": "Forges et Chantiers de la M\u00e9diterran\u00e9e",
@@ -15545,7 +15851,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; unit combat unit type heavy tank offense \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards", "building_automotive_industry"],
-                "industry_charters": ["building_steel_mills"]
+                "industry_charters": ["building_steel_mills"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_mines_anzin": {
                 "name": "Compagnie des mines d'Anzin",
@@ -15557,7 +15865,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building steel mills throughput +0.05; building railway throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_coal_mine"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": ["regional"],
+                "starts_enacted": false
             },
             "company_mitsui": {
                 "name": "Mitsui",
@@ -15569,19 +15879,23 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- interest group ig industrialists pol str \u00d70.2; building iron mine throughput +0.1",
                 "prestige_goods": ["prestige_good_tomioka_silk"],
                 "base_buildings": ["building_textile_mills", "building_silk_plantation", "building_lead_mine"],
-                "industry_charters": ["building_shipyards", "building_port", "building_chemical_plants", "building_iron_mine"]
+                "industry_charters": ["building_shipyards", "building_port", "building_chemical_plants", "building_iron_mine"],
+                "special_requirements": ["journal_entry", "regional"],
+                "starts_enacted": false
             },
             "company_mantetsu": {
                 "name": "South Manchuria Railway",
                 "country": "JAP",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region North China (level 5+ buildings required)", "Control region in Region Manchuria (level 5+ buildings required)", "Level 5+ Railway required", "Primary culture: Japanese", "Technology: Railways", "Journal Entry Required"],
+                "requirements": ["Control region in Region Manchuria (level 5+ buildings required)", "Control region in Region North China (level 5+ buildings required)", "Level 5+ Railway required", "Primary culture: Japanese", "Technology: Railways", "Journal Entry Required"],
                 "bonuses": ["state non homeland colony growth speed mult = 0.1", "building wheat farm throughput add = 0.15"],
                 "prosperity_bonuses_text": " -- state non homeland colony growth speed \u00d70.1; building wheat farm throughput +0.15",
                 "prestige_goods": [],
                 "base_buildings": ["building_railway", "building_coal_mine", "building_glassworks"],
-                "industry_charters": ["building_food_industry", "building_chemical_plants"]
+                "industry_charters": ["building_food_industry", "building_chemical_plants"],
+                "special_requirements": ["journal_entry", "primary_culture"],
+                "starts_enacted": false
             },
             "company_mitsubishi": {
                 "name": "Mitsubishi",
@@ -15593,7 +15907,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building automotive industry throughput +0.1; interest group ig industrialists approval +2",
                 "prestige_goods": ["prestige_good_washi_paper"],
                 "base_buildings": ["building_military_shipyards", "building_coal_mine", "building_paper_mills"],
-                "industry_charters": ["building_shipyards", "building_motor_industry", "building_port", "building_iron_mine"]
+                "industry_charters": ["building_shipyards", "building_motor_industry", "building_port", "building_iron_mine"],
+                "special_requirements": ["journal_entry", "primary_culture"],
+                "starts_enacted": false
             },
             "company_basic_agriculture_1": {
                 "name": "Basic Agriculture 1",
@@ -15605,7 +15921,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building livestock ranch throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_wheat_farm", "building_rye_farm"],
-                "industry_charters": ["building_maize_farm"]
+                "industry_charters": ["building_maize_farm"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_type_names": {
                 "name": "Type Names",
@@ -15617,7 +15935,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": "",
                 "prestige_goods": [],
                 "base_buildings": [],
-                "industry_charters": []
+                "industry_charters": [],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_agriculture_2": {
                 "name": "Basic Agriculture 2",
@@ -15629,7 +15949,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building livestock ranch throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
                 "base_buildings": ["building_rice_farm", "building_millet_farm", "building_maize_farm"],
-                "industry_charters": ["building_rye_farm"]
+                "industry_charters": ["building_rye_farm"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_fabrics": {
                 "name": "Basic Fabrics",
@@ -15641,7 +15963,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building textile mills throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_meat"],
                 "base_buildings": ["building_cotton_plantation", "building_livestock_ranch"],
-                "industry_charters": ["building_textile_mills"]
+                "industry_charters": ["building_textile_mills"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_colonial_plantations_1": {
                 "name": "Basic Colonial Plantations 1",
@@ -15653,7 +15977,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state radicals from political movements \u00d7-0.05",
                 "prestige_goods": ["prestige_good_generic_opium"],
                 "base_buildings": ["building_opium_plantation", "building_tea_plantation"],
-                "industry_charters": ["building_tobacco_plantation"]
+                "industry_charters": ["building_tobacco_plantation"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_colonial_plantations_2": {
                 "name": "Basic Colonial Plantations 2",
@@ -15665,7 +15991,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_coffee"],
                 "base_buildings": ["building_coffee_plantation", "building_sugar_plantation", "building_tobacco_plantation"],
-                "industry_charters": ["building_tea_plantation"]
+                "industry_charters": ["building_tea_plantation"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_silk_and_dye": {
                 "name": "Basic Silk And Dye",
@@ -15677,7 +16005,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country influence \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_silk_plantation", "building_dye_plantation"],
-                "industry_charters": ["building_textile_mills"]
+                "industry_charters": ["building_textile_mills"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_wine_and_fruit": {
                 "name": "Basic Wine And Fruit",
@@ -15689,7 +16019,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country prestige \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_vineyard_plantation", "building_banana_plantation"],
-                "industry_charters": ["building_sugar_plantation"]
+                "industry_charters": ["building_sugar_plantation"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_fishing": {
                 "name": "Basic Fishing",
@@ -15701,7 +16033,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.1; building shipyards throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_fish"],
                 "base_buildings": ["building_fishing_wharf", "building_whaling_station"],
-                "industry_charters": ["building_shipyards"]
+                "industry_charters": ["building_shipyards"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_forestry": {
                 "name": "Basic Forestry",
@@ -15713,7 +16047,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state infrastructure from population +1; state infrastructure from population max +20",
                 "prestige_goods": [],
                 "base_buildings": ["building_logging_camp", "building_rubber_plantation"],
-                "industry_charters": ["building_tooling_workshops"]
+                "industry_charters": ["building_tooling_workshops"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_oil": {
                 "name": "Basic Oil",
@@ -15725,7 +16061,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state migration pull \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_oil_rig"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_gold_mining": {
                 "name": "Basic Gold Mining",
@@ -15737,7 +16075,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country minting \u00d70.05; state loyalists from political movements \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_gold_mine"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_metal_mining": {
                 "name": "Basic Metal Mining",
@@ -15749,7 +16089,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building steel mills throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_iron_mine", "building_lead_mine"],
-                "industry_charters": ["building_coal_mine"]
+                "industry_charters": ["building_coal_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_mineral_mining": {
                 "name": "Basic Mineral Mining",
@@ -15761,7 +16103,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building chemical plants throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_sulfur_mine", "building_coal_mine"],
-                "industry_charters": ["building_iron_mine"]
+                "industry_charters": ["building_iron_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_food": {
                 "name": "Basic Food",
@@ -15773,7 +16117,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state birth rate \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_groceries"],
                 "base_buildings": ["building_food_industry"],
-                "industry_charters": ["building_livestock_ranch", "building_wheat_farm"]
+                "industry_charters": ["building_livestock_ranch", "building_wheat_farm"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_paper": {
                 "name": "Basic Paper",
@@ -15785,7 +16131,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country bureaucracy \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_paper"],
                 "base_buildings": ["building_paper_mills"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_home_goods": {
                 "name": "Basic Home Goods",
@@ -15797,7 +16145,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state loyalists from political movements \u00d70.1",
                 "prestige_goods": ["prestige_good_generic_furniture"],
                 "base_buildings": ["building_glassworks", "building_furniture_manufacturies"],
-                "industry_charters": ["building_logging_camp", "building_lead_mine"]
+                "industry_charters": ["building_logging_camp", "building_lead_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_textiles": {
                 "name": "Basic Textiles",
@@ -15809,7 +16159,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state radicals from political movements \u00d7-0.1",
                 "prestige_goods": ["prestige_good_generic_clothes"],
                 "base_buildings": ["building_textile_mills"],
-                "industry_charters": ["building_cotton_plantation", "building_silk_plantation"]
+                "industry_charters": ["building_cotton_plantation", "building_silk_plantation"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_steel": {
                 "name": "Basic Steel",
@@ -15821,7 +16173,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- state construction \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_steel"],
                 "base_buildings": ["building_steel_mills"],
-                "industry_charters": ["building_iron_mine", "building_coal_mine"]
+                "industry_charters": ["building_iron_mine", "building_coal_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_metalworks": {
                 "name": "Basic Metalworks",
@@ -15833,7 +16187,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building group bg manufacturing throughput +0.05",
                 "prestige_goods": ["prestige_good_generic_tools"],
                 "base_buildings": ["building_tooling_workshops"],
-                "industry_charters": ["building_steel_mills", "building_iron_mine"]
+                "industry_charters": ["building_steel_mills", "building_iron_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_shipyards": {
                 "name": "Basic Shipyards",
@@ -15845,7 +16201,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05",
                 "prestige_goods": [],
                 "base_buildings": ["building_shipyards", "building_military_shipyards"],
-                "industry_charters": ["building_logging_camp"]
+                "industry_charters": ["building_logging_camp"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_chemicals": {
                 "name": "Basic Chemicals",
@@ -15857,7 +16215,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit supply consumption \u00d7-0.05",
                 "prestige_goods": ["prestige_good_generic_fertilizer"],
                 "base_buildings": ["building_chemical_plants", "building_synthetics_plants"],
-                "industry_charters": ["building_sulfur_mine"]
+                "industry_charters": ["building_sulfur_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_motors": {
                 "name": "Basic Motors",
@@ -15869,7 +16229,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- military formation movement speed \u00d70.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_motor_industry", "building_automotive_industry"],
-                "industry_charters": ["building_steel_mills"]
+                "industry_charters": ["building_steel_mills"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_munitions": {
                 "name": "Basic Munitions",
@@ -15881,7 +16243,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- country military goods cost \u00d7-0.1",
                 "prestige_goods": ["prestige_good_generic_explosives"],
                 "base_buildings": ["building_munition_plants", "building_explosives_factory"],
-                "industry_charters": ["building_sulfur_mine", "building_steel_mills"]
+                "industry_charters": ["building_sulfur_mine", "building_steel_mills"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_electrics": {
                 "name": "Basic Electrics",
@@ -15893,7 +16257,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building power plant throughput +0.1",
                 "prestige_goods": [],
                 "base_buildings": ["building_electrics_industry"],
-                "industry_charters": ["building_iron_mine", "building_rubber_plantation"]
+                "industry_charters": ["building_iron_mine", "building_rubber_plantation"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_basic_weapons": {
                 "name": "Basic Weapons",
@@ -15905,7 +16271,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- unit army offense \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_small_arms"],
                 "base_buildings": ["building_arms_industry", "building_artillery_foundries"],
-                "industry_charters": ["building_automotive_industry", "building_steel_mills"]
+                "industry_charters": ["building_automotive_industry", "building_steel_mills"],
+                "special_requirements": [],
+                "starts_enacted": false
             },
             "company_construction_power_bloc": {
                 "name": "United Construction Conglomerate",
@@ -15917,7 +16285,9 @@ module.exports = require('./lib/heap');
                 "prosperity_bonuses_text": " -- building construction sector throughput +0.2",
                 "prestige_goods": [],
                 "base_buildings": ["building_steel_mills", "building_tooling_workshops", "building_glassworks"],
-                "industry_charters": ["building_lead_mine"]
+                "industry_charters": ["building_lead_mine"],
+                "special_requirements": [],
+                "starts_enacted": false
             }
         };
         
@@ -16311,6 +16681,8 @@ module.exports = require('./lib/heap');
                             icon = '💡 ';
                         } else if (req.includes('journal entry') || req.includes('Journal Entry')) {
                             icon = '📚 ';
+                        } else if (req.includes('Starts Enacted') || req.includes('game start')) {
+                            icon = '⚠️ ';
                         }
                         html += `<li>${icon}${req}</li>`;
                     });
