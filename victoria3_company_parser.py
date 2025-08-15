@@ -1834,6 +1834,14 @@ class Victoria3CompanyParserV6Final:
                     tech_reqs = re.findall(r'has_technology_researched\s*=\s*(\w+)', possible_content)
                     for tech in tech_reqs:
                         company_data['formation_requirements'].append("Technology: {}".format(tech.replace('_', ' ').title()))
+                    
+                    # Extract journal entry requirements
+                    if ('journal_entry' in company_data.get('special_requirements', []) or
+                        'has_journal_entry' in possible_content or
+                        'complete_journal' in possible_content.lower() or
+                        'is_meiji_japan' in possible_content or
+                        'meiji_restoration' in possible_content.lower()):
+                        company_data['formation_requirements'].append("Journal Entry Required")
         
         # Parse prosperity bonuses from prosperity_modifier - show raw content
         prosperity_match = re.search(r'prosperity_modifier\s*=\s*\{([^{}]+)\}', company_content)
@@ -2121,9 +2129,17 @@ class Victoria3CompanyParserV6Final:
                 <div style="display: flex; flex-wrap: wrap; gap: 5px;">
                     <strong style="font-size: 11px;">Quick Actions:</strong>
                     <button onclick="toggleAllCompanyFilters(true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #28a745; color: white;">✓ Enable All</button>
-                    <button onclick="toggleAllCompanyFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #d73027; color: white;">🗑 Disable All</button>
-                    <button onclick="toggleCompanyCategory('pre_enacted', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #6c757d; color: white;">🚫 No Pre-Enacted</button>
-                    <button onclick="toggleCompanyCategory('special', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #fd7e14; color: white;">🚫 No Special Req.</button>
+                    <button onclick="toggleAllCompanyFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #6c757d; color: white;">🗑 Clear All</button>
+                    <button onclick="toggleCompanyCategory('basic_only', true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #17a2b8; color: white;">⭐ Basic Only</button>
+                    <button onclick="toggleCompanyCategory('pre_enacted', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #ffc107; color: black;">🚫 No Game Start</button>
+                    <button onclick="toggleCompanyCategory('culture_restricted', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #dc3545; color: white;">🚫 No Culture Req</button>
+                    <button onclick="toggleCompanyCategory('journal_required', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #fd7e14; color: white;">🚫 No Journal Req</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px; margin-top: 5px;">
+                    <strong style="font-size: 11px;">Presets:</strong>
+                    <button onclick="exportCompanyPreset()" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #007bff; color: white;">📤 Export</button>
+                    <button onclick="document.getElementById('preset-import').click()" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #28a745; color: white;">📥 Import</button>
+                    <input type="file" id="preset-import" accept=".json" style="display: none;" onchange="importCompanyPreset(this)">
                 </div>
             </div>
         </div>
@@ -3563,6 +3579,16 @@ class Victoria3CompanyParserV6Final:
                 building_count_display = self.format_building_count(base_count, charter_count)
                 prestige_icons = self.get_company_prestige_icons(company_name)
                 
+                # Add special requirement icons (after prestige icons)
+                special_requirement_icons = ''
+                special_reqs = data.get('special_requirements', [])
+                if 'journal_entry' in special_reqs:
+                    special_requirement_icons += '📚 '
+                if 'primary_culture' in special_reqs:
+                    special_requirement_icons += '🛑 '
+                if data.get('starts_enacted', False):
+                    special_requirement_icons += '⚠️ '
+                
                 # Get company logo
                 company_icon_path = self.get_company_icon_path(company_name)
                 company_icon_html = ''
@@ -3599,8 +3625,8 @@ class Victoria3CompanyParserV6Final:
                     onmouseover="showCompanyTooltip(event, '{}')" 
                     onmouseout="hideCompanyTooltip()" 
                     data-company="{}">
-                    {}{}{}
-                </td>'''.format(company_country, company_name, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, abbreviated_name)
+                    {}{}{}{}
+                </td>'''.format(company_country, company_name, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, special_requirement_icons, abbreviated_name)
                 
                 # Add columns for all available buildings
                 for avail_building in available_buildings:
@@ -3963,7 +3989,16 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 if (data.requirements && data.requirements.length > 0) {
                     html += '<div class="requirements"><h4>Formation Requirements</h4><ul>';
                     data.requirements.forEach(req => {
-                        html += `<li>${req}</li>`;
+                        let icon = '';
+                        // Add icons for specific requirement types
+                        if (req.includes('Primary culture:')) {
+                            icon = '🛑 ';
+                        } else if (req.includes('Technology:')) {
+                            icon = '💡 ';
+                        } else if (req.includes('journal entry') || req.includes('Journal Entry')) {
+                            icon = '📚 ';
+                        }
+                        html += `<li>${icon}${req}</li>`;
                     });
                     html += '</ul></div>';
                 }
@@ -3981,6 +4016,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     const reqIcons = {
                         'journal_entry': '📚',
                         'primary_culture': '🛑',
+                        'technology': '💡',
                         'law': '🔒',
                         'ideology': '🔒',
                         'diplomatic': '🔒'
@@ -4649,6 +4685,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 updateCountryCheckbox(countryCode);
             });
             
+            // Update Selected Companies count and display
+            updateCustomTable();
+            updateCheckboxes();
+            updateControlButtons();
+            updateDynamicCoverage();
+            updateBuildingTableCharters();
+            
             // Update all continent checkboxes
             const continentCheckboxes = document.querySelectorAll('.continent-checkbox');
             continentCheckboxes.forEach(checkbox => {
@@ -4682,18 +4725,36 @@ __YALPS_BUNDLE_PLACEHOLDER__
         function toggleCompanyCategory(category, enable) {
             let companyCheckboxes;
             
-            if (category === 'pre_enacted') {
+            if (category === 'basic_only') {
+                // First disable all companies
+                Array.from(document.querySelectorAll('.company-checkbox')).forEach(checkbox => {
+                    checkbox.checked = false;
+                    updateCompanyVisibility(checkbox);
+                });
+                // Then enable only basic companies (no mandate requirements) - but actually enable them
+                companyCheckboxes = Array.from(document.querySelectorAll('.company-checkbox')).filter(checkbox => {
+                    const companyId = checkbox.value;
+                    return companyId.startsWith('company_basic_');
+                });
+                // Force enable to true for basic companies
+                enable = true;
+            } else if (category === 'pre_enacted') {
                 // Find companies with ⚠️ indicator (pre-enacted)
                 companyCheckboxes = Array.from(document.querySelectorAll('.company-checkbox')).filter(checkbox => {
                     const span = checkbox.nextElementSibling;
                     return span && span.textContent.includes('⚠️');
                 });
-            } else if (category === 'special') {
-                // Find companies with special requirement indicators (🛑, 📚, 🔒)
+            } else if (category === 'culture_restricted') {
+                // Find companies with 🛑 indicator (primary culture required)
                 companyCheckboxes = Array.from(document.querySelectorAll('.company-checkbox')).filter(checkbox => {
                     const span = checkbox.nextElementSibling;
-                    return span && (span.textContent.includes('🛑') || span.textContent.includes('📚') || 
-                                   span.textContent.includes('🔒'));
+                    return span && span.textContent.includes('🛑');
+                });
+            } else if (category === 'journal_required') {
+                // Find companies with 📚 indicator (journal entry required)
+                companyCheckboxes = Array.from(document.querySelectorAll('.company-checkbox')).filter(checkbox => {
+                    const span = checkbox.nextElementSibling;
+                    return span && span.textContent.includes('📚');
                 });
             } else {
                 companyCheckboxes = document.querySelectorAll(`.company-checkbox[data-category="${category}"]`);
@@ -4711,6 +4772,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 updateCountryStatus(countryCode);
                 updateCountryCheckbox(countryCode);
             });
+            
+            // Update Selected Companies count and display
+            updateCustomTable();
+            updateCheckboxes();
+            updateControlButtons();
+            updateDynamicCoverage();
+            updateBuildingTableCharters();
         }
         
         function getEnabledCompanies() {
@@ -5640,6 +5708,20 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     });
                 }
                 
+                // Generate special requirement icons (after prestige icons)
+                let specialRequirementIcons = '';
+                if (company.special_requirements && Array.isArray(company.special_requirements)) {
+                    if (company.special_requirements.includes('journal_entry')) {
+                        specialRequirementIcons += '📚 ';
+                    }
+                    if (company.special_requirements.includes('primary_culture')) {
+                        specialRequirementIcons += '🛑 ';
+                    }
+                }
+                if (company.starts_enacted) {
+                    specialRequirementIcons += '⚠️ ';
+                }
+                
                 tableHTML += `<tr data-company="${companyName}" data-country="${company.country || ''}">
                     <td class="select-column">
                         <input type="checkbox" class="company-checkbox" data-company="${companyName}" onchange="toggleCompanySelection('${companyName}')" checked>
@@ -5666,7 +5748,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     onmouseover="showCompanyTooltip(event, '${companyName}')" 
                     onmouseout="hideCompanyTooltip()" 
                     data-company="${companyName}">
-                    ${companyIconHTML}${prestigeIcons}${company.name}
+                    ${companyIconHTML}${prestigeIcons}${specialRequirementIcons}${company.name}
                 </td>`;
                 
                 // Building columns with charter selection
@@ -7607,6 +7689,78 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 }
             });
         };
+        
+        // Import/Export functionality
+        function exportCompanyPreset() {
+            const enabledCompanies = [];
+            const companyCheckboxes = document.querySelectorAll('.company-checkbox:checked');
+            companyCheckboxes.forEach(checkbox => {
+                enabledCompanies.push(checkbox.value);
+            });
+            
+            const preset = {
+                name: "Victoria 3 Company Preset",
+                timestamp: new Date().toISOString(),
+                companies: enabledCompanies
+            };
+            
+            const dataStr = JSON.stringify(preset, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `v3co-preset-${new Date().toISOString().slice(0,10)}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        function importCompanyPreset(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const preset = JSON.parse(e.target.result);
+                    if (!preset.companies || !Array.isArray(preset.companies)) {
+                        alert('Invalid preset file format');
+                        return;
+                    }
+                    
+                    // First disable all companies
+                    document.querySelectorAll('.company-checkbox').forEach(checkbox => {
+                        checkbox.checked = false;
+                        updateCompanyVisibility(checkbox);
+                    });
+                    
+                    // Then enable companies from preset
+                    preset.companies.forEach(companyId => {
+                        const checkbox = document.querySelector(`input[value="${companyId}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            updateCompanyVisibility(checkbox);
+                        }
+                    });
+                    
+                    // Update all country statuses
+                    const countries = new Set();
+                    document.querySelectorAll('.company-checkbox').forEach(checkbox => {
+                        countries.add(checkbox.dataset.country);
+                    });
+                    countries.forEach(countryCode => updateCountryStatus(countryCode));
+                    
+                    alert(`Preset loaded: ${preset.companies.length} companies enabled`);
+                    
+                } catch (error) {
+                    alert('Error loading preset: Invalid JSON file');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            input.value = '';
+        }
     </script>
 </body>
 </html>'''
