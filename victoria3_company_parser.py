@@ -3742,8 +3742,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
             
             # Add building information for detailed tooltip
             prestige_goods_json = json.dumps(data.get('possible_prestige_goods', []))
-            base_buildings_json = json.dumps(data.get('building_types', []))
-            industry_charters_json = json.dumps(data.get('extension_building_types', []))
+            building_types_json = json.dumps(data.get('building_types', []))
+            extension_building_types_json = json.dumps(data.get('extension_building_types', []))
             
             # Add special requirements and starts enacted for JavaScript access
             special_requirements_json = json.dumps(data.get('special_requirements', []))
@@ -3758,11 +3758,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 "bonuses": {},
                 "prosperity_bonuses_text": {},
                 "prestige_goods": {},
+                "building_types": {},
+                "extension_building_types": {},
                 "base_buildings": {},
                 "industry_charters": {},
                 "special_requirements": {},
                 "starts_enacted": {}
-            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, base_buildings_json, industry_charters_json, special_requirements_json, starts_enacted_json)
+            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, building_types_json, extension_building_types_json, building_types_json, extension_building_types_json, special_requirements_json, starts_enacted_json)
             company_entries.append(entry)
         
         html += ',\n'.join(company_entries)
