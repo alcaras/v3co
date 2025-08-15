@@ -3415,6 +3415,10 @@ class Victoria3CompanyParserV6Final:
         html += '''
     
     <script>
+__YALPS_BUNDLE_PLACEHOLDER__
+    </script>
+    
+    <script>
         // YALPS bundled library is included above
         // We will ONLY use YALPS, no other solvers
         
