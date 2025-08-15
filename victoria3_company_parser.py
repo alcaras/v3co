@@ -3567,7 +3567,7 @@ class Victoria3CompanyParserV6Final:
                     
                     // For integer programming problems with binary variables
                     // We'll use a simplified branch-and-bound approach
-                    if (model.integers && model.integers.length > 0) {
+                    if (model.binaries && model.binaries.length > 0) {
                         return solveIntegerProgram(model, opts);
                     } else {
                         return solveContinuousProgram(model, opts);
@@ -6871,7 +6871,7 @@ class Victoria3CompanyParserV6Final:
                     total_coverage: relevantBuildings.length // FIXED: Simple score = building count
                 };
                 
-                model.integers.push(candidate.id); // Binary variable
+                model.binaries.push(candidate.id); // Binary variable
             });
             
             // Add mutual exclusion constraints (each company can only be selected once)
