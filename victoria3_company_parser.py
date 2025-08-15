@@ -1750,8 +1750,58 @@ class Victoria3CompanyParserV6Final:
                                     assigned_country = country_assignment.group(1)
                                     company_data['country'] = assigned_country
                                     company_data['country_confidence'] = 'definitive'
+                                
+                                # Detect special requirement types for filtering
+                                special_requirements = []
+                                
+                                # Check for journal entry requirements
+                                if 'journal_entry' in potential_content.lower() or 'complete_journal' in potential_content.lower():
+                                    special_requirements.append('journal_entry')
+                                    
+                                # Check for primary culture requirements (country-specific)
+                                if 'country_has_primary_culture' in potential_content:
+                                    special_requirements.append('primary_culture')
+                                    
+                                # Check for specific technology requirements
+                                if 'has_technology' in potential_content:
+                                    special_requirements.append('technology')
+                                    
+                                # Check for law requirements
+                                if 'has_law' in potential_content:
+                                    special_requirements.append('law')
+                                    
+                                # Check for ideology requirements
+                                if 'ruler_ideology' in potential_content or 'government_ideology' in potential_content:
+                                    special_requirements.append('ideology')
+                                    
+                                # Check for war or diplomatic status requirements
+                                if 'at_war' in potential_content or 'in_diplomatic_play' in potential_content:
+                                    special_requirements.append('diplomatic')
+                                    
+                                company_data['special_requirements'] = special_requirements
+                    else:
+                        # No potential block found - this is a basic company
+                        company_data['special_requirements'] = []
                     
                     company_data['formation_requirements'] = formation_reqs
+                    
+                    # Check if company starts enacted (from wiki data) 
+                    company_data['starts_enacted'] = False
+                    if hasattr(self, 'wiki_companies'):
+                        company_clean_name = company_name.replace('company_', '')
+                        wiki_entry = self.wiki_companies.get(company_clean_name, {})
+                        wiki_text = wiki_entry.get('text', '')
+                        if 'starts with this company established' in wiki_text.lower():
+                            company_data['starts_enacted'] = True
+                    
+                    # Additional check: hardcode known pre-enacted companies from wiki
+                    pre_enacted_companies = {
+                        'hudson_bay_company', 'massey_harris', 'william_cramp', 
+                        'east_india_company', 'john_cockerill', 'confédération_générale_des_vignerons',
+                        'rheinmetall', 'russian_american_company'
+                    }
+                    if company_clean_name in pre_enacted_companies:
+                        company_data['starts_enacted'] = True
                         
                     # Map states to countries for country association
                     countries = []
