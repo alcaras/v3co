@@ -3415,325 +3415,12 @@ class Victoria3CompanyParserV6Final:
         html += '''
     
     <script>
-        // Since bundled YALPS is broken, use a proper greedy algorithm
-        // that mimics what the working Node.js YALPS achieves
+        // YALPS bundled library is included above
+        // We will ONLY use YALPS, no other solvers
         
-        function solve(model) {
-            console.log('🔍 Using optimized greedy solver (YALPS bundle broken)...');
-            
-            if (!model.variables || !model.objective) {
-                return { status: 'error', variables: [] };
-            }
-            
-            // Extract companies and their building coverage
-            const companies = [];
-            const companyToCoverage = {};
-            
-            Object.entries(model.variables).forEach(([varName, data]) => {
-                if (varName.startsWith('select_')) {
-                    const companyId = varName.replace('select_', '');
-                    const isSpecial = !(data.max_regular_companies > 0);
-                    
-                    // Find what buildings this company covers
-                    const coveredBuildings = new Set();
-                    Object.entries(model.variables).forEach(([coverVar]) => {
-                        if (coverVar.startsWith('covers_') && coverVar.endsWith('_' + companyId)) {
-                            const building = coverVar.split('_')[1] + '_' + coverVar.split('_')[2];
-                            coveredBuildings.add(building);
-                        }
-                    });
-                    
-                    companies.push({
-                        id: companyId,
-                        varName: varName,
-                        buildings: Array.from(coveredBuildings),
-                        isSpecial: isSpecial
-                    });
-                    
-                    companyToCoverage[companyId] = coveredBuildings;
-                }
-            });
-            
-            // Greedy algorithm: select companies that maximize coverage
-            const selected = [];
-            const selectedVars = [];
-            const coveredBuildings = new Set();
-            const selectedCompanyNames = new Set();
-            let regularCount = 0;
-            const maxRegular = model.constraints?.max_regular_companies?.max || 7;
-            
-            // First, select special companies (they're free)
-            companies.filter(c => c.isSpecial).forEach(company => {
-                // Check mutual exclusion
-                const baseName = company.id.split('_charter_')[0].split('_base')[0];
-                if (!selectedCompanyNames.has(baseName)) {
-                    selectedVars.push([company.varName, 1]);
-                    company.buildings.forEach(b => coveredBuildings.add(b));
-                    selectedCompanyNames.add(baseName);
-                    
-                    // Add coverage variables
-                    company.buildings.forEach(b => {
-                        const coverVar = `covers_${b}_${company.id}`;
-                        if (model.variables[coverVar]) {
-                            selectedVars.push([coverVar, 1]);
-                        }
-                    });
-                    
-                    console.log(`✨ Selected special: ${company.id}`);
-                }
-            });
-            
-            // Select regular companies
-            while (regularCount < maxRegular) {
-                let bestCompany = null;
-                let bestNewBuildings = 0;
-                
-                for (const company of companies.filter(c => !c.isSpecial)) {
-                    // Check mutual exclusion
-                    const baseName = company.id.split('_charter_')[0].split('_base')[0];
-                    if (selectedCompanyNames.has(baseName)) continue;
-                    
-                    // Count new buildings this would add
-                    const newBuildings = company.buildings.filter(b => !coveredBuildings.has(b)).length;
-                    
-                    if (newBuildings > bestNewBuildings) {
-                        bestNewBuildings = newBuildings;
-                        bestCompany = company;
-                    }
-                }
-                
-                if (!bestCompany || bestNewBuildings === 0) break;
-                
-                // Select this company
-                const baseName = bestCompany.id.split('_charter_')[0].split('_base')[0];
-                selectedVars.push([bestCompany.varName, 1]);
-                bestCompany.buildings.forEach(b => coveredBuildings.add(b));
-                selectedCompanyNames.add(baseName);
-                regularCount++;
-                
-                // Add coverage variables
-                bestCompany.buildings.forEach(b => {
-                    const coverVar = `covers_${b}_${bestCompany.id}`;
-                    if (model.variables[coverVar]) {
-                        selectedVars.push([coverVar, 1]);
-                    }
-                });
-                
-                console.log(`🏭 Selected ${bestCompany.id}: +${bestNewBuildings} buildings`);
-            }
-            
-            console.log(`✅ Result: ${selectedCompanyNames.size} companies, ${coveredBuildings.size} buildings covered`);
-            
-            return {
-                status: 'optimal',
-                result: coveredBuildings.size,
-                variables: selectedVars
-            };
-        }
+        // YALPS is loaded from the bundled library above - NO OTHER IMPLEMENTATIONS
         
-        // Real YALPS Linear Programming Solver Integration
-        (function(global) {
-            'use strict';
-            
-            // REAL YALPS solver - integrates working optimization from external tests
-            const YALPS = {};
-            
-            // Utility functions
-            const roundToPrecision = (num, precision) => {
-                const rounding = Math.round(1.0 / precision);
-                return Math.round((num + Number.EPSILON) * rounding) / rounding;
-            };
-            
-            // Main solve function - simplified for our use case
-            const solve = (model, options = {}) => {
-                try {
-                    // Set default options
-                    const opts = {
-                        precision: 1e-8,
-                        maxPivots: 8192,
-                        tolerance: 0,
-                        includeZeroVariables: false,
-                        ...options
-                    };
-                    
-                    // Handle edge case: no variables at all
-                    if (!model.variables || Object.keys(model.variables).length === 0) {
-                        return {
-                            status: 'optimal',
-                            result: 0,
-                            variables: []
-                        };
-                    }
-                    
-                    // For integer programming problems with binary variables
-                    // We'll use a simplified branch-and-bound approach
-                    if (model.binaries && model.binaries.length > 0) {
-                        return solveIntegerProgram(model, opts);
-                    } else {
-                        return solveContinuousProgram(model, opts);
-                    }
-                } catch (error) {
-                    return {
-                        status: 'error',
-                        result: NaN,
-                        variables: [],
-                        error: error.message
-                    };
-                }
-            };
-            
-            // Simplified integer programming solver for Victoria 3 company selection
-            const solveIntegerProgram = (model, options) => {
-                const variables = Object.keys(model.variables);
-                const constraints = model.constraints;
-                
-                // Handle edge case: no variables
-                if (variables.length === 0) {
-                    return {
-                        status: 'optimal',
-                        result: 0,
-                        variables: []
-                    };
-                }
-                
-                // For company selection, use a greedy approximation with local optimization
-                // This is much simpler than full branch-and-bound but works well for our problem
-                
-                const solution = {};
-                variables.forEach(v => solution[v] = 0);
-                
-                // Parse constraints
-                const maxCompanies = constraints.maxCompanies ? constraints.maxCompanies.max : 7;
-                const companyGroups = {};
-                
-                // Group variables by company (for mutual exclusion)
-                variables.forEach(varName => {
-                    Object.keys(constraints).forEach(constraintName => {
-                        if (constraintName !== 'maxCompanies' && model.variables[varName][constraintName]) {
-                            if (!companyGroups[constraintName]) companyGroups[constraintName] = [];
-                            companyGroups[constraintName].push(varName);
-                        }
-                    });
-                });
-                
-                // Greedy selection with SET COVER logic: pick companies that cover the most uncovered buildings
-                let selectedCount = 0;
-                const selectedVars = new Set();
-                const coveredBuildings = new Set();
-                
-                while (selectedCount < maxCompanies) {
-                    let bestVar = null;
-                    let bestNewCoverage = 0;
-                    
-                    variables.forEach(varName => {
-                        if (selectedVars.has(varName)) return;
-                        
-                        // Check if this variable conflicts with already selected ones
-                        let conflicts = false;
-                        Object.keys(companyGroups).forEach(group => {
-                            if (companyGroups[group].includes(varName)) {
-                                const alreadySelected = companyGroups[group].some(v => selectedVars.has(v));
-                                if (alreadySelected) conflicts = true;
-                            }
-                        });
-                        
-                        if (!conflicts) {
-                            let newCoverage = 0;
-                            
-                            if (model.buildingCoverage && model.buildingCoverage[varName]) {
-                                // Count NEW buildings this company would add (set cover logic)
-                                model.buildingCoverage[varName].forEach(building => {
-                                    if (!coveredBuildings.has(building)) {
-                                        newCoverage++;
-                                    }
-                                });
-                            } else {
-                                // Fallback: use coverage value directly
-                                newCoverage = model.variables[varName][model.objective] || 0;
-                            }
-                            
-                            if (newCoverage > bestNewCoverage) {
-                                bestNewCoverage = newCoverage;
-                                bestVar = varName;
-                            }
-                        }
-                    });
-                    
-                    if (!bestVar || bestNewCoverage === 0) break; // No more useful selections
-                    
-                    selectedVars.add(bestVar);
-                    solution[bestVar] = 1;
-                    selectedCount += model.variables[bestVar].maxCompanies || 1;
-                    
-                    // Update covered buildings
-                    if (model.buildingCoverage && model.buildingCoverage[bestVar]) {
-                        model.buildingCoverage[bestVar].forEach(building => {
-                            coveredBuildings.add(building);
-                        });
-                    }
-                }
-                
-                // Calculate objective value - use SET COVER logic (unique buildings only)
-                let objectiveValue = 0;
-                if (model.buildingCoverage) {
-                    // If building coverage data is provided, count unique buildings
-                    const coveredBuildings = new Set();
-                    variables.forEach(varName => {
-                        if (solution[varName] > 0 && model.buildingCoverage[varName]) {
-                            model.buildingCoverage[varName].forEach(building => {
-                                coveredBuildings.add(building);
-                            });
-                        }
-                    });
-                    objectiveValue = coveredBuildings.size;
-                } else {
-                    // Fallback to simple sum (for backward compatibility)
-                    variables.forEach(varName => {
-                        if (solution[varName] > 0) {
-                            objectiveValue += (model.variables[varName][model.objective] || 0) * solution[varName];
-                        }
-                    });
-                }
-                
-                // Format result to match YALPS output
-                const resultVariables = [];
-                variables.forEach(varName => {
-                    if (solution[varName] > 0) {
-                        resultVariables.push([varName, solution[varName]]);
-                    }
-                });
-                
-                return {
-                    status: 'optimal',
-                    result: objectiveValue,
-                    variables: resultVariables
-                };
-            };
-            
-            // Simplified continuous LP solver (not needed for our use case but included for completeness)
-            const solveContinuousProgram = (model, options) => {
-                // For our company selection problem, all variables are binary integers
-                // So this is just a fallback that shouldn't be used
-                return {
-                    status: 'error',
-                    result: NaN,
-                    variables: [],
-                    error: 'Continuous LP not implemented'
-                };
-            };
-            
-            // Export YALPS
-            YALPS.solve = solve;
-            
-            // Make available globally
-            if (typeof window !== 'undefined') {
-                window.YALPS = YALPS;
-            } else {
-                global.YALPS = YALPS;
-            }
-            
-        })(typeof window !== 'undefined' ? window : global);
-        
+        // All fake solvers have been removed - ONLY USE window.YALPS.solve()
         // Company data for tooltips
         const companyData = {'''
         
@@ -6448,9 +6135,8 @@ class Victoria3CompanyParserV6Final:
                 // MATCH NODE.JS: Companies DON'T contribute to objective directly
                 model.variables[companyVar] = {};
                 
-                // Only Panama and Suez are special (unlimited), all others are regular
-                const specialCompanies = ['company_panama_company', 'company_suez_company'];
-                if (!specialCompanies.includes('company_' + candidate.name)) {
+                // Special companies (Panama/Suez) don't count against the company limit
+                if (!candidate.isSpecial) {
                     model.variables[companyVar].max_regular_companies = 1;
                 }
                 
@@ -6511,7 +6197,8 @@ class Victoria3CompanyParserV6Final:
             // USE REAL YALPS: Always use YALPS solver
             console.log('🔧 Calling real YALPS solver with model:', Object.keys(model.variables).length, 'variables,', Object.keys(model.constraints).length, 'constraints');
             
-            const yalpsResult = solve(model);
+            // ALWAYS USE YALPS - NO FALLBACKS
+            const yalpsResult = window.YALPS.solve(model);
             console.log('📋 Real YALPS result:', yalpsResult);
             
             // Extract selected companies from YALPS result
@@ -6741,8 +6428,10 @@ class Victoria3CompanyParserV6Final:
             Object.keys(companyData).forEach(companyName => {
                 debugStats.total++;
                 
-                // Skip if already selected (but NOT special companies - they should be candidates)
-                if (existingCompanies.includes(companyName)) {
+                // Skip if already selected (but NOT special companies - they should always be candidates)
+                // Special companies (Panama/Suez) are free and should always be considered
+                const isSpecial = specialCompanies.includes(companyName);
+                if (existingCompanies.includes(companyName) && !isSpecial) {
                     debugStats.skippedExisting++;
                     if (debugStats.total <= 5) console.log(`❌ Skipping ${companyName}: already selected`);
                     return;
@@ -6798,8 +6487,9 @@ class Victoria3CompanyParserV6Final:
                         name: companyName,
                         charter: null,
                         buildings: relevantBaseBuildings,
-                        cost: 1,
-                        isBasic: companyName.startsWith('company_basic_')
+                        cost: isSpecial ? 0 : 1,  // Special companies are free
+                        isBasic: companyName.startsWith('company_basic_'),
+                        isSpecial: isSpecial
                     });
                 }
                 
@@ -6817,8 +6507,9 @@ class Victoria3CompanyParserV6Final:
                             name: companyName,
                             charter: charter,
                             buildings: relevantBuildings,
-                            cost: 1,
-                            isBasic: companyName.startsWith('company_basic_')
+                            cost: isSpecial ? 0 : 1,  // Special companies are free
+                            isBasic: companyName.startsWith('company_basic_'),
+                            isSpecial: isSpecial
                         });
                     }
                 });
