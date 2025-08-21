@@ -1730,16 +1730,39 @@
                 flex-wrap: wrap !important;
             }
             
-            /* Fix dropdown in header */
-            #company-limit-dropdown {
-                width: 100%;
-                margin-top: 5px;
+            /* Fix the Selected Companies header section */
+            .selection-controls {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 10px !important;
+                padding: 10px !important;
             }
             
-            /* Fix optimize button */
-            .optimize-btn {
-                width: 100%;
-                margin-bottom: 5px;
+            #selected-companies-title {
+                text-align: center !important;
+                margin-bottom: 10px !important;
+                font-size: 20px !important;
+            }
+            
+            .header-controls {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 5px !important;
+            }
+            
+            /* Fix dropdown in header */
+            #company-limit-dropdown {
+                width: 100% !important;
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+            
+            /* Fix all header buttons */
+            .optimize-btn, .share-btn, .save-btn, .import-btn {
+                width: 100% !important;
+                padding: 10px 16px !important;
+                font-size: 14px !important;
+                margin: 0 !important;
             }
             
             /* Fix preset buttons container */
@@ -13989,7 +14012,7 @@ module.exports = require('./lib/heap');
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_SUZHOU", "Control state STATE_ZHEJIANG", "Control state STATE_NANJING", "Level 5+ Silk Plantation required"],
+                "requirements": ["Control state STATE_NANJING", "Control state STATE_SUZHOU", "Control state STATE_ZHEJIANG", "Level 5+ Silk Plantation required"],
                 "bonuses": ["country authority mult = 0.10", "country influence mult = 0.10"],
                 "prosperity_bonuses_text": " -- country authority \u00d70.10; country influence \u00d70.10",
                 "prestige_goods": ["prestige_good_suzhou_silk"],
@@ -14245,7 +14268,7 @@ module.exports = require('./lib/heap');
                 "country": "LAN",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_EAST_BORNEO", "Control state STATE_WEST_BORNEO", "Control state STATE_NORTH_BORNEO", "Level 5+ Gold Mine required"],
+                "requirements": ["Control state STATE_EAST_BORNEO", "Control state STATE_NORTH_BORNEO", "Control state STATE_WEST_BORNEO", "Level 5+ Gold Mine required"],
                 "bonuses": ["building group bg agriculture throughput add = 0.05", "battle defense owned province mult = 0.1"],
                 "prosperity_bonuses_text": " -- building group bg agriculture throughput +0.05; battle defense owned province \u00d70.1",
                 "prestige_goods": [],
@@ -14277,7 +14300,7 @@ module.exports = require('./lib/heap');
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_ZHILI", "Control state STATE_BEIJING", "Level 5+ Coal Mine required", "Technology: Steam Donkey", "Technology: Railways"],
+                "requirements": ["Control state STATE_BEIJING", "Control state STATE_ZHILI", "Level 5+ Coal Mine required", "Technology: Steam Donkey", "Technology: Railways"],
                 "bonuses": ["country tech spread mult = 0.1"],
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.1",
                 "prestige_goods": [],
@@ -14421,7 +14444,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
+                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
                 "bonuses": ["state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_opium"],
@@ -14517,7 +14540,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WEST_BENGAL", "Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
+                "requirements": ["Control state STATE_WEST_BENGAL", "Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
                 "bonuses": ["building sulfur mine throughput add = 0.1", "building textile mills throughput add = 0.1", "state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- building sulfur mine throughput +0.1; building textile mills throughput +0.1; state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -14565,7 +14588,7 @@ module.exports = require('./lib/heap');
                 "country": "BEL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WALLONIA", "Control state STATE_FLANDERS", "Level 5+ Motor Industry required"],
+                "requirements": ["Control state STATE_FLANDERS", "Control state STATE_WALLONIA", "Level 5+ Motor Industry required"],
                 "bonuses": ["state infrastructure mult = 0.05"],
                 "prosperity_bonuses_text": " -- state infrastructure \u00d70.05",
                 "prestige_goods": [],
@@ -14581,7 +14604,7 @@ module.exports = require('./lib/heap');
                 "country": "BEL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_WALLONIA", "Control state STATE_FLANDERS", "Level 5+ Steel Mills required", "Starts Enacted at Game Start"],
+                "requirements": ["Control state STATE_FLANDERS", "Control state STATE_WALLONIA", "Level 5+ Steel Mills required", "Starts Enacted at Game Start"],
                 "bonuses": ["building railway throughput add = 0.1"],
                 "prosperity_bonuses_text": " -- building railway throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_tools"],
@@ -14613,7 +14636,7 @@ module.exports = require('./lib/heap');
                 "country": "NET",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_GELRE", "Control state STATE_HOLLAND", "Level 5+ Electrics Industry required", "Technology: Telephone"],
+                "requirements": ["Control state STATE_HOLLAND", "Control state STATE_GELRE", "Level 5+ Electrics Industry required", "Technology: Telephone"],
                 "bonuses": ["country weekly innovation mult = 0.05", "country weekly innovation max add = 15"],
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.05; country weekly innovation max +15",
                 "prestige_goods": ["prestige_good_philips_chapel_radio"],
@@ -14757,7 +14780,7 @@ module.exports = require('./lib/heap');
                 "country": "POL",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MAZOVIA", "Control state STATE_GREATER_POLAND", "Level 5+ Steel Mills required", "Technology: Steelworking"],
+                "requirements": ["Control state STATE_GREATER_POLAND", "Control state STATE_MAZOVIA", "Level 5+ Steel Mills required", "Technology: Steelworking"],
                 "bonuses": ["building motor industry throughput add = 0.1"],
                 "prosperity_bonuses_text": " -- building motor industry throughput +0.1",
                 "prestige_goods": ["prestige_good_generic_steel"],
@@ -14773,7 +14796,7 @@ module.exports = require('./lib/heap');
                 "country": "POR",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MOCAMBIQUE", "Control state STATE_ZAMBEZIA", "Control state STATE_LOURENCO_MARQUES", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
+                "requirements": ["Control state STATE_ZAMBEZIA", "Control state STATE_MOCAMBIQUE", "Control state STATE_LOURENCO_MARQUES", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
                 "bonuses": ["state colony growth speed mult = 0.1", "state colony growth creation factor = 0.1"],
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; state colony growth creation factor = 0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -15077,7 +15100,7 @@ module.exports = require('./lib/heap');
                 "country": "DEU",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Poland (level 5+ buildings required)", "Control region in Region North Germany (level 5+ buildings required)", "Control region in Region Rhine (level 5+ buildings required)", "Control region in Region South Germany (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region Poland (level 5+ buildings required)", "Control region in Region Rhine (level 5+ buildings required)", "Control region in Region North Germany (level 5+ buildings required)", "Control region in Region South Germany (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["military formation movement speed mult = 0.1"],
                 "prosperity_bonuses_text": " -- military formation movement speed \u00d70.1",
                 "prestige_goods": [],
@@ -15381,7 +15404,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Level 5+ Tea Plantation required", "Starts Enacted at Game Start"],
+                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Level 5+ Tea Plantation required", "Starts Enacted at Game Start"],
                 "bonuses": ["country convoys capacity mult = 0.2"],
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.2",
                 "prestige_goods": ["prestige_good_bengal_opium"],
@@ -15461,7 +15484,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["state infrastructure from population add = 0.5", "state infrastructure from population max add = 20"],
                 "prosperity_bonuses_text": " -- state infrastructure from population +0.5; state infrastructure from population max +20",
                 "prestige_goods": [],
@@ -15637,7 +15660,7 @@ module.exports = require('./lib/heap');
                 "country": "AUS",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_EAST_GALICIA", "Control state STATE_WEST_GALICIA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
+                "requirements": ["Control state STATE_WEST_GALICIA", "Control state STATE_EAST_GALICIA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
                 "bonuses": ["building railway throughput add = 0.05", "building tooling workshops throughput add = 0.1"],
                 "prosperity_bonuses_text": " -- building railway throughput +0.05; building tooling workshops throughput +0.1",
                 "prestige_goods": [],
@@ -16437,7 +16460,7 @@ module.exports = require('./lib/heap');
                 "country": "JAP",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region North China (level 5+ buildings required)", "Control region in Region Manchuria (level 5+ buildings required)", "Level 5+ Railway required", "Primary culture: Japanese", "Technology: Railways", "Journal Entry Required"],
+                "requirements": ["Control region in Region Manchuria (level 5+ buildings required)", "Control region in Region North China (level 5+ buildings required)", "Level 5+ Railway required", "Primary culture: Japanese", "Technology: Railways", "Journal Entry Required"],
                 "bonuses": ["state non homeland colony growth speed mult = 0.1", "building wheat farm throughput add = 0.15"],
                 "prosperity_bonuses_text": " -- state non homeland colony growth speed \u00d70.1; building wheat farm throughput +0.15",
                 "prestige_goods": [],

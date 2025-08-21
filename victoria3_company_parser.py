@@ -3387,16 +3387,39 @@ class Victoria3CompanyParserV6Final:
                 flex-wrap: wrap !important;
             }
             
-            /* Fix dropdown in header */
-            #company-limit-dropdown {
-                width: 100%;
-                margin-top: 5px;
+            /* Fix the Selected Companies header section */
+            .selection-controls {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 10px !important;
+                padding: 10px !important;
             }
             
-            /* Fix optimize button */
-            .optimize-btn {
-                width: 100%;
-                margin-bottom: 5px;
+            #selected-companies-title {
+                text-align: center !important;
+                margin-bottom: 10px !important;
+                font-size: 20px !important;
+            }
+            
+            .header-controls {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 5px !important;
+            }
+            
+            /* Fix dropdown in header */
+            #company-limit-dropdown {
+                width: 100% !important;
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+            
+            /* Fix all header buttons */
+            .optimize-btn, .share-btn, .save-btn, .import-btn {
+                width: 100% !important;
+                padding: 10px 16px !important;
+                font-size: 14px !important;
+                margin: 0 !important;
             }
             
             /* Fix preset buttons container */

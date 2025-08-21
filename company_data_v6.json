@@ -99,9 +99,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_NANJING",
       "Control state STATE_SUZHOU",
       "Control state STATE_ZHEJIANG",
-      "Control state STATE_NANJING",
       "Level 5+ Silk Plantation required"
     ],
     "prosperity_bonuses": [
@@ -549,8 +549,8 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_EAST_BORNEO",
-      "Control state STATE_WEST_BORNEO",
       "Control state STATE_NORTH_BORNEO",
+      "Control state STATE_WEST_BORNEO",
       "Level 5+ Gold Mine required"
     ],
     "prosperity_bonuses": [
@@ -601,8 +601,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_ZHILI",
       "Control state STATE_BEIJING",
+      "Control state STATE_ZHILI",
       "Level 5+ Coal Mine required",
       "Technology: Steam Donkey",
       "Technology: Railways"
@@ -857,10 +857,10 @@
     "formation_requirements": [
       "Control state STATE_BOMBAY",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
     ],
@@ -1040,10 +1040,10 @@
       "Control state STATE_WEST_BENGAL",
       "Control state STATE_BOMBAY",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
     ],
@@ -1126,8 +1126,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WALLONIA",
       "Control state STATE_FLANDERS",
+      "Control state STATE_WALLONIA",
       "Level 5+ Motor Industry required"
     ],
     "prosperity_bonuses": [
@@ -1155,8 +1155,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WALLONIA",
       "Control state STATE_FLANDERS",
+      "Control state STATE_WALLONIA",
       "Level 5+ Steel Mills required",
       "Starts Enacted at Game Start"
     ],
@@ -1210,8 +1210,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GELRE",
       "Control state STATE_HOLLAND",
+      "Control state STATE_GELRE",
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
@@ -1463,8 +1463,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MAZOVIA",
       "Control state STATE_GREATER_POLAND",
+      "Control state STATE_MAZOVIA",
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
@@ -1493,8 +1493,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MOCAMBIQUE",
       "Control state STATE_ZAMBEZIA",
+      "Control state STATE_MOCAMBIQUE",
       "Control state STATE_LOURENCO_MARQUES",
       "Level 5+ Cotton Plantation required",
       "Primary culture: Portuguese",
@@ -2042,8 +2042,8 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control region in Region Poland (level 5+ buildings required)",
-      "Control region in Region North Germany (level 5+ buildings required)",
       "Control region in Region Rhine (level 5+ buildings required)",
+      "Control region in Region North Germany (level 5+ buildings required)",
       "Control region in Region South Germany (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
@@ -2590,10 +2590,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Level 5+ Tea Plantation required",
       "Starts Enacted at Game Start"
     ],
@@ -2722,10 +2722,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -3035,8 +3035,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_EAST_GALICIA",
       "Control state STATE_WEST_GALICIA",
+      "Control state STATE_EAST_GALICIA",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -4433,8 +4433,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region North China (level 5+ buildings required)",
       "Control region in Region Manchuria (level 5+ buildings required)",
+      "Control region in Region North China (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Primary culture: Japanese",
       "Technology: Railways",
