@@ -2130,7 +2130,7 @@ class Victoria3CompanyParserV6Final:
         <div class="building-filter-help" style="margin-bottom: 15px; padding: 10px; background: #fff3e0; border: 1px solid #ff9800; border-radius: 4px; font-size: 13px;">
             <strong>Company Filter:</strong> Enable/disable specific companies or entire countries. Disabled companies are excluded from optimization and tables.
             <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                <div class="quick-actions" style="display: flex; flex-wrap: wrap; gap: 5px;">
                     <strong style="font-size: 11px;">Quick Actions:</strong>
                     <button onclick="toggleAllCompanyFilters(true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #28a745; color: white;">✓ Enable All</button>
                     <button onclick="toggleAllCompanyFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #6c757d; color: white;">🗑 Clear All</button>
@@ -2139,7 +2139,7 @@ class Victoria3CompanyParserV6Final:
                     <button onclick="toggleCompanyCategory('culture_restricted', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #dc3545; color: white;">🚫 No Culture Req</button>
                     <button onclick="toggleCompanyCategory('journal_required', false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #fd7e14; color: white;">🚫 No Journal Req</button>
                 </div>
-                <div style="display: flex; align-items: center; gap: 5px; margin-top: 5px;">
+                <div class="presets-container" style="display: flex; align-items: center; gap: 5px; margin-top: 5px;">
                     <strong style="font-size: 11px;">Presets:</strong>
                     <button onclick="exportCompanyPreset()" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #007bff; color: white;">📤 Export</button>
                     <button onclick="document.getElementById('preset-import').click()" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #28a745; color: white;">📥 Import</button>
@@ -2194,7 +2194,7 @@ class Victoria3CompanyParserV6Final:
             
             for company in basic_companies:
                 html += '''
-                <div style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px;">
+                <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
                     <input type="checkbox" id="company-{}" class="company-checkbox" checked data-company="{}" data-country="basic" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
                     <span title="{}" style="display: flex; align-items: center; cursor: pointer;" 
                           onmouseover="showCompanyTooltip(event, '{}')" 
@@ -2210,7 +2210,7 @@ class Victoria3CompanyParserV6Final:
                 <div style="background: #fff3cd; padding: 8px 12px; border: 1px solid #ffeaa7; border-radius: 4px; margin-bottom: 10px;">
                     <h4 style="margin: 0; font-size: 14px; color: #856404;">Mandate Companies</h4>
                 </div>
-                <div style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px;">
+                <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
                     <input type="checkbox" id="company-company_construction_power_bloc" class="company-checkbox" checked data-company="company_construction_power_bloc" data-country="mandate" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
                     <span style="display: flex; align-items: center; cursor: pointer;" 
                           onmouseover="showCompanyTooltip(event, 'company_construction_power_bloc')" 
@@ -2363,7 +2363,7 @@ class Victoria3CompanyParserV6Final:
                     indicator_text = ''.join(indicators) + (' ' if indicators else '')
                     
                     html += '''
-                        <div style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px;">
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
                             <input type="checkbox" id="company-{}" class="company-checkbox" checked data-company="{}" data-country="{}" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
                             <span title="{}" style="display: flex; align-items: center; cursor: pointer;" 
                                   onmouseover="showCompanyTooltip(event, '{}')" 
@@ -3271,6 +3271,185 @@ class Victoria3CompanyParserV6Final:
         
         /* Dynamic column hiding rules for building filters */
         __COLUMN_HIDING_CSS_PLACEHOLDER__
+        
+        /* Responsive Design - Mobile First Approach */
+        @media (max-width: 768px) {
+            /* General mobile layout fixes */
+            body {
+                padding: 10px 5px;
+            }
+            
+            /* Fix header buttons and dropdowns */
+            .control-btn {
+                padding: 6px 10px !important;
+                font-size: 12px !important;
+                margin: 2px !important;
+            }
+            
+            /* Fix overlapping text in company selection */
+            .company-selection-item {
+                padding: 8px 5px !important;
+                min-height: 36px;
+                position: relative;
+            }
+            
+            .company-selection-item > span {
+                margin-left: 30px !important;
+                display: block !important;
+                line-height: 1.4;
+            }
+            
+            .company-selection-item input[type="checkbox"] {
+                position: absolute;
+                left: 5px;
+                top: 10px;
+                transform: scale(1.3);
+            }
+            
+            /* Fix country sections */
+            .country-section {
+                margin-left: 10px !important;
+            }
+            
+            .country-header {
+                display: flex;
+                align-items: center;
+                padding: 8px 0 !important;
+            }
+            
+            /* Fix continent sections */
+            .continent-section h4 {
+                display: flex;
+                align-items: center;
+                padding: 8px 0;
+            }
+            
+            /* Fix button groups */
+            div[style*="display: flex"][style*="gap"] {
+                flex-wrap: wrap !important;
+            }
+            
+            /* Fix dropdown in header */
+            #company-limit-dropdown {
+                width: 100%;
+                margin-top: 5px;
+            }
+            
+            /* Fix optimize button */
+            .optimize-btn {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            /* Fix preset buttons container */
+            .presets-container {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 5px !important;
+            }
+            
+            .presets-container button {
+                width: 100% !important;
+                margin: 2px 0 !important;
+            }
+            
+            /* Fix legend layout */
+            .legend-container {
+                gap: 8px !important;
+                font-size: 12px !important;
+            }
+            
+            /* Fix table of contents columns */
+            .toc-columns {
+                display: block !important;
+            }
+            
+            .toc-columns > div {
+                width: 100% !important;
+                margin-bottom: 20px;
+            }
+            
+            /* Fix tables for mobile */
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 4px !important;
+            }
+            
+            /* Hide less important columns on mobile */
+            .dynamic-coverage-column {
+                display: none;
+            }
+            
+            /* Company tooltip adjustments */
+            .company-tooltip {
+                max-width: 90vw !important;
+                font-size: 12px;
+            }
+            
+            /* Charter selection mobile fixes */
+            .charter-selection {
+                padding: 10px !important;
+            }
+            
+            /* Company filter sections */
+            .filter-section {
+                margin-bottom: 15px;
+            }
+            
+            /* Quick actions buttons */
+            .quick-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .quick-actions button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small devices */
+            .control-btn {
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                width: 100%;
+                margin: 3px 0 !important;
+            }
+            
+            /* Stack all controls vertically */
+            .header-controls {
+                flex-direction: column !important;
+            }
+            
+            /* Full width for all interactive elements */
+            select, button {
+                width: 100% !important;
+            }
+            
+            /* Increase checkbox touch targets */
+            input[type="checkbox"] {
+                min-width: 20px;
+                min-height: 20px;
+            }
+            
+            /* Reduce font sizes for better fit */
+            h3 {
+                font-size: 18px;
+            }
+            
+            h4 {
+                font-size: 16px;
+            }
+            
+            /* Company names and text */
+            .company-name, .company-selection-item span {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -3294,7 +3473,7 @@ class Victoria3CompanyParserV6Final:
     <div id="custom-companies-section">
         <div class="selection-controls" style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap;">
             <h2 id="selected-companies-title" style="margin: 0; flex-shrink: 0;">Selected Companies (0)</h2>
-            <div style="display: flex; align-items: center; flex-wrap: nowrap; gap: 8px;">
+            <div class="header-controls" style="display: flex; align-items: center; flex-wrap: nowrap; gap: 8px;">
                 <button onclick="optimizeSelection()" class="control-btn optimize-btn" style="background: #17a2b8; color: white; font-weight: bold; padding: 8px 16px;">🎯 Optimize</button>
                 <select id="company-limit-dropdown" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; min-width: 120px;">
                     <option value="7" selected>7 companies</option>
@@ -3326,7 +3505,7 @@ class Victoria3CompanyParserV6Final:
             <!-- Key/Legend moved here -->
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #dee2e6;">
                 <p style="margin: 0 0 8px 0; color: #495057; font-weight: 500;">Key:</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; color: #666;">
+                <div class="legend-container" style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 14px; color: #666;">
                     <div style="display: flex; align-items: center; gap: 6px;">
                         <div class="prestige-building" style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 3px;"><img src="icons/24px-Prestige_ford_automobiles.png" width="16" height="16" alt="Prestige Good Example" title="Prestige Good"></div>
                         <span>Prestige Good</span>
