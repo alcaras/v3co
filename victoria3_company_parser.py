@@ -3286,24 +3286,57 @@ class Victoria3CompanyParserV6Final:
                 margin: 2px !important;
             }
             
+            /* CRITICAL FIX: Target ALL company/country items with inline styles */
+            div[style*="display: flex"][style*="align-items: center"] input[type="checkbox"].company-checkbox {
+                position: relative !important;
+                margin-right: 12px !important;
+                width: 20px !important;
+                height: 20px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            /* Fix all spans that follow checkboxes */
+            .company-checkbox + span {
+                display: inline-block !important;
+                word-wrap: break-word !important;
+                max-width: calc(100% - 40px) !important;
+            }
+            
             /* Fix overlapping text in company selection */
             .company-selection-item {
                 padding: 8px 5px !important;
-                min-height: 36px;
-                position: relative;
+                min-height: 40px !important;
+                position: relative !important;
+                display: block !important;
+                margin: 5px 0 !important;
+            }
+            
+            .company-selection-item > input[type="checkbox"] {
+                position: absolute !important;
+                left: 5px !important;
+                top: 12px !important;
+                transform: scale(1.2) !important;
+                margin: 0 !important;
+                width: 20px !important;
+                height: 20px !important;
             }
             
             .company-selection-item > span {
-                margin-left: 30px !important;
+                margin-left: 35px !important;
                 display: block !important;
-                line-height: 1.4;
+                line-height: 1.5 !important;
+                padding-right: 5px !important;
             }
             
-            .company-selection-item input[type="checkbox"] {
-                position: absolute;
-                left: 5px;
-                top: 10px;
-                transform: scale(1.3);
+            /* Override inline flex styles */
+            .company-selection-item[style*="display: flex"] {
+                display: block !important;
+            }
+            
+            /* Fix checkbox alignment in all company items */
+            .company-checkbox {
+                flex-shrink: 0 !important;
+                margin-right: 10px !important;
             }
             
             /* Fix country sections */
@@ -3312,16 +3345,41 @@ class Victoria3CompanyParserV6Final:
             }
             
             .country-header {
-                display: flex;
-                align-items: center;
+                display: flex !important;
+                align-items: center !important;
                 padding: 8px 0 !important;
+                position: relative !important;
+            }
+            
+            .country-header input[type="checkbox"] {
+                flex-shrink: 0 !important;
+                margin-right: 8px !important;
             }
             
             /* Fix continent sections */
             .continent-section h4 {
-                display: flex;
-                align-items: center;
-                padding: 8px 0;
+                display: flex !important;
+                align-items: center !important;
+                padding: 8px 0 !important;
+                font-size: 15px !important;
+            }
+            
+            .continent-section h4 input[type="checkbox"] {
+                margin-right: 8px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            /* Fix the TOC columns container */
+            .toc-columns {
+                display: block !important;
+                padding: 5px !important;
+            }
+            
+            /* Fix column widths on mobile */
+            .toc-columns > div[style*="flex: 1"] {
+                width: 100% !important;
+                flex: none !important;
+                margin-bottom: 15px !important;
             }
             
             /* Fix button groups */

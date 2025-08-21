@@ -548,9 +548,9 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NORTH_BORNEO",
-      "Control state STATE_WEST_BORNEO",
       "Control state STATE_EAST_BORNEO",
+      "Control state STATE_WEST_BORNEO",
+      "Control state STATE_NORTH_BORNEO",
       "Level 5+ Gold Mine required"
     ],
     "prosperity_bonuses": [
@@ -601,8 +601,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_BEIJING",
       "Control state STATE_ZHILI",
+      "Control state STATE_BEIJING",
       "Level 5+ Coal Mine required",
       "Technology: Steam Donkey",
       "Technology: Railways"
@@ -856,11 +856,11 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
     ],
@@ -1037,13 +1037,13 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_BOMBAY",
       "Control state STATE_WEST_BENGAL",
-      "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control state STATE_BOMBAY",
       "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
     ],
@@ -1463,8 +1463,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GREATER_POLAND",
       "Control state STATE_MAZOVIA",
+      "Control state STATE_GREATER_POLAND",
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
@@ -2041,10 +2041,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Rhine (level 5+ buildings required)",
-      "Control region in Region North Germany (level 5+ buildings required)",
-      "Control region in Region South Germany (level 5+ buildings required)",
       "Control region in Region Poland (level 5+ buildings required)",
+      "Control region in Region North Germany (level 5+ buildings required)",
+      "Control region in Region Rhine (level 5+ buildings required)",
+      "Control region in Region South Germany (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -2557,8 +2557,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_KHARKOV",
       "Control state STATE_TAURIDA",
+      "Control state STATE_KHARKOV",
       "Level 5+ Steel Mills required",
       "Technology: Bessemer Process"
     ],
@@ -2589,11 +2589,11 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Level 5+ Tea Plantation required",
       "Starts Enacted at Game Start"
     ],
@@ -2721,11 +2721,11 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Punjab (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -3478,8 +3478,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MASSACHUSETTS",
       "Control state STATE_NEW_YORK",
+      "Control state STATE_MASSACHUSETTS",
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
@@ -3507,8 +3507,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MARYLAND",
       "Control state STATE_DELAWARE",
+      "Control state STATE_MARYLAND",
       "Control state STATE_NEW_JERSEY",
       "Level 5+ Military Shipyards required",
       "Technology: Gantry Cranes",
