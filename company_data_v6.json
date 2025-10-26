@@ -26,6 +26,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Glasfabrik Ludwig Moser & Söhne"
   },
   "company_compania_sansinena_de_carnes_congeladas": {
@@ -57,6 +58,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Compañía Sansinena de Carnes Congeladas"
   },
   "company_konigliche_porzellan_manufaktur_meissen": {
@@ -87,6 +89,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Königliche Porzellan-Manufaktur Meissen"
   },
   "company_jiangnan_weaving_bureaus": {
@@ -102,9 +105,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_ZHEJIANG",
       "Control state STATE_SUZHOU",
       "Control state STATE_NANJING",
-      "Control state STATE_ZHEJIANG",
       "Level 5+ Silk Plantation required"
     ],
     "prosperity_bonuses": [
@@ -118,6 +121,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Jiangnan Weaving Bureaus"
   },
   "company_russian_american_company": {
@@ -137,7 +141,7 @@
     "formation_requirements": [
       "Control region in Region Pacific Coast (level 5+ buildings required)",
       "Level 5+ Port required",
-      "Starts Enacted at Game Start"
+      "Starts Enacted at Game Start (Russia)"
     ],
     "prosperity_bonuses": [
       "state colony growth speed mult = 0.1",
@@ -151,6 +155,7 @@
       "regional"
     ],
     "starts_enacted": true,
+    "starting_country": "RUS",
     "display_name": "Russian-American Company"
   },
   "company_maison_worth": {
@@ -181,6 +186,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Maison Worth"
   },
   "company_lee_wilson": {
@@ -211,6 +217,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Lee Wilson & Company"
   },
   "company_colt_firearms": {
@@ -239,6 +246,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Colt's Patent Firearms Manufacturing Company"
   },
   "company_gebruder_thonet": {
@@ -268,6 +276,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Gebrüder Thonet"
   },
   "company_kinkozan_sobei": {
@@ -297,6 +306,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Kinkozan Sobei"
   },
   "company_maple_and_co": {
@@ -325,6 +335,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Maple & Co."
   },
   "company_ong_lung_sheng_tea_company": {
@@ -353,6 +364,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ong Lung Sheng Tea Company"
   },
   "company_anglo_sicilian_sulphur_company": {
@@ -382,6 +394,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Anglo-Sicilian Sulphur Company"
   },
   "company_mantero_seta": {
@@ -411,6 +424,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Mantero Sera"
   },
   "company_norsk_hydro": {
@@ -439,6 +453,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Norsk Hydroelektrisk Kvælstofaktieselskap"
   },
   "company_massey_harris": {
@@ -456,8 +471,7 @@
     "formation_requirements": [
       "Control state STATE_ONTARIO",
       "Level 5+ Motor Industry required",
-      "Technology: Railways",
-      "Starts Enacted at Game Start"
+      "Technology: Railways"
     ],
     "prosperity_bonuses": [
       "building group bg agriculture throughput add = 0.15"
@@ -468,7 +482,8 @@
     "special_requirements": [
       "regional"
     ],
-    "starts_enacted": true,
+    "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Massey-Harris Limited"
   },
   "company_de_beers": {
@@ -496,6 +511,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "De Beers Consolidated Mines Ltd."
   },
   "company_john_holt": {
@@ -525,6 +541,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "John Holt and Company"
   },
   "company_imperial_ethiopian_railways": {
@@ -553,6 +570,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Imperial Ethiopian Railway Company"
   },
   "company_lanfang_kongsi": {
@@ -567,8 +585,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NORTH_BORNEO",
       "Control state STATE_WEST_BORNEO",
+      "Control state STATE_NORTH_BORNEO",
       "Control state STATE_EAST_BORNEO",
       "Level 5+ Gold Mine required"
     ],
@@ -583,6 +601,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Lanfang Kongsi"
   },
   "company_paradox": {
@@ -608,6 +627,7 @@
       "technology"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "John Paradox & Company"
   },
   "company_kaiping_mining": {
@@ -638,6 +658,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Kaiping Mining Company"
   },
   "company_hanyang_arsenal": {
@@ -669,6 +690,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Hanyang Arsenal"
   },
   "company_foochow_arsenal": {
@@ -699,6 +721,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Foochow Shipyards"
   },
   "company_jingdezhen": {
@@ -728,6 +751,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Jingdezhen Kilns"
   },
   "company_misr": {
@@ -757,6 +781,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Misr Spinning and Weaving Company"
   },
   "company_egyptian_rail": {
@@ -785,6 +810,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Egyptian State Railways"
   },
   "company_suez_company": {
@@ -815,6 +841,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Suez Canal Company"
   },
   "company_bengal_coal_company": {
@@ -841,6 +868,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Bengal Coal Company"
   },
   "company_bombay_dyeing_company": {
@@ -870,6 +898,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Bombay Dyeing and Manufacturing Company Limited"
   },
   "company_david_sassoon": {
@@ -886,10 +915,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
@@ -904,6 +933,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "David Sassoon & Co., Ltd"
   },
   "company_bombay_burmah_trading_corporation": {
@@ -936,6 +966,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Bombay Burmah Trading Corporation"
   },
   "company_madura_mills": {
@@ -967,6 +998,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Madura Mills Co. Ltd"
   },
   "company_assam_company": {
@@ -995,6 +1027,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Assam Company"
   },
   "company_wadia_shipbuilders": {
@@ -1026,6 +1059,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Wadia Shipbuilders"
   },
   "company_steel_brothers": {
@@ -1056,6 +1090,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Steel Brothers & Co. Ltd"
   },
   "company_ralli_brothers": {
@@ -1073,12 +1108,12 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WEST_BENGAL",
       "Control state STATE_BOMBAY",
-      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control state STATE_WEST_BENGAL",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
@@ -1095,6 +1130,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ralli Brothers"
   },
   "company_calcutta_electric": {
@@ -1122,6 +1158,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Calcutta Electric Supply Corporation Limited"
   },
   "company_ccci": {
@@ -1152,6 +1189,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Compagnie du Congo"
   },
   "company_franco_belge": {
@@ -1179,6 +1217,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Société Franco-Belge"
   },
   "company_john_cockerill": {
@@ -1198,7 +1237,7 @@
       "Control state STATE_FLANDERS",
       "Control state STATE_WALLONIA",
       "Level 5+ Steel Mills required",
-      "Starts Enacted at Game Start"
+      "Starts Enacted at Game Start (Belgium)"
     ],
     "prosperity_bonuses": [
       "building railway throughput add = 0.1"
@@ -1210,6 +1249,7 @@
       "regional"
     ],
     "starts_enacted": true,
+    "starting_country": "BEL",
     "display_name": "Société anonyme John Cockerill"
   },
   "company_nederlandse_petroleum": {
@@ -1237,6 +1277,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Nederlandse Petroleum Maatschappij"
   },
   "company_philips": {
@@ -1268,6 +1309,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Philips"
   },
   "company_basileiades": {
@@ -1296,6 +1338,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basileiades"
   },
   "company_kouppas": {
@@ -1326,6 +1369,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Kouppas"
   },
   "company_ericsson": {
@@ -1355,6 +1399,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ericsson"
   },
   "company_lkab": {
@@ -1383,6 +1428,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "LKAB"
   },
   "company_gotaverken": {
@@ -1412,6 +1458,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Götaverken"
   },
   "company_aker_mek": {
@@ -1440,6 +1487,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Aker Mek"
   },
   "company_nokia": {
@@ -1471,6 +1519,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Nokia"
   },
   "company_ursus": {
@@ -1499,6 +1548,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ursus"
   },
   "company_lilpop": {
@@ -1515,8 +1565,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GREATER_POLAND",
       "Control state STATE_MAZOVIA",
+      "Control state STATE_GREATER_POLAND",
       "Level 5+ Steel Mills required",
       "Technology: Steelworking"
     ],
@@ -1530,6 +1580,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Lilpop, Rau i Loewenstein"
   },
   "company_mozambique_company": {
@@ -1546,9 +1597,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_LOURENCO_MARQUES",
       "Control state STATE_ZAMBEZIA",
       "Control state STATE_MOCAMBIQUE",
+      "Control state STATE_LOURENCO_MARQUES",
       "Level 5+ Cotton Plantation required",
       "Primary culture: Portuguese",
       "Technology: Mutual Funds"
@@ -1564,6 +1615,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Companhia de Moçambique"
   },
   "company_altos_hornos_de_vizcaya": {
@@ -1593,6 +1645,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Altos Hornos de Vizcaya"
   },
   "company_duro_y_compania": {
@@ -1624,6 +1677,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Duro y Compañía"
   },
   "company_espana_industrial": {
@@ -1653,6 +1707,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "La España Industrial"
   },
   "company_trubia": {
@@ -1684,6 +1739,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Fábrica de Armas de Trubia"
   },
   "company_zastava": {
@@ -1714,6 +1770,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Zastava"
   },
   "company_chr_hansens": {
@@ -1743,6 +1800,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Chr. Hansen"
   },
   "company_ap_moller": {
@@ -1772,6 +1830,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "A.P. Møller"
   },
   "company_cfr": {
@@ -1799,6 +1858,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Căile Ferate Române"
   },
   "company_romanian_star": {
@@ -1825,6 +1885,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Steaua Română"
   },
   "company_united_tobacco_factories": {
@@ -1854,6 +1915,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Săedineni Tyutyunevi Fabriki AD"
   },
   "company_mate_gavrilovic": {
@@ -1883,6 +1945,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Mate Gavrilović i drug"
   },
   "company_stabilimento_tecnico_di_fiume": {
@@ -1910,6 +1973,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Stabilimento Tecnico di Fiume / alt. Torpedo-Fabrik von Robert Whitehead"
   },
   "company_klanicko_drustvo": {
@@ -1940,6 +2004,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Klaničko Društvo, Srpsko akcionarsko društvo za klanje i preradu stoke u Beogradu"
   },
   "company_jakub_klein": {
@@ -1967,6 +2032,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Jakub Klein a spol."
   },
   "company_elso_budapesti_gozmalom": {
@@ -1997,6 +2063,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Első Budapesti Gőzmalom Rt. / First Budapest Steam Mill Co."
   },
   "company_witkowitzer_bergbau_und_huttengewerkschaft": {
@@ -2026,6 +2093,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Witkowitzer Bergbau- und Hüttengewerkschaft"
   },
   "company_oesterreichisch_alpine_montangesellschaft": {
@@ -2053,6 +2121,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Oesterreichisch-Alpine Montangesellschaft"
   },
   "company_getzner_mutter": {
@@ -2082,6 +2151,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Getzner, Mutter & Cie"
   },
   "company_erste_brunner": {
@@ -2111,6 +2181,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Erste Brünner Maschinenfabriks-Gesellschaft / První brněnská strojírna"
   },
   "company_j_p_coats": {
@@ -2140,6 +2211,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "J. & P. Coats"
   },
   "company_armstrong_whitworth": {
@@ -2172,6 +2244,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Sir W. G. Armstrong Whitworth & Co."
   },
   "company_john_brown": {
@@ -2204,6 +2277,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "John Brown & Company"
   },
   "company_gwr": {
@@ -2231,6 +2305,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Great Western Railway"
   },
   "company_bolckow_vaughan": {
@@ -2262,6 +2337,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Bolckow, Vaughan & Co."
   },
   "company_krupp": {
@@ -2280,7 +2356,8 @@
     "formation_requirements": [
       "Control state STATE_RUHR",
       "Level 5+ Steel Mills required",
-      "Technology: Steelworking"
+      "Technology: Steelworking",
+      "Starts Enacted at Game Start (Prussia)"
     ],
     "prosperity_bonuses": [
       "building railway throughput add = 0.1",
@@ -2292,7 +2369,8 @@
     "special_requirements": [
       "regional"
     ],
-    "starts_enacted": false,
+    "starts_enacted": true,
+    "starting_country": "PRU",
     "display_name": "Friedrich Krupp"
   },
   "company_rheinmetall": {
@@ -2310,11 +2388,10 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NORTH_RHINE",
       "Control state STATE_RUHR",
+      "Control state STATE_NORTH_RHINE",
       "Level 5+ Arms Industry required",
-      "Technology: Automatic Machine Guns",
-      "Starts Enacted at Game Start"
+      "Technology: Automatic Machine Guns"
     ],
     "prosperity_bonuses": [
       "unit combat unit type siege artillery offense mult = 0.1",
@@ -2327,7 +2404,8 @@
     "special_requirements": [
       "regional"
     ],
-    "starts_enacted": true,
+    "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Rheinmetall"
   },
   "company_schichau": {
@@ -2360,6 +2438,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "F. Schichau"
   },
   "company_siemens_and_halske": {
@@ -2387,6 +2466,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Siemens & Halske"
   },
   "company_prussian_state_railways": {
@@ -2399,9 +2479,9 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region South Germany (level 5+ buildings required)",
       "Control region in Region North Germany (level 5+ buildings required)",
       "Control region in Region Poland (level 5+ buildings required)",
+      "Control region in Region South Germany (level 5+ buildings required)",
       "Control region in Region Rhine (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
@@ -2414,6 +2494,7 @@
     "ownership_category": "Partial Bureaucrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Preußische Staatseisenbahnen"
   },
   "company_basf": {
@@ -2445,6 +2526,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "BASF"
   },
   "company_fundidora_monterrey": {
@@ -2475,6 +2557,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Fundidora de Fierro y Acero de Monterrey"
   },
   "company_el_aguila": {
@@ -2502,6 +2585,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "El Águila"
   },
   "company_csfa": {
@@ -2530,6 +2614,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Compañía de Salitres y Ferrocarril de Antofagasta"
   },
   "company_caribbean_petroleum": {
@@ -2558,6 +2643,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Caribbean Petroleum Company"
   },
   "company_bunge_born": {
@@ -2588,6 +2674,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Bunge & Born"
   },
   "company_la_rosada": {
@@ -2619,6 +2706,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "La Rosada"
   },
   "company_famae": {
@@ -2650,6 +2738,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Fábrica de Armas de la Nación"
   },
   "company_peruvian_amazon": {
@@ -2677,6 +2766,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Peruvian Amazon Company"
   },
   "company_kablin": {
@@ -2707,6 +2797,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Klabin Irmãos & Cia."
   },
   "company_hbc": {
@@ -2725,7 +2816,7 @@
     "formation_requirements": [
       "Control state STATE_MANITOBA",
       "Level 5+ Food Industry required",
-      "Starts Enacted at Game Start"
+      "Starts Enacted at Game Start (Great Britain)"
     ],
     "prosperity_bonuses": [
       "state colony growth creation factor = 0.1",
@@ -2738,6 +2829,7 @@
       "regional"
     ],
     "starts_enacted": true,
+    "starting_country": "GBR",
     "display_name": "Hudson's Bay Company"
   },
   "company_panama_company": {
@@ -2768,6 +2860,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Panama Canal Company"
   },
   "company_vodka_monopoly": {
@@ -2797,6 +2890,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Vodka Monopoly"
   },
   "company_putilov_company": {
@@ -2828,6 +2922,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Society of Putilov Factories"
   },
   "company_branobel": {
@@ -2857,6 +2952,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Branobel"
   },
   "company_izhevsk_arms_plant": {
@@ -2888,6 +2984,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Izhevsk Arms Plant"
   },
   "company_savva_morozov": {
@@ -2917,6 +3014,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Savva Morozov & Sons"
   },
   "company_john_hughes": {
@@ -2933,8 +3031,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_TAURIDA",
       "Control state STATE_KHARKOV",
+      "Control state STATE_TAURIDA",
       "Level 5+ Steel Mills required",
       "Technology: Bessemer Process"
     ],
@@ -2949,6 +3047,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "New Russia Company Ltd."
   },
   "company_east_india_company": {
@@ -2966,13 +3065,13 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Tea Plantation required",
-      "Starts Enacted at Game Start"
+      "Starts Enacted at Game Start (Great Britain)"
     ],
     "prosperity_bonuses": [
       "country convoys capacity mult = 0.2"
@@ -2982,6 +3081,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": true,
+    "starting_country": "GBR",
     "display_name": "East India Company"
   },
   "company_imperial_arsenal": {
@@ -3008,6 +3108,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Tersâne-i Âmire"
   },
   "company_ottoman_tobacco_regie": {
@@ -3035,6 +3136,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ottoman Tobacco Company"
   },
   "company_allatini_mills": {
@@ -3066,6 +3168,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Allatini Mills"
   },
   "company_orient_express": {
@@ -3091,6 +3194,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Chemins de fer Orientaux"
   },
   "company_great_indian_railway": {
@@ -3103,10 +3207,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
-      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
@@ -3122,6 +3226,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Great Indian Peninsula Railway"
   },
   "company_tata": {
@@ -3152,6 +3257,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Tata"
   },
   "company_sunhwaguk": {
@@ -3181,6 +3287,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Sunhwaguk"
   },
   "company_nam_dinh": {
@@ -3210,6 +3317,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Nam Định Textile Factory"
   },
   "company_imperial_tobacco": {
@@ -3237,6 +3345,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Imperial Tobacco Corporation of Persia"
   },
   "company_san_miguel": {
@@ -3267,6 +3376,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "San Miguel"
   },
   "company_william_sandford": {
@@ -3296,6 +3406,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "William Sandford Limited"
   },
   "company_b_grimm": {
@@ -3324,6 +3435,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "B. Grimm"
   },
   "company_skoda": {
@@ -3355,6 +3467,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Škoda Works"
   },
   "company_mav": {
@@ -3384,6 +3497,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "MÁVAG"
   },
   "company_manfred_weiss": {
@@ -3415,6 +3529,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Manfréd Weiss Steel and Metal Works"
   },
   "company_galician_carpathian_oil": {
@@ -3428,8 +3543,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_EAST_GALICIA",
       "Control state STATE_WEST_GALICIA",
+      "Control state STATE_EAST_GALICIA",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -3444,6 +3559,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Galician Carpathian Petroleum Company"
   },
   "company_oevg": {
@@ -3476,6 +3592,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Österreichische Waffenfabriks-Gesellschaft"
   },
   "company_sao_paulo_railway": {
@@ -3506,6 +3623,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "São Paulo Railway Co. Ltd."
   },
   "company_estaleiro_maua": {
@@ -3533,6 +3651,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Estaleiro Mauá"
   },
   "company_pernambuco_textiles": {
@@ -3562,6 +3681,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Companhia Fiação e Tecidos de Pernambuco"
   },
   "company_fundicao_ipanema": {
@@ -3591,6 +3711,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Fundição Ipanema"
   },
   "company_rossi": {
@@ -3620,6 +3741,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Amadeo Rossi & Cia."
   },
   "company_estanifera_llallagua": {
@@ -3647,6 +3769,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Compañía Estañífera de Llallagua"
   },
   "company_argentinian_wine": {
@@ -3671,6 +3794,7 @@
     "ownership_category": "Partial Shopkeeper",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Centro Vitivinícola Nacional"
   },
   "company_sudamericana_de_vapores": {
@@ -3699,6 +3823,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Compañía Sudamericana de Vapores"
   },
   "company_electricidad_de_caracas": {
@@ -3727,6 +3852,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "C.A. La Electricidad de Caracas"
   },
   "company_cordoba_railway": {
@@ -3756,6 +3882,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ferrocarril Central Córdoba"
   },
   "company_eea": {
@@ -3783,6 +3910,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Empresas Eléctricas Asociadas"
   },
   "company_standard_oil": {
@@ -3810,6 +3938,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Standard Oil"
   },
   "company_united_fruit": {
@@ -3841,6 +3970,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "United Fruit Company"
   },
   "company_us_steel": {
@@ -3872,6 +4002,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Carnegie Steel Co."
   },
   "company_general_electric": {
@@ -3903,6 +4034,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "General Electric"
   },
   "company_william_cramp": {
@@ -3917,12 +4049,12 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_NEW_JERSEY",
       "Control state STATE_DELAWARE",
       "Control state STATE_MARYLAND",
-      "Control state STATE_NEW_JERSEY",
       "Level 5+ Military Shipyards required",
       "Technology: Gantry Cranes",
-      "Starts Enacted at Game Start"
+      "Starts Enacted at Game Start (United States)"
     ],
     "prosperity_bonuses": [
       "unit navy offense mult = 0.05",
@@ -3935,6 +4067,7 @@
       "regional"
     ],
     "starts_enacted": true,
+    "starting_country": "USA",
     "display_name": "William Cramp & Sons"
   },
   "company_ford_motor": {
@@ -3966,6 +4099,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ford Motor Company"
   },
   "company_da_afghan_nassaji_sherkat": {
@@ -3994,6 +4128,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Də Afḡān Nasājī Šerkat"
   },
   "company_iranian_state_railway": {
@@ -4022,6 +4157,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Iranian State Railway"
   },
   "company_tashkent_railroad": {
@@ -4049,6 +4185,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Tashkent Railroad"
   },
   "company_west_ural_petroleum": {
@@ -4077,6 +4214,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "West Ural Petroleum Company, Limited"
   },
   "company_sherkat_shemali": {
@@ -4102,6 +4240,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Šerkat-e Etteḥādīya-ye Welāyat-e Šemālī"
   },
   "company_opium_export_monopoly": {
@@ -4130,6 +4269,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Bongāh-e Enḥeṣār-e Ṣāderāt-e Taryāk"
   },
   "company_sherkate_eslamiya": {
@@ -4157,6 +4297,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Šerkat-e Eslāmiya"
   },
   "company_nicolas_portalis": {
@@ -4185,6 +4326,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "MM. Nicolas Portalis et Cie."
   },
   "company_hanseong_jeongi_hoesa": {
@@ -4212,6 +4354,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Hanseong Jeongi Hoesa"
   },
   "company_kirgizian_mining_company": {
@@ -4239,6 +4382,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Kirgizian Mining Joint Stock Company"
   },
   "company_persshelk": {
@@ -4265,6 +4409,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Persshelk"
   },
   "company_perskhlopok": {
@@ -4291,6 +4436,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Perskhlopok"
   },
   "company_moscow_irrigation_company": {
@@ -4307,8 +4453,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_FERGANA",
       "Control state STATE_MOSCOW",
+      "Control state STATE_FERGANA",
       "Level 5+ Cotton Plantation required"
     ],
     "prosperity_bonuses": [
@@ -4322,6 +4468,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Moscow Irrigation Company"
   },
   "company_guinness": {
@@ -4354,6 +4501,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Arthur Guinness Son & Co. Ltd"
   },
   "company_oriental_development_company": {
@@ -4385,6 +4533,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Oriental Development Company"
   },
   "company_turkish_petroleum": {
@@ -4414,6 +4563,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Turkish Petroleum Company"
   },
   "company_anglo_persian_oil": {
@@ -4443,6 +4593,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Anglo-Persian Oil Company"
   },
   "company_national_iranian_oil": {
@@ -4472,6 +4623,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "National Iranian Oil Company"
   },
   "company_ilva": {
@@ -4502,6 +4654,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Ilva"
   },
   "company_ansaldo": {
@@ -4533,6 +4686,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Gio. Ansaldo & C."
   },
   "company_ricordi": {
@@ -4559,6 +4713,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "G. Ricordi & C."
   },
   "company_fiat": {
@@ -4590,6 +4745,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "FIAT"
   },
   "company_stt": {
@@ -4619,6 +4775,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Stabilimento Tecnico Triestino"
   },
   "company_societe_mokta_el_hadid": {
@@ -4646,6 +4803,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Société Mokta El Hadid"
   },
   "company_schneider_creusot": {
@@ -4678,6 +4836,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Schneider et Cie"
   },
   "company_dmc": {
@@ -4696,7 +4855,8 @@
     "formation_requirements": [
       "Control state STATE_BURGUNDY",
       "Level 5+ Textile Mills required",
-      "Technology: Cotton Gin"
+      "Technology: Cotton Gin",
+      "Starts Enacted at Game Start (France)"
     ],
     "prosperity_bonuses": [
       "state assimilation mult = 0.1"
@@ -4707,7 +4867,8 @@
     "special_requirements": [
       "regional"
     ],
-    "starts_enacted": false,
+    "starts_enacted": true,
+    "starting_country": "FRA",
     "display_name": "Dollfus-Mieg et Compagnie"
   },
   "company_cgv": {
@@ -4739,6 +4900,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Confédération générale des vignerons"
   },
   "company_saint_etienne": {
@@ -4770,6 +4932,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Manufacture d'armes de Saint-Étienne"
   },
   "company_fcm": {
@@ -4799,6 +4962,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Forges et Chantiers de la Méditerranée"
   },
   "company_mines_anzin": {
@@ -4825,6 +4989,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Compagnie des mines d'Anzin"
   },
   "company_mitsui": {
@@ -4861,6 +5026,7 @@
       "regional"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Mitsui"
   },
   "company_mantetsu": {
@@ -4895,6 +5061,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "South Manchuria Railway"
   },
   "company_mitsubishi": {
@@ -4932,6 +5099,7 @@
       "primary_culture"
     ],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Mitsubishi"
   },
   "company_basic_agriculture_1": {
@@ -4957,6 +5125,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Agriculture 1"
   },
   "company_type_names": {
@@ -4996,6 +5165,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Agriculture 2"
   },
   "company_basic_fabrics": {
@@ -5021,6 +5191,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Fabrics"
   },
   "company_basic_colonial_plantations_1": {
@@ -5046,6 +5217,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Colonial Plantations 1"
   },
   "company_basic_colonial_plantations_2": {
@@ -5072,6 +5244,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Colonial Plantations 2"
   },
   "company_basic_silk_and_dye": {
@@ -5096,6 +5269,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Silk And Dye"
   },
   "company_basic_wine_and_fruit": {
@@ -5119,6 +5293,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Wine And Fruit"
   },
   "company_basic_fishing": {
@@ -5145,6 +5320,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Fishing"
   },
   "company_basic_forestry": {
@@ -5169,6 +5345,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Forestry"
   },
   "company_basic_oil": {
@@ -5191,6 +5368,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Oil"
   },
   "company_basic_gold_mining": {
@@ -5214,6 +5392,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Gold Mining"
   },
   "company_basic_metal_mining": {
@@ -5238,6 +5417,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Metal Mining"
   },
   "company_basic_mineral_mining": {
@@ -5261,6 +5441,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Mineral Mining"
   },
   "company_basic_food": {
@@ -5286,6 +5467,7 @@
     "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Food"
   },
   "company_basic_paper": {
@@ -5310,6 +5492,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Paper"
   },
   "company_basic_home_goods": {
@@ -5336,6 +5519,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Home Goods"
   },
   "company_basic_textiles": {
@@ -5361,6 +5545,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Textiles"
   },
   "company_basic_steel": {
@@ -5386,6 +5571,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Steel"
   },
   "company_basic_metalworks": {
@@ -5410,6 +5596,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Metalworks"
   },
   "company_basic_shipyards": {
@@ -5433,6 +5620,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Shipyards"
   },
   "company_basic_chemicals": {
@@ -5459,6 +5647,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Chemicals"
   },
   "company_basic_motors": {
@@ -5482,6 +5671,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Motors"
   },
   "company_basic_munitions": {
@@ -5508,6 +5698,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Munitions"
   },
   "company_basic_electrics": {
@@ -5531,6 +5722,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Electrics"
   },
   "company_basic_weapons": {
@@ -5558,6 +5750,7 @@
     "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "Basic Weapons"
   },
   "company_construction_power_bloc": {
@@ -5582,6 +5775,7 @@
     "ownership_category": "Partial Bureaucrat",
     "special_requirements": [],
     "starts_enacted": false,
+    "starting_country": null,
     "display_name": "United Construction Conglomerate"
   }
 }

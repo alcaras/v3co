@@ -23,26 +23,30 @@ class Victoria3CompanyParserV6Final:
         self.company_types_dir = os.path.join(game_directory, "company_types")
         self.states_file = os.path.join(game_directory, "history", "states", "00_states.txt")
         self.diplomacy_file = os.path.join(game_directory, "history", "diplomacy", "00_subject_relationships.txt")
+        self.countries_history_dir = os.path.join(game_directory, "history", "countries")
         self.prestige_goods_dir = os.path.join(game_directory, "prestige_goods", "00_prestige_goods.txt")
         self.wiki_file = "wiki/flavored.wiki"
-        
+
         self.companies = {}
         self.all_buildings = set()
         self.prestige_goods = {}
         self.state_to_country = {}
         self.subject_relationships = {}  # Maps subject -> overlord
         self.wiki_companies = {}
-        
+        self.companies_at_game_start = set()  # Set of company names that exist at game start (1836)
+        self.company_starting_countries = {}  # Maps company name -> country tag
+
         self.setup_building_to_goods()
         self.setup_country_flags()
         self.setup_country_names()
         self.setup_prestige_good_names()
         self.setup_company_icon_mapping()
-        
+
         # Parse data
         self.parse_state_to_country_mappings()
         if self.use_subject_relationships:
             self.parse_subject_relationships()
+        self.parse_company_history()  # Parse which companies exist at game start
         self.parse_wiki_data()
         self.parse_prestige_goods()
         self.parse_all_companies()
@@ -1031,6 +1035,69 @@ class Victoria3CompanyParserV6Final:
         except Exception as e:
             print("Error parsing subject relationships: {}".format(e))
 
+    def parse_company_history(self):
+        """Parse country history files to find which companies exist at game start"""
+        try:
+            import codecs
+            import glob
+
+            if not os.path.exists(self.countries_history_dir):
+                print("Countries history directory not found: {}".format(self.countries_history_dir))
+                return
+
+            # Get all country history files
+            country_files = glob.glob(os.path.join(self.countries_history_dir, "*.txt"))
+
+            company_count = 0
+            for country_file in country_files:
+                # Extract country tag from filename (format: "tag - name.txt")
+                filename = os.path.basename(country_file)
+                country_tag_match = re.match(r'(\w+)\s*-', filename)
+                if not country_tag_match:
+                    continue
+
+                country_tag = country_tag_match.group(1).upper()
+
+                try:
+                    with codecs.open(country_file, 'r', encoding='utf-8') as f:
+                        content = f.read()
+
+                    # Find all add_company statements (excluding commented lines)
+                    # Pattern: add_company = company_type:company_name (not starting with #)
+                    # Process line by line to filter out comments
+                    companies_found = []
+                    for line in content.split('\n'):
+                        # Skip lines that are commented out
+                        stripped_line = line.strip()
+                        if stripped_line.startswith('#'):
+                            continue
+
+                        # Match add_company pattern
+                        company_match = re.search(r'add_company\s*=\s*company_type:(company_\w+)', line)
+                        if company_match:
+                            companies_found.append(company_match.group(1))
+
+                    for company_name in companies_found:
+                        # Remove the "company_" prefix for storage
+                        company_clean_name = company_name.replace('company_', '')
+                        self.companies_at_game_start.add(company_clean_name)
+                        self.company_starting_countries[company_clean_name] = country_tag
+                        company_count += 1
+
+                except Exception as e:
+                    print("Error reading {}: {}".format(country_file, e))
+
+            print("Found {} companies at game start (1836) from {} country files:".format(
+                company_count, len(country_files)))
+
+            # Print them in a nice format
+            for company in sorted(self.companies_at_game_start):
+                country = self.company_starting_countries.get(company, 'Unknown')
+                print("  {} - {}".format(company, country))
+
+        except Exception as e:
+            print("Error parsing company history: {}".format(e))
+
     def get_effective_country(self, country):
         """Get the effective country for company formation, considering subject relationships if enabled"""
         if self.use_subject_relationships:
@@ -1808,24 +1875,17 @@ class Victoria3CompanyParserV6Final:
                         company_data['special_requirements'] = []
                     
                     company_data['formation_requirements'] = formation_reqs
-                    
-                    # Check if company starts enacted (from wiki data) 
-                    company_data['starts_enacted'] = False
-                    if hasattr(self, 'wiki_companies'):
-                        company_clean_name = company_name.replace('company_', '')
-                        wiki_entry = self.wiki_companies.get(company_clean_name, {})
-                        wiki_text = wiki_entry.get('text', '')
-                        if 'starts with this company established' in wiki_text.lower():
-                            company_data['starts_enacted'] = True
-                    
-                    # Additional check: hardcode known pre-enacted companies from wiki
-                    pre_enacted_companies = {
-                        'hbc', 'massey_harris', 'william_cramp', 
-                        'east_india_company', 'john_cockerill', 'confédération_générale_des_vignerons',
-                        'rheinmetall', 'russian_american_company'
-                    }
-                    if company_clean_name in pre_enacted_companies:
-                        company_data['starts_enacted'] = True
+
+                    # Check if company starts enacted at game start (1836)
+                    # Use automatically parsed data from country history files
+                    company_clean_name = company_name.replace('company_', '')
+                    company_data['starts_enacted'] = company_clean_name in self.companies_at_game_start
+
+                    # Store which country this company starts in (for display purposes)
+                    if company_clean_name in self.company_starting_countries:
+                        company_data['starting_country'] = self.company_starting_countries[company_clean_name]
+                    else:
+                        company_data['starting_country'] = None
                         
                     # Map states to countries for country association
                     countries = []
@@ -1859,7 +1919,12 @@ class Victoria3CompanyParserV6Final:
                     
                     # Extract pre-enacted status
                     if company_data.get('starts_enacted', False):
-                        company_data['formation_requirements'].append("Starts Enacted at Game Start")
+                        starting_country = company_data.get('starting_country')
+                        if starting_country:
+                            country_name = self.country_names.get(starting_country, starting_country)
+                            company_data['formation_requirements'].append("Starts Enacted at Game Start ({})".format(country_name))
+                        else:
+                            company_data['formation_requirements'].append("Starts Enacted at Game Start")
         
         # Parse prosperity bonuses from prosperity_modifier - show raw content
         prosperity_match = re.search(r'prosperity_modifier\s*=\s*\{([^{}]+)\}', company_content)
@@ -2262,9 +2327,14 @@ class Victoria3CompanyParserV6Final:
             if charters:
                 charter_names = [c.replace('building_', '').replace('_', ' ').title() for c in charters]
                 tooltip_parts.append(f"Charters: {', '.join(charter_names)}")
-                
+
             if starts_enacted:
-                tooltip_parts.append("⚠️ Starts enacted at game start")
+                starting_country = company_data.get('starting_country')
+                if starting_country:
+                    country_name = self.country_names.get(starting_country, starting_country)
+                    tooltip_parts.append(f"⚠️ Starts enacted at game start ({country_name})")
+                else:
+                    tooltip_parts.append("⚠️ Starts enacted at game start")
                 
             # Categorize special requirements for different icons
             has_culture_req = 'primary_culture' in special_reqs
@@ -4082,6 +4152,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
             # Add special requirements and starts enacted for JavaScript access
             special_requirements_json = json.dumps(data.get('special_requirements', []))
             starts_enacted_json = json.dumps(data.get('starts_enacted', False))
+            starting_country_json = json.dumps(data.get('starting_country', None))
             ownership_category = data.get('ownership_category', 'Full Capitalist')
 
             entry = '''            {}: {{
@@ -4099,8 +4170,9 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 "industry_charters": {},
                 "special_requirements": {},
                 "starts_enacted": {},
+                "starting_country": {},
                 "ownership_category": {}
-            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, building_types_json, extension_building_types_json, building_types_json, extension_building_types_json, special_requirements_json, starts_enacted_json, json.dumps(ownership_category))
+            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, building_types_json, extension_building_types_json, building_types_json, extension_building_types_json, special_requirements_json, starts_enacted_json, starting_country_json, json.dumps(ownership_category))
             company_entries.append(entry)
         
         html += ',\n'.join(company_entries)
