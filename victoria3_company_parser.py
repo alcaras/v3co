@@ -15,8 +15,11 @@ import re
 # from pathlib import Path  # Not available in Python 2.7
 from collections import defaultdict, Counter
 import json
+from datetime import datetime
 
 class Victoria3CompanyParserV6Final:
+    # Game version - update this when parsing a new patch
+    GAME_VERSION = "1.11"
     def __init__(self, game_directory="game", use_subject_relationships=False):
         self.game_directory = game_directory
         self.use_subject_relationships = use_subject_relationships  # Flag to control subject relationship usage
@@ -1846,7 +1849,12 @@ class Victoria3CompanyParserV6Final:
                                 # Check for primary culture requirements (country-specific)
                                 if 'country_has_primary_culture' in potential_content:
                                     special_requirements.append('primary_culture')
-                                    
+
+                                # Special case: East India Company is country-restricted (GBR only)
+                                if company_name == 'company_east_india_company':
+                                    if 'primary_culture' not in special_requirements:
+                                        special_requirements.append('primary_culture')
+
                                 # Check for specific technology requirements
                                 if 'has_technology' in potential_content:
                                     special_requirements.append('technology')
@@ -3673,7 +3681,10 @@ class Victoria3CompanyParserV6Final:
 </head>
 <body>
     <h1 id="top">Victoria 3 Company Analysis Tool</h1>
-    
+    <div style="text-align: center; color: #666; font-size: 14px; margin-top: -10px; margin-bottom: 20px;">
+        Last updated: __LAST_UPDATED_PLACEHOLDER__ | Victoria 3 Patch __GAME_VERSION_PLACEHOLDER__
+    </div>
+
     <!-- Optimization Modal -->
     <div id="optimizationModal" class="optimization-modal">
         <div class="optimization-modal-content">
@@ -8230,6 +8241,12 @@ __YALPS_BUNDLE_PLACEHOLDER__
         all_dynamic_css = column_hiding_css + '\n        /* Dynamic company hiding rules for country filters */\n' + country_hiding_css
         html = html.replace('__COLUMN_HIDING_CSS_PLACEHOLDER__', all_dynamic_css)
         html = html.replace('__YALPS_BUNDLE_PLACEHOLDER__', yalps_bundle)
+
+        # Add version and date information
+        last_updated = datetime.now().strftime('%B %d, %Y')
+        html = html.replace('__LAST_UPDATED_PLACEHOLDER__', last_updated)
+        html = html.replace('__GAME_VERSION_PLACEHOLDER__', self.GAME_VERSION)
+
         return html
 
     def _get_country_flags_js(self):
