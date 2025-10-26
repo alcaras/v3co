@@ -27,5 +27,9 @@ test_*.html
 
 # Game files - don't include in repository
 game/
+game_old/
 english/
 update_from_game_files.mjs
+
+# Backup directories
+companies/png_old/

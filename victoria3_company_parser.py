@@ -1638,7 +1638,8 @@ class Victoria3CompanyParserV6Final:
             'formation_requirements': [],
             'prosperity_bonuses': [],
             'country': None,
-            'country_confidence': 'none'
+            'country_confidence': 'none',
+            'ownership_category': 'Full Capitalist'  # Default ownership type
         }
         
         # Parse building types
@@ -1658,7 +1659,20 @@ class Victoria3CompanyParserV6Final:
         if prestige_match:
             prestige_goods = re.findall(r'prestige_good_\w+', prestige_match.group(1))
             company_data['possible_prestige_goods'] = prestige_goods
-        
+
+        # Parse ownership category
+        category_match = re.search(r'category\s*=\s*(\w+)', company_content)
+        if category_match:
+            category = category_match.group(1)
+            # Map category codes to display names
+            category_map = {
+                'aristocrat_owned': 'Partial Aristocrat',
+                'bureaucrat_owned': 'Partial Bureaucrat',
+                'academic_owned': 'Partial Academic',
+                'shopkeeper_owned': 'Partial Shopkeeper'
+            }
+            company_data['ownership_category'] = category_map.get(category, 'Full Capitalist')
+
         # Parse formation requirements from possible block using brace matching
         possible_start = company_content.find('possible = {')
         if possible_start != -1:
@@ -2384,6 +2398,54 @@ class Victoria3CompanyParserV6Final:
         
         return html
 
+    def _generate_ownership_filter_section(self, ownership_counts):
+        """Generate HTML for company ownership type filter section"""
+        if not ownership_counts:
+            return ""
+
+        # Define ownership types in desired order
+        ownership_order = [
+            'Full Capitalist',
+            'Partial Aristocrat',
+            'Partial Bureaucrat',
+            'Partial Academic',
+            'Partial Shopkeeper'
+        ]
+
+        html = '''
+
+    <div class="toc">
+        <a name="ownership"></a>
+        <h3 id="ownership">Company Ownership</h3>
+        <div class="building-filter-help" style="margin-bottom: 15px; padding: 10px; background: #e8f5e9; border: 1px solid #4caf50; border-radius: 4px; font-size: 13px;">
+            <strong>Ownership Filter:</strong> Filter companies by ownership type. All types are enabled by default.
+            <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between;">
+                <div class="quick-actions" style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <strong style="font-size: 11px;">Quick Actions:</strong>
+                    <button onclick="toggleAllOwnershipFilters(true)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #28a745; color: white;">✓ Enable All</button>
+                    <button onclick="toggleAllOwnershipFilters(false)" class="control-btn" style="font-size: 11px; padding: 2px 6px; background-color: #6c757d; color: white;">🗑 Clear All</button>
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom: 20px;">'''
+
+        for ownership_type in ownership_order:
+            count = ownership_counts.get(ownership_type, 0)
+            if count > 0:
+                # Create sanitized ID for checkbox
+                ownership_id = ownership_type.replace(' ', '-').lower()
+                html += '''
+            <div class="category-item" style="margin: 3px 0; padding: 2px 8px; display: flex; align-items: center; font-size: 13px;">
+                <input type="checkbox" id="filter-ownership-{}" class="ownership-filter-checkbox" checked data-ownership="{}" onchange="toggleOwnershipFilter(this)" style="margin-right: 8px;">
+                <label for="filter-ownership-{}" style="cursor: pointer;">{} ({})</label>
+            </div>'''.format(ownership_id, ownership_type, ownership_id, ownership_type, count)
+
+        html += '''
+        </div>
+    </div>'''
+
+        return html
+
     def _generate_company_id_mappings(self):
         """Generate JavaScript object mapping company keys to sequential IDs"""
         companies = sorted(self.companies.keys())
@@ -2421,7 +2483,13 @@ class Victoria3CompanyParserV6Final:
         
         # Get country data organized by continent
         countries_by_continent = self.get_countries_by_continent()
-        
+
+        # Count companies by ownership type
+        ownership_counts = {}
+        for company_data in self.companies.values():
+            ownership = company_data.get('ownership_category', 'Full Capitalist')
+            ownership_counts[ownership] = ownership_counts.get(ownership, 0) + 1
+
         # Define building order in user's preferred categorization
         wiki_building_order = [
             # Extraction
@@ -3705,7 +3773,10 @@ class Victoria3CompanyParserV6Final:
         
         # Generate hierarchical country/company filter section
         html += self._generate_country_filter_section(countries_by_continent)
-        
+
+        # Generate ownership filter section
+        html += self._generate_ownership_filter_section(ownership_counts)
+
         # Generate separate table for each building
         for building in buildings_to_analyze:
             display_name = self.get_building_display_name(building)
@@ -3876,9 +3947,12 @@ class Victoria3CompanyParserV6Final:
                 
                 # Get company country for filtering
                 company_country = data.get('country', '')
-                
+
+                # Get company ownership for filtering
+                company_ownership = data.get('ownership_category', 'Full Capitalist')
+
                 html += '''
-            <tr data-country="{}" data-company="{}">
+            <tr data-country="{}" data-company="{}" data-ownership="{}">
                 <td class="select-column">
                     <input type="checkbox" class="company-checkbox" data-company="{}" onchange="toggleCompanySelection('{}')">
                 </td>
@@ -3886,11 +3960,11 @@ class Victoria3CompanyParserV6Final:
                 <td class="dynamic-coverage-column" data-company="{}">-</td>
                 <td class="buildings-column">{}</td>
                 <td class="company-name"
-                    onmouseover="showCompanyTooltip(event, '{}')" 
-                    onmouseout="hideCompanyTooltip()" 
+                    onmouseover="showCompanyTooltip(event, '{}')"
+                    onmouseout="hideCompanyTooltip()"
                     data-company="{}">
                     {}{}{}{}
-                </td>'''.format(company_country, company_name, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, special_requirement_icons, abbreviated_name)
+                </td>'''.format(company_country, company_name, company_ownership, company_name, company_name, flag_cell_html, company_name, building_count_display, company_name, company_name, company_icon_html, prestige_icons, special_requirement_icons, abbreviated_name)
                 
                 # Add columns for all available buildings
                 for avail_building in available_buildings:
@@ -4008,7 +4082,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
             # Add special requirements and starts enacted for JavaScript access
             special_requirements_json = json.dumps(data.get('special_requirements', []))
             starts_enacted_json = json.dumps(data.get('starts_enacted', False))
-            
+            ownership_category = data.get('ownership_category', 'Full Capitalist')
+
             entry = '''            {}: {{
                 "name": {},
                 "country": {},
@@ -4023,8 +4098,9 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 "base_buildings": {},
                 "industry_charters": {},
                 "special_requirements": {},
-                "starts_enacted": {}
-            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, building_types_json, extension_building_types_json, building_types_json, extension_building_types_json, special_requirements_json, starts_enacted_json)
+                "starts_enacted": {},
+                "ownership_category": {}
+            }}'''.format(json.dumps(company_name), json.dumps(display_name), json.dumps(data["country"] or ""), json.dumps(data["country_confidence"]), json.dumps(country_info), requirements_json, bonuses_json, prosperity_bonuses_text_json, prestige_goods_json, building_types_json, extension_building_types_json, building_types_json, extension_building_types_json, special_requirements_json, starts_enacted_json, json.dumps(ownership_category))
             company_entries.append(entry)
         
         html += ',\n'.join(company_entries)
@@ -4232,7 +4308,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
                         countryDisplay = `<br><small>Country: ${countryInfo.flag} ${countryInfo.name}</small>`;
                     }
                 }
-                
+
+                // Add ownership category display
+                let ownershipDisplay = '';
+                if (data.ownership_category) {
+                    ownershipDisplay = `<br><small>Ownership: ${data.ownership_category}</small>`;
+                }
+
                 // Generate special requirement icons for header
                 let specialIcons = '';
                 if (data.special_requirements && data.special_requirements.length > 0) {
@@ -4254,6 +4336,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
                         <div class="company-details">
                             ${specialIcons}${data.name}
                             ${countryDisplay}
+                            ${ownershipDisplay}
                         </div>
                     </h3>
                 `;
@@ -4981,7 +5064,40 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 updateCompanyVisibility(companyCheckbox);
             });
         }
-        
+
+        // Ownership Filter Functions
+        function toggleOwnershipFilter(checkbox) {
+            const ownershipType = checkbox.dataset.ownership;
+            const sanitizedType = ownershipType.replace(/ /g, '-');
+
+            if (checkbox.checked) {
+                document.body.classList.remove(`hide-ownership-${sanitizedType}`);
+            } else {
+                document.body.classList.add(`hide-ownership-${sanitizedType}`);
+            }
+
+            // Update visible company counts
+            updateBuildingTableHeaders();
+        }
+
+        function toggleAllOwnershipFilters(enable) {
+            const ownershipCheckboxes = document.querySelectorAll('.ownership-filter-checkbox');
+            ownershipCheckboxes.forEach(checkbox => {
+                checkbox.checked = enable;
+                const ownershipType = checkbox.dataset.ownership;
+                const sanitizedType = ownershipType.replace(/ /g, '-');
+
+                if (enable) {
+                    document.body.classList.remove(`hide-ownership-${sanitizedType}`);
+                } else {
+                    document.body.classList.add(`hide-ownership-${sanitizedType}`);
+                }
+            });
+
+            // Update visible company counts once at the end
+            updateBuildingTableHeaders();
+        }
+
         function toggleAllCompaniesInContinent(continentCheckbox) {
             const continentCode = continentCheckbox.dataset.continent;
             const isChecked = continentCheckbox.checked;
@@ -6885,12 +7001,12 @@ __YALPS_BUNDLE_PLACEHOLDER__
             // The global companyData has complete building information with building_types and extension_building_types
             
             // Special companies that don't count against the limit
-            const specialCompanies = ['company_panama_company', 'company_suez_company'];
-            
+            const specialCompanies = []; // Panama and Suez no longer give extra slots
+
             // Filter out special companies from existing selection
             const regularExisting = existingCompanies.filter(c => !specialCompanies.includes(c));
             const specialExisting = existingCompanies.filter(c => specialCompanies.includes(c));
-            
+
             // Calculate remaining slots
             const remainingSlots = MAX_COMPANIES - regularExisting.length;
             
@@ -7185,8 +7301,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
             console.log('🔍 solveSetCoverDirectly: checking candidate name format');
             console.log('First 3 candidate names:', candidates.slice(0, 3).map(c => c.name));
             
-            const specialCompanies = ['company_panama_company', 'company_suez_company'];
-            
+            const specialCompanies = []; // Panama and Suez no longer give extra slots
+
             // Separate special and regular candidates  
             // FIX: HTML candidates actually DO use full names (company_panama_company)
             const specialCandidates = candidates.filter(c => specialCompanies.includes(c.name));
@@ -7279,8 +7395,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
 
         function solveLinearProgram(targetBuildings, existingCompanies, existingCharters, enabledCompanies, remainingSlots) {
             const companyData = ''' + self._get_company_data_js() + ''';
-            const specialCompanies = ['company_panama_company', 'company_suez_company'];
-            
+            const specialCompanies = []; // Panama and Suez no longer give extra slots
+
             // Get buildings covered by existing selection
             const existingCoverage = new Set();
             existingCompanies.forEach(companyName => {
@@ -8174,7 +8290,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
         for company_key in self.companies.keys():
             css_rule = f"        body.hide-company-{company_key} tr[data-company=\"{company_key}\"] {{\n            display: none !important;\n        }}\n"
             css_rules.append(css_rule)
-        
+
+        # CSS for ownership type hiding
+        ownership_types = ['Full Capitalist', 'Partial Aristocrat', 'Partial Bureaucrat', 'Partial Academic', 'Partial Shopkeeper']
+        for ownership_type in ownership_types:
+            css_rule = f"        body.hide-ownership-{ownership_type.replace(' ', '-')} tr[data-ownership=\"{ownership_type}\"] {{\n            display: none !important;\n        }}\n"
+            css_rules.append(css_rule)
+
         return ''.join(css_rules)
 
     def save_html_report(self, filename="index.html"):

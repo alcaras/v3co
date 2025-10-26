@@ -21,6 +21,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -51,6 +52,7 @@
     ],
     "country": "ARG",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -80,6 +82,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -99,8 +102,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NANJING",
       "Control state STATE_SUZHOU",
+      "Control state STATE_NANJING",
       "Control state STATE_ZHEJIANG",
       "Level 5+ Silk Plantation required"
     ],
@@ -110,6 +113,7 @@
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -142,6 +146,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -171,6 +176,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Shopkeeper",
     "special_requirements": [
       "regional"
     ],
@@ -200,6 +206,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -227,6 +234,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -255,6 +263,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -283,6 +292,7 @@
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -310,6 +320,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -337,6 +348,7 @@
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -365,6 +377,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -393,6 +406,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -420,6 +434,7 @@
     ],
     "country": "NOR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -449,6 +464,7 @@
     ],
     "country": "CAN",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -475,6 +491,7 @@
     ],
     "country": "SAF",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -503,6 +520,7 @@
     ],
     "country": "SOK",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -530,6 +548,7 @@
     ],
     "country": "ETH",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -548,9 +567,9 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_EAST_BORNEO",
       "Control state STATE_NORTH_BORNEO",
       "Control state STATE_WEST_BORNEO",
+      "Control state STATE_EAST_BORNEO",
       "Level 5+ Gold Mine required"
     ],
     "prosperity_bonuses": [
@@ -559,6 +578,7 @@
     ],
     "country": "LAN",
     "country_confidence": "definitive",
+    "ownership_category": "Partial Shopkeeper",
     "special_requirements": [
       "regional"
     ],
@@ -583,6 +603,7 @@
     ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Academic",
     "special_requirements": [
       "technology"
     ],
@@ -601,8 +622,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_BEIJING",
       "Control state STATE_ZHILI",
+      "Control state STATE_BEIJING",
       "Level 5+ Coal Mine required",
       "Technology: Steam Donkey",
       "Technology: Railways"
@@ -612,6 +633,7 @@
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -642,6 +664,7 @@
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -671,6 +694,7 @@
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -699,6 +723,7 @@
     ],
     "country": "CHI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -727,6 +752,7 @@
     ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -754,6 +780,7 @@
     ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "primary_culture"
     ],
@@ -779,10 +806,11 @@
     "prosperity_bonuses": [
       "state trade advantage mult = 0.25",
       "country tax income add = 50000",
-      "country max companies add = 1"
+      "country free charters add = 1"
     ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -808,6 +836,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -836,6 +865,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -857,10 +887,10 @@
     "formation_requirements": [
       "Control state STATE_BOMBAY",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
     ],
@@ -869,6 +899,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Shopkeeper",
     "special_requirements": [
       "regional"
     ],
@@ -900,6 +931,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -930,6 +962,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -957,6 +990,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -987,6 +1021,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1016,6 +1051,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1040,10 +1076,10 @@
       "Control state STATE_WEST_BENGAL",
       "Control state STATE_BOMBAY",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
     ],
@@ -1054,6 +1090,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1080,6 +1117,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1109,6 +1147,7 @@
     ],
     "country": "BEL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [
       "primary_culture"
     ],
@@ -1135,6 +1174,7 @@
     ],
     "country": "BEL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1165,6 +1205,7 @@
     ],
     "country": "BEL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1191,6 +1232,7 @@
     ],
     "country": "NET",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "primary_culture"
     ],
@@ -1221,6 +1263,7 @@
     ],
     "country": "NET",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1248,6 +1291,7 @@
     ],
     "country": "GRE",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1277,6 +1321,7 @@
     ],
     "country": "GRE",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1305,6 +1350,7 @@
     ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1332,6 +1378,7 @@
     ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -1360,6 +1407,7 @@
     ],
     "country": "SWE",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1387,6 +1435,7 @@
     ],
     "country": "NOR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1417,6 +1466,7 @@
     ],
     "country": "FIN",
     "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1439,10 +1489,12 @@
       "Technology: Combustion Engine"
     ],
     "prosperity_bonuses": [
-      "building wheat farm throughput add = 0.2"
+      "building wheat farm throughput add = 0.2",
+      "building rye farm throughput add = 0.2"
     ],
     "country": "POL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1473,6 +1525,7 @@
     ],
     "country": "POL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1493,9 +1546,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_LOURENCO_MARQUES",
       "Control state STATE_ZAMBEZIA",
       "Control state STATE_MOCAMBIQUE",
-      "Control state STATE_LOURENCO_MARQUES",
       "Level 5+ Cotton Plantation required",
       "Primary culture: Portuguese",
       "Technology: Mutual Funds"
@@ -1506,6 +1559,7 @@
     ],
     "country": "POR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "primary_culture"
     ],
@@ -1534,6 +1588,7 @@
     ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1564,6 +1619,7 @@
     ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1592,6 +1648,7 @@
     ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1622,6 +1679,7 @@
     ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1641,7 +1699,7 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NORTHERN_SERBIA",
+      "Control state STATE_WESTERN_SERBIA",
       "Level 5+ Arms Industry required",
       "Technology: Gunsmithing"
     ],
@@ -1651,6 +1709,7 @@
     ],
     "country": "SER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1679,6 +1738,7 @@
     ],
     "country": "DEN",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1707,6 +1767,7 @@
     ],
     "country": "DEN",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1733,6 +1794,7 @@
     ],
     "country": "ROM",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "primary_culture"
     ],
@@ -1758,11 +1820,298 @@
     ],
     "country": "ROM",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
     "starts_enacted": false,
     "display_name": "Steaua Română"
+  },
+  "company_united_tobacco_factories": {
+    "building_types": [
+      "building_tobacco_plantation"
+    ],
+    "extension_building_types": [
+      "building_opium_plantation"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_basma_tobacco"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Tobacco Plantation required",
+      "Technology: Corporate Charters"
+    ],
+    "prosperity_bonuses": [
+      "building trade center throughput add = 0.05",
+      "interest group ig industrialists pop attraction mult = 0.2",
+      "interest group ig industrialists approval add = 3"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Săedineni Tyutyunevi Fabriki AD"
+  },
+  "company_mate_gavrilovic": {
+    "building_types": [
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_livestock_ranch"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_groceries"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CROATIA",
+      "Level 5+ Food Industry required"
+    ],
+    "prosperity_bonuses": [
+      "unit morale recovery mult = 0.1",
+      "building livestock ranch throughput add = 0.1",
+      "interest group ig petty bourgeoisie approval add = 2"
+    ],
+    "country": "CRO",
+    "country_confidence": "definitive",
+    "ownership_category": "Partial Shopkeeper",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Mate Gavrilović i drug"
+  },
+  "company_stabilimento_tecnico_di_fiume": {
+    "building_types": [
+      "building_motor_industry",
+      "building_military_shipyards"
+    ],
+    "extension_building_types": [
+      "building_shipyards"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_DALMATIA",
+      "Level 5+ Motor Industry required",
+      "Technology: Self Propelled Torpedoes"
+    ],
+    "prosperity_bonuses": [
+      "unit navy offense mult = 0.15"
+    ],
+    "country": "AUS",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Stabilimento Tecnico di Fiume / alt. Torpedo-Fabrik von Robert Whitehead"
+  },
+  "company_klanicko_drustvo": {
+    "building_types": [
+      "building_food_industry",
+      "building_livestock_ranch"
+    ],
+    "extension_building_types": [
+      "building_wheat_farm",
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_acorn_fed_pork"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_WESTERN_SERBIA",
+      "Level 5+ Livestock Ranch required"
+    ],
+    "prosperity_bonuses": [
+      "building livestock ranch throughput add = 0.1",
+      "building synthetics plants throughput add = 0.05"
+    ],
+    "country": "SER",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Klaničko Društvo, Srpsko akcionarsko društvo za klanje i preradu stoke u Beogradu"
+  },
+  "company_jakub_klein": {
+    "building_types": [
+      "building_logging_camp",
+      "building_paper_mills"
+    ],
+    "extension_building_types": [
+      "building_chemical_plants"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_SLOVAKIA",
+      "Level 5+ Logging Camp required"
+    ],
+    "prosperity_bonuses": [
+      "building paper mills throughput add = 0.1",
+      "building group bg agriculture throughput add = 0.05"
+    ],
+    "country": "HUN",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Jakub Klein a spol."
+  },
+  "company_elso_budapesti_gozmalom": {
+    "building_types": [
+      "building_wheat_farm",
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_logging_camp"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_pannonian_patent_flour"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CENTRAL_HUNGARY",
+      "States with Pannonian Plain trait",
+      "Level 5+ Food Industry required"
+    ],
+    "prosperity_bonuses": [
+      "building wheat farm throughput add = 0.15",
+      "state trade advantage mult = 0.05"
+    ],
+    "country": "HUN",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Első Budapesti Gőzmalom Rt. / First Budapest Steam Mill Co."
+  },
+  "company_witkowitzer_bergbau_und_huttengewerkschaft": {
+    "building_types": [
+      "building_coal_mine",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_lead_mine",
+      "building_sulfur_mine"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_UPPER_SILESIA",
+      "Control state STATE_MORAVIA",
+      "Level 5+ Coal Mine required"
+    ],
+    "prosperity_bonuses": [
+      "building construction sector throughput add = 0.05",
+      "building power plant throughput add = 0.1"
+    ],
+    "country": "AUS",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Witkowitzer Bergbau- und Hüttengewerkschaft"
+  },
+  "company_oesterreichisch_alpine_montangesellschaft": {
+    "building_types": [
+      "building_steel_mills",
+      "building_iron_mine"
+    ],
+    "extension_building_types": [
+      "building_railway"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_STYRIA",
+      "Level 5+ Steel Mills required"
+    ],
+    "prosperity_bonuses": [
+      "building coal mine throughput add = 0.1",
+      "building railway throughput add = 0.05"
+    ],
+    "country": "AUS",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Oesterreichisch-Alpine Montangesellschaft"
+  },
+  "company_getzner_mutter": {
+    "building_types": [
+      "building_textile_mills",
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_synthetics_plants"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_clothes"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_TYROL",
+      "Level 5+ Textile Mills required"
+    ],
+    "prosperity_bonuses": [
+      "building synthetics plants throughput add = 0.1",
+      "interest group ig petty bourgeoisie approval add = 2"
+    ],
+    "country": "AUS",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Getzner, Mutter & Cie"
+  },
+  "company_erste_brunner": {
+    "building_types": [
+      "building_motor_industry",
+      "building_tooling_workshops"
+    ],
+    "extension_building_types": [
+      "building_power_plant"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_brunn_type_engines"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MORAVIA",
+      "Level 5+ Tooling Workshops required"
+    ],
+    "prosperity_bonuses": [
+      "building textile mills throughput add = 0.1",
+      "building power plant throughput add = 0.1"
+    ],
+    "country": "AUS",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "display_name": "Erste Brünner Maschinenfabriks-Gesellschaft / První brněnská strojírna"
   },
   "company_j_p_coats": {
     "building_types": [
@@ -1786,6 +2135,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1817,6 +2167,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1848,6 +2199,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1874,6 +2226,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1904,6 +2257,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1934,6 +2288,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1968,6 +2323,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -1999,6 +2355,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2025,6 +2382,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2041,10 +2399,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
+      "Control region in Region South Germany (level 5+ buildings required)",
+      "Control region in Region North Germany (level 5+ buildings required)",
       "Control region in Region Poland (level 5+ buildings required)",
       "Control region in Region Rhine (level 5+ buildings required)",
-      "Control region in Region North Germany (level 5+ buildings required)",
-      "Control region in Region South Germany (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -2053,6 +2411,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Preußische Staatseisenbahnen"
@@ -2081,6 +2440,7 @@
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2110,6 +2470,7 @@
     ],
     "country": "MEX",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2136,6 +2497,7 @@
     ],
     "country": "MEX",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2163,6 +2525,7 @@
     ],
     "country": "BOL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2179,8 +2542,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MIRANDA",
       "Control state STATE_ZULIA",
+      "Control state STATE_MIRANDA",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -2190,6 +2553,7 @@
     ],
     "country": "VNZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2219,6 +2583,7 @@
     ],
     "country": "ARG",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2249,6 +2614,7 @@
     ],
     "country": "PRG",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2279,6 +2645,7 @@
     ],
     "country": "CHL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2305,6 +2672,7 @@
     ],
     "country": "PEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2334,6 +2702,7 @@
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2364,6 +2733,7 @@
     ],
     "country": "CAN",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2389,10 +2759,11 @@
     "prosperity_bonuses": [
       "state trade advantage mult = 0.25",
       "country tax income add = 50000",
-      "country max companies add = 1"
+      "country free charters add = 1"
     ],
     "country": "CLM",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -2421,6 +2792,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "primary_culture"
     ],
@@ -2451,6 +2823,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2479,6 +2852,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2509,6 +2883,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -2537,6 +2912,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2568,6 +2944,7 @@
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2590,10 +2967,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Tea Plantation required",
       "Starts Enacted at Game Start"
     ],
@@ -2602,6 +2979,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": true,
     "display_name": "East India Company"
@@ -2625,6 +3003,7 @@
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -2651,6 +3030,7 @@
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "primary_culture"
     ],
@@ -2681,6 +3061,7 @@
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2705,6 +3086,7 @@
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -2722,10 +3104,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -2735,6 +3117,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -2764,6 +3147,7 @@
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2792,6 +3176,7 @@
     ],
     "country": "KOR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2820,6 +3205,7 @@
     ],
     "country": "DAI",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2846,6 +3232,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2875,6 +3262,7 @@
     ],
     "country": "PHI",
     "country_confidence": "manual_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2903,6 +3291,7 @@
     ],
     "country": "AST",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2930,6 +3319,7 @@
     ],
     "country": "SIA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2960,6 +3350,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -2988,6 +3379,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -3018,6 +3410,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3035,8 +3428,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WEST_GALICIA",
       "Control state STATE_EAST_GALICIA",
+      "Control state STATE_WEST_GALICIA",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -3046,6 +3439,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3077,6 +3471,7 @@
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3106,6 +3501,7 @@
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3132,6 +3528,7 @@
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3160,6 +3557,7 @@
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3188,6 +3586,7 @@
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3216,6 +3615,7 @@
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3242,6 +3642,7 @@
     ],
     "country": "BOL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3267,6 +3668,7 @@
     ],
     "country": "ARG",
     "country_confidence": "definitive",
+    "ownership_category": "Partial Shopkeeper",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Centro Vitivinícola Nacional"
@@ -3292,6 +3694,7 @@
     ],
     "country": "CHL",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3319,6 +3722,7 @@
     ],
     "country": "VNZ",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3347,6 +3751,7 @@
     ],
     "country": "ARG",
     "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3373,6 +3778,7 @@
     ],
     "country": "PEU",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3399,6 +3805,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3429,6 +3836,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "primary_culture"
     ],
@@ -3459,6 +3867,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3489,6 +3898,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3520,6 +3930,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3550,6 +3961,7 @@
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3577,6 +3989,7 @@
     ],
     "country": "AFG",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3603,6 +4016,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "primary_culture",
       "regional"
@@ -3630,6 +4044,7 @@
     ],
     "country": "KOK",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -3657,6 +4072,7 @@
     ],
     "country": "KOK",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3681,6 +4097,7 @@
     ],
     "country": "AFG",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [
       "regional"
     ],
@@ -3708,6 +4125,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [
       "regional"
     ],
@@ -3734,6 +4152,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3761,6 +4180,7 @@
     ],
     "country": "EGY",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3787,6 +4207,7 @@
     ],
     "country": "KOR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -3813,6 +4234,7 @@
     ],
     "country": "KOK",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3838,6 +4260,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -3863,6 +4286,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -3893,6 +4317,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "regional"
     ],
@@ -3924,6 +4349,7 @@
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3954,6 +4380,7 @@
     ],
     "country": "KOR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -3971,8 +4398,8 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BASRA",
-      "Control state STATE_BAGHDAD",
       "Control state STATE_MOSUL",
+      "Control state STATE_BAGHDAD",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -3982,6 +4409,7 @@
     ],
     "country": "TUR",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4009,6 +4437,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "primary_culture",
       "regional"
@@ -4037,6 +4466,7 @@
     ],
     "country": "PER",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "primary_culture",
       "regional"
@@ -4067,6 +4497,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4097,6 +4528,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4122,6 +4554,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Academic",
     "special_requirements": [
       "regional"
     ],
@@ -4152,6 +4585,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4180,6 +4614,7 @@
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4206,6 +4641,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4237,6 +4673,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4266,6 +4703,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4296,6 +4734,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Shopkeeper",
     "special_requirements": [
       "primary_culture"
     ],
@@ -4326,6 +4765,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4354,6 +4794,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4379,6 +4820,7 @@
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "regional"
     ],
@@ -4413,6 +4855,7 @@
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "journal_entry",
       "regional"
@@ -4433,8 +4876,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Manchuria (level 5+ buildings required)",
       "Control region in Region North China (level 5+ buildings required)",
+      "Control region in Region Manchuria (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Primary culture: Japanese",
       "Technology: Railways",
@@ -4446,6 +4889,7 @@
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [
       "journal_entry",
       "primary_culture"
@@ -4482,6 +4926,7 @@
     ],
     "country": "JAP",
     "country_confidence": "wiki_assignment",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [
       "journal_entry",
       "primary_culture"
@@ -4509,6 +4954,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Agriculture 1"
@@ -4522,6 +4968,7 @@
     "prosperity_bonuses": [],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "display_name": "Type Names"
   },
   "company_basic_agriculture_2": {
@@ -4541,10 +4988,12 @@
       "Level 5+ Millet Farm required"
     ],
     "prosperity_bonuses": [
-      "building livestock ranch throughput add = 0.1"
+      "building livestock ranch throughput add = 0.1",
+      "building food industry throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Agriculture 2"
@@ -4569,6 +5018,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Fabrics"
@@ -4589,10 +5039,11 @@
       "Level 5+ Opium Plantation required"
     ],
     "prosperity_bonuses": [
-      "state radicals from political movements mult = -0.05"
+      "state radicals from political movements mult = -0.1"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Colonial Plantations 1"
@@ -4618,6 +5069,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Colonial Plantations 2"
@@ -4636,10 +5088,12 @@
       "Level 5+ Silk Plantation required"
     ],
     "prosperity_bonuses": [
-      "country influence mult = 0.1"
+      "country influence mult = 0.1",
+      "building textile mills throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Silk And Dye"
@@ -4662,6 +5116,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Wine And Fruit"
@@ -4687,6 +5142,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Fishing"
@@ -4705,11 +5161,12 @@
       "Level 5+ Logging Camp required"
     ],
     "prosperity_bonuses": [
-      "state infrastructure from population add = 1",
-      "state infrastructure from population max add = 20"
+      "state infrastructure from population add = 0.7",
+      "state infrastructure from population max add = 15"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Forestry"
@@ -4731,6 +5188,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Oil"
@@ -4753,6 +5211,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Gold Mining"
@@ -4771,10 +5230,12 @@
       "Level 5+ Iron Mine required"
     ],
     "prosperity_bonuses": [
-      "building steel mills throughput add = 0.1"
+      "building steel mills throughput add = 0.1",
+      "state pollution reduction health mult = 0.05"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Metal Mining"
@@ -4797,6 +5258,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Mineral Mining"
@@ -4821,6 +5283,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Aristocrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Food"
@@ -4844,6 +5307,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Paper"
@@ -4865,10 +5329,11 @@
       "Level 5+ Glassworks required"
     ],
     "prosperity_bonuses": [
-      "state loyalists from political movements mult = 0.1"
+      "state loyalists from political movements mult = 0.075"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Home Goods"
@@ -4893,6 +5358,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Textiles"
@@ -4917,6 +5383,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Steel"
@@ -4926,8 +5393,7 @@
       "building_tooling_workshops"
     ],
     "extension_building_types": [
-      "building_steel_mills",
-      "building_iron_mine"
+      "building_steel_mills"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_tools"
@@ -4941,6 +5407,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Metalworks"
@@ -4959,10 +5426,11 @@
       "Level 5+ Shipyards required"
     ],
     "prosperity_bonuses": [
-      "unit navy offense mult = 0.05"
+      "unit navy offense mult = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Shipyards"
@@ -4983,10 +5451,12 @@
       "Level 5+ Chemical Plants required"
     ],
     "prosperity_bonuses": [
-      "unit supply consumption mult = -0.05"
+      "unit supply consumption mult = -0.05",
+      "building chemical plants throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Chemicals"
@@ -5009,6 +5479,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Motors"
@@ -5034,6 +5505,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Munitions"
@@ -5056,6 +5528,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Electrics"
@@ -5077,10 +5550,12 @@
       "Level 5+ Arms Industry required"
     ],
     "prosperity_bonuses": [
-      "unit army offense mult = 0.05"
+      "unit army offense mult = 0.05",
+      "unit army defense mult = 0.05"
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "Basic Weapons"
@@ -5104,6 +5579,7 @@
     ],
     "country": null,
     "country_confidence": "none",
+    "ownership_category": "Partial Bureaucrat",
     "special_requirements": [],
     "starts_enacted": false,
     "display_name": "United Construction Conglomerate"
