@@ -1,4 +1,322 @@
 {
+  "company_douro_wine_company": {
+    "building_types": [
+      "building_vineyard",
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_glassworks"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_port_wine"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_ENTRE_DOURO_E_MINHO",
+      "Level 5+ Vineyard required"
+    ],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1",
+      "country liberty desire of subjects add = -0.05",
+      "state aristocrats investment pool efficiency mult = 0.05"
+    ],
+    "country": "POR",
+    "country_confidence": "definitive",
+    "ownership_category": "Partial Aristocrat",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Companhia Geral da Agricultura das Vinhas do Alto Douro / douro Wine Company"
+  },
+  "company_secn": {
+    "building_types": [
+      "building_military_shipyard",
+      "building_shipyard",
+      "building_steel_mill"
+    ],
+    "extension_building_types": [
+      "building_motor_industry",
+      "building_artillery_foundry"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_VALENCIA",
+      "Control state STATE_GALICIA",
+      "Control state STATE_LOWER_ANDALUSIA",
+      "Control state STATE_MURCIA",
+      "Control state STATE_ASTURIAS",
+      "Level 3+ Shipyard required"
+    ],
+    "prosperity_bonuses": [
+      "country military tech spread mult = 0.1",
+      "country weekly innovation mult = 0.05",
+      "unit navy defense mult = 0.05"
+    ],
+    "country": "SPA",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Sociedad Española de Construcción Naval (SECN)"
+  },
+  "company_gran_azucarera": {
+    "building_types": [
+      "building_sugar_plantation",
+      "building_logging_camp",
+      "building_livestock_ranch"
+    ],
+    "extension_building_types": [
+      "building_railway"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_havana_sugar"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CENTRAL_CUBA",
+      "Control state STATE_WESTERN_CUBA",
+      "Control state STATE_EASTERN_CUBA",
+      "Level 5+ Sugar Plantation required"
+    ],
+    "prosperity_bonuses": [
+      "state migration pull mult = 0.1",
+      "state aristocrats investment pool efficiency mult = 0.15"
+    ],
+    "country": "CUB",
+    "country_confidence": "definitive",
+    "ownership_category": "Partial Aristocrat",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "La Gran Azucarera"
+  },
+  "company_rodriguez_arguelles_y_cia": {
+    "building_types": [
+      "building_tobacco_plantation"
+    ],
+    "extension_building_types": [
+      "building_logging_camp",
+      "building_rice_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_cigars"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CENTRAL_CUBA",
+      "Control state STATE_WESTERN_CUBA",
+      "Control state STATE_EASTERN_CUBA",
+      "Level 5+ Tobacco Plantation required"
+    ],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "country society tech spread mult = 0.1",
+      "state loyalists from political movements mult = 0.1"
+    ],
+    "country": "CUB",
+    "country_confidence": "definitive",
+    "ownership_category": "Partial Aristocrat",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Rodriguez, Argüelles y Cia."
+  },
+  "company_ynchausti_y_compania": {
+    "building_types": [
+      "building_food_industry",
+      "building_port",
+      "building_sugar_plantation"
+    ],
+    "extension_building_types": [
+      "building_shipyard",
+      "building_rice_farm"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_merchant_marine"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LUZON",
+      "Control state STATE_VISAYAS",
+      "Level 5+ Food Industry required"
+    ],
+    "prosperity_bonuses": [
+      "state construction mult = 0.05",
+      "state migration pull mult = 0.1"
+    ],
+    "country": "PHI",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Ynchausti y Compañía"
+  },
+  "company_office_cherifien_des_phosphates": {
+    "building_types": [
+      "building_sulfur_mine",
+      "building_chemical_plant"
+    ],
+    "extension_building_types": [
+      "building_iron_mine"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_fertilizer"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_MARRAKECH",
+      "Level 5+ Sulfur Mine required"
+    ],
+    "prosperity_bonuses": [
+      "building group bg agriculture throughput add = 0.1",
+      "building sulfur mine throughput add = 0.05"
+    ],
+    "country": "MOR",
+    "country_confidence": "definitive",
+    "ownership_category": "Partial Bureaucrat",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Office Chérifien des Phosphates"
+  },
+  "company_uniao_fabril": {
+    "building_types": [
+      "building_chemical_plant",
+      "building_wheat_farm",
+      "building_tobacco_plantation"
+    ],
+    "extension_building_types": [
+      "building_textile_mill",
+      "building_port",
+      "building_shipyard",
+      "building_food_industry"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_generic_fertilizer"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 5+ Chemical Plant required"
+    ],
+    "prosperity_bonuses": [
+      "country production tech research speed mult = 0.1",
+      "state radicals from political movements mult = -0.05"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Companhia União Fabril"
+  },
+  "company_pedro_domecq": {
+    "building_types": [
+      "building_vineyard",
+      "building_food_industry"
+    ],
+    "extension_building_types": [
+      "building_rice_farm",
+      "building_livestock_ranch"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_sherry"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_LOWER_ANDALUSIA",
+      "Level 5+ Vineyard required"
+    ],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.05",
+      "country leverage generation mult = 0.1"
+    ],
+    "country": "SPA",
+    "country_confidence": "definitive",
+    "ownership_category": "Partial Aristocrat",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Pedro Domecq"
+  },
+  "company_bacardi": {
+    "building_types": [
+      "building_food_industry",
+      "building_glassworks"
+    ],
+    "extension_building_types": [
+      "building_vineyard"
+    ],
+    "possible_prestige_goods": [
+      "prestige_good_bacardi_rum"
+    ],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_EASTERN_CUBA",
+      "Level 5+ Food Industry required"
+    ],
+    "prosperity_bonuses": [
+      "country liberty desire add = 0.10",
+      "building art academy throughput add = 0.1"
+    ],
+    "country": "CUB",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Bacardí y Compañía"
+  },
+  "company_hispano_suiza": {
+    "building_types": [
+      "building_automotive_industry",
+      "building_motor_industry"
+    ],
+    "extension_building_types": [
+      "building_tooling_workshop"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Control state STATE_CATALONIA",
+      "Level 5+ Automotive Industry required"
+    ],
+    "prosperity_bonuses": [
+      "country prestige mult = 0.1",
+      "interest group ig landowners approval add = 2",
+      "unit supply consumption mult = -0.05"
+    ],
+    "country": "SPA",
+    "country_confidence": "definitive",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [
+      "regional"
+    ],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "La Hispano-Suiza, Fábrica de Automóviles, S. A."
+  },
   "company_ludwig_moser_and_sons": {
     "building_types": [
       "building_glassworks"
@@ -16,7 +334,7 @@
     ],
     "prosperity_bonuses": [
       "country influence mult = 0.05",
-      "building arts academy throughput add = 0.05",
+      "building art academy throughput add = 0.05",
       "country leverage generation mult = 0.1"
     ],
     "country": "AUS",
@@ -79,8 +397,8 @@
     ],
     "prosperity_bonuses": [
       "country prestige mult = 0.1",
-      "building arts academy throughput add = 0.05",
-      "building synthetics plants throughput add = 0.05"
+      "building art academy throughput add = 0.05",
+      "building synthetics plant throughput add = 0.05"
     ],
     "country": "DEU",
     "country_confidence": "wiki_assignment",
@@ -95,7 +413,7 @@
   "company_jiangnan_weaving_bureaus": {
     "building_types": [
       "building_silk_plantation",
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -105,9 +423,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_SUZHOU",
       "Control state STATE_NANJING",
       "Control state STATE_ZHEJIANG",
-      "Control state STATE_SUZHOU",
       "Level 5+ Silk Plantation required"
     ],
     "prosperity_bonuses": [
@@ -146,7 +464,7 @@
     "prosperity_bonuses": [
       "state colony growth speed mult = 0.1",
       "state conversion mult = 0.05",
-      "building textile mills throughput add = 0.05"
+      "building textile mill throughput add = 0.05"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -160,11 +478,11 @@
   },
   "company_maison_worth": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation",
-      "building_arts_academy"
+      "building_art_academy"
     ],
     "possible_prestige_goods": [
       "prestige_good_haute_couture"
@@ -172,7 +490,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_ILE_DE_FRANCE",
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
       "country influence mult = 0.05",
@@ -208,7 +526,7 @@
     ],
     "prosperity_bonuses": [
       "building power plant throughput add = 0.05",
-      "building textile mills throughput add = 0.1"
+      "building textile mill throughput add = 0.1"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -225,7 +543,7 @@
       "building_arms_industry"
     ],
     "extension_building_types": [
-      "building_munition_plants"
+      "building_munition_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_colt_revolvers"
@@ -251,7 +569,7 @@
   },
   "company_gebruder_thonet": {
     "building_types": [
-      "building_furniture_manufacturies"
+      "building_furniture_manufactory"
     ],
     "extension_building_types": [
       "building_logging_camp"
@@ -262,12 +580,12 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_AUSTRIA",
-      "Level 5+ Furniture Manufacturies required"
+      "Level 5+ Furniture Manufactory required"
     ],
     "prosperity_bonuses": [
       "interest group ig petty bourgeoisie pop attraction mult = 0.05",
       "state radicals from political movements mult = -0.05",
-      "building furniture manufacturies throughput add = 0.1"
+      "building furniture manufactory throughput add = 0.1"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -311,7 +629,7 @@
   },
   "company_maple_and_co": {
     "building_types": [
-      "building_furniture_manufacturies"
+      "building_furniture_manufactory"
     ],
     "extension_building_types": [
       "building_logging_camp"
@@ -322,7 +640,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_HOME_COUNTIES",
-      "Level 5+ Furniture Manufacturies required"
+      "Level 5+ Furniture Manufactory required"
     ],
     "prosperity_bonuses": [
       "country prestige mult = 0.05",
@@ -383,7 +701,7 @@
       "Level 5+ Sulfur Mine required"
     ],
     "prosperity_bonuses": [
-      "building munition plants throughput add = 0.1",
+      "building munition plant throughput add = 0.1",
       "building group bg plantations throughput add = 0.05",
       "building group bg agriculture throughput add = 0.05"
     ],
@@ -400,7 +718,7 @@
   "company_mantero_seta": {
     "building_types": [
       "building_silk_plantation",
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -415,7 +733,7 @@
     ],
     "prosperity_bonuses": [
       "country prestige mult = 0.05",
-      "building synthetics plants throughput add = 0.1"
+      "building synthetics plant throughput add = 0.1"
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
@@ -429,7 +747,7 @@
   },
   "company_norsk_hydro": {
     "building_types": [
-      "building_chemical_plants",
+      "building_chemical_plant",
       "building_power_plant"
     ],
     "extension_building_types": [
@@ -439,7 +757,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_WESTERN_NORWAY",
-      "Level 5+ Chemical Plants required",
+      "Level 5+ Chemical Plant required",
       "Technology: Electrical Generation"
     ],
     "prosperity_bonuses": [
@@ -459,7 +777,7 @@
   "company_massey_harris": {
     "building_types": [
       "building_motor_industry",
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "extension_building_types": [
       "building_iron_mine"
@@ -521,7 +839,7 @@
       "building_port"
     ],
     "extension_building_types": [
-      "building_shipyards"
+      "building_shipyard"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -560,7 +878,7 @@
       "Technology: Railways"
     ],
     "prosperity_bonuses": [
-      "building group bg coffee plantations throughput add = 0.1",
+      "building coffee plantation throughput add = 0.1",
       "building livestock ranch throughput add = 0.05"
     ],
     "country": "ETH",
@@ -606,14 +924,16 @@
   },
   "company_paradox": {
     "building_types": [
-      "building_arts_academy",
+      "building_art_academy",
       "building_electrics_industry"
     ],
     "extension_building_types": [
       "building_coal_mine",
-      "building_paper_mills"
+      "building_paper_mill"
     ],
-    "possible_prestige_goods": [],
+    "possible_prestige_goods": [
+      "prestige_good_grand_strategy_games"
+    ],
     "flavored_company": true,
     "formation_requirements": [],
     "prosperity_bonuses": [
@@ -642,8 +962,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_ZHILI",
       "Control state STATE_BEIJING",
+      "Control state STATE_ZHILI",
       "Level 5+ Coal Mine required",
       "Technology: Steam Donkey",
       "Technology: Railways"
@@ -664,8 +984,8 @@
   "company_hanyang_arsenal": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries",
-      "building_munition_plants"
+      "building_artillery_foundry",
+      "building_munition_plant"
     ],
     "extension_building_types": [
       "building_explosives_factory"
@@ -695,18 +1015,18 @@
   },
   "company_foochow_arsenal": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards"
+      "building_shipyard",
+      "building_military_shipyard"
     ],
     "extension_building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_logging_camp"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_FUJIAN",
-      "Level 5+ Military Shipyards required",
+      "Level 5+ Military Shipyard required",
       "Technology: Ironclad Tech",
       "Technology: Gantry Cranes"
     ],
@@ -754,9 +1074,37 @@
     "starting_country": null,
     "display_name": "Jingdezhen Kilns"
   },
+  "company_ingolstadt_electrical_company": {
+    "building_types": [
+      "building_power_plant"
+    ],
+    "extension_building_types": [
+      "building_textile_mill",
+      "building_livestock_ranch"
+    ],
+    "possible_prestige_goods": [],
+    "flavored_company": true,
+    "formation_requirements": [
+      "Level 10+ Power Plant required",
+      "Technology: Electrical Generation"
+    ],
+    "prosperity_bonuses": [
+      "country frankenstein company bool = yes",
+      "state mortality mult = 0.05",
+      "state radicals from political movements mult = 0.1",
+      "country tech research speed mult = 0.10"
+    ],
+    "country": null,
+    "country_confidence": "none",
+    "ownership_category": "Full Capitalist",
+    "special_requirements": [],
+    "starts_enacted": false,
+    "starting_country": null,
+    "display_name": "Ingolstadt Electrical Company"
+  },
   "company_misr": {
     "building_types": [
-      "building_textile_mills",
+      "building_textile_mill",
       "building_cotton_plantation"
     ],
     "extension_building_types": [
@@ -768,7 +1116,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_LOWER_EGYPT",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Corporate Charters"
     ],
     "prosperity_bonuses": [
@@ -819,7 +1167,7 @@
       "building_port"
     ],
     "extension_building_types": [
-      "building_shipyards"
+      "building_shipyard"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_merchant_marine"
@@ -873,7 +1221,7 @@
   },
   "company_bombay_dyeing_company": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -884,7 +1232,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Cotton Gin"
     ],
     "prosperity_bonuses": [
@@ -915,11 +1263,11 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Control region in Region Punjab (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
     ],
@@ -956,8 +1304,8 @@
       "Level 5+ Logging Camp required"
     ],
     "prosperity_bonuses": [
-      "building group bg tea plantations throughput add = 0.1",
-      "building group bg coffee plantations throughput add = 0.1"
+      "building tea plantation throughput add = 0.1",
+      "building coffee plantation throughput add = 0.1"
     ],
     "country": "BIC",
     "country_confidence": "wiki_assignment",
@@ -971,7 +1319,7 @@
   },
   "company_madura_mills": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_rubber_plantation",
@@ -983,12 +1331,12 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_MADRAS",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Cotton Gin"
     ],
     "prosperity_bonuses": [
       "interest group ig petty bourgeoisie pop attraction mult = 0.1",
-      "building textile mills throughput add = 0.1",
+      "building textile mill throughput add = 0.1",
       "country state religion wages mult = 0.05"
     ],
     "country": "BIC",
@@ -1017,7 +1365,7 @@
       "Level 5+ Tea Plantation required"
     ],
     "prosperity_bonuses": [
-      "building group bg tea plantations throughput add = 0.2",
+      "building tea plantation throughput add = 0.2",
       "state radicals from political movements mult = -0.05"
     ],
     "country": "BIC",
@@ -1032,8 +1380,8 @@
   },
   "company_wadia_shipbuilders": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards"
+      "building_shipyard",
+      "building_military_shipyard"
     ],
     "extension_building_types": [
       "building_motor_industry"
@@ -1042,7 +1390,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Gantry Cranes"
     ],
     "prosperity_bonuses": [
@@ -1101,26 +1449,26 @@
     "extension_building_types": [
       "building_port",
       "building_cotton_plantation",
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_grain"
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_BOMBAY",
       "Control state STATE_WEST_BENGAL",
-      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control state STATE_BOMBAY",
       "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
     ],
     "prosperity_bonuses": [
       "building sulfur mine throughput add = 0.1",
-      "building textile mills throughput add = 0.1",
+      "building textile mill throughput add = 0.1",
       "state trade advantage mult = 0.05"
     ],
     "country": "BIC",
@@ -1198,13 +1546,13 @@
       "building_railway"
     ],
     "extension_building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WALLONIA",
       "Control state STATE_FLANDERS",
+      "Control state STATE_WALLONIA",
       "Level 5+ Motor Industry required"
     ],
     "prosperity_bonuses": [
@@ -1222,8 +1570,8 @@
   },
   "company_john_cockerill": {
     "building_types": [
-      "building_steel_mills",
-      "building_tooling_workshops",
+      "building_steel_mill",
+      "building_tooling_workshop",
       "building_motor_industry"
     ],
     "extension_building_types": [
@@ -1234,9 +1582,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WALLONIA",
       "Control state STATE_FLANDERS",
-      "Level 5+ Steel Mills required",
+      "Control state STATE_WALLONIA",
+      "Level 5+ Steel Mill required",
       "Starts Enacted at Game Start (Belgium)"
     ],
     "prosperity_bonuses": [
@@ -1293,8 +1641,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_HOLLAND",
       "Control state STATE_GELRE",
+      "Control state STATE_HOLLAND",
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
@@ -1315,10 +1663,10 @@
   "company_basileiades": {
     "building_types": [
       "building_motor_industry",
-      "building_shipyards"
+      "building_shipyard"
     ],
     "extension_building_types": [
-      "building_military_shipyards"
+      "building_military_shipyard"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -1344,7 +1692,7 @@
   "company_kouppas": {
     "building_types": [
       "building_motor_industry",
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "extension_building_types": [
       "building_automotive_industry"
@@ -1360,7 +1708,7 @@
     ],
     "prosperity_bonuses": [
       "building railway throughput add = 0.1",
-      "building steel mills throughput add = 0.05"
+      "building steel mill throughput add = 0.05"
     ],
     "country": "GRE",
     "country_confidence": "wiki_assignment",
@@ -1407,7 +1755,7 @@
       "building_iron_mine"
     ],
     "extension_building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_swedish_bar_iron"
@@ -1433,8 +1781,8 @@
   },
   "company_gotaverken": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards",
+      "building_shipyard",
+      "building_military_shipyard",
       "building_motor_industry"
     ],
     "extension_building_types": [
@@ -1444,7 +1792,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_GOTALAND",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Gantry Cranes"
     ],
     "prosperity_bonuses": [
@@ -1463,17 +1811,17 @@
   },
   "company_aker_mek": {
     "building_types": [
-      "building_shipyards",
+      "building_shipyard",
       "building_motor_industry"
     ],
     "extension_building_types": [
-      "building_military_shipyards"
+      "building_military_shipyard"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_EASTERN_NORWAY",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Gantry Cranes"
     ],
     "prosperity_bonuses": [
@@ -1492,7 +1840,7 @@
   },
   "company_nokia": {
     "building_types": [
-      "building_paper_mills",
+      "building_paper_mill",
       "building_logging_camp",
       "building_power_plant"
     ],
@@ -1505,12 +1853,12 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_UUSIMAA",
-      "Level 5+ Paper Mills required",
+      "Level 5+ Paper Mill required",
       "Technology: Atmospheric Engine"
     ],
     "prosperity_bonuses": [
       "building electrics industry throughput add = 0.1",
-      "building synthetics plants throughput add = 0.05"
+      "building synthetics plant throughput add = 0.05"
     ],
     "country": "FIN",
     "country_confidence": "definitive",
@@ -1528,7 +1876,7 @@
     ],
     "extension_building_types": [
       "building_automotive_industry",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -1553,9 +1901,9 @@
   },
   "company_lilpop": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine",
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "extension_building_types": [
       "building_motor_industry"
@@ -1565,9 +1913,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GREATER_POLAND",
       "Control state STATE_MAZOVIA",
-      "Level 5+ Steel Mills required",
+      "Control state STATE_GREATER_POLAND",
+      "Level 5+ Steel Mill required",
       "Technology: Steelworking"
     ],
     "prosperity_bonuses": [
@@ -1597,9 +1945,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_LOURENCO_MARQUES",
-      "Control state STATE_ZAMBEZIA",
       "Control state STATE_MOCAMBIQUE",
+      "Control state STATE_ZAMBEZIA",
+      "Control state STATE_LOURENCO_MARQUES",
       "Level 5+ Cotton Plantation required",
       "Primary culture: Portuguese",
       "Technology: Mutual Funds"
@@ -1620,7 +1968,7 @@
   },
   "company_altos_hornos_de_vizcaya": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine"
     ],
     "extension_building_types": [
@@ -1631,8 +1979,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_NAVARRA",
-      "Level 5+ Steel Mills required",
+      "Control state STATE_BASQUE_COUNTRY",
+      "Level 5+ Steel Mill required",
       "Technology: Steelworking"
     ],
     "prosperity_bonuses": [
@@ -1651,7 +1999,7 @@
   "company_duro_y_compania": {
     "building_types": [
       "building_coal_mine",
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine"
     ],
     "extension_building_types": [
@@ -1668,7 +2016,7 @@
     ],
     "prosperity_bonuses": [
       "building arms industry throughput add = 0.1",
-      "building artillery foundries throughput add = 0.1"
+      "building artillery foundry throughput add = 0.1"
     ],
     "country": "SPA",
     "country_confidence": "wiki_assignment",
@@ -1682,7 +2030,7 @@
   },
   "company_espana_industrial": {
     "building_types": [
-      "building_textile_mills",
+      "building_textile_mill",
       "building_cotton_plantation"
     ],
     "extension_building_types": [
@@ -1694,7 +2042,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_CATALONIA",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Cotton Gin"
     ],
     "prosperity_bonuses": [
@@ -1713,10 +2061,10 @@
   "company_trubia": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "extension_building_types": [
-      "building_munition_plants",
+      "building_munition_plant",
       "building_explosives_factory"
     ],
     "possible_prestige_goods": [
@@ -1745,10 +2093,10 @@
   "company_zastava": {
     "building_types": [
       "building_arms_industry",
-      "building_munition_plants"
+      "building_munition_plant"
     ],
     "extension_building_types": [
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_small_arms"
@@ -1776,10 +2124,10 @@
   "company_chr_hansens": {
     "building_types": [
       "building_food_industry",
-      "building_chemical_plants"
+      "building_chemical_plant"
     ],
     "extension_building_types": [
-      "building_synthetics_plants"
+      "building_synthetics_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_groceries"
@@ -1808,7 +2156,7 @@
       "building_port"
     ],
     "extension_building_types": [
-      "building_shipyards",
+      "building_shipyard",
       "building_logging_camp"
     ],
     "possible_prestige_goods": [
@@ -1817,7 +2165,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_ZEALAND",
-      "Level 5+ Shipyards required"
+      "Level 5+ Shipyard required"
     ],
     "prosperity_bonuses": [
       "country convoys capacity mult = 0.2",
@@ -1951,10 +2299,10 @@
   "company_stabilimento_tecnico_di_fiume": {
     "building_types": [
       "building_motor_industry",
-      "building_military_shipyards"
+      "building_military_shipyard"
     ],
     "extension_building_types": [
-      "building_shipyards"
+      "building_shipyard"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -1995,7 +2343,7 @@
     ],
     "prosperity_bonuses": [
       "building livestock ranch throughput add = 0.1",
-      "building synthetics plants throughput add = 0.05"
+      "building synthetics plant throughput add = 0.05"
     ],
     "country": "SER",
     "country_confidence": "definitive",
@@ -2010,10 +2358,10 @@
   "company_jakub_klein": {
     "building_types": [
       "building_logging_camp",
-      "building_paper_mills"
+      "building_paper_mill"
     ],
     "extension_building_types": [
-      "building_chemical_plants"
+      "building_chemical_plant"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -2022,7 +2370,7 @@
       "Level 5+ Logging Camp required"
     ],
     "prosperity_bonuses": [
-      "building paper mills throughput add = 0.1",
+      "building paper mill throughput add = 0.1",
       "building group bg agriculture throughput add = 0.05"
     ],
     "country": "HUN",
@@ -2098,7 +2446,7 @@
   },
   "company_oesterreichisch_alpine_montangesellschaft": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine"
     ],
     "extension_building_types": [
@@ -2108,7 +2456,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_STYRIA",
-      "Level 5+ Steel Mills required"
+      "Level 5+ Steel Mill required"
     ],
     "prosperity_bonuses": [
       "building coal mine throughput add = 0.1",
@@ -2126,11 +2474,11 @@
   },
   "company_getzner_mutter": {
     "building_types": [
-      "building_textile_mills",
+      "building_textile_mill",
       "building_power_plant"
     ],
     "extension_building_types": [
-      "building_synthetics_plants"
+      "building_synthetics_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_clothes"
@@ -2138,10 +2486,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_TYROL",
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
-      "building synthetics plants throughput add = 0.1",
+      "building synthetics plant throughput add = 0.1",
       "interest group ig petty bourgeoisie approval add = 2"
     ],
     "country": "AUS",
@@ -2157,7 +2505,7 @@
   "company_erste_brunner": {
     "building_types": [
       "building_motor_industry",
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "extension_building_types": [
       "building_power_plant"
@@ -2168,10 +2516,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_MORAVIA",
-      "Level 5+ Tooling Workshops required"
+      "Level 5+ Tooling Workshop required"
     ],
     "prosperity_bonuses": [
-      "building textile mills throughput add = 0.1",
+      "building textile mill throughput add = 0.1",
       "building power plant throughput add = 0.1"
     ],
     "country": "AUS",
@@ -2186,7 +2534,7 @@
   },
   "company_j_p_coats": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -2197,11 +2545,11 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_LOWLANDS",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Cotton Gin"
     ],
     "prosperity_bonuses": [
-      "building textile mills throughput add = 0.15",
+      "building textile mill throughput add = 0.15",
       "building cotton plantation throughput add = 0.05"
     ],
     "country": "GBR",
@@ -2216,9 +2564,9 @@
   },
   "company_armstrong_whitworth": {
     "building_types": [
-      "building_military_shipyards",
+      "building_military_shipyard",
       "building_motor_industry",
-      "building_munition_plants"
+      "building_munition_plant"
     ],
     "extension_building_types": [
       "building_automotive_industry"
@@ -2229,7 +2577,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_YORKSHIRE",
-      "Level 5+ Military Shipyards required",
+      "Level 5+ Military Shipyard required",
       "Technology: Ironclad Tech",
       "Technology: Gantry Cranes"
     ],
@@ -2249,9 +2597,9 @@
   },
   "company_john_brown": {
     "building_types": [
-      "building_military_shipyards",
-      "building_shipyards",
-      "building_steel_mills"
+      "building_military_shipyard",
+      "building_shipyard",
+      "building_steel_mill"
     ],
     "extension_building_types": [
       "building_iron_mine"
@@ -2262,7 +2610,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_LOWLANDS",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Steelworking",
       "Technology: Hydraulic Cranes"
     ],
@@ -2312,7 +2660,7 @@
     "building_types": [
       "building_coal_mine",
       "building_iron_mine",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "extension_building_types": [
       "building_lead_mine"
@@ -2327,8 +2675,8 @@
       "Technology: Bessemer Process"
     ],
     "prosperity_bonuses": [
-      "building shipyards throughput add = 0.1",
-      "building military shipyards throughput add = 0.1"
+      "building shipyard throughput add = 0.1",
+      "building military shipyard throughput add = 0.1"
     ],
     "country": "GBR",
     "country_confidence": "wiki_assignment",
@@ -2343,8 +2691,8 @@
   "company_krupp": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries",
-      "building_steel_mills"
+      "building_artillery_foundry",
+      "building_steel_mill"
     ],
     "extension_building_types": [
       "building_iron_mine"
@@ -2355,7 +2703,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_RUHR",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Steelworking",
       "Starts Enacted at Game Start (Prussia)"
     ],
@@ -2375,13 +2723,13 @@
   },
   "company_rheinmetall": {
     "building_types": [
-      "building_artillery_foundries",
-      "building_munition_plants",
+      "building_artillery_foundry",
+      "building_munition_plant",
       "building_explosives_factory"
     ],
     "extension_building_types": [
       "building_motor_industry",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_artillery"
@@ -2411,12 +2759,12 @@
   "company_schichau": {
     "building_types": [
       "building_motor_industry",
-      "building_military_shipyards",
-      "building_shipyards"
+      "building_military_shipyard",
+      "building_shipyard"
     ],
     "extension_building_types": [
       "building_railway",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_schichau_engines"
@@ -2479,10 +2827,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
+      "Control region in Region South Germany (level 5+ buildings required)",
       "Control region in Region Rhine (level 5+ buildings required)",
       "Control region in Region North Germany (level 5+ buildings required)",
       "Control region in Region Poland (level 5+ buildings required)",
-      "Control region in Region South Germany (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -2499,8 +2847,8 @@
   },
   "company_basf": {
     "building_types": [
-      "building_synthetics_plants",
-      "building_chemical_plants"
+      "building_synthetics_plant",
+      "building_chemical_plant"
     ],
     "extension_building_types": [
       "building_dye_plantation",
@@ -2512,7 +2860,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BADEN",
-      "Level 5+ Synthetics Plants required",
+      "Level 5+ Synthetics Plant required",
       "Technology: Aniline"
     ],
     "prosperity_bonuses": [
@@ -2531,7 +2879,7 @@
   },
   "company_fundidora_monterrey": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_coal_mine"
     ],
     "extension_building_types": [
@@ -2543,7 +2891,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_RIO_GRANDE",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Bessemer Process"
     ],
     "prosperity_bonuses": [
@@ -2653,7 +3001,7 @@
       "building_food_industry"
     ],
     "extension_building_types": [
-      "building_chemical_plants"
+      "building_chemical_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_groceries"
@@ -2665,7 +3013,7 @@
     ],
     "prosperity_bonuses": [
       "interest group ig rural folk pop attraction mult = 0.2",
-      "building tooling workshops throughput add = 0.1"
+      "building tooling workshop throughput add = 0.1"
     ],
     "country": "ARG",
     "country_confidence": "wiki_assignment",
@@ -2679,9 +3027,9 @@
   },
   "company_la_rosada": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_arms_industry",
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "extension_building_types": [
       "building_iron_mine"
@@ -2712,8 +3060,8 @@
   "company_famae": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries",
-      "building_munition_plants"
+      "building_artillery_foundry",
+      "building_munition_plant"
     ],
     "extension_building_types": [
       "building_explosives_factory"
@@ -2729,7 +3077,7 @@
     ],
     "prosperity_bonuses": [
       "unit offense mult = 0.1",
-      "building steel mills throughput add = 0.05"
+      "building steel mill throughput add = 0.05"
     ],
     "country": "CHL",
     "country_confidence": "wiki_assignment",
@@ -2771,7 +3119,7 @@
   },
   "company_kablin": {
     "building_types": [
-      "building_paper_mills",
+      "building_paper_mill",
       "building_logging_camp"
     ],
     "extension_building_types": [
@@ -2783,11 +3131,11 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control region in Region Brazil (level 5+ buildings required)",
-      "Level 5+ Paper Mills required",
+      "Level 5+ Paper Mill required",
       "Technology: Mechanical Tools"
     ],
     "prosperity_bonuses": [
-      "building tooling workshops throughput add = 0.1",
+      "building tooling workshop throughput add = 0.1",
       "state infrastructure from population max add = 15"
     ],
     "country": "BRZ",
@@ -2820,7 +3168,7 @@
     ],
     "prosperity_bonuses": [
       "state colony growth creation factor = 0.1",
-      "building textile mills throughput add = 0.05"
+      "building textile mill throughput add = 0.05"
     ],
     "country": "CAN",
     "country_confidence": "wiki_assignment",
@@ -2838,7 +3186,7 @@
       "building_port"
     ],
     "extension_building_types": [
-      "building_shipyards"
+      "building_shipyard"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_merchant_marine"
@@ -2866,7 +3214,7 @@
   "company_vodka_monopoly": {
     "building_types": [
       "building_food_industry",
-      "building_vineyard_plantation"
+      "building_vineyard"
     ],
     "extension_building_types": [
       "building_wheat_farm",
@@ -2896,11 +3244,11 @@
   "company_putilov_company": {
     "building_types": [
       "building_motor_industry",
-      "building_military_shipyards",
-      "building_artillery_foundries"
+      "building_military_shipyard",
+      "building_artillery_foundry"
     ],
     "extension_building_types": [
-      "building_munition_plants"
+      "building_munition_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_artillery"
@@ -2958,11 +3306,11 @@
   "company_izhevsk_arms_plant": {
     "building_types": [
       "building_arms_industry",
-      "building_munition_plants"
+      "building_munition_plant"
     ],
     "extension_building_types": [
-      "building_artillery_foundries",
-      "building_steel_mills"
+      "building_artillery_foundry",
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_small_arms"
@@ -2975,7 +3323,7 @@
     ],
     "prosperity_bonuses": [
       "building arms industry throughput add = 0.1",
-      "building artillery foundries throughput add = 0.1"
+      "building artillery foundry throughput add = 0.1"
     ],
     "country": "RUS",
     "country_confidence": "wiki_assignment",
@@ -2989,7 +3337,7 @@
   },
   "company_savva_morozov": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -3000,7 +3348,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_MOSCOW",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Joint Stock Companies"
     ],
     "prosperity_bonuses": [
@@ -3019,7 +3367,7 @@
   },
   "company_john_hughes": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_coal_mine",
       "building_iron_mine"
     ],
@@ -3033,7 +3381,7 @@
     "formation_requirements": [
       "Control state STATE_TAURIDA",
       "Control state STATE_KHARKOV",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Bessemer Process"
     ],
     "prosperity_bonuses": [
@@ -3065,11 +3413,11 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Punjab (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Tea Plantation required",
       "Starts Enacted at Game Start (Great Britain)"
     ],
@@ -3088,16 +3436,16 @@
   },
   "company_imperial_arsenal": {
     "building_types": [
-      "building_military_shipyards"
+      "building_military_shipyard"
     ],
     "extension_building_types": [
-      "building_shipyards"
+      "building_shipyard"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_EASTERN_THRACE",
-      "Level 5+ Military Shipyards required",
+      "Level 5+ Military Shipyard required",
       "Technology: Hydraulic Cranes"
     ],
     "prosperity_bonuses": [
@@ -3209,11 +3557,11 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Punjab (level 5+ buildings required)",
       "Control region in Region Central India (level 5+ buildings required)",
       "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Madras (level 5+ buildings required)",
       "Control region in Region Bengal (level 5+ buildings required)",
+      "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -3233,8 +3581,8 @@
   },
   "company_tata": {
     "building_types": [
-      "building_textile_mills",
-      "building_steel_mills"
+      "building_textile_mill",
+      "building_steel_mill"
     ],
     "extension_building_types": [
       "building_iron_mine",
@@ -3246,7 +3594,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
       "building construction sector throughput add = 0.05",
@@ -3269,7 +3617,7 @@
     ],
     "extension_building_types": [
       "building_food_industry",
-      "building_chemical_plants"
+      "building_chemical_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_grain"
@@ -3294,7 +3642,7 @@
   },
   "company_nam_dinh": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation",
@@ -3306,7 +3654,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_TONKIN",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Corporate Charters"
     ],
     "prosperity_bonuses": [
@@ -3383,7 +3731,7 @@
   },
   "company_william_sandford": {
     "building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "extension_building_types": [
       "building_iron_mine",
@@ -3395,7 +3743,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_NEW_SOUTH_WALES",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Bessemer Process"
     ],
     "prosperity_bonuses": [
@@ -3416,7 +3764,7 @@
       "building_rice_farm"
     ],
     "extension_building_types": [
-      "building_chemical_plants"
+      "building_chemical_plant"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_grain"
@@ -3442,9 +3790,9 @@
   },
   "company_skoda": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_motor_industry",
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "extension_building_types": [
       "building_automotive_industry"
@@ -3455,7 +3803,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOHEMIA",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Shell Gun"
     ],
     "prosperity_bonuses": [
@@ -3475,7 +3823,7 @@
   "company_mav": {
     "building_types": [
       "building_motor_industry",
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "extension_building_types": [
       "building_automotive_industry"
@@ -3504,8 +3852,8 @@
   },
   "company_manfred_weiss": {
     "building_types": [
-      "building_steel_mills",
-      "building_munition_plants",
+      "building_steel_mill",
+      "building_munition_plant",
       "building_automotive_industry"
     ],
     "extension_building_types": [
@@ -3517,7 +3865,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_CENTRAL_HUNGARY",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Open Hearth Process"
     ],
     "prosperity_bonuses": [
@@ -3552,7 +3900,7 @@
     ],
     "prosperity_bonuses": [
       "building railway throughput add = 0.05",
-      "building tooling workshops throughput add = 0.1"
+      "building tooling workshop throughput add = 0.1"
     ],
     "country": "AUS",
     "country_confidence": "wiki_assignment",
@@ -3567,11 +3915,11 @@
   "company_oevg": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "extension_building_types": [
-      "building_steel_mills",
-      "building_munition_plants",
+      "building_steel_mill",
+      "building_munition_plant",
       "building_electrics_industry"
     ],
     "possible_prestige_goods": [
@@ -3584,7 +3932,7 @@
       "Technology: Percussion Cap"
     ],
     "prosperity_bonuses": [
-      "building munition plants throughput add = 0.1",
+      "building munition plant throughput add = 0.1",
       "unit defense mult = 0.05"
     ],
     "country": "AUS",
@@ -3615,7 +3963,7 @@
       "Technology: Railways"
     ],
     "prosperity_bonuses": [
-      "building group bg coffee plantations throughput add = 0.15",
+      "building coffee plantation throughput add = 0.15",
       "state trade capacity mult = 0.1"
     ],
     "country": "BRZ",
@@ -3630,8 +3978,8 @@
   },
   "company_estaleiro_maua": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards"
+      "building_shipyard",
+      "building_military_shipyard"
     ],
     "extension_building_types": [
       "building_logging_camp"
@@ -3640,11 +3988,11 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_RIO_DE_JANEIRO",
-      "Level 5+ Shipyards required"
+      "Level 5+ Shipyard required"
     ],
     "prosperity_bonuses": [
       "country convoys capacity mult = 0.1",
-      "building steel mills throughput add = 0.1"
+      "building steel mill throughput add = 0.1"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -3658,7 +4006,7 @@
   },
   "company_pernambuco_textiles": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation",
@@ -3670,7 +4018,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_PERNAMBUCO",
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
       "building cotton plantation throughput add = 0.1",
@@ -3688,7 +4036,7 @@
   },
   "company_fundicao_ipanema": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine"
     ],
     "extension_building_types": [
@@ -3700,10 +4048,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_SAO_PAULO",
-      "Level 5+ Steel Mills required"
+      "Level 5+ Steel Mill required"
     ],
     "prosperity_bonuses": [
-      "building munition plants throughput add = 0.05",
+      "building munition plant throughput add = 0.05",
       "building arms industry throughput add = 0.1"
     ],
     "country": "BRZ",
@@ -3719,7 +4067,7 @@
   "company_rossi": {
     "building_types": [
       "building_arms_industry",
-      "building_munition_plants"
+      "building_munition_plant"
     ],
     "extension_building_types": [
       "building_explosives_factory"
@@ -3734,7 +4082,7 @@
     ],
     "prosperity_bonuses": [
       "building livestock ranch throughput add = 0.1",
-      "building chemical plants throughput add = 0.05"
+      "building chemical plant throughput add = 0.05"
     ],
     "country": "BRZ",
     "country_confidence": "wiki_assignment",
@@ -3776,7 +4124,7 @@
   },
   "company_argentinian_wine": {
     "building_types": [
-      "building_vineyard_plantation"
+      "building_vineyard"
     ],
     "extension_building_types": [
       "building_livestock_ranch"
@@ -3785,7 +4133,7 @@
     "flavored_company": false,
     "formation_requirements": [
       "Control region in Region La Plata (level 5+ buildings required)",
-      "Level 5+ Vineyard Plantation required",
+      "Level 5+ Vineyard required",
       "Technology: Central Planning"
     ],
     "prosperity_bonuses": [
@@ -3804,14 +4152,14 @@
       "building_port"
     ],
     "extension_building_types": [
-      "building_shipyards",
+      "building_shipyard",
       "building_logging_camp"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_SANTIAGO",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Screw Frigate"
     ],
     "prosperity_bonuses": [
@@ -3977,12 +4325,12 @@
   },
   "company_us_steel": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine",
       "building_coal_mine"
     ],
     "extension_building_types": [
-      "building_arts_academy"
+      "building_art_academy"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_steel"
@@ -3990,12 +4338,12 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_PENNSYLVANIA",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Open Hearth Process"
     ],
     "prosperity_bonuses": [
       "building railway throughput add = 0.1",
-      "building shipyards throughput add = 0.1"
+      "building shipyard throughput add = 0.1"
     ],
     "country": "USA",
     "country_confidence": "wiki_assignment",
@@ -4041,20 +4389,20 @@
   },
   "company_william_cramp": {
     "building_types": [
-      "building_military_shipyards",
-      "building_shipyards",
+      "building_military_shipyard",
+      "building_shipyard",
       "building_motor_industry"
     ],
     "extension_building_types": [
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_DELAWARE",
       "Control state STATE_MARYLAND",
       "Control state STATE_NEW_JERSEY",
-      "Control state STATE_DELAWARE",
-      "Level 5+ Military Shipyards required",
+      "Level 5+ Military Shipyard required",
       "Technology: Gantry Cranes",
       "Starts Enacted at Game Start (United States)"
     ],
@@ -4078,7 +4426,7 @@
       "building_automotive_industry"
     ],
     "extension_building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_rubber_plantation"
     ],
     "possible_prestige_goods": [
@@ -4106,7 +4454,7 @@
   },
   "company_da_afghan_nassaji_sherkat": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -4117,7 +4465,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BALKH",
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
       "state trade capacity mult = 0.05",
@@ -4224,7 +4572,7 @@
       "building_cotton_plantation"
     ],
     "extension_building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -4276,7 +4624,7 @@
   },
   "company_sherkate_eslamiya": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation"
@@ -4287,7 +4635,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_ISFAHAN",
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
       "country state religion wages mult = 0.2"
@@ -4346,7 +4694,7 @@
       "Technology: Electrical Generation"
     ],
     "prosperity_bonuses": [
-      "building arts academy throughput add = 0.05",
+      "building art academy throughput add = 0.05",
       "building railway throughput add = 0.05"
     ],
     "country": "KOR",
@@ -4392,7 +4740,7 @@
       "building_silk_plantation"
     ],
     "extension_building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -4419,7 +4767,7 @@
       "building_cotton_plantation"
     ],
     "extension_building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
@@ -4428,7 +4776,7 @@
       "Level 5+ Cotton Plantation required"
     ],
     "prosperity_bonuses": [
-      "building textile mills throughput add = 0.05",
+      "building textile mill throughput add = 0.05",
       "interest group ig rural folk approval add = 2"
     ],
     "country": "PER",
@@ -4549,8 +4897,8 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BAGHDAD",
-      "Control state STATE_BASRA",
       "Control state STATE_MOSUL",
+      "Control state STATE_BASRA",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -4630,7 +4978,7 @@
   },
   "company_ilva": {
     "building_types": [
-      "building_steel_mills",
+      "building_steel_mill",
       "building_iron_mine"
     ],
     "extension_building_types": [
@@ -4642,12 +4990,12 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_PIEDMONT",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Arc Welding"
     ],
     "prosperity_bonuses": [
       "building railway throughput add = 0.1",
-      "building artillery foundries throughput add = 0.05"
+      "building artillery foundry throughput add = 0.05"
     ],
     "country": "ITA",
     "country_confidence": "wiki_assignment",
@@ -4661,9 +5009,9 @@
   },
   "company_ansaldo": {
     "building_types": [
-      "building_artillery_foundries",
-      "building_steel_mills",
-      "building_military_shipyards"
+      "building_artillery_foundry",
+      "building_steel_mill",
+      "building_military_shipyard"
     ],
     "extension_building_types": [
       "building_power_plant"
@@ -4693,16 +5041,16 @@
   },
   "company_ricordi": {
     "building_types": [
-      "building_arts_academy"
+      "building_art_academy"
     ],
     "extension_building_types": [
-      "building_vineyard_plantation"
+      "building_vineyard"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_LOMBARDY",
-      "Level 5+ Arts Academy required"
+      "Level 5+ Art Academy required"
     ],
     "prosperity_bonuses": [
       "country prestige mult = 0.15",
@@ -4724,7 +5072,7 @@
       "building_automotive_industry"
     ],
     "extension_building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_turin_automobiles"
@@ -4752,18 +5100,18 @@
   },
   "company_stt": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards"
+      "building_shipyard",
+      "building_military_shipyard"
     ],
     "extension_building_types": [
       "building_motor_industry",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_ISTRIA",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Gantry Cranes"
     ],
     "prosperity_bonuses": [
@@ -4810,13 +5158,13 @@
   },
   "company_schneider_creusot": {
     "building_types": [
-      "building_steel_mills",
-      "building_artillery_foundries",
+      "building_steel_mill",
+      "building_artillery_foundry",
       "building_motor_industry"
     ],
     "extension_building_types": [
       "building_railway",
-      "building_military_shipyards"
+      "building_military_shipyard"
     ],
     "possible_prestige_goods": [
       "prestige_good_schneider_guns"
@@ -4824,7 +5172,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BURGUNDY",
-      "Level 5+ Steel Mills required",
+      "Level 5+ Steel Mill required",
       "Technology: Steelworking"
     ],
     "prosperity_bonuses": [
@@ -4843,7 +5191,7 @@
   },
   "company_dmc": {
     "building_types": [
-      "building_textile_mills",
+      "building_textile_mill",
       "building_coal_mine"
     ],
     "extension_building_types": [
@@ -4856,7 +5204,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BURGUNDY",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Cotton Gin",
       "Starts Enacted at Game Start (France)"
     ],
@@ -4875,7 +5223,7 @@
   },
   "company_cgv": {
     "building_types": [
-      "building_vineyard_plantation"
+      "building_vineyard"
     ],
     "extension_building_types": [
       "building_food_industry"
@@ -4886,14 +5234,14 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_CHAMPAGNE",
-      "Level 5+ Vineyard Plantation required",
+      "Level 5+ Vineyard required",
       "Primary culture: French",
       "Primary culture: Occitan",
       "Technology: Joint Stock Companies"
     ],
     "prosperity_bonuses": [
       "country prestige mult = 0.15",
-      "building vineyard plantation throughput add = 0.1"
+      "building vineyard throughput add = 0.1"
     ],
     "country": "FRA",
     "country_confidence": "wiki_assignment",
@@ -4908,8 +5256,8 @@
   "company_saint_etienne": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries",
-      "building_munition_plants"
+      "building_artillery_foundry",
+      "building_munition_plant"
     ],
     "extension_building_types": [
       "building_explosives_factory"
@@ -4939,18 +5287,18 @@
   },
   "company_fcm": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards",
+      "building_shipyard",
+      "building_military_shipyard",
       "building_automotive_industry"
     ],
     "extension_building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_PROVENCE",
-      "Level 5+ Shipyards required",
+      "Level 5+ Shipyard required",
       "Technology: Ironclad Tech"
     ],
     "prosperity_bonuses": [
@@ -4981,7 +5329,7 @@
       "Level 5+ Coal Mine required"
     ],
     "prosperity_bonuses": [
-      "building steel mills throughput add = 0.05",
+      "building steel mill throughput add = 0.05",
       "building railway throughput add = 0.1"
     ],
     "country": "FRA",
@@ -4996,14 +5344,14 @@
   },
   "company_mitsui": {
     "building_types": [
-      "building_textile_mills",
+      "building_textile_mill",
       "building_silk_plantation",
       "building_lead_mine"
     ],
     "extension_building_types": [
-      "building_shipyards",
+      "building_shipyard",
       "building_port",
-      "building_chemical_plants",
+      "building_chemical_plant",
       "building_iron_mine"
     ],
     "possible_prestige_goods": [
@@ -5012,7 +5360,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_KANSAI",
-      "Level 5+ Textile Mills required",
+      "Level 5+ Textile Mill required",
       "Technology: Cotton Gin",
       "Journal Entry Required"
     ],
@@ -5039,13 +5387,13 @@
     ],
     "extension_building_types": [
       "building_food_industry",
-      "building_chemical_plants"
+      "building_chemical_plant"
     ],
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region North China (level 5+ buildings required)",
       "Control region in Region Manchuria (level 5+ buildings required)",
+      "Control region in Region North China (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Primary culture: Japanese",
       "Technology: Railways",
@@ -5068,12 +5416,12 @@
   },
   "company_mitsubishi": {
     "building_types": [
-      "building_military_shipyards",
+      "building_military_shipyard",
       "building_coal_mine",
-      "building_paper_mills"
+      "building_paper_mill"
     ],
     "extension_building_types": [
-      "building_shipyards",
+      "building_shipyard",
       "building_motor_industry",
       "building_port",
       "building_iron_mine"
@@ -5084,7 +5432,7 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_CHUGOKU",
-      "Level 5+ Paper Mills required",
+      "Level 5+ Paper Mill required",
       "Primary culture: Japanese",
       "Technology: Ironclad Tech",
       "Journal Entry Required"
@@ -5176,7 +5524,7 @@
       "building_livestock_ranch"
     ],
     "extension_building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_meat"
@@ -5186,7 +5534,7 @@
       "Level 5+ Cotton Plantation required"
     ],
     "prosperity_bonuses": [
-      "building textile mills throughput add = 0.1"
+      "building textile mill throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -5255,7 +5603,7 @@
       "building_dye_plantation"
     ],
     "extension_building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": false,
@@ -5264,7 +5612,7 @@
     ],
     "prosperity_bonuses": [
       "country influence mult = 0.1",
-      "building textile mills throughput add = 0.1"
+      "building textile mill throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -5276,7 +5624,7 @@
   },
   "company_basic_wine_and_fruit": {
     "building_types": [
-      "building_vineyard_plantation",
+      "building_vineyard",
       "building_banana_plantation"
     ],
     "extension_building_types": [
@@ -5285,7 +5633,7 @@
     "possible_prestige_goods": [],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Vineyard Plantation required"
+      "Level 5+ Vineyard required"
     ],
     "prosperity_bonuses": [
       "country prestige mult = 0.1"
@@ -5304,7 +5652,7 @@
       "building_whaling_station"
     ],
     "extension_building_types": [
-      "building_shipyards"
+      "building_shipyard"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_fish"
@@ -5315,7 +5663,7 @@
     ],
     "prosperity_bonuses": [
       "country convoys capacity mult = 0.1",
-      "building shipyards throughput add = 0.05"
+      "building shipyard throughput add = 0.05"
     ],
     "country": null,
     "country_confidence": "none",
@@ -5331,7 +5679,7 @@
       "building_rubber_plantation"
     ],
     "extension_building_types": [
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "possible_prestige_goods": [],
     "flavored_company": false,
@@ -5411,7 +5759,7 @@
       "Level 5+ Iron Mine required"
     ],
     "prosperity_bonuses": [
-      "building steel mills throughput add = 0.1",
+      "building steel mill throughput add = 0.1",
       "state pollution reduction health mult = 0.05"
     ],
     "country": null,
@@ -5436,7 +5784,7 @@
       "Level 5+ Sulfur Mine required"
     ],
     "prosperity_bonuses": [
-      "building chemical plants throughput add = 0.1"
+      "building chemical plant throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -5474,7 +5822,7 @@
   },
   "company_basic_paper": {
     "building_types": [
-      "building_paper_mills"
+      "building_paper_mill"
     ],
     "extension_building_types": [
       "building_logging_camp"
@@ -5484,7 +5832,7 @@
     ],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Paper Mills required"
+      "Level 5+ Paper Mill required"
     ],
     "prosperity_bonuses": [
       "country bureaucracy mult = 0.1"
@@ -5500,7 +5848,7 @@
   "company_basic_home_goods": {
     "building_types": [
       "building_glassworks",
-      "building_furniture_manufacturies"
+      "building_furniture_manufactory"
     ],
     "extension_building_types": [
       "building_logging_camp",
@@ -5526,7 +5874,7 @@
   },
   "company_basic_textiles": {
     "building_types": [
-      "building_textile_mills"
+      "building_textile_mill"
     ],
     "extension_building_types": [
       "building_cotton_plantation",
@@ -5537,7 +5885,7 @@
     ],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Textile Mills required"
+      "Level 5+ Textile Mill required"
     ],
     "prosperity_bonuses": [
       "state radicals from political movements mult = -0.1"
@@ -5552,7 +5900,7 @@
   },
   "company_basic_steel": {
     "building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "extension_building_types": [
       "building_iron_mine",
@@ -5563,7 +5911,7 @@
     ],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Steel Mills required"
+      "Level 5+ Steel Mill required"
     ],
     "prosperity_bonuses": [
       "state construction mult = 0.05"
@@ -5578,17 +5926,17 @@
   },
   "company_basic_metalworks": {
     "building_types": [
-      "building_tooling_workshops"
+      "building_tooling_workshop"
     ],
     "extension_building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_tools"
     ],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Tooling Workshops required"
+      "Level 5+ Tooling Workshop required"
     ],
     "prosperity_bonuses": [
       "building group bg manufacturing throughput add = 0.05"
@@ -5603,8 +5951,8 @@
   },
   "company_basic_shipyards": {
     "building_types": [
-      "building_shipyards",
-      "building_military_shipyards"
+      "building_shipyard",
+      "building_military_shipyard"
     ],
     "extension_building_types": [
       "building_logging_camp"
@@ -5612,7 +5960,7 @@
     "possible_prestige_goods": [],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Shipyards required"
+      "Level 5+ Shipyard required"
     ],
     "prosperity_bonuses": [
       "unit navy offense mult = 0.1"
@@ -5627,8 +5975,8 @@
   },
   "company_basic_chemicals": {
     "building_types": [
-      "building_chemical_plants",
-      "building_synthetics_plants"
+      "building_chemical_plant",
+      "building_synthetics_plant"
     ],
     "extension_building_types": [
       "building_sulfur_mine"
@@ -5638,11 +5986,11 @@
     ],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Chemical Plants required"
+      "Level 5+ Chemical Plant required"
     ],
     "prosperity_bonuses": [
       "unit supply consumption mult = -0.05",
-      "building chemical plants throughput add = 0.1"
+      "building chemical plant throughput add = 0.1"
     ],
     "country": null,
     "country_confidence": "none",
@@ -5658,7 +6006,7 @@
       "building_automotive_industry"
     ],
     "extension_building_types": [
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [],
     "flavored_company": false,
@@ -5678,19 +6026,19 @@
   },
   "company_basic_munitions": {
     "building_types": [
-      "building_munition_plants",
+      "building_munition_plant",
       "building_explosives_factory"
     ],
     "extension_building_types": [
       "building_sulfur_mine",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_explosives"
     ],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 5+ Munition Plants required"
+      "Level 5+ Munition Plant required"
     ],
     "prosperity_bonuses": [
       "country military goods cost mult = -0.1"
@@ -5730,11 +6078,11 @@
   "company_basic_weapons": {
     "building_types": [
       "building_arms_industry",
-      "building_artillery_foundries"
+      "building_artillery_foundry"
     ],
     "extension_building_types": [
       "building_automotive_industry",
-      "building_steel_mills"
+      "building_steel_mill"
     ],
     "possible_prestige_goods": [
       "prestige_good_generic_small_arms"
@@ -5757,8 +6105,8 @@
   },
   "company_construction_power_bloc": {
     "building_types": [
-      "building_steel_mills",
-      "building_tooling_workshops",
+      "building_steel_mill",
+      "building_tooling_workshop",
       "building_glassworks"
     ],
     "extension_building_types": [
@@ -5767,7 +6115,7 @@
     "possible_prestige_goods": [],
     "flavored_company": false,
     "formation_requirements": [
-      "Level 10+ Steel Mills required"
+      "Level 10+ Steel Mill required"
     ],
     "prosperity_bonuses": [
       "building construction sector throughput add = 0.2"

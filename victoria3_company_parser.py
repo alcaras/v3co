@@ -19,7 +19,7 @@ from datetime import datetime
 
 class Victoria3CompanyParserV6Final:
     # Game version - update this when parsing a new patch
-    GAME_VERSION = "1.11"
+    GAME_VERSION = "1.12"
     def __init__(self, game_directory="game", use_subject_relationships=False):
         self.game_directory = game_directory
         self.use_subject_relationships = use_subject_relationships  # Flag to control subject relationship usage
