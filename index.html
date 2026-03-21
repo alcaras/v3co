@@ -938,6 +938,9 @@
         body.hide-country-CLM tr[data-country="CLM"] {
             display: none !important;
         }
+        body.hide-country-CUB tr[data-country="CUB"] {
+            display: none !important;
+        }
         body.hide-country-MEX tr[data-country="MEX"] {
             display: none !important;
         }
@@ -986,6 +989,9 @@
         body.hide-country-BEL tr[data-country="BEL"] {
             display: none !important;
         }
+        body.hide-country-CRO tr[data-country="CRO"] {
+            display: none !important;
+        }
         body.hide-country-DEN tr[data-country="DEN"] {
             display: none !important;
         }
@@ -1002,6 +1008,9 @@
             display: none !important;
         }
         body.hide-country-GRE tr[data-country="GRE"] {
+            display: none !important;
+        }
+        body.hide-country-HUN tr[data-country="HUN"] {
             display: none !important;
         }
         body.hide-country-ITA tr[data-country="ITA"] {
@@ -1044,6 +1053,9 @@
             display: none !important;
         }
         body.hide-country-KOK tr[data-country="KOK"] {
+            display: none !important;
+        }
+        body.hide-country-MOR tr[data-country="MOR"] {
             display: none !important;
         }
         body.hide-country-PER tr[data-country="PER"] {
@@ -2394,6 +2406,30 @@
                 </div>
                 <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
                     <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
+                        <input type="checkbox" id="country-CUB" class="country-checkbox" checked data-country="CUB" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
+                        <span title="Cuba">🇨🇺</span> Cuba (3)
+                    </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_bacardi" class="company-checkbox" checked data-company="company_bacardi" data-country="CUB" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Food Industry, Glassworks | Charters: Vineyard | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_bacardi')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Bacardí y Compañía</span>
+                        </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_gran_azucarera" class="company-checkbox" checked data-company="company_gran_azucarera" data-country="CUB" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Sugar Plantation, Logging Camp, Livestock Ranch | Charters: Railway | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_gran_azucarera')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">La Gran Azucarera</span>
+                        </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_rodriguez_arguelles_y_cia" class="company-checkbox" checked data-company="company_rodriguez_arguelles_y_cia" data-country="CUB" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Tobacco Plantation | Charters: Logging Camp, Rice Farm | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_rodriguez_arguelles_y_cia')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Rodriguez, Argüelles y Cia.</span>
+                        </div>
+                </div>
+                <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
+                    <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
                         <input type="checkbox" id="country-MEX" class="country-checkbox" checked data-country="MEX" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
                         <span title="Mexico">🇲🇽</span> Mexico (2)
                     </div>
@@ -2870,6 +2906,18 @@
                 </div>
                 <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
                     <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
+                        <input type="checkbox" id="country-CRO" class="country-checkbox" checked data-country="CRO" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
+                        <span title="CRO">🇭🇷</span> CRO (1)
+                    </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_mate_gavrilovic" class="company-checkbox" checked data-company="company_mate_gavrilovic" data-country="CRO" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Food Industry | Charters: Livestock Ranch | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_mate_gavrilovic')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Mate Gavrilović i drug</span>
+                        </div>
+                </div>
+                <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
+                    <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
                         <input type="checkbox" id="country-DEN" class="country-checkbox" checked data-country="DEN" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
                         <span title="Denmark">🇩🇰</span> Denmark (2)
                     </div>
@@ -3064,6 +3112,24 @@
                             <span title="Buildings: Motor Industry, Tooling Workshop | Charters: Automotive Industry | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
                                   onmouseover="showCompanyTooltip(event, 'company_kouppas')" 
                                   onmouseout="hideCompanyTooltip()"><img src="companies/png/historical_company_icons/kouppas.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Kouppas</span>
+                        </div>
+                </div>
+                <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
+                    <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
+                        <input type="checkbox" id="country-HUN" class="country-checkbox" checked data-country="HUN" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
+                        <span title="Hungary">🇭🇺</span> Hungary (2)
+                    </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_elso_budapesti_gozmalom" class="company-checkbox" checked data-company="company_elso_budapesti_gozmalom" data-country="HUN" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Wheat Farm, Food Industry | Charters: Logging Camp | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_elso_budapesti_gozmalom')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Első Budapesti Gőzmalom Rt. / First Budapest Steam Mill Co.</span>
+                        </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_jakub_klein" class="company-checkbox" checked data-company="company_jakub_klein" data-country="HUN" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Logging Camp, Paper Mill | Charters: Chemical Plant | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_jakub_klein')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Jakub Klein a spol.</span>
                         </div>
                 </div>
                 <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
@@ -3434,6 +3500,18 @@
                             <span title="Buildings: Oil Rig | Charters: Power Plant, Railway | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
                                   onmouseover="showCompanyTooltip(event, 'company_west_ural_petroleum')" 
                                   onmouseout="hideCompanyTooltip()"><img src="companies/png/historical_company_icons/historical_west_ural_petroleum_company_limited.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">West Ural Petroleum Company, Limited</span>
+                        </div>
+                </div>
+                <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
+                    <div class="country-header" style="padding: 4px 0; font-weight: bold; border-bottom: 1px solid #ddd;">
+                        <input type="checkbox" id="country-MOR" class="country-checkbox" checked data-country="MOR" onchange="toggleAllCompaniesInCountry(this)" style="margin-right: 8px;">
+                        <span title="Morocco">🇲🇦</span> Morocco (1)
+                    </div>
+                        <div class="company-selection-item" style="margin: 3px 0; padding: 2px 20px; display: flex; align-items: center; font-size: 13px; position: relative;">
+                            <input type="checkbox" id="company-company_office_cherifien_des_phosphates" class="company-checkbox" checked data-company="company_office_cherifien_des_phosphates" data-country="MOR" onchange="updateCompanyFilter(this)" style="margin-right: 8px;">
+                            <span title="Buildings: Sulfur Mine, Chemical Plant | Charters: Iron Mine | Regional Interest Required" style="display: flex; align-items: center; cursor: pointer;" 
+                                  onmouseover="showCompanyTooltip(event, 'company_office_cherifien_des_phosphates')" 
+                                  onmouseout="hideCompanyTooltip()"><img src="companies/png/custom_companies_placeholder.png" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;">Office Chérifien des Phosphates</span>
                         </div>
                 </div>
                 <div class="country-section" style="margin-bottom: 15px; margin-left: 20px;">
@@ -15202,7 +15280,7 @@ module.exports = require('./lib/heap');
                 "country": "SPA",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_LOWER_ANDALUSIA", "Control state STATE_GALICIA", "Control state STATE_VALENCIA", "Control state STATE_ASTURIAS", "Control state STATE_MURCIA", "Level 3+ Shipyard required"],
+                "requirements": ["Control state STATE_GALICIA", "Control state STATE_ASTURIAS", "Control state STATE_MURCIA", "Control state STATE_LOWER_ANDALUSIA", "Control state STATE_VALENCIA", "Level 3+ Shipyard required"],
                 "bonuses": ["country military tech spread mult = 0.1", "country weekly innovation mult = 0.05", "unit navy defense mult = 0.05"],
                 "prosperity_bonuses_text": " -- country military tech spread \u00d70.1; country weekly innovation \u00d70.05; unit navy defense \u00d70.05",
                 "prestige_goods": [],
@@ -15220,7 +15298,7 @@ module.exports = require('./lib/heap');
                 "country": "CUB",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_CENTRAL_CUBA", "Control state STATE_EASTERN_CUBA", "Control state STATE_WESTERN_CUBA", "Level 5+ Sugar Plantation required"],
+                "requirements": ["Control state STATE_WESTERN_CUBA", "Control state STATE_CENTRAL_CUBA", "Control state STATE_EASTERN_CUBA", "Level 5+ Sugar Plantation required"],
                 "bonuses": ["state migration pull mult = 0.1", "state aristocrats investment pool efficiency mult = 0.15"],
                 "prosperity_bonuses_text": " -- state migration pull \u00d70.1; state aristocrats investment pool efficiency \u00d70.15",
                 "prestige_goods": ["prestige_good_havana_sugar"],
@@ -15238,7 +15316,7 @@ module.exports = require('./lib/heap');
                 "country": "CUB",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_CENTRAL_CUBA", "Control state STATE_EASTERN_CUBA", "Control state STATE_WESTERN_CUBA", "Level 5+ Tobacco Plantation required"],
+                "requirements": ["Control state STATE_WESTERN_CUBA", "Control state STATE_CENTRAL_CUBA", "Control state STATE_EASTERN_CUBA", "Level 5+ Tobacco Plantation required"],
                 "bonuses": ["country prestige mult = 0.05", "country society tech spread mult = 0.1", "state loyalists from political movements mult = 0.1"],
                 "prosperity_bonuses_text": " -- country prestige \u00d70.05; country society tech spread \u00d70.1; state loyalists from political movements \u00d70.1",
                 "prestige_goods": ["prestige_good_cigars"],
@@ -15418,7 +15496,7 @@ module.exports = require('./lib/heap');
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_SUZHOU", "Control state STATE_ZHEJIANG", "Control state STATE_NANJING", "Level 5+ Silk Plantation required"],
+                "requirements": ["Control state STATE_ZHEJIANG", "Control state STATE_NANJING", "Control state STATE_SUZHOU", "Level 5+ Silk Plantation required"],
                 "bonuses": ["country authority mult = 0.10", "country influence mult = 0.10"],
                 "prosperity_bonuses_text": " -- country authority \u00d70.10; country influence \u00d70.10",
                 "prestige_goods": ["prestige_good_suzhou_silk"],
@@ -15706,7 +15784,7 @@ module.exports = require('./lib/heap');
                 "country": "LAN",
                 "country_confidence": "definitive",
                 "country_info": "",
-                "requirements": ["Control state STATE_NORTH_BORNEO", "Control state STATE_EAST_BORNEO", "Control state STATE_WEST_BORNEO", "Level 5+ Gold Mine required"],
+                "requirements": ["Control state STATE_NORTH_BORNEO", "Control state STATE_WEST_BORNEO", "Control state STATE_EAST_BORNEO", "Level 5+ Gold Mine required"],
                 "bonuses": ["building group bg agriculture throughput add = 0.05", "battle defense owned province mult = 0.1"],
                 "prosperity_bonuses_text": " -- building group bg agriculture throughput +0.05; battle defense owned province \u00d70.1",
                 "prestige_goods": [],
@@ -15742,7 +15820,7 @@ module.exports = require('./lib/heap');
                 "country": "CHI",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BEIJING", "Control state STATE_ZHILI", "Level 5+ Coal Mine required", "Technology: Steam Donkey", "Technology: Railways"],
+                "requirements": ["Control state STATE_ZHILI", "Control state STATE_BEIJING", "Level 5+ Coal Mine required", "Technology: Steam Donkey", "Technology: Railways"],
                 "bonuses": ["country tech spread mult = 0.1"],
                 "prosperity_bonuses_text": " -- country tech spread \u00d70.1",
                 "prestige_goods": [],
@@ -15922,7 +16000,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
+                "requirements": ["Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Cotton Plantation required", "Level 5+ Opium Plantation required"],
                 "bonuses": ["state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_opium"],
@@ -16030,7 +16108,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_BOMBAY", "Control state STATE_WEST_BENGAL", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
+                "requirements": ["Control state STATE_WEST_BENGAL", "Control state STATE_BOMBAY", "Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Rice Farm required", "Level 5+ Wheat Farm required"],
                 "bonuses": ["building sulfur mine throughput add = 0.1", "building textile mill throughput add = 0.1", "state trade advantage mult = 0.05"],
                 "prosperity_bonuses_text": " -- building sulfur mine throughput +0.1; building textile mill throughput +0.1; state trade advantage \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -16138,7 +16216,7 @@ module.exports = require('./lib/heap');
                 "country": "NET",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_HOLLAND", "Control state STATE_GELRE", "Level 5+ Electrics Industry required", "Technology: Telephone"],
+                "requirements": ["Control state STATE_GELRE", "Control state STATE_HOLLAND", "Level 5+ Electrics Industry required", "Technology: Telephone"],
                 "bonuses": ["country weekly innovation mult = 0.05", "country weekly innovation max add = 15"],
                 "prosperity_bonuses_text": " -- country weekly innovation \u00d70.05; country weekly innovation max +15",
                 "prestige_goods": ["prestige_good_philips_chapel_radio"],
@@ -16318,7 +16396,7 @@ module.exports = require('./lib/heap');
                 "country": "POR",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MOCAMBIQUE", "Control state STATE_LOURENCO_MARQUES", "Control state STATE_ZAMBEZIA", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
+                "requirements": ["Control state STATE_LOURENCO_MARQUES", "Control state STATE_MOCAMBIQUE", "Control state STATE_ZAMBEZIA", "Level 5+ Cotton Plantation required", "Primary culture: Portuguese", "Technology: Mutual Funds"],
                 "bonuses": ["state colony growth speed mult = 0.1", "state colony growth creation factor = 0.1"],
                 "prosperity_bonuses_text": " -- state colony growth speed \u00d70.1; state colony growth creation factor = 0.1",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -16840,7 +16918,7 @@ module.exports = require('./lib/heap');
                 "country": "DEU",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region South Germany (level 5+ buildings required)", "Control region in Region North Germany (level 5+ buildings required)", "Control region in Region Poland (level 5+ buildings required)", "Control region in Region Rhine (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region South Germany (level 5+ buildings required)", "Control region in Region Poland (level 5+ buildings required)", "Control region in Region North Germany (level 5+ buildings required)", "Control region in Region Rhine (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["military formation movement speed mult = 0.1"],
                 "prosperity_bonuses_text": " -- military formation movement speed \u00d70.1",
                 "prestige_goods": [],
@@ -17182,7 +17260,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Tea Plantation required", "Starts Enacted at Game Start (Great Britain)"],
+                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Tea Plantation required", "Starts Enacted at Game Start (Great Britain)"],
                 "bonuses": ["country convoys capacity mult = 0.2"],
                 "prosperity_bonuses_text": " -- country convoys capacity \u00d70.2",
                 "prestige_goods": ["prestige_good_bengal_opium"],
@@ -17272,7 +17350,7 @@ module.exports = require('./lib/heap');
                 "country": "BIC",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Central India (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Bombay (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
+                "requirements": ["Control region in Region Bombay (level 5+ buildings required)", "Control region in Region Bengal (level 5+ buildings required)", "Control region in Region Central India (level 5+ buildings required)", "Control region in Region Madras (level 5+ buildings required)", "Control region in Region Punjab (level 5+ buildings required)", "Level 5+ Railway required", "Technology: Railways"],
                 "bonuses": ["state infrastructure from population add = 0.5", "state infrastructure from population max add = 20"],
                 "prosperity_bonuses_text": " -- state infrastructure from population +0.5; state infrastructure from population max +20",
                 "prestige_goods": [],
@@ -17776,7 +17854,7 @@ module.exports = require('./lib/heap');
                 "country": "USA",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_NEW_JERSEY", "Control state STATE_MARYLAND", "Control state STATE_DELAWARE", "Level 5+ Military Shipyard required", "Technology: Gantry Cranes", "Starts Enacted at Game Start (United States)"],
+                "requirements": ["Control state STATE_DELAWARE", "Control state STATE_NEW_JERSEY", "Control state STATE_MARYLAND", "Level 5+ Military Shipyard required", "Technology: Gantry Cranes", "Starts Enacted at Game Start (United States)"],
                 "bonuses": ["unit navy offense mult = 0.05", "unit navy defense mult = 0.05"],
                 "prosperity_bonuses_text": " -- unit navy offense \u00d70.05; unit navy defense \u00d70.05",
                 "prestige_goods": [],
@@ -18028,7 +18106,7 @@ module.exports = require('./lib/heap');
                 "country": "PER",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MOSCOW", "Control state STATE_FERGANA", "Level 5+ Cotton Plantation required"],
+                "requirements": ["Control state STATE_FERGANA", "Control state STATE_MOSCOW", "Level 5+ Cotton Plantation required"],
                 "bonuses": ["building cotton plantation throughput add = 0.2", "interest group ig industrialists pop attraction mult = 0.05"],
                 "prosperity_bonuses_text": " -- building cotton plantation throughput +0.2; interest group ig industrialists pop attraction \u00d70.05",
                 "prestige_goods": ["prestige_good_generic_grain"],
@@ -18082,7 +18160,7 @@ module.exports = require('./lib/heap');
                 "country": "TUR",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control state STATE_MOSUL", "Control state STATE_BAGHDAD", "Control state STATE_BASRA", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
+                "requirements": ["Control state STATE_BAGHDAD", "Control state STATE_BASRA", "Control state STATE_MOSUL", "Level 5+ Oil Rig required", "Technology: Pumpjacks"],
                 "bonuses": ["state trade capacity mult = 0.05", "building railway throughput add = 0.05"],
                 "prosperity_bonuses_text": " -- state trade capacity \u00d70.05; building railway throughput +0.05",
                 "prestige_goods": [],
@@ -18370,7 +18448,7 @@ module.exports = require('./lib/heap');
                 "country": "JAP",
                 "country_confidence": "wiki_assignment",
                 "country_info": "",
-                "requirements": ["Control region in Region Manchuria (level 5+ buildings required)", "Control region in Region North China (level 5+ buildings required)", "Level 5+ Railway required", "Primary culture: Japanese", "Technology: Railways", "Journal Entry Required"],
+                "requirements": ["Control region in Region North China (level 5+ buildings required)", "Control region in Region Manchuria (level 5+ buildings required)", "Level 5+ Railway required", "Primary culture: Japanese", "Technology: Railways", "Journal Entry Required"],
                 "bonuses": ["state non homeland colony growth speed mult = 0.1", "building wheat farm throughput add = 0.15"],
                 "prosperity_bonuses_text": " -- state non homeland colony growth speed \u00d70.1; building wheat farm throughput +0.15",
                 "prestige_goods": [],

@@ -2174,7 +2174,7 @@ class Victoria3CompanyParserV6Final:
         continents = {
             'American': {
                 'display_name': 'Americas', 
-                'countries': ['ARG', 'BOL', 'BRZ', 'CAN', 'CLM', 'CHL', 'MEX', 'PRG', 'PEU', 'USA', 'VNZ']
+                'countries': ['ARG', 'BOL', 'BRZ', 'CAN', 'CLM', 'CHL', 'CUB', 'MEX', 'PRG', 'PEU', 'USA', 'VNZ']
             },
             'Asian_Oceanian': {
                 'display_name': 'Asia & Oceania',
@@ -2182,11 +2182,11 @@ class Victoria3CompanyParserV6Final:
             },
             'European': {
                 'display_name': 'Europe', 
-                'countries': ['AUS', 'BEL', 'DEN', 'FIN', 'FRA', 'DEU', 'GBR', 'GRE', 'ITA', 'NET', 'NOR', 'POL', 'POR', 'ROM', 'RUS', 'SER', 'SPA', 'SWE']
+                'countries': ['AUS', 'BEL', 'CRO', 'DEN', 'FIN', 'FRA', 'DEU', 'GBR', 'GRE', 'HUN', 'ITA', 'NET', 'NOR', 'POL', 'POR', 'ROM', 'RUS', 'SER', 'SPA', 'SWE']
             },
             'Middle_Eastern': {
                 'display_name': 'Middle East & Africa',
-                'countries': ['AFG', 'EGY', 'PER', 'KOK', 'TUR', 'ETH', 'SOK', 'SAF']
+                'countries': ['AFG', 'EGY', 'MOR', 'PER', 'KOK', 'TUR', 'ETH', 'SOK', 'SAF']
             }
         }
         
