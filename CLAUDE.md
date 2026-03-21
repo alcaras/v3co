@@ -85,6 +85,13 @@ The `index.html` file is what GitHub Pages displays, so it must be pushed for ch
 ### Missing Building Icons
 - **Problem**: Building icons show alt text instead of images
 - **Solution**: Use existing `get_building_icon_path()` method and `building_name_mappings` dictionary
+- **Common cause on patch updates**: Game renames buildings (e.g., `building_steel_mills` → `building_steel_mill`) but icon files keep old names. Add mappings in BOTH `building_name_mappings` dictionaries (one in `get_building_icon_path()` ~line 788, one in JS generation ~line 8277)
+
+### New Countries Not Appearing in Per-Country Section
+- **Problem**: Companies show up in per-industry tables but not in the per-country filter
+- **Root cause**: `countries_by_continent` in `get_countries_by_continent()` is hardcoded — new countries must be added manually
+- **Also check**: `self.country_names` (line ~130) must have the country code → display name mapping, otherwise it shows the raw code (e.g., "CRO" instead of "Croatia")
+- **Solution**: Add country code to the appropriate continent list in `get_countries_by_continent()` AND ensure it's in `self.country_names`
 
 ### Directory Navigation
 - **Problem**: Running commands in wrong directory
@@ -111,6 +118,12 @@ The script generates a complete HTML page with:
 - **`wiki_companies`** - Maps company names to countries from Wikipedia data
 
 ## Recent Changes
+- Updated to Victoria 3 Patch 1.12 (2026-03-21)
+  - Added new IP4 companies (Cuba, Spain, Portugal, Philippines, Morocco)
+  - Added "totally normal" companies
+  - Fixed building icon mappings for renamed buildings (plural → singular in 1.12)
+  - Added Cuba, Croatia, Hungary, Morocco to per-country filter section
+  - Added Croatia to `self.country_names` dictionary
 - Fixed prestige goods categorization bug (2025-08-04)
 - Added logical building order based on Victoria 3 wiki structure
 - Implemented three-column table of contents with building icons

@@ -20,6 +20,19 @@ Add to `.gitignore` if not already present:
 game_old/
 ```
 
+## Step 1.5: Check Game Version
+
+Determine the patch version from the Steam installation:
+```bash
+cat "/path/to/Victoria 3/caligula_branch.txt"
+# Output like: caligula/release/1.12.5
+```
+
+Update `GAME_VERSION` in `victoria3_company_parser.py` (line ~22):
+```python
+GAME_VERSION = "1.12"  # Update to match current patch
+```
+
 ## Step 2: Copy New Game Files
 
 Copy the new patch game files to `dist/game/`:
@@ -33,10 +46,14 @@ Copy the new patch game files to `dist/game/`:
 cp -r "/path/to/Victoria 3/game" dist/game
 ```
 
-Key directories needed:
-- `game/common/company_types/` - Company definitions
-- `game/common/building_groups/` - Building information
-- `game/localization/english/` - English text
+**IMPORTANT**: The parser expects game files at `dist/game/company_types/` (not `game/common/company_types/`). Copy the contents of `common/` directly into `game/`, not the `common/` folder itself.
+
+Key directories needed (copied from `game/common/` in the Steam install):
+- `company_types/` - Company definitions
+- `prestige_goods/` - Prestige goods definitions
+- `history/` - State and country history
+- `buildings/` - Building definitions
+- `building_groups/` - Building group information
 
 ## Step 3: Update Company Icons
 
@@ -216,6 +233,31 @@ If new ownership types are added in a patch, update the parser:
    }
    ```
 3. Add to `ownership_order` in `_generate_ownership_filter_section()`
+
+### Renamed Buildings (Plural → Singular)
+
+Paradox sometimes renames buildings between patches (e.g., `building_steel_mills` → `building_steel_mill`). The icon files keep old names, so you need to add mappings:
+
+1. Check parser warnings for "Missing building icon"
+2. Compare the expected filename with actual files in `buildings/` directory
+3. Add mappings in **both** `building_name_mappings` dictionaries:
+   - In `get_building_icon_path()` (~line 788)
+   - In JS generation method (~line 8277)
+
+### New Countries Missing from Per-Country Filter
+
+New patches may add companies for countries not in the hardcoded continent lists:
+
+1. Run the parser and check if any companies appear in industry tables but not the country filter
+2. Add missing country codes to `get_countries_by_continent()` (~line 2174)
+3. Ensure country is in `self.country_names` (~line 130) — otherwise it shows raw code
+4. Verify `self.country_flags` has the flag emoji
+
+To find missing countries programmatically:
+```python
+# Compare countries with companies vs countries in continent list
+python3 -c "import json; ..."  # see commit afcc82c for example
+```
 
 ### Missing Building Types
 
