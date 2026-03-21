@@ -787,12 +787,24 @@ class Victoria3CompanyParserV6Final:
         # Building name mappings for icon files that have different names
         building_name_mappings = {
             'building_chemical_plants': 'chemicals_industry',
-            'building_textile_mills': 'textile_industry', 
+            'building_chemical_plant': 'chemicals_industry',
+            'building_textile_mills': 'textile_industry',
+            'building_textile_mill': 'textile_industry',
             'building_artillery_foundries': 'artillery_foundry',
             'building_automotive_industry': 'vehicles_industry',
             'building_livestock_ranch': 'cattle_ranch',
             'building_rubber_plantation': 'rubber_lodge',
-            'building_vineyard_plantation': 'vineyards'
+            'building_vineyard_plantation': 'vineyards',
+            'building_vineyard': 'vineyards',
+            'building_steel_mill': 'steel_mills',
+            'building_synthetics_plant': 'synthetics_plants',
+            'building_shipyard': 'shipyards',
+            'building_military_shipyard': 'military_shipyards',
+            'building_tooling_workshop': 'tooling_workshops',
+            'building_art_academy': 'arts_academy',
+            'building_paper_mill': 'paper_mills',
+            'building_munition_plant': 'munition_plants',
+            'building_furniture_manufactory': 'furniture_manufacturies',
         }
         
         # Check if we have a mapping for this building name
