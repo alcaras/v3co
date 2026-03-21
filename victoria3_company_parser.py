@@ -138,7 +138,7 @@ class Victoria3CompanyParserV6Final:
             'MEX': 'Mexico', 'CUB': 'Cuba', 'HAI': 'Haiti', 'CAN': 'Canada', 'TUR': 'Turkey',
             'EGY': 'Egypt', 'PER': 'Persia', 'AFG': 'Afghanistan', 'ETH': 'Ethiopia', 'MAD': 'Madagascar',
             'SAF': 'South Africa', 'MOR': 'Morocco', 'TUN': 'Tunisia', 'GRE': 'Greece', 'SER': 'Serbia',
-            'BUL': 'Bulgaria', 'ROM': 'Romania', 'HUN': 'Hungary', 'POL': 'Poland',
+            'BUL': 'Bulgaria', 'ROM': 'Romania', 'HUN': 'Hungary', 'CRO': 'Croatia', 'POL': 'Poland',
             'KOR': 'Korea', 'SIA': 'Siam', 'BUR': 'Burma', 'BIC': 'British India', 'AST': 'Australia',
             'PHI': 'Philippines', 'DAI': 'Vietnam', 'LAN': 'Lanfang', 'KOK': 'Turkestan', 'SOK': 'Niger'
         }
