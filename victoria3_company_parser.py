@@ -86,14 +86,14 @@ class Victoria3CompanyParserV6Final:
             'building_oil_rig': 'oil',
             'building_whaling_station': 'meat',
             'building_food_industry': 'groceries',
-            'building_textile_mills': 'fabric',
+            'building_textile_mill': 'fabric',
             'building_furniture_manufactories': 'furniture',
-            'building_furniture_manufacturies': 'furniture',
-            'building_paper_mills': 'paper',
-            'building_steel_mills': 'steel',
-            'building_tooling_workshops': 'tools',
-            'building_chemical_plants': 'fertilizer',
-            'building_synthetics_plants': 'dye',
+            'building_furniture_manufactory': 'furniture',
+            'building_paper_mill': 'paper',
+            'building_steel_mill': 'steel',
+            'building_tooling_workshop': 'tools',
+            'building_chemical_plant': 'fertilizer',
+            'building_synthetics_plant': 'dye',
             'building_synthetic_dye_plants': 'dye',
             'building_synthetic_fabric_plants': 'fabric',
             'building_glassworks': 'glass',
@@ -105,22 +105,22 @@ class Victoria3CompanyParserV6Final:
             'building_tea_estates': 'tea',
             'building_coffee_estates': 'coffee',
             'building_arms_industry': 'small_arms',
-            'building_munition_plants': 'ammunition',
+            'building_munition_plant': 'ammunition',
             'building_explosives_factory': 'explosives',
-            'building_artillery_foundries': 'artillery',
+            'building_artillery_foundry': 'artillery',
             'building_motor_industry': 'engines',
             'building_automotive_industry': 'automobiles',
-            'building_shipyards': 'clipper_transports',
+            'building_shipyard': 'clipper_transports',
             'building_railway': 'transportation',
             'building_port': 'transportation',
             'building_trade_center': 'services',
             'arts_academy': 'fine_art',
             # Missing mappings for prestige goods
-            'building_vineyard_plantation': 'wine',
-            'building_military_shipyards': 'ironclads',
-            'building_shipyards': 'steamers',  # Override clipper_transports
+            'building_vineyard': 'wine',
+            'building_military_shipyard': 'ironclads',
+            'building_shipyard': 'steamers',  # Override clipper_transports
             'building_electrics_industry': 'telephones',
-            'building_textile_mills': 'clothes',  # Override fabric  
+            'building_textile_mill': 'clothes',  # Override fabric  
             'building_logging_camp': 'hardwood',  # Override wood
             'building_port': 'merchant_marine'  # Override transportation
         }
@@ -781,20 +781,20 @@ class Victoria3CompanyParserV6Final:
         """Get the icon path for a building, flagging missing building icons"""
         # Building display name overrides (for UI display)
         building_display_name_overrides = {
-            'building_chemical_plants': 'Fertilizer Plants'
+            'building_chemical_plant': 'Fertilizer Plants'
         }
         
         # Building name mappings for icon files that have different names
         building_name_mappings = {
-            'building_chemical_plants': 'chemicals_industry',
             'building_chemical_plant': 'chemicals_industry',
-            'building_textile_mills': 'textile_industry',
+            'building_chemical_plant': 'chemicals_industry',
             'building_textile_mill': 'textile_industry',
-            'building_artillery_foundries': 'artillery_foundry',
+            'building_textile_mill': 'textile_industry',
+            'building_artillery_foundry': 'artillery_foundry',
             'building_automotive_industry': 'vehicles_industry',
             'building_livestock_ranch': 'cattle_ranch',
             'building_rubber_plantation': 'rubber_lodge',
-            'building_vineyard_plantation': 'vineyards',
+            'building_vineyard': 'vineyards',
             'building_vineyard': 'vineyards',
             'building_steel_mill': 'steel_mills',
             'building_synthetics_plant': 'synthetics_plants',
@@ -2061,7 +2061,7 @@ class Victoria3CompanyParserV6Final:
         """Get the display name for a building, with special case overrides"""
         # Building display name overrides (for UI display)
         building_display_name_overrides = {
-            'building_chemical_plants': 'Fertilizer Plants'
+            'building_chemical_plant': 'Fertilizer Plants'
         }
         
         if building_name in building_display_name_overrides:
@@ -2112,7 +2112,7 @@ class Victoria3CompanyParserV6Final:
         """Handle the few essential special cases for prestige goods"""
         
         # Just the essential cases we identified
-        if base_good == 'luxury_furniture' and building == 'building_furniture_manufacturies':
+        if base_good == 'luxury_furniture' and building == 'building_furniture_manufactory':
             return True
         if base_good == 'porcelain' and building == 'building_glassworks':
             return True
@@ -2120,7 +2120,7 @@ class Victoria3CompanyParserV6Final:
             return True
         if base_good == 'automobiles' and building == 'building_automotive_industry':
             return True
-        if base_good == 'luxury_clothes' and building == 'building_textile_mills':
+        if base_good == 'luxury_clothes' and building == 'building_textile_mill':
             return True
         
         return False
@@ -2596,30 +2596,30 @@ class Victoria3CompanyParserV6Final:
             
             # Manufacturing Industries
             'building_arms_industry',
-            'building_artillery_foundries',
+            'building_artillery_foundry',
             'building_automotive_industry',
             'building_electrics_industry',
             'building_explosives_factory',
-            'building_chemical_plants',
+            'building_chemical_plant',
             'building_food_industry',
-            'building_furniture_manufacturies',
+            'building_furniture_manufactory',
             'building_glassworks',
-            'building_military_shipyards',
+            'building_military_shipyard',
             'building_motor_industry',
-            'building_munition_plants',
-            'building_paper_mills',
-            'building_shipyards',
-            'building_steel_mills',
-            'building_synthetics_plants',
-            'building_textile_mills',
-            'building_tooling_workshops',
+            'building_munition_plant',
+            'building_paper_mill',
+            'building_shipyard',
+            'building_steel_mill',
+            'building_synthetics_plant',
+            'building_textile_mill',
+            'building_tooling_workshop',
             
             # Infrastructure + Urban Facilities
             'building_port',
             'building_railway', 
             'building_trade_center',
             'building_power_plant',
-            'building_arts_academy',
+            'building_art_academy',
             
             # Agriculture + Plantations + Ranches
             'building_maize_farm',
@@ -2627,7 +2627,7 @@ class Victoria3CompanyParserV6Final:
             'building_rice_farm',
             'building_rye_farm',
             'building_wheat_farm',
-            'building_vineyard_plantation',
+            'building_vineyard',
             'building_banana_plantation',
             'building_coffee_plantation', 
             'building_cotton_plantation',
@@ -3804,25 +3804,25 @@ class Victoria3CompanyParserV6Final:
                 ]),
                 ("Infrastructure + Urban Facilities", [
                     'building_port', 'building_railway', 'building_trade_center', 'building_power_plant',
-                    'building_arts_academy'
+                    'building_art_academy'
                 ])
             ],
             # Middle Column: Manufacturing Industries
             [
                 ("Manufacturing Industries", [
-                    'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry',
-                    'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants',
-                    'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks',
-                    'building_military_shipyards', 'building_motor_industry', 'building_munition_plants',
-                    'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants',
-                    'building_textile_mills', 'building_tooling_workshops'
+                    'building_arms_industry', 'building_artillery_foundry', 'building_automotive_industry',
+                    'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plant',
+                    'building_food_industry', 'building_furniture_manufactory', 'building_glassworks',
+                    'building_military_shipyard', 'building_motor_industry', 'building_munition_plant',
+                    'building_paper_mill', 'building_shipyard', 'building_steel_mill', 'building_synthetics_plant',
+                    'building_textile_mill', 'building_tooling_workshop'
                 ])
             ],
             # Right Column: Agriculture + Plantations + Ranches
             [
                 ("Agriculture + Plantations + Ranches", [
                     'building_maize_farm', 'building_millet_farm', 'building_rice_farm', 'building_rye_farm',
-                    'building_wheat_farm', 'building_vineyard_plantation', 'building_banana_plantation',
+                    'building_wheat_farm', 'building_vineyard', 'building_banana_plantation',
                     'building_coffee_plantation', 'building_cotton_plantation', 'building_dye_plantation',
                     'building_opium_plantation', 'building_silk_plantation', 'building_sugar_plantation',
                     'building_tea_plantation', 'building_tobacco_plantation', 'building_livestock_ranch'
@@ -4533,13 +4533,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
                         
                         // Building name mappings for icon files that have different names
                         const buildingMappings = {
-                            'building_chemical_plants': 'chemicals_industry',
-                            'building_textile_mills': 'textile_industry', 
-                            'building_artillery_foundries': 'artillery_foundry',
+                            'building_chemical_plant': 'chemicals_industry',
+                            'building_textile_mill': 'textile_industry', 
+                            'building_artillery_foundry': 'artillery_foundry',
                             'building_automotive_industry': 'vehicles_industry',
                             'building_livestock_ranch': 'cattle_ranch',
                             'building_rubber_plantation': 'rubber_lodge',
-                            'building_vineyard_plantation': 'vineyards'
+                            'building_vineyard': 'vineyards'
                         };
                         
                         const mappedBuilding = buildingMappings[building] || building.replace('building_', '');
@@ -4559,13 +4559,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
                         
                         // Building name mappings for icon files that have different names
                         const buildingMappings = {
-                            'building_chemical_plants': 'chemicals_industry',
-                            'building_textile_mills': 'textile_industry', 
-                            'building_artillery_foundries': 'artillery_foundry',
+                            'building_chemical_plant': 'chemicals_industry',
+                            'building_textile_mill': 'textile_industry', 
+                            'building_artillery_foundry': 'artillery_foundry',
                             'building_automotive_industry': 'vehicles_industry',
                             'building_livestock_ranch': 'cattle_ranch',
                             'building_rubber_plantation': 'rubber_lodge',
-                            'building_vineyard_plantation': 'vineyards'
+                            'building_vineyard': 'vineyards'
                         };
                         
                         const mappedCharter = buildingMappings[charter] || charter.replace('building_', '');
@@ -4811,7 +4811,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
         // Building display name overrides
         function getBuildingDisplayName(building) {
             const displayNameOverrides = {
-                'building_chemical_plants': 'Fertilizer Plants'
+                'building_chemical_plant': 'Fertilizer Plants'
             };
             
             if (displayNameOverrides[building]) {
@@ -5347,8 +5347,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     'building_explosives_factory',
                     'building_glassworks',
                     'building_motor_industry',
-                    'building_steel_mills',
-                    'building_tooling_workshops'
+                    'building_steel_mill',
+                    'building_tooling_workshop'
                 ],
                 'key_overall': [
                     'building_coal_mine',
@@ -5362,12 +5362,12 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     'building_explosives_factory',
                     'building_glassworks',
                     'building_motor_industry',
-                    'building_steel_mills',
-                    'building_tooling_workshops',
+                    'building_steel_mill',
+                    'building_tooling_workshop',
                     'building_port',
                     'building_trade_center',
-                    'building_textile_mills',
-                    'building_furniture_manufacturies',
+                    'building_textile_mill',
+                    'building_furniture_manufactory',
                     'building_food_industry'
                 ]
             };
@@ -5626,19 +5626,19 @@ __YALPS_BUNDLE_PLACEHOLDER__
             'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation', 
             'building_sulfur_mine', 'building_whaling_station',
             // Infrastructure + Urban Facilities (5 buildings)
-            'building_port', 'building_railway', 'building_trade_center', 'building_power_plant', 'building_arts_academy',
+            'building_port', 'building_railway', 'building_trade_center', 'building_power_plant', 'building_art_academy',
             
             // Row 2: Manufacturing Industries (18 buildings)  
-            'building_arms_industry', 'building_artillery_foundries', 'building_automotive_industry', 
-            'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plants', 
-            'building_food_industry', 'building_furniture_manufacturies', 'building_glassworks', 
-            'building_military_shipyards', 'building_motor_industry', 'building_munition_plants', 
-            'building_paper_mills', 'building_shipyards', 'building_steel_mills', 'building_synthetics_plants', 
-            'building_textile_mills', 'building_tooling_workshops',
+            'building_arms_industry', 'building_artillery_foundry', 'building_automotive_industry', 
+            'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plant', 
+            'building_food_industry', 'building_furniture_manufactory', 'building_glassworks', 
+            'building_military_shipyard', 'building_motor_industry', 'building_munition_plant', 
+            'building_paper_mill', 'building_shipyard', 'building_steel_mill', 'building_synthetics_plant', 
+            'building_textile_mill', 'building_tooling_workshop',
             
             // Row 3: Agriculture + Plantations + Ranches (16 buildings)
             'building_maize_farm', 'building_millet_farm', 'building_rice_farm', 'building_rye_farm', 'building_wheat_farm',
-            'building_vineyard_plantation', 'building_banana_plantation', 'building_coffee_plantation', 'building_cotton_plantation', 
+            'building_vineyard', 'building_banana_plantation', 'building_coffee_plantation', 'building_cotton_plantation', 
             'building_dye_plantation', 'building_opium_plantation', 'building_silk_plantation', 'building_sugar_plantation',
             'building_tea_plantation', 'building_tobacco_plantation', 'building_livestock_ranch'
         ];
@@ -5808,34 +5808,34 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 'building_sulfur_mine': 'Sulfur',
                 'building_whaling_station': 'Whaling',
                 'building_arms_industry': 'Arms',
-                'building_artillery_foundries': 'Artillery',
+                'building_artillery_foundry': 'Artillery',
                 'building_automotive_industry': 'Auto',
                 'building_electrics_industry': 'Electric',
                 'building_explosives_factory': 'Explosives',
-                'building_chemical_plants': 'Fertilizer',
+                'building_chemical_plant': 'Fertilizer',
                 'building_food_industry': 'Food',
-                'building_furniture_manufacturies': 'Furniture',
+                'building_furniture_manufactory': 'Furniture',
                 'building_glassworks': 'Glass',
-                'building_military_shipyards': 'Mil. Shipyards',
+                'building_military_shipyard': 'Mil. Shipyards',
                 'building_motor_industry': 'Motors',
-                'building_munition_plants': 'Munitions',
-                'building_paper_mills': 'Paper',
-                'building_shipyards': 'Shipyards',
-                'building_steel_mills': 'Steel',
-                'building_synthetics_plants': 'Synthetics',
-                'building_textile_mills': 'Textiles',
-                'building_tooling_workshops': 'Tools',
+                'building_munition_plant': 'Munitions',
+                'building_paper_mill': 'Paper',
+                'building_shipyard': 'Shipyards',
+                'building_steel_mill': 'Steel',
+                'building_synthetics_plant': 'Synthetics',
+                'building_textile_mill': 'Textiles',
+                'building_tooling_workshop': 'Tools',
                 'building_port': 'Port',
                 'building_railway': 'Railway',
                 'building_trade_center': 'Trade',
                 'building_power_plant': 'Power',
-                'building_arts_academy': 'Arts',
+                'building_art_academy': 'Arts',
                 'building_maize_farm': 'Maize',
                 'building_millet_farm': 'Millet',
                 'building_rice_farm': 'Rice',
                 'building_rye_farm': 'Rye',
                 'building_wheat_farm': 'Wheat',
-                'building_vineyard_plantation': 'Wine',
+                'building_vineyard': 'Wine',
                 'building_banana_plantation': 'Banana',
                 'building_coffee_plantation': 'Coffee',
                 'building_cotton_plantation': 'Cotton',
@@ -6964,34 +6964,34 @@ __YALPS_BUNDLE_PLACEHOLDER__
             'building_sulfur_mine': 'Sulfur',
             'building_whaling_station': 'Whaling',
             'building_arms_industry': 'Arms',
-            'building_artillery_foundries': 'Artillery',
+            'building_artillery_foundry': 'Artillery',
             'building_automotive_industry': 'Auto',
             'building_electrics_industry': 'Electric',
             'building_explosives_factory': 'Explosives',
-            'building_chemical_plants': 'Fertilizer',
+            'building_chemical_plant': 'Fertilizer',
             'building_food_industry': 'Food',
-            'building_furniture_manufacturies': 'Furniture',
+            'building_furniture_manufactory': 'Furniture',
             'building_glassworks': 'Glass',
-            'building_military_shipyards': 'Mil. Shipyards',
+            'building_military_shipyard': 'Mil. Shipyards',
             'building_motor_industry': 'Motors',
-            'building_munition_plants': 'Munitions',
-            'building_paper_mills': 'Paper',
-            'building_shipyards': 'Shipyards',
-            'building_steel_mills': 'Steel',
-            'building_synthetics_plants': 'Synthetics',
-            'building_textile_mills': 'Textiles',
-            'building_tooling_workshops': 'Tools',
+            'building_munition_plant': 'Munitions',
+            'building_paper_mill': 'Paper',
+            'building_shipyard': 'Shipyards',
+            'building_steel_mill': 'Steel',
+            'building_synthetics_plant': 'Synthetics',
+            'building_textile_mill': 'Textiles',
+            'building_tooling_workshop': 'Tools',
             'building_port': 'Port',
             'building_railway': 'Railway',
             'building_trade_center': 'Trade',
             'building_power_plant': 'Power',
-            'building_arts_academy': 'Arts',
+            'building_art_academy': 'Arts',
             'building_maize_farm': 'Maize',
             'building_millet_farm': 'Millet',
             'building_rice_farm': 'Rice',
             'building_rye_farm': 'Rye',
             'building_wheat_farm': 'Wheat',
-            'building_vineyard_plantation': 'Wine',
+            'building_vineyard': 'Wine',
             'building_banana_plantation': 'Banana',
             'building_coffee_plantation': 'Coffee',
             'building_cotton_plantation': 'Cotton',
@@ -8287,13 +8287,13 @@ __YALPS_BUNDLE_PLACEHOLDER__
         """Generate JavaScript object for building icon mappings"""
         # Building name mappings for icon files that have different names (from get_building_icon_path)
         building_name_mappings = {
-            'building_chemical_plants': 'chemicals_industry',
-            'building_textile_mills': 'textile_industry', 
-            'building_artillery_foundries': 'artillery_foundry',
+            'building_chemical_plant': 'chemicals_industry',
+            'building_textile_mill': 'textile_industry', 
+            'building_artillery_foundry': 'artillery_foundry',
             'building_automotive_industry': 'vehicles_industry',
             'building_livestock_ranch': 'cattle_ranch',
             'building_rubber_plantation': 'rubber_lodge',
-            'building_vineyard_plantation': 'vineyards'
+            'building_vineyard': 'vineyards'
         }
         
         mappings_js = []

@@ -43,11 +43,11 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_ASTURIAS",
       "Control state STATE_VALENCIA",
       "Control state STATE_GALICIA",
-      "Control state STATE_LOWER_ANDALUSIA",
       "Control state STATE_MURCIA",
-      "Control state STATE_ASTURIAS",
+      "Control state STATE_LOWER_ANDALUSIA",
       "Level 3+ Shipyard required"
     ],
     "prosperity_bonuses": [
@@ -79,9 +79,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_EASTERN_CUBA",
       "Control state STATE_CENTRAL_CUBA",
       "Control state STATE_WESTERN_CUBA",
-      "Control state STATE_EASTERN_CUBA",
       "Level 5+ Sugar Plantation required"
     ],
     "prosperity_bonuses": [
@@ -111,9 +111,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_EASTERN_CUBA",
       "Control state STATE_CENTRAL_CUBA",
       "Control state STATE_WESTERN_CUBA",
-      "Control state STATE_EASTERN_CUBA",
       "Level 5+ Tobacco Plantation required"
     ],
     "prosperity_bonuses": [
@@ -423,9 +423,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_SUZHOU",
       "Control state STATE_NANJING",
       "Control state STATE_ZHEJIANG",
+      "Control state STATE_SUZHOU",
       "Level 5+ Silk Plantation required"
     ],
     "prosperity_bonuses": [
@@ -903,9 +903,9 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WEST_BORNEO",
       "Control state STATE_NORTH_BORNEO",
       "Control state STATE_EAST_BORNEO",
+      "Control state STATE_WEST_BORNEO",
       "Level 5+ Gold Mine required"
     ],
     "prosperity_bonuses": [
@@ -1263,10 +1263,10 @@
     "flavored_company": true,
     "formation_requirements": [
       "Control state STATE_BOMBAY",
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Cotton Plantation required",
       "Level 5+ Opium Plantation required"
@@ -1456,12 +1456,12 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_WEST_BENGAL",
       "Control state STATE_BOMBAY",
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
+      "Control state STATE_WEST_BENGAL",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Rice Farm required",
       "Level 5+ Wheat Farm required"
@@ -1551,8 +1551,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_FLANDERS",
       "Control state STATE_WALLONIA",
+      "Control state STATE_FLANDERS",
       "Level 5+ Motor Industry required"
     ],
     "prosperity_bonuses": [
@@ -1582,8 +1582,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_FLANDERS",
       "Control state STATE_WALLONIA",
+      "Control state STATE_FLANDERS",
       "Level 5+ Steel Mill required",
       "Starts Enacted at Game Start (Belgium)"
     ],
@@ -1641,8 +1641,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_GELRE",
       "Control state STATE_HOLLAND",
+      "Control state STATE_GELRE",
       "Level 5+ Electrics Industry required",
       "Technology: Telephone"
     ],
@@ -1945,9 +1945,9 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
+      "Control state STATE_LOURENCO_MARQUES",
       "Control state STATE_MOCAMBIQUE",
       "Control state STATE_ZAMBEZIA",
-      "Control state STATE_LOURENCO_MARQUES",
       "Level 5+ Cotton Plantation required",
       "Primary culture: Portuguese",
       "Technology: Mutual Funds"
@@ -2827,10 +2827,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region South Germany (level 5+ buildings required)",
-      "Control region in Region Rhine (level 5+ buildings required)",
-      "Control region in Region North Germany (level 5+ buildings required)",
       "Control region in Region Poland (level 5+ buildings required)",
+      "Control region in Region Rhine (level 5+ buildings required)",
+      "Control region in Region South Germany (level 5+ buildings required)",
+      "Control region in Region North Germany (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
     ],
@@ -2975,8 +2975,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_MIRANDA",
       "Control state STATE_ZULIA",
+      "Control state STATE_MIRANDA",
       "Level 5+ Oil Rig required",
       "Technology: Pumpjacks"
     ],
@@ -3379,8 +3379,8 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control state STATE_TAURIDA",
       "Control state STATE_KHARKOV",
+      "Control state STATE_TAURIDA",
       "Level 5+ Steel Mill required",
       "Technology: Bessemer Process"
     ],
@@ -3413,10 +3413,10 @@
     ],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Tea Plantation required",
       "Starts Enacted at Game Start (Great Britain)"
@@ -3557,10 +3557,10 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Central India (level 5+ buildings required)",
-      "Control region in Region Bombay (level 5+ buildings required)",
-      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Punjab (level 5+ buildings required)",
+      "Control region in Region Bombay (level 5+ buildings required)",
+      "Control region in Region Central India (level 5+ buildings required)",
+      "Control region in Region Bengal (level 5+ buildings required)",
       "Control region in Region Madras (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Technology: Railways"
@@ -5392,8 +5392,8 @@
     "possible_prestige_goods": [],
     "flavored_company": true,
     "formation_requirements": [
-      "Control region in Region Manchuria (level 5+ buildings required)",
       "Control region in Region North China (level 5+ buildings required)",
+      "Control region in Region Manchuria (level 5+ buildings required)",
       "Level 5+ Railway required",
       "Primary culture: Japanese",
       "Technology: Railways",
