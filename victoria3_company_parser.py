@@ -19,7 +19,7 @@ from datetime import datetime
 
 class Victoria3CompanyParserV6Final:
     # Game version - update this when parsing a new patch
-    GAME_VERSION = "1.12"
+    GAME_VERSION = "1.13.1"
     def __init__(self, game_directory="game", use_subject_relationships=False):
         self.game_directory = game_directory
         self.use_subject_relationships = use_subject_relationships  # Flag to control subject relationship usage
@@ -117,7 +117,6 @@ class Victoria3CompanyParserV6Final:
             'arts_academy': 'fine_art',
             # Missing mappings for prestige goods
             'building_vineyard': 'wine',
-            'building_military_shipyard': 'ironclads',
             'building_shipyard': 'steamers',  # Override clipper_transports
             'building_electrics_industry': 'telephones',
             'building_textile_mill': 'clothes',  # Override fabric  
@@ -799,7 +798,6 @@ class Victoria3CompanyParserV6Final:
             'building_steel_mill': 'steel_mills',
             'building_synthetics_plant': 'synthetics_plants',
             'building_shipyard': 'shipyards',
-            'building_military_shipyard': 'military_shipyards',
             'building_tooling_workshop': 'tooling_workshops',
             'building_art_academy': 'arts_academy',
             'building_paper_mill': 'paper_mills',
@@ -1773,8 +1771,12 @@ class Victoria3CompanyParserV6Final:
                 if brace_count == 0:
                     possible_content = company_content[brace_start+1:pos-1]
                     
-                    # Extract state requirements and map to countries
+                    # Extract state requirements and map to countries.
+                    # Two syntaxes exist in game files:
+                    #   old: any_scope_state = { state_region = s:STATE_X ... }
+                    #   new (1.13.1+ ep2): s:STATE_X = { ... }   — state used directly as a scope
                     state_regions = re.findall(r'state_region\s*=\s*s:(\w+)', possible_content)
+                    state_regions += re.findall(r's:(STATE_\w+)\s*=\s*\{', possible_content)
                     
                     # Also extract region-based requirements (like sr:region_congo)
                     region_reqs = re.findall(r'region\s*=\s*sr:(\w+)', possible_content)
@@ -2604,7 +2606,6 @@ class Victoria3CompanyParserV6Final:
             'building_food_industry',
             'building_furniture_manufactory',
             'building_glassworks',
-            'building_military_shipyard',
             'building_motor_industry',
             'building_munition_plant',
             'building_paper_mill',
@@ -3813,7 +3814,7 @@ class Victoria3CompanyParserV6Final:
                     'building_arms_industry', 'building_artillery_foundry', 'building_automotive_industry',
                     'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plant',
                     'building_food_industry', 'building_furniture_manufactory', 'building_glassworks',
-                    'building_military_shipyard', 'building_motor_industry', 'building_munition_plant',
+                    'building_motor_industry', 'building_munition_plant',
                     'building_paper_mill', 'building_shipyard', 'building_steel_mill', 'building_synthetics_plant',
                     'building_textile_mill', 'building_tooling_workshop'
                 ])
@@ -5628,12 +5629,12 @@ __YALPS_BUNDLE_PLACEHOLDER__
             // Infrastructure + Urban Facilities (5 buildings)
             'building_port', 'building_railway', 'building_trade_center', 'building_power_plant', 'building_art_academy',
             
-            // Row 2: Manufacturing Industries (18 buildings)  
-            'building_arms_industry', 'building_artillery_foundry', 'building_automotive_industry', 
-            'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plant', 
-            'building_food_industry', 'building_furniture_manufactory', 'building_glassworks', 
-            'building_military_shipyard', 'building_motor_industry', 'building_munition_plant', 
-            'building_paper_mill', 'building_shipyard', 'building_steel_mill', 'building_synthetics_plant', 
+            // Row 2: Manufacturing Industries (17 buildings)
+            'building_arms_industry', 'building_artillery_foundry', 'building_automotive_industry',
+            'building_electrics_industry', 'building_explosives_factory', 'building_chemical_plant',
+            'building_food_industry', 'building_furniture_manufactory', 'building_glassworks',
+            'building_motor_industry', 'building_munition_plant',
+            'building_paper_mill', 'building_shipyard', 'building_steel_mill', 'building_synthetics_plant',
             'building_textile_mill', 'building_tooling_workshop',
             
             // Row 3: Agriculture + Plantations + Ranches (16 buildings)
@@ -5816,7 +5817,6 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 'building_food_industry': 'Food',
                 'building_furniture_manufactory': 'Furniture',
                 'building_glassworks': 'Glass',
-                'building_military_shipyard': 'Mil. Shipyards',
                 'building_motor_industry': 'Motors',
                 'building_munition_plant': 'Munitions',
                 'building_paper_mill': 'Paper',
@@ -6972,7 +6972,6 @@ __YALPS_BUNDLE_PLACEHOLDER__
             'building_food_industry': 'Food',
             'building_furniture_manufactory': 'Furniture',
             'building_glassworks': 'Glass',
-            'building_military_shipyard': 'Mil. Shipyards',
             'building_motor_industry': 'Motors',
             'building_munition_plant': 'Munitions',
             'building_paper_mill': 'Paper',
