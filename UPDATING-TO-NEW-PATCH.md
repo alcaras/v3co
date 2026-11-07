@@ -266,6 +266,28 @@ If companies reference new building types:
 2. Add new building icons to `icons/` directory
 3. Update building type mappings if needed
 
+### New Trigger Syntax in `possible` Blocks (patch 1.15)
+
+Paradox periodically rewrites how state/building requirements are expressed. If many companies suddenly lose their `country` or formation requirements in `company_data_v6.json`, diff a company's `possible = { ... }` block between `game_old/` and `game/`. Patch 1.15 replaced nested `any_scope_state { state_region = s:X ... any_scope_building ... }` with:
+
+```
+has_building_levels_in_state_region = { region = STATE_X building = building_Y levels >= 5 }
+```
+
+Handled in the "Extract state requirements" section of the parser (search for `has_building_levels_in_state_region`).
+
+### Company Icons
+
+The parser reads each company's `icon = "..."` path from `game/company_types/` and uses it first (`setup_game_icon_paths()`), so new companies with oddly named icon files need no manual mapping. `historical_mappings` is only a fallback.
+
+### New Goods / Buildings Need Icons
+
+Copper (`building_copper_mine`, goods `copper`) arrived in 1.15. New buildings need `buildings/64px-Building_X.png`, `icons/30px-Building_X.png`, and the good's `icons/40px-Goods_X.png`; generate them from `gfx/interface/icons/building_icons/` and `goods_icons/` with Pillow if the wiki has none. Also add the building to every hardcoded building list (search for an existing mine like `building_iron_mine`) and update the JS `categoryRanges` row boundaries. Missing prestige-good icons can be made from the `texture =` path in `game/prestige_goods/`.
+
+### Windows
+
+`extract_company_icons.py` auto-detects the Steam path on Windows/macOS/Linux (or set `V3_GAME_DIR`) and falls back to Pillow when ImageMagick isn't installed. Pillow encodes PNGs differently, so unchanged icons will show as modified in git — compare pixels and `git checkout` the identical ones. Set `PYTHONUTF8=1` so the console can print non-ASCII names.
+
 ### Canal Companies or Special Cases
 
 If the game adds new companies with special mechanics:

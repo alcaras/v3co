@@ -19,7 +19,7 @@ from datetime import datetime
 
 class Victoria3CompanyParserV6Final:
     # Game version - update this when parsing a new patch
-    GAME_VERSION = "1.13.1"
+    GAME_VERSION = "1.15.0"
     def __init__(self, game_directory="game", use_subject_relationships=False):
         self.game_directory = game_directory
         self.use_subject_relationships = use_subject_relationships  # Flag to control subject relationship usage
@@ -44,6 +44,7 @@ class Victoria3CompanyParserV6Final:
         self.setup_country_names()
         self.setup_prestige_good_names()
         self.setup_company_icon_mapping()
+        self.setup_game_icon_paths()
 
         # Parse data
         self.parse_state_to_country_mappings()
@@ -79,6 +80,7 @@ class Victoria3CompanyParserV6Final:
             'building_rubber_plantation': 'rubber',
             'building_logging_camp': 'wood',
             'building_coal_mine': 'coal',
+            'building_copper_mine': 'copper',
             'building_iron_mine': 'iron',
             'building_lead_mine': 'lead',
             'building_sulfur_mine': 'sulfur',
@@ -139,7 +141,9 @@ class Victoria3CompanyParserV6Final:
             'SAF': 'South Africa', 'MOR': 'Morocco', 'TUN': 'Tunisia', 'GRE': 'Greece', 'SER': 'Serbia',
             'BUL': 'Bulgaria', 'ROM': 'Romania', 'HUN': 'Hungary', 'CRO': 'Croatia', 'POL': 'Poland',
             'KOR': 'Korea', 'SIA': 'Siam', 'BUR': 'Burma', 'BIC': 'British India', 'AST': 'Australia',
-            'PHI': 'Philippines', 'DAI': 'Vietnam', 'LAN': 'Lanfang', 'KOK': 'Turkestan', 'SOK': 'Niger'
+            'PHI': 'Philippines', 'DAI': 'Vietnam', 'LAN': 'Lanfang', 'KOK': 'Turkestan', 'SOK': 'Niger',
+            'BAV': 'Bavaria', 'DEI': 'Dutch East Indies', 'JOH': 'Johor', 'NSW': 'New South Wales',
+            'UBD': 'United Baltic Duchy', 'WAL': 'Wallachia'
         }
 
     def setup_country_flags(self):
@@ -154,7 +158,7 @@ class Victoria3CompanyParserV6Final:
             'MEX': '🇲🇽', 'CUB': '🇨🇺', 'HAI': '🇭🇹', 'CAN': '🇨🇦', 'TUR': '🇹🇷',
             'EGY': '🇪🇬', 'PER': '🇮🇷', 'AFG': '🇦🇫', 'ETH': '🇪🇹', 'MAD': '🇲🇬',
             'SAF': '🇿🇦', 'MOR': '🇲🇦', 'TUN': '🇹🇳', 'GRE': '🇬🇷', 'SER': '🇷🇸',
-            'BUL': '🇧🇬', 'ROM': '🇷🇴', 'HUN': '🇭🇺', 'POL': '🇵🇱', 'FIN': '🇫🇮',
+            'BUL': '🇧🇬', 'ROM': '🇷🇴', 'HUN': '🇭🇺', 'POL': '🇵🇱', 'FIN': '🇫🇮', 'UBD': '🇪🇪',
             'IND': '🇮🇳', 'BIC': '🇮🇳', 'AST': '🇦🇺', 'NZL': '🇳🇿', 'PHI': '🇵🇭',
             'DEI': '🇮🇩', 'MUG': '🇮🇳', 'NEP': '🇳🇵', 'BHU': '🇧🇹', 'CEY': '🇱🇰',
             'SIK': '🇮🇳', 'TIB': '🏴', 'MON': '🇲🇳', 'MAL': '🇲🇾', 'SIN': '🇸🇬',
@@ -236,6 +240,7 @@ class Victoria3CompanyParserV6Final:
             'LIT': 'Lithuania',
             'LAT': 'Latvia',
             'EST': 'Estonia',
+            'UBD': 'United Baltic Duchy',
             'UKR': 'Ukraine',
             'BYE': 'Belarus',
             'GEO': 'Georgia',
@@ -427,6 +432,39 @@ class Victoria3CompanyParserV6Final:
         # Title case
         return base_name.title()
 
+    def setup_game_icon_paths(self):
+        """Map company id -> PNG path using the `icon = "..."` field in the game's
+        company definitions. This is authoritative; the name-based heuristics in
+        get_company_icon_path() are only a fallback."""
+        self.game_icon_paths = {}
+        if not os.path.isdir(self.company_types_dir):
+            return
+        import codecs
+        prefix = 'gfx/interface/icons/company_icons/'
+        header = re.compile(r'^(company_\w+)\s*=\s*\{', re.M)
+        icon_re = re.compile(r'^\s*icon\s*=\s*"([^"]+)"', re.M)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        for filename in sorted(os.listdir(self.company_types_dir)):
+            if not filename.endswith('.txt'):
+                continue
+            with codecs.open(os.path.join(self.company_types_dir, filename), 'r', encoding='utf-8-sig') as f:
+                content = f.read()
+            headers = list(header.finditer(content))
+            for i, m in enumerate(headers):
+                end = headers[i + 1].start() if i + 1 < len(headers) else len(content)
+                icon = icon_re.search(content, m.end(), end)
+                if not icon or not icon.group(1).startswith(prefix):
+                    continue
+                rel = icon.group(1)[len(prefix):]
+                subdir, _, stem = rel.rpartition('/')
+                stem = stem[:-4] if stem.endswith('.dds') else stem
+                # extract_company_icons.py strips `company_` in historical_company_icons/
+                if subdir == 'historical_company_icons' and stem.startswith('company_'):
+                    stem = stem[len('company_'):]
+                png = 'companies/png/' + (subdir + '/' if subdir else '') + stem + '.png'
+                if os.path.exists(os.path.join(base_dir, png)):
+                    self.game_icon_paths[m.group(1)] = png
+
     def get_company_icon_path(self, company_name):
         """Get the icon path for a company, with comprehensive mapping"""
         # Remove company_ prefix for icon lookup
@@ -604,6 +642,11 @@ class Victoria3CompanyParserV6Final:
             'peruvian_amazon': 'peru_peruvian_amazon_company'
         }
         
+        # Prefer the icon named in the company's own game definition
+        company_key = company_name if company_name.startswith('company_') else 'company_' + company_name
+        if company_key in getattr(self, 'game_icon_paths', {}):
+            return self.game_icon_paths[company_key]
+
         # Check historical mappings first
         if clean_name in self.historical_mappings:
             historical_path = "companies/png/historical_company_icons/{}.png".format(self.historical_mappings[clean_name])
@@ -1775,8 +1818,14 @@ class Victoria3CompanyParserV6Final:
                     # Two syntaxes exist in game files:
                     #   old: any_scope_state = { state_region = s:STATE_X ... }
                     #   new (1.13.1+ ep2): s:STATE_X = { ... }   — state used directly as a scope
+                    #   new (1.15+): has_building_levels_in_state_region = { region = STATE_X building = ... levels >= N }
+                    #                owns_entire_state_region / has_state_in_state_region = STATE_X
                     state_regions = re.findall(r'state_region\s*=\s*s:(\w+)', possible_content)
                     state_regions += re.findall(r's:(STATE_\w+)\s*=\s*\{', possible_content)
+                    state_regions += re.findall(r'(?:owns_entire_state_region|has_state_in_state_region)\s*=\s*(?:s:)?(STATE_\w+)', possible_content)
+                    building_level_blocks = re.findall(r'has_building_levels_in_state_region\s*=\s*\{([^{}]*)\}', possible_content)
+                    for block in building_level_blocks:
+                        state_regions += re.findall(r'\bregion\s*=\s*(?:s:)?(STATE_\w+)', block)
                     
                     # Also extract region-based requirements (like sr:region_congo)
                     region_reqs = re.findall(r'region\s*=\s*sr:(\w+)', possible_content)
@@ -1784,7 +1833,7 @@ class Victoria3CompanyParserV6Final:
                     formation_reqs = []
                     if state_regions:
                         # Remove duplicates and fix STATE_ prefix
-                        unique_states = list(set(state_regions))
+                        unique_states = sorted(set(state_regions))
                         for state in unique_states:
                             # Don't add STATE_ prefix if it already exists
                             if state.startswith('STATE_'):
@@ -1794,7 +1843,7 @@ class Victoria3CompanyParserV6Final:
                         
                     if region_reqs:
                         # Remove duplicates and add region requirements
-                        unique_regions = list(set(region_reqs))
+                        unique_regions = sorted(set(region_reqs))
                         for region in unique_regions:
                             region_name = region.replace('_', ' ').title()
                             # Check for building level requirements in the same block
@@ -1812,6 +1861,11 @@ class Victoria3CompanyParserV6Final:
                     
                     # Extract building level requirements and deduplicate
                     building_level_matches = re.findall(r'is_building_type\s*=\s*(building_\w+).*?level\s*>=\s*(\d+)', possible_content, re.DOTALL)
+                    for block in building_level_blocks:
+                        block_building = re.search(r'\bbuilding\s*=\s*(building_\w+)', block)
+                        block_level = re.search(r'\blevels?\s*>=\s*(\d+)', block)
+                        if block_building and block_level:
+                            building_level_matches.append((block_building.group(1), block_level.group(1)))
                     building_requirements = set()  # Use set to avoid duplicates
                     for building, level in building_level_matches:
                         building_name = building.replace('building_', '').replace('_', ' ').title()
@@ -1977,7 +2031,7 @@ class Victoria3CompanyParserV6Final:
         if not os.path.exists(self.company_types_dir):
             raise FileNotFoundError("Company types directory not found: {}".format(self.company_types_dir))
             
-        for filename in os.listdir(self.company_types_dir):
+        for filename in sorted(os.listdir(self.company_types_dir)):
             if filename.endswith('.txt'):
                 file_path = os.path.join(self.company_types_dir, filename)
                 print("Parsing {}...".format(filename))
@@ -2180,11 +2234,11 @@ class Victoria3CompanyParserV6Final:
             },
             'Asian_Oceanian': {
                 'display_name': 'Asia & Oceania',
-                'countries': ['AST', 'CHI', 'BIC', 'JAP', 'KOR', 'LAN', 'PHI', 'SIA', 'DAI']
+                'countries': ['AST', 'CHI', 'BIC', 'DEI', 'JAP', 'JOH', 'KOR', 'LAN', 'NSW', 'PHI', 'SIA', 'DAI']
             },
             'European': {
                 'display_name': 'Europe', 
-                'countries': ['AUS', 'BEL', 'CRO', 'DEN', 'FIN', 'FRA', 'DEU', 'GBR', 'GRE', 'HUN', 'ITA', 'NET', 'NOR', 'POL', 'POR', 'ROM', 'RUS', 'SER', 'SPA', 'SWE']
+                'countries': ['AUS', 'BAV', 'BEL', 'CRO', 'DEN', 'FIN', 'FRA', 'DEU', 'GBR', 'GRE', 'HUN', 'ITA', 'NET', 'NOR', 'POL', 'POR', 'ROM', 'RUS', 'SER', 'SPA', 'SWE', 'SWI', 'UBD', 'WAL']
             },
             'Middle_Eastern': {
                 'display_name': 'Middle East & Africa',
@@ -2586,6 +2640,7 @@ class Victoria3CompanyParserV6Final:
         wiki_building_order = [
             # Extraction
             'building_coal_mine',
+            'building_copper_mine',
             'building_fishing_wharf',
             'building_gold_mine',
             'building_iron_mine',
@@ -3799,7 +3854,7 @@ class Victoria3CompanyParserV6Final:
             # Left Column: Extraction + Infrastructure + Urban Facilities
             [
                 ("Extraction", [
-                    'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine',
+                    'building_coal_mine', 'building_copper_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine',
                     'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation',
                     'building_sulfur_mine', 'building_whaling_station'
                 ]),
@@ -4207,7 +4262,15 @@ __YALPS_BUNDLE_PLACEHOLDER__
         const countryFlags = ''' + self._get_country_flags_js() + ''';
         const countryNames = ''' + self._get_country_names_js() + ''';
         
+        // Icon paths taken from each company's `icon =` field in the game files
+        const gameIconPaths = ''' + json.dumps(self.game_icon_paths, sort_keys=True) + ''';
+
         function getCompanyIconPath(companyName) {
+            const companyKey = companyName.startsWith('company_') ? companyName : 'company_' + companyName;
+            if (gameIconPaths[companyKey]) {
+                return gameIconPaths[companyKey];
+            }
+
             // Remove company_ prefix for icon lookup
             const cleanName = companyName.replace('company_', '');
             
@@ -4320,13 +4383,14 @@ __YALPS_BUNDLE_PLACEHOLDER__
                 'NOR': { flag: '🇳🇴', name: 'Norway' },
                 'DEN': { flag: '🇩🇰', name: 'Denmark' },
                 'FIN': { flag: '🇫🇮', name: 'Finland' },
+                'UBD': { flag: '🇪🇪', name: 'United Baltic Duchy' },
                 'POR': { flag: '🇵🇹', name: 'Portugal' },
                 'BOL': { flag: '🇧🇴', name: 'Bolivia' },
                 'VNZ': { flag: '🇻🇪', name: 'Venezuela' },
                 'COL': { flag: '🇨🇴', name: 'Colombia' },
                 'SER': { flag: '🇷🇸', name: 'Serbia' },
                 'ROM': { flag: '🇷🇴', name: 'Romania' },
-                'WAL': { flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿', name: 'Wallachia' },
+                'WAL': { flag: '🇷🇴', name: 'Wallachia' },
                 'BAD': { flag: '🇩🇪', name: 'Baden' },
                 'SAX': { flag: '🇩🇪', name: 'Saxony' },
                 'LAN': { flag: '🇨🇳', name: 'Lanfang Republic' },
@@ -5621,9 +5685,9 @@ __YALPS_BUNDLE_PLACEHOLDER__
         
         // Define building order by categories matching TOC structure (global scope for use in multiple functions)
         const buildingOrder = [
-            // Row 1: Extraction + Infrastructure + Urban Facilities (15 buildings total)
-            // Extraction (10 buildings)
-            'building_coal_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine', 
+            // Row 1: Extraction + Infrastructure + Urban Facilities (16 buildings total)
+            // Extraction (11 buildings)
+            'building_coal_mine', 'building_copper_mine', 'building_fishing_wharf', 'building_gold_mine', 'building_iron_mine', 
             'building_lead_mine', 'building_logging_camp', 'building_oil_rig', 'building_rubber_plantation', 
             'building_sulfur_mine', 'building_whaling_station',
             // Infrastructure + Urban Facilities (5 buildings)
@@ -5800,6 +5864,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
             const buildingShortForms = {
                 'building_coal_mine': 'Coal',
                 'building_fishing_wharf': 'Fish',
+                'building_copper_mine': 'Copper',
                 'building_gold_mine': 'Gold',
                 'building_iron_mine': 'Iron',
                 'building_lead_mine': 'Lead',
@@ -5894,8 +5959,8 @@ __YALPS_BUNDLE_PLACEHOLDER__
             
             // Define category boundaries for three-row layout matching TOC structure
             const categoryRanges = {
-                row1: { start: 0, end: 15 },   // Extraction (10) + Infrastructure (5) = 15 buildings
-                row2: { start: 15, end: 33 },  // Manufacturing Industries = 18 buildings  
+                row1: { start: 0, end: 16 },   // Extraction (11) + Infrastructure (5) = 16 buildings
+                row2: { start: 16, end: 33 },  // Manufacturing Industries = 17 buildings
                 row3: { start: 33, end: 49 }   // Agriculture + Plantations + Ranches = 16 buildings
             };
             
@@ -6955,6 +7020,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
         const buildingShortForms = {
             'building_coal_mine': 'Coal',
             'building_fishing_wharf': 'Fish',
+            'building_copper_mine': 'Copper',
             'building_gold_mine': 'Gold',
             'building_iron_mine': 'Iron',
             'building_lead_mine': 'Lead',
