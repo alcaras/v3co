@@ -441,7 +441,7 @@ class Victoria3CompanyParserV6Final:
             return
         import codecs
         prefix = 'gfx/interface/icons/company_icons/'
-        header = re.compile(r'^(company_\w+)\s*=\s*\{', re.M)
+        header = re.compile(r'^(company_[\w-]+)\s*=\s*\{', re.M)
         icon_re = re.compile(r'^\s*icon\s*=\s*"([^"]+)"', re.M)
         base_dir = os.path.dirname(os.path.abspath(__file__))
         for filename in sorted(os.listdir(self.company_types_dir)):
@@ -1129,7 +1129,7 @@ class Victoria3CompanyParserV6Final:
                             continue
 
                         # Match add_company pattern
-                        company_match = re.search(r'add_company\s*=\s*company_type:(company_\w+)', line)
+                        company_match = re.search(r'add_company\s*=\s*company_type:(company_[\w-]+)', line)
                         if company_match:
                             companies_found.append(company_match.group(1))
 
@@ -1521,7 +1521,7 @@ class Victoria3CompanyParserV6Final:
         companies = {}
         
         # Find all company definitions WITH their preceding comments - before removing comments
-        company_pattern = r'(?:#\s*([^\n]*)\n\s*)?(company_\w+)\s*=\s*\{'
+        company_pattern = r'(?:#\s*([^\n]*)\n\s*)?(company_[\w-]+)\s*=\s*\{'
         matches = re.finditer(company_pattern, content)
         
         company_display_names = {}
@@ -1535,7 +1535,7 @@ class Victoria3CompanyParserV6Final:
         content = re.sub(r'#.*$', '', content, flags=re.MULTILINE)
         
         # Find all company definitions again for parsing
-        company_pattern = r'(company_\w+)\s*=\s*\{'
+        company_pattern = r'(company_[\w-]+)\s*=\s*\{'
         matches = re.finditer(company_pattern, content)
         
         for match in matches:
@@ -4596,19 +4596,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     data.base_buildings.forEach(building => {
                         const buildingName = getBuildingDisplayName(building);
                         
-                        // Building name mappings for icon files that have different names
-                        const buildingMappings = {
-                            'building_chemical_plant': 'chemicals_industry',
-                            'building_textile_mill': 'textile_industry', 
-                            'building_artillery_foundry': 'artillery_foundry',
-                            'building_automotive_industry': 'vehicles_industry',
-                            'building_livestock_ranch': 'cattle_ranch',
-                            'building_rubber_plantation': 'rubber_lodge',
-                            'building_vineyard': 'vineyards'
-                        };
-                        
-                        const mappedBuilding = buildingMappings[building] || building.replace('building_', '');
-                        const buildingIcon = `buildings/64px-Building_${mappedBuilding}.png`;
+                        const buildingIcon = getBuildingIconPath(building);
                         
                         html += `<li><img src="${buildingIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
                                  onerror="this.style.display='none';">${buildingName}</li>`;
@@ -4622,19 +4610,7 @@ __YALPS_BUNDLE_PLACEHOLDER__
                     data.industry_charters.forEach(charter => {
                         const charterName = getBuildingDisplayName(charter);
                         
-                        // Building name mappings for icon files that have different names
-                        const buildingMappings = {
-                            'building_chemical_plant': 'chemicals_industry',
-                            'building_textile_mill': 'textile_industry', 
-                            'building_artillery_foundry': 'artillery_foundry',
-                            'building_automotive_industry': 'vehicles_industry',
-                            'building_livestock_ranch': 'cattle_ranch',
-                            'building_rubber_plantation': 'rubber_lodge',
-                            'building_vineyard': 'vineyards'
-                        };
-                        
-                        const mappedCharter = buildingMappings[charter] || charter.replace('building_', '');
-                        const charterIcon = `buildings/64px-Building_${mappedCharter}.png`;
+                        const charterIcon = getBuildingIconPath(charter);
                         
                         html += `<li><img src="${charterIcon}" width="16" height="16" style="margin-right: 6px; vertical-align: middle;" 
                                  onerror="this.style.display='none';">${charterName}</li>`;
@@ -8349,23 +8325,19 @@ __YALPS_BUNDLE_PLACEHOLDER__
         return '{' + ', '.join(names_js) + '}'
     
     def _get_building_icon_mappings_js(self):
-        """Generate JavaScript object for building icon mappings"""
-        # Building name mappings for icon files that have different names (from get_building_icon_path)
-        building_name_mappings = {
-            'building_chemical_plant': 'chemicals_industry',
-            'building_textile_mill': 'textile_industry', 
-            'building_artillery_foundry': 'artillery_foundry',
-            'building_automotive_industry': 'vehicles_industry',
-            'building_livestock_ranch': 'cattle_ranch',
-            'building_rubber_plantation': 'rubber_lodge',
-            'building_vineyard': 'vineyards'
-        }
-        
-        mappings_js = []
-        for building, icon_name in building_name_mappings.items():
-            mappings_js.append(f'"{building}": "{icon_name}"')
-        return '{' + ', '.join(mappings_js) + '}'
-    
+        """Generate JavaScript object for building icon mappings.
+
+        Derived from get_building_icon_path() so the browser uses exactly the
+        same icon files as the Python-generated tables.
+        """
+        mappings = {}
+        for building in sorted(self.all_buildings):
+            path = self.get_building_icon_path(building)
+            m = re.match(r'buildings/64px-Building_(.+)\.png$', path or '')
+            if m and m.group(1) != building.replace('building_', ''):
+                mappings[building] = m.group(1)
+        return json.dumps(mappings, sort_keys=True)
+
     def _get_prestige_icon_mappings_js(self):
         """Generate JavaScript object with prestige icon paths that actually exist"""
         # Special icon mappings for prestige goods that don't have exact icon matches (same as main table logic)
